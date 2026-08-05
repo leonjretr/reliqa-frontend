@@ -1,0 +1,29 @@
+# Never ship the host's build artifacts or dependency tree into the image —
+# node_modules built on the host can carry the wrong platform's binaries, and
+# a stale .next silently wins over the one the builder stage produces.
+node_modules
+.next
+out
+build
+
+.git
+.gitignore
+
+.env*
+!.env.example
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+README.md
+CLAUDE.md
+AGENTS.md
+
+.DS_Store
+*.pem
+coverage
+.vscode
+.idea
+tsconfig.tsbuildinfo
