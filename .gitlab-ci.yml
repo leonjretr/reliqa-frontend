@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - sudo chmod +x /home/reliqa/frontend/deploy.sh
+    - sudo /home/reliqa/frontend/deploy.sh
+
+  tags:
+    - linux
