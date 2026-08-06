@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: .
+    container_name: reliqa-frontend
+    restart: unless-stopped
+    # Runtime only. NEXT_PUBLIC_* are inlined by `next build`, so changing one
+    # needs `up --build`, not a restart.
+    env_file: [.env]
+    # 9050 inside the container either way; the variable may carry a bind
+    # address (127.0.0.1:9050) so nginx reaches it without docker publishing
+    # the port to the internet past ufw.
+    ports:
+      - "${FRONTEND_PORT:-9050}:9050"
