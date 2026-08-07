@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 
 import { cn } from "@/ui/utils/shadcn";
+
+const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
+const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,6 +40,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       )}
     >
       <body className="flex min-h-full flex-col">{children}</body>
+      {umamiUrl && umamiWebsiteId && (
+        <Script
+          src={`${umamiUrl}/script.js`}
+          data-website-id={umamiWebsiteId}
+          strategy="afterInteractive"
+        />
+      )}
     </html>
   );
 }
