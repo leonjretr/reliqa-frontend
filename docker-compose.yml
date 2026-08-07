@@ -1,6 +1,10 @@
 services:
   frontend:
-    build: .
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_UMAMI_URL: ${NEXT_PUBLIC_UMAMI_URL}
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
     container_name: reliqa-frontend
     restart: unless-stopped
     # Runtime only. NEXT_PUBLIC_* are inlined by `next build`, so changing one
