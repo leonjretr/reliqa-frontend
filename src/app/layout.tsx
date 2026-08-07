@@ -6,9 +6,6 @@ import "./globals.css";
 
 import { cn } from "@/ui/utils/shadcn";
 
-const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
-const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
-
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -40,13 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       )}
     >
       <body className="flex min-h-full flex-col">{children}</body>
-      {umamiUrl && umamiWebsiteId && (
-        <Script
-          src={`${umamiUrl}/script.js`}
-          data-website-id={umamiWebsiteId}
-          strategy="afterInteractive"
-        />
-      )}
+      <Script
+        src="https://analytics.reliqa.space/script.js"
+        data-website-id="0c384c67-0944-4fff-9bb3-8584c8a175b5"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }
