@@ -41,11 +41,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">{children}</body>
       {umamiUrl && umamiWebsiteId && (
-        <Script
-          src={`${umamiUrl}/script.js`}
-          data-website-id={umamiWebsiteId}
-          strategy="afterInteractive"
-        />
+        <>
+          <Script
+            src={`${umamiUrl}/script.js`}
+            data-website-id={umamiWebsiteId}
+            strategy="afterInteractive"
+          />
+          <Script
+            src={`${umamiUrl}/recorder.js`}
+            data-website-id={umamiWebsiteId}
+            strategy="afterInteractive"
+          />
+        </>
       )}
     </html>
   );
