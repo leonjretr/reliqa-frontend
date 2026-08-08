@@ -7,19 +7,15 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "@/i18n/navigation";
 import { signIn } from "@/service/actions";
 import { Button } from "@/ui/components/lib/shadcn/button";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/ui/components/lib/shadcn/field";
-import { Input } from "@/ui/components/lib/shadcn/input";
+import { FieldError, FieldGroup } from "@/ui/components/lib/shadcn/field";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { applyActionErrors } from "@/ui/utils";
+import { cn } from "@/ui/utils/shadcn";
 import { signInSchema, SignInValues } from "@/ui/validation";
 
+import { AuthField } from "./AuthField";
 import { GoogleAuthButton } from "./GoogleAuthButton";
+import { SHADOW_RAISED, SHADOW_RAISED_HOVER } from "./shadows";
 
 export const SigninForm = () => {
   const router = useRouter();
@@ -45,34 +41,37 @@ export const SigninForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FieldGroup>
-        <Field>
-          <FieldLabel htmlFor="signin-email">{t("LABEL_EMAIL")}</FieldLabel>
-          <Input
-            id="signin-email"
-            type="email"
-            autoComplete="email"
-            placeholder="you@reliqa.space"
-            {...register("email")}
-          />
-          <FieldError errors={[formState.errors.email]} />
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="signin-password">{t("LABEL_PASSWORD")}</FieldLabel>
-          <Input
-            id="signin-password"
-            type="password"
-            autoComplete="current-password"
-            {...register("password")}
-          />
-          <FieldError errors={[formState.errors.password]} />
-        </Field>
+      <FieldGroup className="gap-5">
+        <AuthField
+          id="signin-email"
+          label={t("LABEL_EMAIL")}
+          type="email"
+          autoComplete="email"
+          placeholder="you@reliqa.space"
+          error={formState.errors.email}
+          {...register("email")}
+        />
+        <AuthField
+          id="signin-password"
+          label={t("LABEL_PASSWORD")}
+          type="password"
+          autoComplete="current-password"
+          error={formState.errors.password}
+          {...register("password")}
+        />
         <FieldError errors={[formState.errors.root]} />
-        <Button type="submit" className="w-full" disabled={formState.isSubmitting}>
+        <Button
+          type="submit"
+          disabled={formState.isSubmitting}
+          className={cn(
+            "h-11 w-full rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5",
+            SHADOW_RAISED,
+            SHADOW_RAISED_HOVER,
+          )}
+        >
           {formState.isSubmitting && <Spinner />}
           {t("BUTTON_SIGNIN")}
         </Button>
-        <FieldSeparator>{t("LABEL_OR")}</FieldSeparator>
         <GoogleAuthButton />
       </FieldGroup>
     </form>
