@@ -14,6 +14,11 @@ const eslintConfig = defineConfig([
     files: ["**/*.{js,jsx,mjs,ts,tsx,mts,cts}"],
     rules: jsxA11y.flatConfigs.recommended.rules,
   },
+  {
+    name: "shadcn/generated",
+    files: ["src/ui/components/lib/shadcn/**"],
+    rules: { "jsx-a11y/label-has-associated-control": "off" },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
