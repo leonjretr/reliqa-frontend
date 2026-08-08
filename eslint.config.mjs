@@ -14,6 +14,15 @@ const eslintConfig = defineConfig([
     files: ["**/*.{js,jsx,mjs,ts,tsx,mts,cts}"],
     rules: jsxA11y.flatConfigs.recommended.rules,
   },
+  // Generated shadcn primitives forward `htmlFor` through `{...props}` rather
+  // than declaring it literally, so this rule can't see the association.
+  {
+    name: "jsx-a11y/shadcn-overrides",
+    files: ["src/ui/components/lib/shadcn/**/*.{ts,tsx}"],
+    rules: {
+      "jsx-a11y/label-has-associated-control": "off",
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

@@ -7,5 +7,28 @@
     "TITLE_NOT_FOUND": "Страница не найдена",
     "DESCRIPTION_NOT_FOUND": "Страницы, которую вы ищете, не существует.",
     "LABEL_BACK_HOME": "Вернуться на главную"
+  },
+  "Auth": {
+    "TITLE_LOGIN": "Вход",
+    "DESCRIPTION_LOGIN": "С возвращением. Введите данные, чтобы продолжить.",
+    "TITLE_SIGNUP": "Создать аккаунт",
+    "DESCRIPTION_SIGNUP": "Начните оцифровывать вещи, которые вы храните.",
+    "LABEL_EMAIL": "Email",
+    "PLACEHOLDER_EMAIL": "you@example.com",
+    "LABEL_PASSWORD": "Пароль",
+    "PLACEHOLDER_PASSWORD_SIGNUP": "Минимум 8 символов",
+    "LABEL_FIRST_NAME": "Имя",
+    "PLACEHOLDER_FIRST_NAME": "Иван",
+    "LABEL_LAST_NAME": "Фамилия",
+    "PLACEHOLDER_LAST_NAME": "Иванов",
+    "LABEL_LOGIN_SUBMIT": "Войти",
+    "LABEL_SIGNUP_SUBMIT": "Создать аккаунт",
+    "LABEL_GOOGLE_CONTINUE": "Продолжить с Google",
+    "LABEL_OR_DIVIDER": "или",
+    "LABEL_NO_ACCOUNT": "Нет аккаунта?",
+    "LABEL_SIGNUP_LINK": "Зарегистрироваться",
+    "LABEL_HAVE_ACCOUNT": "Уже есть аккаунт?",
+    "LABEL_LOGIN_LINK": "Войти",
+    "ERROR_GOOGLE_OAUTH_FAILED": "Не удалось войти через Google. Попробуйте снова."
   }
 }

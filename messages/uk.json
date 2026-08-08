@@ -7,5 +7,28 @@
     "TITLE_NOT_FOUND": "Сторінку не знайдено",
     "DESCRIPTION_NOT_FOUND": "Сторінки, яку ви шукаєте, не існує.",
     "LABEL_BACK_HOME": "Повернутися на головну"
+  },
+  "Auth": {
+    "TITLE_LOGIN": "Увійти",
+    "DESCRIPTION_LOGIN": "З поверненням. Введіть дані, щоб продовжити.",
+    "TITLE_SIGNUP": "Створити акаунт",
+    "DESCRIPTION_SIGNUP": "Почніть оцифровувати речі, які ви зберігаєте.",
+    "LABEL_EMAIL": "Email",
+    "PLACEHOLDER_EMAIL": "you@example.com",
+    "LABEL_PASSWORD": "Пароль",
+    "PLACEHOLDER_PASSWORD_SIGNUP": "Щонайменше 8 символів",
+    "LABEL_FIRST_NAME": "Ім'я",
+    "PLACEHOLDER_FIRST_NAME": "Іван",
+    "LABEL_LAST_NAME": "Прізвище",
+    "PLACEHOLDER_LAST_NAME": "Іваненко",
+    "LABEL_LOGIN_SUBMIT": "Увійти",
+    "LABEL_SIGNUP_SUBMIT": "Створити акаунт",
+    "LABEL_GOOGLE_CONTINUE": "Продовжити з Google",
+    "LABEL_OR_DIVIDER": "або",
+    "LABEL_NO_ACCOUNT": "Немає акаунту?",
+    "LABEL_SIGNUP_LINK": "Зареєструватися",
+    "LABEL_HAVE_ACCOUNT": "Вже маєте акаунт?",
+    "LABEL_LOGIN_LINK": "Увійти",
+    "ERROR_GOOGLE_OAUTH_FAILED": "Не вдалося увійти через Google. Спробуйте ще раз."
   }
 }

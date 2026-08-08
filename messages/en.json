@@ -7,5 +7,28 @@
     "TITLE_NOT_FOUND": "Page not found",
     "DESCRIPTION_NOT_FOUND": "The page you are looking for does not exist.",
     "LABEL_BACK_HOME": "Back to home"
+  },
+  "Auth": {
+    "TITLE_LOGIN": "Log in",
+    "DESCRIPTION_LOGIN": "Welcome back. Enter your details to continue.",
+    "TITLE_SIGNUP": "Create an account",
+    "DESCRIPTION_SIGNUP": "Start digitizing the objects you keep.",
+    "LABEL_EMAIL": "Email",
+    "PLACEHOLDER_EMAIL": "you@example.com",
+    "LABEL_PASSWORD": "Password",
+    "PLACEHOLDER_PASSWORD_SIGNUP": "At least 8 characters",
+    "LABEL_FIRST_NAME": "First name",
+    "PLACEHOLDER_FIRST_NAME": "Jane",
+    "LABEL_LAST_NAME": "Last name",
+    "PLACEHOLDER_LAST_NAME": "Doe",
+    "LABEL_LOGIN_SUBMIT": "Log in",
+    "LABEL_SIGNUP_SUBMIT": "Create account",
+    "LABEL_GOOGLE_CONTINUE": "Continue with Google",
+    "LABEL_OR_DIVIDER": "or",
+    "LABEL_NO_ACCOUNT": "Don't have an account?",
+    "LABEL_SIGNUP_LINK": "Sign up",
+    "LABEL_HAVE_ACCOUNT": "Already have an account?",
+    "LABEL_LOGIN_LINK": "Log in",
+    "ERROR_GOOGLE_OAUTH_FAILED": "Google sign-in failed. Please try again."
   }
 }

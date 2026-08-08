@@ -8,4 +8,10 @@ export type {
   APIPaginationParams,
   APIOrderingParams,
 } from "./api";
+export type {
+  AuthActionResult,
+  GoogleOAuthRedirectResult,
+  LoginCredentials,
+  SignupDetails,
+} from "./auth";
 export type { Session } from "./session";
