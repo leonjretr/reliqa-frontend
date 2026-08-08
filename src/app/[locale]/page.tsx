@@ -1,11 +1,5 @@
-import { setRequestLocale } from "next-intl/server";
-
-const Home = async ({ params }: PageProps<"/[locale]">) => {
-  const { locale } = await params;
-
-  setRequestLocale(locale);
-
+const Page = () => {
   return null;
 };
 
-export default Home;
+export default Page;
