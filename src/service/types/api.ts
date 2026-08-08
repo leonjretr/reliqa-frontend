@@ -6,15 +6,17 @@ export type APISuccessfulResponse = {
   success: true;
 } & APIResponse;
 
+export type APIErrorType = "validation_error" | "client_error" | "server_error";
+
 export type APIError = {
-  code?: string;
-  detail?: string;
-  attr?: string;
+  code: string;
+  detail: string;
+  attr: string | null;
 };
 
 export type APIErrorResponse = {
   success: false;
-  message?: string;
+  type: APIErrorType;
   errors: APIError[];
 } & APIResponse;
 
