@@ -1,0 +1,11 @@
+{
+  "Layout": {
+    "TITLE_SITE": "Reliqa",
+    "DESCRIPTION_SITE": "Digitize the objects you keep, and the stories they carry."
+  },
+  "NotFound": {
+    "TITLE_NOT_FOUND": "Page not found",
+    "DESCRIPTION_NOT_FOUND": "The page you are looking for does not exist.",
+    "LABEL_BACK_HOME": "Back to home"
+  }
+}

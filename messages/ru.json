@@ -1,0 +1,11 @@
+{
+  "Layout": {
+    "TITLE_SITE": "Reliqa",
+    "DESCRIPTION_SITE": "Оцифруйте вещи, которые вы храните, и истории, которые они несут."
+  },
+  "NotFound": {
+    "TITLE_NOT_FOUND": "Страница не найдена",
+    "DESCRIPTION_NOT_FOUND": "Страницы, которую вы ищете, не существует.",
+    "LABEL_BACK_HOME": "Вернуться на главную"
+  }
+}
