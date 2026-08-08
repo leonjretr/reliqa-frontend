@@ -7,5 +7,17 @@
     "TITLE_NOT_FOUND": "Сторінку не знайдено",
     "DESCRIPTION_NOT_FOUND": "Сторінки, яку ви шукаєте, не існує.",
     "LABEL_BACK_HOME": "Повернутися на головну"
+  },
+  "Auth": {
+    "TITLE_AUTH": "Ласкаво просимо до Reliqa",
+    "DESCRIPTION_AUTH": "Увійдіть, щоб зберігати свої речі та їхні історії.",
+    "LABEL_EMAIL": "Пошта",
+    "LABEL_PASSWORD": "Пароль",
+    "LABEL_OR": "або",
+    "BUTTON_SIGNIN": "Увійти",
+    "BUTTON_SIGNUP": "Зареєструватися",
+    "BUTTON_GOOGLE": "Продовжити з Google",
+    "ERROR_SIGNIN": "Не вдалося увійти. Перевірте пошту та пароль.",
+    "ERROR_SIGNUP": "Не вдалося створити акаунт. Спробуйте ще раз."
   }
 }

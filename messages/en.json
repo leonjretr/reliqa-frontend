@@ -7,5 +7,17 @@
     "TITLE_NOT_FOUND": "Page not found",
     "DESCRIPTION_NOT_FOUND": "The page you are looking for does not exist.",
     "LABEL_BACK_HOME": "Back to home"
+  },
+  "Auth": {
+    "TITLE_AUTH": "Welcome to Reliqa",
+    "DESCRIPTION_AUTH": "Sign in to keep your objects and their stories.",
+    "LABEL_EMAIL": "Email",
+    "LABEL_PASSWORD": "Password",
+    "LABEL_OR": "or",
+    "BUTTON_SIGNIN": "Sign in",
+    "BUTTON_SIGNUP": "Sign up",
+    "BUTTON_GOOGLE": "Continue with Google",
+    "ERROR_SIGNIN": "Could not sign you in. Check your email and password.",
+    "ERROR_SIGNUP": "Could not create your account. Please try again."
   }
 }

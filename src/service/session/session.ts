@@ -26,3 +26,17 @@ export const clearSession = async () => {
   const session = await getIronSession<Session>(await cookies(), SESSION_OPTIONS);
   session.destroy();
 };
+
+export const setOauthState = async (state: string) => {
+  const session = await getIronSession<Session>(await cookies(), SESSION_OPTIONS);
+  session.oauthState = state;
+  await session.save();
+};
+
+export const popOauthState = async () => {
+  const session = await getIronSession<Session>(await cookies(), SESSION_OPTIONS);
+  const state = session.oauthState;
+  delete session.oauthState;
+  await session.save();
+  return state;
+};

@@ -1,3 +1,11 @@
-export { fetchAPI, fetchAuthenticated } from "./api";
+export {
+  fetchAPI,
+  fetchAuthenticated,
+  login,
+  register,
+  getGoogleOauthRedirectUri,
+  authenticateGoogleOauthCode,
+} from "./api";
 export type { FetchAPIOptions } from "./api";
-export { getSession, setSession, clearSession } from "./session";
+export { signIn, signUp, startGoogleOauth } from "./actions";
+export { getSession, setSession, clearSession, setOauthState, popOauthState } from "./session";
