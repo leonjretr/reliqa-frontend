@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 
 import { Link, usePathname } from "@/i18n";
+import { cn } from "@/ui/utils/shadcn";
 
 type Tab = {
   href: string;
@@ -84,15 +85,7 @@ export const TabBar = () => {
   const pathname = usePathname();
 
   return (
-    <nav
-      style={{
-        flex: "none",
-        display: "flex",
-        alignItems: "stretch",
-        borderTop: "var(--key)",
-        background: "var(--chalk)",
-      }}
-    >
+    <nav className="border-ink bg-chalk flex flex-none items-stretch border-t">
       {TABS.map((tab) => {
         const isActive = tab.match(pathname);
         if (tab.center) {
@@ -100,34 +93,17 @@ export const TabBar = () => {
             <Link
               key={tab.href}
               href={tab.href}
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 4,
-                padding: "8px 0 9px",
-                textDecoration: "none",
-                color: "var(--chalk)",
-              }}
+              className="text-chalk flex flex-1 flex-col items-center justify-center gap-1 pt-2 pb-[9px] no-underline"
             >
               <span
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 34,
-                  height: 34,
-                  background: isActive ? "var(--oxblood)" : "var(--ink)",
-                  color: "var(--chalk)",
-                  border: "var(--key)",
-                  borderColor: isActive ? "var(--oxblood)" : "var(--ink)",
-                }}
+                className={cn(
+                  "text-chalk flex h-[34px] w-[34px] items-center justify-center border",
+                  isActive ? "bg-oxblood border-oxblood" : "bg-ink border-ink",
+                )}
               >
                 {tab.icon}
               </span>
-              <span className="sc" style={{ fontSize: 8, color: "var(--ink-soft)" }}>
+              <span className="text-ink-soft font-kept-mono text-[8px] tracking-[0.1em] uppercase">
                 {tab.label}
               </span>
             </Link>
@@ -137,22 +113,17 @@ export const TabBar = () => {
           <Link
             key={tab.href}
             href={tab.href}
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 5,
-              padding: "9px 0 10px",
-              textDecoration: "none",
-              color: isActive ? "var(--ink)" : "var(--ink-faint)",
-            }}
+            className={cn(
+              "flex flex-1 flex-col items-center justify-center gap-[5px] pt-[9px] pb-[10px] no-underline",
+              isActive ? "text-ink" : "text-ink-faint",
+            )}
           >
             {tab.icon}
             <span
-              className="sc"
-              style={{ fontSize: 8, color: isActive ? "var(--oxblood)" : "var(--ink-faint)" }}
+              className={cn(
+                "font-kept-mono text-[8px] tracking-[0.1em] uppercase",
+                isActive ? "text-oxblood" : "text-ink-faint",
+              )}
             >
               {tab.label}
             </span>

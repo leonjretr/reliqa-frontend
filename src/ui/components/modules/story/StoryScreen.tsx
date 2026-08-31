@@ -10,147 +10,76 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
   const objectHasPage = hasObjectPage(story.objectSlug);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
-      <div className="kept-col" style={{ flex: 1, minHeight: 0 }}>
-        <div style={{ position: "relative", height: 372 }}>
+    <div className="relative flex h-full flex-col">
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
+        <div className="relative h-[372px]">
           <KeptPhoto
             category={story.category}
             src={story.photo}
             alt={`${story.model} kept by ${story.name}`}
-            style={{ position: "absolute", inset: 0 }}
+            className="absolute inset-0"
           />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(20,14,9,.92) 0%, rgba(20,14,9,.35) 45%, rgba(20,14,9,.35) 100%)",
-            }}
-          />
-          <Link
-            href="/"
-            style={{ position: "absolute", top: 15, left: 18, textDecoration: "none", zIndex: 2 }}
-          >
-            <span className="sc" style={{ color: "#f6f1e8" }}>
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.35)_45%,rgba(20,14,9,0.35)_100%)]" />
+          <Link href="/" className="absolute top-[15px] left-[18px] z-[2] no-underline">
+            <span className="text-chalk font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               ← the feed
             </span>
           </Link>
-          <span
-            className="sc fig"
-            style={{
-              position: "absolute",
-              top: 15,
-              right: 18,
-              color: "rgba(246,241,232,.72)",
-              zIndex: 2,
-            }}
-          >
+          <span className="text-chalk/72 font-kept-mono absolute top-[15px] right-[18px] z-[2] text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
             {story.year}
           </span>
-          <div
-            style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 18px 18px" }}
-          >
-            <div className="sc" style={{ color: "rgba(246,241,232,.72)" }}>
+          <div className="absolute inset-x-0 bottom-0 px-[18px] pb-[18px]">
+            <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               {story.kind} · {story.place} · {story.relation}
             </div>
-            <div
-              style={{
-                fontFamily: "var(--serif)",
-                fontWeight: 700,
-                fontSize: 30,
-                lineHeight: 1.02,
-                letterSpacing: "-.025em",
-                color: "#f6f1e8",
-                marginTop: 6,
-              }}
-            >
+            <div className="text-chalk mt-[6px] text-[30px] leading-[1.02] font-bold tracking-[-0.025em]">
               {story.name}
             </div>
-            <p
-              style={{
-                margin: "10px 0 0",
-                fontFamily: "var(--serif)",
-                fontWeight: 300,
-                fontStyle: "italic",
-                fontSize: 18,
-                lineHeight: 1.4,
-                color: "#f6f1e8",
-              }}
-            >
+            <p className="text-chalk mt-[10px] text-[18px] leading-[1.4] font-light italic">
               “{story.text}”
             </p>
           </div>
         </div>
 
-        <div style={{ padding: "18px 18px 24px" }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 9 }}>
-            <span className="sc">{story.model}</span>
-            <span className="rule" style={{ flex: 1, transform: "translateY(-3px)" }} />
-            <span className="sc fig">held {story.held}</span>
+        <div className="px-[18px] pt-[18px] pb-[24px]">
+          <div className="flex items-baseline gap-[9px]">
+            <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+              {story.model}
+            </span>
+            <span className="bg-hair h-px flex-1 -translate-y-[3px]" />
+            <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
+              held {story.held}
+            </span>
           </div>
 
           {story.body.map((paragraph, index) => (
             <p
               key={index}
-              style={{
-                margin: index === 0 ? "16px 0 0" : "14px 0 0",
-                fontFamily: "var(--serif)",
-                fontWeight: 300,
-                fontSize: 17,
-                lineHeight: 1.62,
-                color: "var(--ink-2)",
-              }}
+              className={`text-ink-2 text-[17px] leading-[1.62] font-light ${
+                index === 0 ? "mt-[16px]" : "mt-[14px]"
+              }`}
             >
               {paragraph}
             </p>
           ))}
 
-          <div
-            style={{
-              marginTop: 22,
-              display: "flex",
-              flexDirection: "column",
-              gap: 1,
-              background: "var(--ink)",
-              border: "var(--key)",
-            }}
-          >
+          <div className="bg-ink border-ink mt-[22px] flex flex-col gap-px border">
             <Link
               href={`/keeper/${story.keeperSlug}`}
-              style={{
-                background: "var(--chalk)",
-                padding: "13px 14px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "baseline",
-                textDecoration: "none",
-                color: "inherit",
-              }}
+              className="bg-chalk flex items-baseline justify-between px-[14px] py-[13px] text-inherit no-underline"
             >
-              <span style={{ fontFamily: "var(--serif)", fontWeight: 600, fontSize: 15 }}>
-                {story.name}’s shelf
-              </span>
-              <span className="sc" style={{ color: "var(--oxblood)" }}>
+              <span className="text-[15px] font-semibold">{story.name}’s shelf</span>
+              <span className="text-oxblood font-kept-mono text-[9px] tracking-[0.1em] uppercase">
                 everything kept →
               </span>
             </Link>
             {objectHasPage && (
               <Link
                 href={`/thing/${story.objectSlug}`}
-                style={{
-                  background: "var(--chalk)",
-                  padding: "13px 14px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
+                className="bg-chalk flex items-baseline justify-between px-[14px] py-[13px] text-inherit no-underline"
               >
-                <span style={{ fontFamily: "var(--serif)", fontWeight: 600, fontSize: 15 }}>
-                  {story.model}
-                </span>
-                <span className="sc" style={{ color: "var(--oxblood)" }}>
+                <span className="text-[15px] font-semibold">{story.model}</span>
+                <span className="text-oxblood font-kept-mono text-[9px] tracking-[0.1em] uppercase">
                   everyone who kept one →
                 </span>
               </Link>

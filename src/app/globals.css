@@ -173,6 +173,29 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 
+@theme {
+  --color-chalk: #f6f1e8;
+  --color-stock: #ece4d5;
+  --color-stock-2: #ded4c0;
+  --color-stock-3: #cbbfa6;
+  --color-ink: #1f1a15;
+  --color-ink-2: #463c33;
+  --color-ink-3: #6b5f53;
+  --color-ink-soft: rgba(31, 26, 21, 0.55);
+  --color-ink-faint: rgba(31, 26, 21, 0.3);
+  --color-hair: rgba(31, 26, 21, 0.17);
+  --color-hair-2: rgba(31, 26, 21, 0.1);
+  --color-oxblood: #96382a;
+  --color-ochre: #b3822c;
+  --color-plum: #63304a;
+  --color-olive: #4a5a33;
+  --color-slate: #3b4a55;
+  --color-desk: #c8beac;
+
+  --font-kept: var(--font-literata), Georgia, serif;
+  --font-kept-mono: var(--font-dm-mono), ui-monospace, monospace;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -24,43 +24,23 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
   const labels = object.stuckOn.slice(0, 5);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
-      <div className="grain" />
+    <div className="relative flex h-full flex-col">
+      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section={object.category}
         right={`${object.keepers} kept`}
         back={{ href: "/browse", label: "the catalogue" }}
       />
-      <div className="kept-col" style={{ flex: 1, minHeight: 0, padding: "16px 18px 24px" }}>
-        <h1
-          style={{
-            margin: "0 0 7px",
-            fontFamily: "var(--serif)",
-            fontWeight: 700,
-            fontSize: 46,
-            lineHeight: 0.94,
-            letterSpacing: "-.03em",
-          }}
-        >
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[16px] pb-[24px]">
+        <h1 className="mb-[7px] text-[46px] leading-[0.94] font-bold tracking-[-0.03em]">
           {object.name}
         </h1>
-        <p
-          style={{
-            margin: "0 0 15px",
-            fontFamily: "var(--serif)",
-            fontWeight: 300,
-            fontStyle: "italic",
-            fontSize: 18,
-            lineHeight: 1.38,
-            color: "var(--ink-2)",
-            maxWidth: "33ch",
-          }}
-        >
+        <p className="text-ink-2 mb-[15px] max-w-[33ch] text-[18px] leading-[1.38] font-light italic">
           {object.blurb}
         </p>
 
-        <div style={{ position: "relative", height: 398, border: "var(--key)" }}>
-          <KeptPhoto category={object.category} style={{ position: "absolute", inset: 0 }} />
+        <div className="border-ink relative h-[398px] border">
+          <KeptPhoto category={object.category} className="absolute inset-0" />
           {labels.map((label, index) => {
             const [x, y, rotate] = POSITIONS[index];
             const stock = STOCK[label.stock % STOCK.length];
@@ -69,68 +49,34 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
               <button
                 key={label.keeperSlug + index}
                 onClick={() => setOpen(isActive ? null : index)}
+                className="border-ink absolute w-[174px] cursor-pointer rounded-[3px] border px-[12px] pt-[10px] pb-[11px] text-left transition-[transform,box-shadow] duration-[340ms] ease-[cubic-bezier(0.2,0.9,0.2,1)]"
                 style={{
-                  position: "absolute",
                   left: x,
                   top: y,
-                  width: 174,
-                  textAlign: "left",
-                  padding: "10px 12px 11px",
                   background: stock.bg,
                   color: stock.fg,
-                  border: "var(--key)",
-                  borderRadius: 3,
                   transform: `rotate(${rotate}deg) translateY(${isActive ? -16 : 0}px) scale(${isActive ? 1.04 : 1})`,
                   boxShadow: isActive
                     ? "0 16px 26px -10px rgba(31,26,21,.5)"
                     : "0 2.5px 0 rgba(31,26,21,.2)",
                   zIndex: isActive ? 9 : index + 1,
-                  transition: "transform 340ms cubic-bezier(.2,.9,.2,1), box-shadow 340ms",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                    marginBottom: 3,
-                    opacity: 0.76,
-                  }}
-                >
-                  <span className="sc" style={{ color: "currentColor", fontSize: 8.5 }}>
+                <div className="mb-[3px] flex items-baseline justify-between opacity-[0.76]">
+                  <span className="font-kept-mono text-[8.5px] tracking-[0.1em] uppercase">
                     {label.place}
                   </span>
-                  <span className="sc fig" style={{ color: "currentColor", fontSize: 8.5 }}>
+                  <span className="font-kept-mono text-[8.5px] tracking-[0.1em] uppercase lining-nums tabular-nums">
                     {label.year}
                   </span>
                 </div>
-                <div
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontWeight: 600,
-                    fontSize: 16,
-                    lineHeight: 1.12,
-                  }}
-                >
-                  {label.name}
-                </div>
+                <div className="text-[16px] leading-[1.12] font-semibold">{label.name}</div>
                 {isActive && (
                   <>
-                    <p
-                      style={{
-                        margin: "8px 0 0",
-                        fontFamily: "var(--serif)",
-                        fontWeight: 300,
-                        fontSize: 13.5,
-                        lineHeight: 1.42,
-                      }}
-                    >
-                      {label.text}
-                    </p>
+                    <p className="mt-[8px] text-[13.5px] leading-[1.42] font-light">{label.text}</p>
                     <Link
                       href={`/keeper/${label.keeperSlug}`}
-                      className="sc"
-                      style={{ display: "inline-block", marginTop: 8, color: "currentColor" }}
+                      className="font-kept-mono mt-[8px] inline-block text-[9px] tracking-[0.1em] uppercase"
                     >
                       their shelf →
                     </Link>
@@ -139,38 +85,20 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
               </button>
             );
           })}
-          <div
-            style={{
-              position: "absolute",
-              left: -1,
-              bottom: -1,
-              background: "var(--ink)",
-              color: "var(--chalk)",
-              padding: "6px 10px 5px",
-            }}
-          >
-            <span className="sc" style={{ color: "var(--chalk)" }}>
+          <div className="bg-ink text-chalk absolute -bottom-px -left-px px-[10px] pt-[6px] pb-[5px]">
+            <span className="text-chalk font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               {object.keepers} people kept one
             </span>
           </div>
         </div>
 
-        <div
-          style={{
-            marginTop: 13,
-            display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)",
-            gap: 1,
-            background: "var(--ink)",
-            border: "var(--key)",
-          }}
-        >
+        <div className="bg-ink border-ink mt-[13px] grid grid-cols-3 gap-px border">
           {object.facts.map((fact) => (
-            <div key={fact.label} style={{ background: "var(--chalk)", padding: "8px 10px" }}>
-              <div className="sc" style={{ fontSize: 8, marginBottom: 3 }}>
+            <div key={fact.label} className="bg-chalk px-[10px] py-[8px]">
+              <div className="text-ink-faint font-kept-mono mb-[3px] text-[8px] tracking-[0.1em] uppercase">
                 {fact.label}
               </div>
-              <div className="fig" style={{ fontSize: 11.5, fontWeight: 500 }}>
+              <div className="font-kept-mono text-[11.5px] font-medium lining-nums tabular-nums">
                 {fact.value}
               </div>
             </div>
@@ -179,8 +107,7 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
 
         <Link
           href="/add"
-          className="btn"
-          style={{ width: "100%", marginTop: 18, textDecoration: "none", color: "var(--chalk)" }}
+          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[18px] flex h-[52px] w-full items-center justify-center gap-[9px] border text-[15px] font-semibold no-underline"
         >
           Stick your memory on
         </Link>

@@ -8,30 +8,25 @@ type ScreenHeaderProps = {
 
 export const ScreenHeader = ({ section, right, back }: ScreenHeaderProps) => {
   return (
-    <div style={{ flex: "none", padding: "15px 18px 9px", background: "var(--chalk)" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+    <div className="bg-chalk flex-none px-[18px] pt-[15px] pb-[9px]">
+      <div className="flex items-baseline justify-between">
         {back ? (
-          <Link href={back.href} style={{ textDecoration: "none" }}>
-            <span className="sc" style={{ color: "var(--oxblood)" }}>
+          <Link href={back.href} className="no-underline">
+            <span className="text-oxblood font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               ← {back.label}
             </span>
           </Link>
         ) : (
-          <span
-            style={{
-              fontFamily: "var(--serif)",
-              fontWeight: 700,
-              fontSize: 15,
-              letterSpacing: "-.005em",
-            }}
-          >
-            Reliqa
-          </span>
+          <span className="text-[15px] font-bold tracking-[-0.005em]">Reliqa</span>
         )}
-        <span className="sc">{section}</span>
-        <span className="sc fig">{right ?? ""}</span>
+        <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+          {section}
+        </span>
+        <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
+          {right ?? ""}
+        </span>
       </div>
-      <div className="rule-k" style={{ marginTop: 9 }} />
+      <div className="bg-ink mt-[9px] h-px" />
     </div>
   );
 };

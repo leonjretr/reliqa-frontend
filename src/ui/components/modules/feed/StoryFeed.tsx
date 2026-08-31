@@ -4,12 +4,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { Link } from "@/i18n";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { cn } from "@/ui/utils/shadcn";
 
 import { groupThousands, hasObjectPage, STORIES, type Story } from "./data";
-
-const light = "rgba(246,241,232,.72)";
-const chalk = "#f6f1e8";
-const accent = "#e6a94d";
 
 const RailButton = ({
   href,
@@ -22,35 +19,16 @@ const RailButton = ({
   label: string;
   filled?: boolean;
 }) => (
-  <Link
-    href={href}
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 5,
-      textDecoration: "none",
-      color: chalk,
-    }}
-  >
+  <Link href={href} className="text-chalk flex flex-col items-center gap-[5px] no-underline">
     <span
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 44,
-        height: 44,
-        borderRadius: "50%",
-        border: "1px solid rgba(246,241,232,.5)",
-        background: filled ? "var(--oxblood)" : "rgba(20,14,9,.35)",
-        borderColor: filled ? "var(--oxblood)" : "rgba(246,241,232,.5)",
-        color: chalk,
-        backdropFilter: "blur(2px)",
-      }}
+      className={cn(
+        "text-chalk flex h-[44px] w-[44px] items-center justify-center rounded-full border backdrop-blur-[2px]",
+        filled ? "bg-oxblood border-oxblood" : "border-chalk/50 bg-[rgba(20,14,9,0.35)]",
+      )}
     >
       {glyph}
     </span>
-    <span className="sc" style={{ color: light, fontSize: 8 }}>
+    <span className="text-chalk/72 font-kept-mono text-[8px] tracking-[0.1em] uppercase">
       {label}
     </span>
   </Link>
@@ -62,48 +40,22 @@ const Slide = ({ story, index }: { story: Story; index: number }) => {
   return (
     <section
       data-slide={index}
-      style={{
-        position: "relative",
-        height: "100%",
-        width: "100%",
-        flex: "none",
-        scrollSnapAlign: "start",
-        scrollSnapStop: "always",
-        overflow: "hidden",
-      }}
+      className="relative h-full w-full flex-none snap-start snap-always overflow-hidden"
     >
       <KeptPhoto
         category={story.category}
         src={story.photo}
         alt={`${story.model} kept by ${story.name}`}
-        style={{ position: "absolute", inset: 0 }}
+        className="absolute inset-0"
       />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to top, rgba(20,14,9,.92) 0%, rgba(20,14,9,.5) 38%, rgba(20,14,9,0) 70%)",
-        }}
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.5)_38%,rgba(20,14,9,0)_70%)]" />
 
-      <div
-        style={{
-          position: "absolute",
-          right: 12,
-          bottom: 132,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 20,
-          zIndex: 3,
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-          <span className="fig" style={{ color: chalk, fontSize: 17, fontWeight: 500 }}>
+      <div className="absolute right-[12px] bottom-[132px] z-[3] flex flex-col items-center gap-[20px]">
+        <div className="flex flex-col items-center gap-[3px]">
+          <span className="text-chalk font-kept-mono text-[17px] font-medium lining-nums tabular-nums">
             {groupThousands(story.keepers)}
           </span>
-          <span className="sc" style={{ color: light, fontSize: 8 }}>
+          <span className="text-chalk/72 font-kept-mono text-[8px] tracking-[0.1em] uppercase">
             kept one
           </span>
         </div>
@@ -147,52 +99,19 @@ const Slide = ({ story, index }: { story: Story; index: number }) => {
         )}
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 62,
-          bottom: 22,
-          padding: "0 18px",
-          zIndex: 3,
-        }}
-      >
-        <div className="sc" style={{ color: light }}>
+      <div className="absolute right-[62px] bottom-[22px] left-0 z-[3] px-[18px]">
+        <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
           {story.kind} · {story.year}
         </div>
-        <div
-          style={{
-            fontFamily: "var(--serif)",
-            fontWeight: 700,
-            fontSize: 26,
-            lineHeight: 1.04,
-            letterSpacing: "-.02em",
-            color: chalk,
-            marginTop: 6,
-          }}
-        >
+        <div className="text-chalk mt-[6px] text-[26px] leading-[1.04] font-bold tracking-[-0.02em]">
           {story.name}
         </div>
-        <div className="sc" style={{ color: light, marginTop: 4 }}>
+        <div className="text-chalk/72 font-kept-mono mt-[4px] text-[9px] tracking-[0.1em] uppercase">
           {story.place} · {story.relation} · {story.model}
         </div>
-        <p
-          style={{
-            margin: "12px 0 0",
-            fontFamily: "var(--serif)",
-            fontWeight: 300,
-            fontSize: 19,
-            lineHeight: 1.4,
-            color: chalk,
-          }}
-        >
-          “{story.text}”
-        </p>
-        <Link
-          href={`/story/${story.slug}`}
-          style={{ display: "inline-block", marginTop: 12, textDecoration: "none" }}
-        >
-          <span className="sc" style={{ color: accent }}>
+        <p className="text-chalk mt-[12px] text-[19px] leading-[1.4] font-light">“{story.text}”</p>
+        <Link href={`/story/${story.slug}`} className="mt-[12px] inline-block no-underline">
+          <span className="font-kept-mono text-[9px] tracking-[0.1em] text-[#e6a94d] uppercase">
             read the whole thing →
           </span>
         </Link>
@@ -224,65 +143,26 @@ export const StoryFeed = () => {
   }, []);
 
   return (
-    <div style={{ position: "relative", height: "100%", width: "100%", background: "#140e09" }}>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 6,
-          padding: "14px 18px 22px",
-          background: "linear-gradient(to bottom, rgba(20,14,9,.6) 0%, rgba(20,14,9,0) 100%)",
-          display: "flex",
-          alignItems: "baseline",
-          justifyContent: "space-between",
-          pointerEvents: "none",
-        }}
-      >
-        <span style={{ fontFamily: "var(--serif)", fontWeight: 700, fontSize: 15, color: chalk }}>
-          Reliqa
-        </span>
-        <span className="sc fig" style={{ color: light }}>
+    <div className="relative h-full w-full bg-[#140e09]">
+      <div className="pointer-events-none absolute top-0 right-0 left-0 z-[6] flex items-baseline justify-between bg-[linear-gradient(to_bottom,rgba(20,14,9,0.6)_0%,rgba(20,14,9,0)_100%)] px-[18px] pt-[14px] pb-[22px]">
+        <span className="text-chalk text-[15px] font-bold">Reliqa</span>
+        <span className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
           {active + 1} / {STORIES.length}
         </span>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: 14,
-          right: 18,
-          bottom: "auto",
-          left: 18,
-          zIndex: 6,
-          display: "flex",
-          gap: 3,
-          pointerEvents: "none",
-          marginTop: 34,
-        }}
-      >
+      <div className="pointer-events-none absolute top-[14px] right-[18px] left-[18px] z-[6] mt-[34px] flex gap-[3px]">
         {STORIES.map((story, index) => (
           <div
             key={story.slug}
-            style={{
-              flex: 1,
-              height: 2,
-              background: index <= active ? accent : "rgba(246,241,232,.28)",
-            }}
+            className={cn("h-[2px] flex-1", index <= active ? "bg-[#e6a94d]" : "bg-chalk/28")}
           />
         ))}
       </div>
 
       <div
         ref={containerRef}
-        className="kept-col"
-        style={{
-          height: "100%",
-          overflowY: "auto",
-          scrollSnapType: "y mandatory",
-          WebkitOverflowScrolling: "touch",
-        }}
+        className="kept-scroll h-full snap-y snap-mandatory overflow-y-auto [-webkit-overflow-scrolling:touch]"
       >
         {STORIES.map((story, index) => (
           <Slide key={story.slug} story={story} index={index} />

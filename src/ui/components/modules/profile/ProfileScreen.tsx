@@ -7,59 +7,38 @@ type ProfileScreenProps = {
 
 export const ProfileScreen = ({ keeper }: ProfileScreenProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <div
-        className="torn"
-        style={{ height: 172, background: "var(--plum)", position: "relative", flex: "none" }}
-      >
-        <div className="grain" />
-        <div style={{ position: "absolute", left: 20, bottom: 26, color: "#f6e9ee" }}>
-          <div className="sc" style={{ color: "rgba(246,233,238,.75)", marginBottom: 6 }}>
+    <div className="flex h-full flex-col">
+      <div className="torn-edge bg-plum relative h-[172px] flex-none">
+        <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
+        <div className="absolute bottom-[26px] left-[20px] text-[#f6e9ee]">
+          <div className="font-kept-mono mb-[6px] text-[9px] tracking-[0.1em] text-[rgba(246,233,238,0.75)] uppercase">
             keeper since {keeper.since} · {keeper.place}
           </div>
-          <div style={{ fontFamily: "var(--serif)", fontWeight: 700, fontSize: 34 }}>
-            {keeper.name}
-          </div>
+          <div className="text-[34px] font-bold">{keeper.name}</div>
         </div>
       </div>
-      <div className="kept-col" style={{ padding: "22px 18px 22px", flex: 1, minHeight: 0 }}>
-        <div className="sc" style={{ marginBottom: 14 }}>
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] py-[22px]">
+        <div className="text-ink-faint font-kept-mono mb-[14px] text-[9px] tracking-[0.1em] uppercase">
           {keeper.kept.length} things kept a memory on
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+        <div className="grid grid-cols-2 gap-[14px]">
           {keeper.kept.map((item, index) => {
             const stock = STOCK[item.stock % STOCK.length];
             return (
               <Link
                 key={item.objectSlug}
                 href={`/thing/${item.objectSlug}`}
+                className="border-ink rounded-[3px] border px-[12px] pt-[11px] pb-[12px] no-underline shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]"
                 style={{
                   background: stock.bg,
                   color: stock.fg,
-                  border: "var(--key)",
-                  borderRadius: 3,
-                  padding: "11px 12px 12px",
                   transform: `rotate(${index % 2 ? 2 : -2}deg)`,
-                  boxShadow: "0 6px 14px -8px rgba(31,26,21,.4)",
-                  textDecoration: "none",
                 }}
               >
-                <div
-                  className="sc"
-                  style={{ color: "currentColor", opacity: 0.72, fontSize: 8, marginBottom: 5 }}
-                >
+                <div className="font-kept-mono mb-[5px] text-[8px] tracking-[0.1em] uppercase opacity-[0.72]">
                   {item.category} · {item.year}
                 </div>
-                <div
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontWeight: 600,
-                    fontSize: 16,
-                    lineHeight: 1.15,
-                  }}
-                >
-                  {item.name}
-                </div>
+                <div className="text-[16px] leading-[1.15] font-semibold">{item.name}</div>
               </Link>
             );
           })}

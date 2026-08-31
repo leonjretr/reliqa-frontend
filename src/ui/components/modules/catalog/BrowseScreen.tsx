@@ -2,6 +2,7 @@ import { Link } from "@/i18n";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { groupThousands, OBJECTS, STOCK } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
+import { cn } from "@/ui/utils/shadcn";
 
 const DECADES = [
   { label: "50s", count: 8 },
@@ -18,46 +19,28 @@ const totalKept = OBJECTS.reduce((sum, item) => sum + item.keepers, 0);
 const DecadesBand = () => {
   const max = Math.max(...DECADES.map((decade) => decade.count));
   return (
-    <div style={{ display: "flex", gap: 1, border: "var(--key)", background: "var(--ink)" }}>
+    <div className="border-ink bg-ink flex gap-px border">
       {DECADES.map((decade) => {
         const isPeak = decade.count === max;
         const bars = Math.round((decade.count / max) * 7) || 1;
         return (
           <div
             key={decade.label}
-            style={{
-              flex: 1,
-              background: "var(--chalk)",
-              padding: "7px 0 6px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 5,
-            }}
+            className="bg-chalk flex flex-1 flex-col items-center gap-[5px] pt-[7px] pb-[6px]"
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column-reverse",
-                gap: 1.5,
-                height: 30,
-                justifyContent: "flex-start",
-              }}
-            >
+            <div className="flex h-[30px] flex-col-reverse justify-start gap-[1.5px]">
               {Array.from({ length: bars }).map((_, index) => (
                 <div
                   key={index}
-                  style={{
-                    width: 16,
-                    height: 2.5,
-                    background: isPeak ? "var(--oxblood)" : "var(--ink-2)",
-                  }}
+                  className={cn("h-[2.5px] w-[16px]", isPeak ? "bg-oxblood" : "bg-ink-2")}
                 />
               ))}
             </div>
             <span
-              className="sc"
-              style={{ fontSize: 8, color: isPeak ? "var(--oxblood)" : "var(--ink-faint)" }}
+              className={cn(
+                "font-kept-mono text-[8px] tracking-[0.1em] uppercase",
+                isPeak ? "text-oxblood" : "text-ink-faint",
+              )}
             >
               {decade.label}
             </span>
@@ -70,105 +53,52 @@ const DecadesBand = () => {
 
 export const BrowseScreen = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
-      <div className="grain" />
+    <div className="relative flex h-full flex-col">
+      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader section="the catalogue" right={`${OBJECTS.length} things`} />
-      <div className="kept-col" style={{ flex: 1, minHeight: 0 }}>
-        <div style={{ padding: "16px 18px 6px" }}>
-          <h1
-            style={{
-              margin: 0,
-              fontFamily: "var(--serif)",
-              fontWeight: 700,
-              fontSize: 29,
-              lineHeight: 1.05,
-              letterSpacing: "-.028em",
-            }}
-          >
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
+        <div className="px-[18px] pt-[16px] pb-[6px]">
+          <h1 className="text-[29px] leading-[1.05] font-bold tracking-[-0.028em]">
             Things people kept
           </h1>
-          <div className="sc" style={{ marginTop: 7 }}>
+          <div className="text-ink-faint font-kept-mono mt-[7px] text-[9px] tracking-[0.1em] uppercase">
             {groupThousands(totalKept)} memories stuck on so far
           </div>
         </div>
-        <div
-          style={{
-            padding: "12px 18px 22px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 18,
-          }}
-        >
+        <div className="flex flex-col gap-[18px] px-[18px] pt-[12px] pb-[22px]">
           {OBJECTS.map((object, objectIndex) => {
             const layers = Math.min(4, Math.round(object.keepers / 24) + 1);
             return (
               <Link
                 key={object.slug}
                 href={`/thing/${object.slug}`}
-                style={{
-                  position: "relative",
-                  paddingBottom: 26,
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
+                className="relative pb-[26px] text-inherit no-underline"
               >
                 {Array.from({ length: layers }).map((_, layer) => (
                   <div
                     key={layer}
+                    className="border-ink absolute z-0 h-[12px] rounded-[3px] border"
                     style={{
-                      position: "absolute",
                       left: 7 + layer * 5,
                       right: 7 + layer * 5,
                       bottom: 26 - (layer + 1) * 6,
-                      height: 12,
                       background: STOCK[(objectIndex + layer) % STOCK.length].bg,
-                      border: "var(--key)",
-                      borderRadius: 3,
-                      zIndex: 0,
                     }}
                   />
                 ))}
-                <div
-                  style={{
-                    position: "relative",
-                    zIndex: 1,
-                    background: "var(--chalk)",
-                    border: "var(--key)",
-                    borderRadius: 3,
-                    display: "flex",
-                    gap: 13,
-                    padding: 11,
-                    alignItems: "center",
-                  }}
-                >
+                <div className="bg-chalk border-ink relative z-[1] flex items-center gap-[13px] rounded-[3px] border p-[11px]">
                   <KeptPhoto
                     category={object.category}
-                    style={{ width: 76, height: 76, flex: "none", border: "var(--key)" }}
+                    className="border-ink h-[76px] w-[76px] flex-none border"
                   />
-                  <div style={{ flex: 1 }}>
-                    <div className="sc" style={{ fontSize: 8, marginBottom: 4 }}>
+                  <div className="flex-1">
+                    <div className="text-ink-faint font-kept-mono mb-[4px] text-[8px] tracking-[0.1em] uppercase">
                       {object.category} · {object.year}
                     </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--serif)",
-                        fontWeight: 700,
-                        fontSize: 24,
-                        lineHeight: 1,
-                        letterSpacing: "-.02em",
-                      }}
-                    >
+                    <div className="text-[24px] leading-none font-bold tracking-[-0.02em]">
                       {object.name}
                     </div>
-                    <div
-                      style={{
-                        marginTop: 6,
-                        fontFamily: "var(--serif)",
-                        fontWeight: 600,
-                        fontSize: 13,
-                        color: "var(--oxblood)",
-                      }}
-                    >
+                    <div className="text-oxblood mt-[6px] text-[13px] font-semibold">
                       {object.keepers} kept one
                     </div>
                   </div>
@@ -177,7 +107,7 @@ export const BrowseScreen = () => {
             );
           })}
           <div>
-            <div className="sc" style={{ marginBottom: 8 }}>
+            <div className="text-ink-faint font-kept-mono mb-[8px] text-[9px] tracking-[0.1em] uppercase">
               when the memories happened
             </div>
             <DecadesBand />

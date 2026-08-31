@@ -3,10 +3,17 @@
 import { useState, type ChangeEvent } from "react";
 
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { cn } from "@/ui/utils/shadcn";
 
 const CAP = 140;
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
 const CATEGORY = "cameras";
+
+const fieldClassName =
+  "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-[7px] pb-[6px] text-[17px] outline-none placeholder:font-light placeholder:italic";
+
+const textareaClassName =
+  "text-ink placeholder:text-ink-faint bg-stock border-ink w-full resize-none border px-[12px] py-[11px] text-[15.5px] leading-[1.5] font-light outline-none placeholder:italic focus:bg-white";
 
 export const CaptureForm = () => {
   const [arrival, setArrival] = useState("inherited");
@@ -31,161 +38,123 @@ export const CaptureForm = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
-        position: "relative",
-        overflow: "hidden",
-        background: "var(--chalk)",
-      }}
-    >
-      <div className="grain" />
-      <div style={{ flex: "none", padding: "15px 18px 9px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-          <span style={{ fontWeight: 700, fontSize: 15 }}>Reliqa</span>
-          <span className="sc">add yours</span>
-          <span className="sc fig">1 of 1</span>
-        </div>
-        <div className="rule-k" style={{ marginTop: 9 }} />
-      </div>
-      <div className="kept-col" style={{ flex: 1, minHeight: 0, padding: "14px 18px 24px" }}>
-        <div className="sc">the thing</div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            borderBottom: "var(--key)",
-            paddingBottom: 7,
-            marginTop: 5,
-          }}
-        >
-          <span style={{ fontWeight: 700, fontSize: 26, letterSpacing: "-.025em" }}>
-            35 mm camera
+    <div className="bg-chalk relative flex h-full w-full flex-col overflow-hidden">
+      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
+      <div className="flex-none px-[18px] pt-[15px] pb-[9px]">
+        <div className="flex items-baseline justify-between">
+          <span className="text-[15px] font-bold">Reliqa</span>
+          <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+            add yours
           </span>
-          <span className="sc" style={{ color: "var(--oxblood)" }}>
+          <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
+            1 of 1
+          </span>
+        </div>
+        <div className="bg-ink mt-[9px] h-px" />
+      </div>
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[14px] pb-[24px]">
+        <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+          the thing
+        </div>
+        <div className="border-ink mt-[5px] flex items-baseline justify-between border-b pb-[7px]">
+          <span className="text-[26px] font-bold tracking-[-0.025em]">35 mm camera</span>
+          <span className="text-oxblood font-kept-mono text-[9px] tracking-[0.1em] uppercase">
             change
           </span>
         </div>
 
-        <div className="sc" style={{ marginTop: 20 }}>
+        <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
           a photo of your object
         </div>
-        <label style={{ display: "block", marginTop: 8, cursor: "pointer" }}>
-          <input type="file" accept="image/*" onChange={handleFile} style={{ display: "none" }} />
+        <label className="mt-[8px] block cursor-pointer">
+          <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
           {photo ? (
-            <div style={{ position: "relative", height: 214, border: "var(--key)" }}>
+            <div className="border-ink relative h-[214px] border">
               <KeptPhoto
                 category={CATEGORY}
                 src={photo}
                 alt="your object"
-                style={{ position: "absolute", inset: 0 }}
+                className="absolute inset-0"
               />
-              <span
-                className="sc"
-                style={{
-                  position: "absolute",
-                  right: 8,
-                  bottom: 8,
-                  padding: "5px 8px",
-                  background: "rgba(20,14,9,.6)",
-                  color: "#f6f1e8",
-                }}
-              >
+              <span className="text-chalk font-kept-mono absolute right-[8px] bottom-[8px] bg-[rgba(20,14,9,0.6)] px-[8px] py-[5px] text-[9px] tracking-[0.1em] uppercase">
                 replace
               </span>
             </div>
           ) : (
-            <div
-              style={{
-                height: 214,
-                background: "var(--stock-2)",
-                border: "var(--key)",
-                borderStyle: "dashed",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-              }}
-            >
+            <div className="bg-stock-2 border-ink flex h-[214px] flex-col items-center justify-center gap-[10px] border border-dashed">
               <svg
                 width="34"
                 height="34"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--ink-faint)"
+                stroke="currentColor"
                 strokeWidth="1.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="text-ink-faint"
               >
                 <path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
                 <circle cx="12" cy="13" r="3.5" />
               </svg>
-              <span className="sc" style={{ color: "var(--ink-faint)" }}>
+              <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
                 add a photograph
               </span>
             </div>
           )}
         </label>
-        <p
-          style={{
-            margin: "8px 0 0",
-            fontFamily: "var(--mono)",
-            fontSize: 10.5,
-            lineHeight: 1.6,
-            color: "var(--ink-3)",
-          }}
-        >
+        <p className="text-ink-3 font-kept-mono mt-[8px] text-[10.5px] leading-[1.6]">
           One clear photo of the actual object — the one your story is about. Yours, not a stock
           picture. This is what people see first.
         </p>
 
-        <div className="sc" style={{ marginTop: 22 }}>
+        <div className="text-ink-faint font-kept-mono mt-[22px] text-[9px] tracking-[0.1em] uppercase">
           how it reached you
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 7 }}>
+        <div className="mt-[7px] flex flex-wrap gap-[6px]">
           {ARRIVALS.map((option) => (
             <button
               key={option}
-              className="chip"
-              data-on={arrival === option ? "1" : "0"}
               onClick={() => setArrival(option)}
+              className={cn(
+                "border-ink font-kept-mono cursor-pointer border px-[11px] py-[9px] text-[10.5px] tracking-[0.05em] lowercase",
+                arrival === option
+                  ? "bg-ink text-chalk"
+                  : "text-ink-2 hover:bg-stock-2 bg-transparent",
+              )}
             >
               {option}
             </button>
           ))}
         </div>
 
-        <div className="sc" style={{ marginTop: 20 }}>
-          whose was it before you{" "}
-          <span style={{ textTransform: "none", letterSpacing: 0 }}>— optional</span>
+        <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
+          whose was it before you <span className="tracking-normal normal-case">— optional</span>
         </div>
         <input
-          className="fld"
+          className={fieldClassName}
           value={previous}
           onChange={(event) => setPrevious(event.target.value)}
           placeholder="a name, or a relation"
         />
 
-        <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
-          <div style={{ flex: 1 }}>
-            <div className="sc">where</div>
+        <div className="mt-[20px] flex gap-[14px]">
+          <div className="flex-1">
+            <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+              where
+            </div>
             <input
-              className="fld"
+              className={fieldClassName}
               value={place}
               onChange={(event) => setPlace(event.target.value)}
               placeholder="city"
             />
           </div>
-          <div style={{ width: 96 }}>
-            <div className="sc">since</div>
+          <div className="w-[96px]">
+            <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+              since
+            </div>
             <input
-              className="fld fig"
-              style={{ fontFamily: "var(--mono)", fontSize: 16 }}
+              className={cn(fieldClassName, "font-kept-mono text-[16px] lining-nums tabular-nums")}
               value={year}
               onChange={(event) => setYear(event.target.value.replace(/\D/g, "").slice(0, 4))}
               placeholder="year"
@@ -193,130 +162,77 @@ export const CaptureForm = () => {
           </div>
         </div>
 
-        <div
-          style={{
-            marginTop: 22,
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-          }}
-        >
-          <div className="sc">the one line</div>
+        <div className="mt-[22px] flex items-baseline justify-between">
+          <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+            the one line
+          </div>
           <span
-            className="fig"
-            style={{ fontSize: 11, color: remaining < 20 ? "var(--oxblood)" : "var(--ink-faint)" }}
+            className={cn(
+              "font-kept-mono text-[11px] lining-nums tabular-nums",
+              remaining < 20 ? "text-oxblood" : "text-ink-faint",
+            )}
           >
             {remaining}
           </span>
         </div>
-        <div style={{ marginTop: 6 }}>
+        <div className="mt-[6px]">
           <textarea
-            className="ta"
-            style={{ height: 74 }}
+            className={cn(textareaClassName, "h-[74px]")}
             maxLength={CAP}
             value={memory}
             onChange={(event) => setMemory(event.target.value)}
             placeholder="Not the history of it. One thing."
           />
         </div>
-        <p
-          style={{
-            margin: "8px 0 0",
-            fontFamily: "var(--mono)",
-            fontSize: 10.5,
-            lineHeight: 1.6,
-            color: "var(--ink-3)",
-          }}
-        >
+        <p className="text-ink-3 font-kept-mono mt-[8px] text-[10.5px] leading-[1.6]">
           One hundred and forty characters — the hook that rides on top of your photo in the feed.
         </p>
 
-        <div
-          style={{
-            marginTop: 22,
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-          }}
-        >
-          <div className="sc">
-            the whole story{" "}
-            <span style={{ textTransform: "none", letterSpacing: 0 }}>— optional</span>
+        <div className="mt-[22px] flex items-baseline justify-between">
+          <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+            the whole story <span className="tracking-normal normal-case">— optional</span>
           </div>
-          <span className="fig" style={{ fontSize: 11, color: "var(--ink-faint)" }}>
+          <span className="text-ink-faint font-kept-mono text-[11px] lining-nums tabular-nums">
             {longWords} words
           </span>
         </div>
-        <div style={{ marginTop: 6 }}>
+        <div className="mt-[6px]">
           <textarea
-            className="ta"
-            style={{ height: 150 }}
+            className={cn(textareaClassName, "h-[150px]")}
             value={longread}
             onChange={(event) => setLongread(event.target.value)}
             placeholder="Where you kept it, who it belonged to, the day you almost let it go. Take your time — this is the part people open the story to read."
           />
         </div>
 
-        <div style={{ marginTop: 20 }} className="rule-k" />
-        <div className="sc" style={{ margin: "12px 0 7px" }}>
+        <div className="bg-ink mt-[20px] h-px" />
+        <div className="text-ink-faint font-kept-mono mt-[12px] mb-[7px] text-[9px] tracking-[0.1em] uppercase">
           this is what it becomes
         </div>
-        <div
-          style={{ position: "relative", height: 220, border: "var(--key)", overflow: "hidden" }}
-        >
-          <KeptPhoto
-            category={CATEGORY}
-            src={photo}
-            alt="preview"
-            style={{ position: "absolute", inset: 0 }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(20,14,9,.92) 0%, rgba(20,14,9,.4) 45%, rgba(20,14,9,0) 72%)",
-            }}
-          />
-          <div
-            style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 14px 14px" }}
-          >
-            <div className="sc" style={{ color: "rgba(246,241,232,.72)" }}>
+        <div className="border-ink relative h-[220px] overflow-hidden border">
+          <KeptPhoto category={CATEGORY} src={photo} alt="preview" className="absolute inset-0" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.4)_45%,rgba(20,14,9,0)_72%)]" />
+          <div className="absolute inset-x-0 bottom-0 px-[14px] pb-[14px]">
+            <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               {place || "—"} · {previous ? `${previous}’s` : arrival} · {year || "—"}
             </div>
-            <div
-              style={{
-                fontFamily: "var(--serif)",
-                fontWeight: 700,
-                fontSize: 20,
-                color: "#f6f1e8",
-                marginTop: 5,
-              }}
-            >
-              Marta Ilves
-            </div>
-            <p
-              style={{
-                margin: "8px 0 0",
-                fontFamily: "var(--serif)",
-                fontWeight: 300,
-                fontSize: 15.5,
-                lineHeight: 1.42,
-                color: "#f6f1e8",
-              }}
-            >
+            <div className="text-chalk mt-[5px] text-[20px] font-bold">Marta Ilves</div>
+            <p className="text-chalk mt-[8px] text-[15.5px] leading-[1.42] font-light">
               “{memory || "—"}”
             </p>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 9, marginTop: 8 }}>
-          <span className="sc">held {held} years</span>
-          <span className="rule" style={{ flex: 1, transform: "translateY(-3px)" }} />
-          <span className="sc">{longread.trim() ? "with a longread" : "computed, not typed"}</span>
+        <div className="mt-[8px] flex items-baseline gap-[9px]">
+          <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+            held {held} years
+          </span>
+          <span className="bg-hair h-px flex-1 -translate-y-[3px]" />
+          <span className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+            {longread.trim() ? "with a longread" : "computed, not typed"}
+          </span>
         </div>
         <button
-          className="btn"
-          style={{ width: "100%", marginTop: 18 }}
+          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood disabled:bg-stock-2 disabled:text-ink-faint disabled:border-hair mt-[18px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold disabled:cursor-default"
           disabled={!memory || !photo}
         >
           Keep it

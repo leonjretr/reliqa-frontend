@@ -1,12 +1,13 @@
 import type { CSSProperties, ReactNode } from "react";
 
+import { cn } from "@/ui/utils/shadcn";
+
 type KeptPhotoProps = {
   category?: string;
   src?: string;
   alt?: string;
   style?: CSSProperties;
   className?: string;
-  rounded?: number;
   vignette?: boolean;
 };
 
@@ -86,7 +87,6 @@ export const KeptPhoto = ({
   alt = "",
   style,
   className,
-  rounded = 0,
   vignette = true,
 }: KeptPhotoProps) => {
   const tone = (category && DUOTONES[category]) || FALLBACK;
@@ -94,11 +94,8 @@ export const KeptPhoto = ({
 
   return (
     <div
-      className={className}
+      className={cn("relative overflow-hidden", className)}
       style={{
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: rounded,
         background: `linear-gradient(150deg, ${tone.hue} 0%, ${tone.deep} 92%)`,
         color: tone.hue,
         ...style,
@@ -106,64 +103,27 @@ export const KeptPhoto = ({
     >
       {src ? (
         <>
-          <img
-            src={src}
-            alt={alt}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
+          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          <div
+            className="absolute inset-0 opacity-[0.32] mix-blend-color"
+            style={{ background: tone.hue }}
           />
           <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: tone.hue,
-              mixBlendMode: "color",
-              opacity: 0.32,
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: tone.deep,
-              mixBlendMode: "multiply",
-              opacity: 0.18,
-            }}
+            className="absolute inset-0 opacity-[0.18] mix-blend-multiply"
+            style={{ background: tone.deep }}
           />
         </>
       ) : (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "rgba(246,241,232,.16)",
-          }}
-        >
+        <div className="text-chalk/16 absolute inset-0 flex items-center justify-center">
           <svg width="42%" height="42%" viewBox="0 0 48 48" {...glyphStroke}>
             {glyph}
           </svg>
         </div>
       )}
       {vignette && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(120% 100% at 50% 30%, transparent 40%, rgba(20,14,9,.55) 100%)",
-            pointerEvents: "none",
-          }}
-        />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_30%,transparent_40%,rgba(20,14,9,0.55)_100%)]" />
       )}
-      <div className="grain" style={{ opacity: 0.09, zIndex: 2 }} />
+      <div className="grain-texture pointer-events-none absolute inset-0 z-[2] opacity-[0.09] mix-blend-multiply" />
     </div>
   );
 };
