@@ -192,7 +192,9 @@
   --color-slate: #3b4a55;
   --color-desk: #c8beac;
 
+  /* noinspection CssUnresolvedCustomProperty */
   --font-kept: var(--font-literata), Georgia, serif;
+  /* noinspection CssUnresolvedCustomProperty */
   --font-kept-mono: var(--font-dm-mono), ui-monospace, monospace;
 }
 
