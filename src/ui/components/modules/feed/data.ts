@@ -62,7 +62,13 @@ export type Keeper = {
   kept: KeptItem[];
 };
 
-export type Category = { name: string; slug: string; count: string; stock: number };
+export type Category = {
+  name: string;
+  slug: string;
+  count: string;
+  stock: number;
+  photo?: string;
+};
 
 export const STOCK: Stock[] = [
   { bg: "#96382a", fg: "#f7efe7" },

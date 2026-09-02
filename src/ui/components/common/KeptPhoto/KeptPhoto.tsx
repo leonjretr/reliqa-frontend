@@ -19,6 +19,7 @@ const DUOTONES: Record<string, Duotone> = {
   "record players": { hue: "#63304a", deep: "#1c0c15" },
   kitchen: { hue: "#b3822c", deep: "#2c1e07" },
   sewing: { hue: "#4a5a33", deep: "#141c0d" },
+  radios: { hue: "#6f4a2e", deep: "#1c1109" },
 };
 
 const FALLBACK: Duotone = { hue: "#6b5f53", deep: "#1b150f" };
@@ -69,6 +70,14 @@ const GLYPHS: Record<string, ReactNode> = {
       <path d="M30 12h8" />
       <path d="M34 12v14" />
       <path d="M8 34v-6" />
+    </>
+  ),
+  radios: (
+    <>
+      <rect x="6" y="15" width="36" height="21" rx="2" />
+      <circle cx="33" cy="25.5" r="5" />
+      <path d="M12 21h13M12 25.5h13M12 30h13" />
+      <path d="M15 15l7-6" />
     </>
   ),
 };
