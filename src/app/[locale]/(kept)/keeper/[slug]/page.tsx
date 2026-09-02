@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 
-import { getKeeper, KEEPERS } from "@/ui/components/modules/feed";
+import {
+  CURRENT_KEEPER_SLUG,
+  getKeeper,
+  getKeeperStories,
+  KEEPERS,
+} from "@/ui/components/modules/feed";
 import { ProfileScreen } from "@/ui/components/modules/profile";
 
 export const generateStaticParams = () => KEEPERS.map((keeper) => ({ slug: keeper.slug }));
@@ -13,7 +18,9 @@ const Page = async ({ params }: { params: Promise<{ locale: string; slug: string
     notFound();
   }
 
-  return <ProfileScreen keeper={keeper} />;
+  const stories = getKeeperStories(slug);
+
+  return <ProfileScreen keeper={keeper} stories={stories} isOwn={slug === CURRENT_KEEPER_SLUG} />;
 };
 
 export default Page;

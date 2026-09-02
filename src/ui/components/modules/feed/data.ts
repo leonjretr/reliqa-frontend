@@ -57,6 +57,8 @@ export type Keeper = {
   name: string;
   place: string;
   since: string;
+  avatar?: string;
+  bio?: string;
   kept: KeptItem[];
 };
 
@@ -477,6 +479,7 @@ export const KEEPERS: Keeper[] = [
     name: "Marta Ilves",
     place: "Tartu",
     since: "1974",
+    bio: "I keep the things other people would have thrown out. Cameras that no longer see, a coffee pot nobody is allowed to wash. Mostly I keep the hands that held them first.",
     kept: [
       { objectSlug: "zenit-e", name: "Zenit-E", category: "cameras", year: "1974", stock: 0 },
       { objectSlug: "singer-15", name: "Singer 15", category: "sewing", year: "1968", stock: 3 },
@@ -501,6 +504,7 @@ export const KEEPERS: Keeper[] = [
     name: "Anna Rozīte",
     place: "Riga",
     since: "1988",
+    bio: "My father taught me every old thing by feel, in the dark, before he let me look at it.",
     kept: [{ objectSlug: "zenit-e", name: "Zenit-E", category: "cameras", year: "1988", stock: 2 }],
   },
   {
@@ -508,6 +512,7 @@ export const KEEPERS: Keeper[] = [
     name: "Kaia Lepik",
     place: "Tallinn",
     since: "2003",
+    bio: "Inheritor by accident. Everything I keep was found rather than chosen — behind coats, at the back of wardrobes, on a shelf I was told never to touch.",
     kept: [
       {
         objectSlug: "moka-express",
@@ -578,6 +583,8 @@ export const CATEGORIES: Category[] = [
   { name: "radios", slug: "radios", count: "19 things", stock: 4 },
 ];
 
+export const CURRENT_KEEPER_SLUG = "marta-ilves";
+
 export const groupThousands = (value: number) => value.toLocaleString("en-US").replace(/,/g, " ");
 
 export const getObject = (slug: string) => OBJECTS.find((item) => item.slug === slug) ?? null;
@@ -585,6 +592,9 @@ export const getObject = (slug: string) => OBJECTS.find((item) => item.slug === 
 export const getKeeper = (slug: string) => KEEPERS.find((item) => item.slug === slug) ?? null;
 
 export const getStory = (slug: string) => STORIES.find((item) => item.slug === slug) ?? null;
+
+export const getKeeperStories = (slug: string) =>
+  STORIES.filter((story) => story.keeperSlug === slug);
 
 export const hasObjectPage = (slug?: string) =>
   slug !== undefined && OBJECTS.some((item) => item.slug === slug);
