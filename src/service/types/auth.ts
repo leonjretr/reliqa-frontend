@@ -3,6 +3,14 @@ export type APITokens = {
   refresh: string;
 };
 
+export type APILanguage = "en" | "uk" | "ru";
+
+export type APISettings = {
+  language: APILanguage;
+  is_push_enabled: boolean;
+  is_email_enabled: boolean;
+};
+
 export type APIUser = {
   id: string;
   email: string;
@@ -13,14 +21,20 @@ export type APIUser = {
   created_at: string;
 };
 
+export type APICurrentUser = APIUser & {
+  settings: APISettings;
+};
+
 export type APICreateUser = {
   email: string;
   password: string;
 };
 
 export type APILoginResponse = APITokens & {
-  user: APIUser;
+  user: APICurrentUser;
 };
+
+export type APIRefreshResponse = APITokens;
 
 export type APIGoogleOauthRedirectURIResponse = {
   redirect_uri: string;
@@ -28,5 +42,5 @@ export type APIGoogleOauthRedirectURIResponse = {
 
 export type APIGoogleOauthCallbackResponse = APITokens & {
   next: string;
-  user: APIUser;
+  user: APICurrentUser;
 };

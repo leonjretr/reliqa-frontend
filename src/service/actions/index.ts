@@ -1,1 +1,1 @@
-export { signIn, signUp, startGoogleOauth } from "./auth";
+export { signIn, signUp, startGoogleOauth, signOut } from "./auth";

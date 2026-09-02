@@ -10,9 +10,13 @@ export type {
 } from "./api";
 export type {
   APITokens,
+  APILanguage,
+  APISettings,
   APIUser,
+  APICurrentUser,
   APICreateUser,
   APILoginResponse,
+  APIRefreshResponse,
   APIGoogleOauthRedirectURIResponse,
   APIGoogleOauthCallbackResponse,
 } from "./auth";

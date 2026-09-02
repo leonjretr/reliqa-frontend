@@ -1,9 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
+import { redirect as rootRedirect } from "next/navigation";
 
+import { redirect } from "@/i18n";
 import { getGoogleOauthRedirectUri, login, register } from "@/service/api";
-import { setOauthState, setSession } from "@/service/session";
+import { clearSession, setOauthState, setSession } from "@/service/session";
 import { ActionResult, APICreateUser } from "@/service/types";
 
 export const signIn = async (email: string, password: string): Promise<ActionResult> => {
@@ -41,5 +43,11 @@ export const startGoogleOauth = async (next?: string) => {
   }
 
   await setOauthState(state);
-  redirect(response.redirect_uri);
+  rootRedirect(response.redirect_uri);
+};
+
+export const signOut = async () => {
+  await clearSession();
+  const locale = await getLocale();
+  redirect({ href: "/login", locale });
 };

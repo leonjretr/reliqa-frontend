@@ -3,6 +3,7 @@
 import { API_ENDPOINTS } from "@/config";
 import {
   APICreateUser,
+  APICurrentUser,
   APIGoogleOauthCallbackResponse,
   APIGoogleOauthRedirectURIResponse,
   APILoginResponse,
@@ -10,6 +11,7 @@ import {
 } from "@/service/types";
 
 import { fetchAPI } from "./api";
+import { fetchAuthenticated } from "./auth";
 
 export const login = async (email: string, password: string) => {
   return await fetchAPI<APILoginResponse>(API_ENDPOINTS.LOGIN, {
@@ -39,5 +41,11 @@ export const authenticateGoogleOauthCode = async (code: string, state: string) =
   return await fetchAPI<APIGoogleOauthCallbackResponse>(API_ENDPOINTS.GOOGLE_OAUTH_CALLBACK, {
     method: "POST",
     body: JSON.stringify({ code, state }),
+  });
+};
+
+export const getCurrentUser = async () => {
+  return await fetchAuthenticated<APICurrentUser>(API_ENDPOINTS.CURRENT_USER, {
+    method: "GET",
   });
 };

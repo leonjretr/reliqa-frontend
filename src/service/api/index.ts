@@ -6,4 +6,5 @@ export {
   register,
   getGoogleOauthRedirectUri,
   authenticateGoogleOauthCode,
+  getCurrentUser,
 } from "./accounts";

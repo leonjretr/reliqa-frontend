@@ -36,6 +36,7 @@ export const SignupForm = () => {
       return;
     }
 
+    router.replace("/");
     router.refresh();
   };
 

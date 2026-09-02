@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
-import { Link } from "@/i18n";
+import { signOut } from "@/service/actions";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { CURRENT_KEEPER_SLUG, type Keeper } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
@@ -270,12 +270,14 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
           {saved ? "Saved" : "Save changes"}
         </button>
 
-        <Link
-          href="/login"
-          className="border-oxblood text-oxblood hover:bg-oxblood hover:text-chalk mt-[10px] flex h-[48px] w-full items-center justify-center border text-[14px] font-semibold no-underline"
-        >
-          Sign out
-        </Link>
+        <form action={signOut}>
+          <button
+            type="submit"
+            className="border-oxblood text-oxblood hover:bg-oxblood hover:text-chalk mt-[10px] flex h-[48px] w-full cursor-pointer items-center justify-center border text-[14px] font-semibold"
+          >
+            Sign out
+          </button>
+        </form>
 
         <p className="text-ink-faint font-kept-mono mt-[14px] text-center text-[10px] leading-[1.6] tracking-[0.05em] lowercase">
           keeper since {keeper.since} · reliqa
