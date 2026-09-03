@@ -1,45 +1,64 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/lib/shadcn/tabs";
 import { cn } from "@/ui/utils/shadcn";
 
-import { SHADOW_PILL, SHADOW_SURFACE } from "./shadows";
 import { SigninForm } from "./SigninForm";
 import { SignupForm } from "./SignupForm";
+import { SpecimenIndex } from "./SpecimenIndex";
+
+type Mode = "signin" | "signup";
 
 const triggerClassName = cn(
-  "text-muted-foreground data-active:text-foreground h-9 flex-1 rounded-full border-0 bg-transparent text-sm font-medium transition-all data-active:bg-background dark:data-active:bg-background",
-  SHADOW_PILL,
+  "text-auth-ink-300 h-auto flex-none rounded-none border-0 border-b-2 font-plex-mono border-transparent px-0 pb-2.5 text-xs tracking-[0.14em] uppercase transition-colors",
+  "data-active:border-auth-brass-500 data-active:text-auth-ink-900 data-active:bg-transparent",
 );
 
 export const AuthCard = () => {
   const t = useTranslations("Auth");
+  const [mode, setMode] = useState<Mode>("signin");
 
   return (
-    <div className={cn("bg-card w-full max-w-md rounded-3xl p-8 sm:p-10", SHADOW_SURFACE)}>
-      <h1 className="text-2xl font-semibold tracking-tight text-balance">{t("TITLE_AUTH")}</h1>
-      <p className="text-muted-foreground mt-2 text-sm leading-relaxed text-balance">
-        {t("DESCRIPTION_AUTH")}
-      </p>
+    <div className="bg-auth-ink-900 flex min-h-svh">
+      <SpecimenIndex />
 
-      <Tabs defaultValue="signin" className="mt-8 gap-8">
-        <TabsList className="bg-muted/70 h-auto w-full rounded-full p-1 group-data-[orientation=horizontal]/tabs:h-auto">
-          <TabsTrigger value="signin" className={triggerClassName}>
-            {t("BUTTON_SIGNIN")}
-          </TabsTrigger>
-          <TabsTrigger value="signup" className={triggerClassName}>
-            {t("BUTTON_SIGNUP")}
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="signin">
-          <SigninForm />
-        </TabsContent>
-        <TabsContent value="signup">
-          <SignupForm />
-        </TabsContent>
-      </Tabs>
+      <div className="bg-auth-paper-50 shadow-auth-sheet flex min-w-0 flex-1 flex-col justify-center px-6 py-12 lg:w-1/2 lg:px-12">
+        <div className="mx-auto flex w-full max-w-[404px] flex-col gap-[22px]">
+          <div className="border-auth-line-hairline flex items-center justify-between gap-4 border-b pb-[18px]">
+            <span className="text-muted-foreground font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+              {t("READERS_CARD")}
+            </span>
+            <span className="text-auth-ink-300 font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+              {t("RECORDS_COUNT")}
+            </span>
+          </div>
+
+          <Tabs value={mode} onValueChange={(value) => setMode(value as Mode)}>
+            <TabsList
+              variant="line"
+              className="h-auto w-fit justify-start gap-7 bg-transparent p-0"
+            >
+              <TabsTrigger value="signin" className={triggerClassName}>
+                {t("BUTTON_SIGNIN")}
+              </TabsTrigger>
+              <TabsTrigger value="signup" className={triggerClassName}>
+                {t("TAB_SIGNUP")}
+              </TabsTrigger>
+            </TabsList>
+            <div className="auth-tab-stack grid">
+              <TabsContent value="signin" keepMounted className="col-start-1 row-start-1">
+                <SigninForm />
+              </TabsContent>
+              <TabsContent value="signup" keepMounted className="col-start-1 row-start-1">
+                <SignupForm />
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+      </div>
     </div>
   );
 };

@@ -120,6 +120,23 @@
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
 }
 
+/* Auth (login/signup) surface — dark editorial theme, scoped to this class so
+   it doesn't leak into the rest of the app. */
+.auth-surface {
+  --background: #fbf9f5;
+  --foreground: #1c1917;
+  --card: #fbf9f5;
+  --card-foreground: #1c1917;
+  --primary: #b8874a;
+  --primary-foreground: #ffffff;
+  --muted: #eae4d9;
+  --muted-foreground: #5a524d;
+  --border: rgba(11, 10, 9, 0.24);
+  --input: rgba(11, 10, 9, 0.24);
+  --ring: #b8874a;
+  --destructive: #a6432a;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -158,6 +175,23 @@
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
 
+  /* `inline` matters here: these next/font variables live on a descendant
+     class (KeptLayout/LoginLayout wrapper div), not on :root. A plain
+     @theme block resolves var() once at :root — where the next/font
+     variable doesn't exist yet — and that unresolved value is what
+     inherits down, even into the element that later defines it. `inline`
+     makes Tailwind substitute the reference at each usage site instead. */
+  /* noinspection CssUnresolvedCustomProperty */
+  --font-kept: var(--font-literata), Georgia, serif;
+  /* noinspection CssUnresolvedCustomProperty */
+  --font-kept-mono: var(--font-dm-mono), ui-monospace, monospace;
+  /* noinspection CssUnresolvedCustomProperty */
+  --font-archivo: var(--next-font-archivo), "Helvetica Neue", Helvetica, sans-serif;
+  /* noinspection CssUnresolvedCustomProperty */
+  --font-newsreader: var(--next-font-newsreader), Georgia, "Times New Roman", serif;
+  /* noinspection CssUnresolvedCustomProperty */
+  --font-plex-mono: var(--next-font-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -174,6 +208,7 @@
 }
 
 @theme {
+  /* Kept design system (main app) */
   --color-chalk: #f6f1e8;
   --color-stock: #ece4d5;
   --color-stock-2: #ded4c0;
@@ -192,10 +227,27 @@
   --color-slate: #3b4a55;
   --color-desk: #c8beac;
 
-  /* noinspection CssUnresolvedCustomProperty */
-  --font-kept: var(--font-literata), Georgia, serif;
-  /* noinspection CssUnresolvedCustomProperty */
-  --font-kept-mono: var(--font-dm-mono), ui-monospace, monospace;
+  /* Auth (login/signup) palette */
+  --color-auth-ink-900: #0b0a09;
+  --color-auth-ink-700: #1c1917;
+  --color-auth-ink-400: #5a524d;
+  --color-auth-ink-300: #847a73;
+  --color-auth-paper-50: #fbf9f5;
+  --color-auth-paper-100: #f4f0e8;
+  --color-auth-paper-200: #eae4d9;
+  --color-auth-paper-400: #c6bba8;
+  --color-auth-brass-500: #b8874a;
+  --color-auth-brass-600: #9a6d33;
+  --color-auth-brass-700: #7a5526;
+  --color-auth-line-hairline: rgba(11, 10, 9, 0.1);
+  --color-auth-line-strong: rgba(11, 10, 9, 0.24);
+  --color-auth-line-on-dark: rgba(244, 240, 232, 0.16);
+  --color-auth-text-on-dark: #f4f0e8;
+  --color-auth-text-on-dark-muted: rgba(244, 240, 232, 0.62);
+  --color-auth-ghost-hover: rgba(11, 10, 9, 0.06);
+
+  --shadow-auth-sheet: 0 -8px 40px rgba(11, 10, 9, 0.28);
+  --shadow-auth-plate: 0 1px 0 rgba(11, 10, 9, 0.06), 0 1px 2px rgba(11, 10, 9, 0.05);
 }
 
 @layer base {
@@ -205,4 +257,78 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .auth-tab-stack > [role="tabpanel"][hidden] {
+    display: block !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Kept textures, scrollbar chrome, clip-path — the handful of things Tailwind
+   utilities can't express. Everything else lives inline as Tailwind classes. */
+
+.kept-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.kept-scroll::-webkit-scrollbar-thumb {
+  background: rgba(31, 26, 21, 0.2);
+}
+
+.grain-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.fiber-texture {
+  background-image:
+    radial-gradient(circle at 22% 32%, rgba(31, 26, 21, 0.05) 0, transparent 2px),
+    radial-gradient(circle at 72% 66%, rgba(31, 26, 21, 0.04) 0, transparent 2px),
+    radial-gradient(circle at 47% 87%, rgba(31, 26, 21, 0.05) 0, transparent 1.5px);
+  background-size:
+    38px 38px,
+    52px 52px,
+    29px 29px;
+}
+
+.cork-texture {
+  background-color: #a98b62;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.06) 0, transparent 3px),
+    radial-gradient(circle at 60% 70%, rgba(0, 0, 0, 0.12) 0, transparent 3px),
+    radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.05) 0, transparent 2px),
+    radial-gradient(circle at 35% 55%, rgba(0, 0, 0, 0.1) 0, transparent 2px);
+  background-size:
+    31px 31px,
+    44px 44px,
+    27px 27px,
+    37px 37px;
+}
+
+.torn-edge {
+  clip-path: polygon(
+    0% 2%,
+    4% 0%,
+    9% 3%,
+    14% 1%,
+    19% 3%,
+    24% 0%,
+    29% 2%,
+    34% 1%,
+    39% 3%,
+    44% 0%,
+    49% 2%,
+    54% 1%,
+    59% 3%,
+    64% 0%,
+    69% 2%,
+    74% 1%,
+    79% 3%,
+    84% 0%,
+    89% 2%,
+    94% 1%,
+    100% 3%,
+    100% 100%,
+    0% 100%
+  );
 }

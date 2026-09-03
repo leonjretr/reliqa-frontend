@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 import { DM_Mono, Literata } from "next/font/google";
 
-import "@/ui/styles/kept.css";
-
 import { TabBar } from "@/ui/components/modules/navigation";
 
 const literata = Literata({

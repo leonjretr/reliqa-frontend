@@ -10,11 +10,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
     redirect({ href: "/", locale });
   }
 
-  return (
-    <main className="flex min-h-svh items-center justify-center px-6 py-20">
-      <AuthCard />
-    </main>
-  );
+  return <AuthCard />;
 };
 
 export default Page;

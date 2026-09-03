@@ -6,9 +6,6 @@ import { startGoogleOauth } from "@/service/actions";
 import { GoogleIcon } from "@/ui/components/common/icons";
 import { Button } from "@/ui/components/lib/shadcn/button";
 import { FieldSeparator } from "@/ui/components/lib/shadcn/field";
-import { cn } from "@/ui/utils/shadcn";
-
-import { SHADOW_RAISED, SHADOW_RAISED_HOVER } from "./shadows";
 
 export const GoogleAuthButton = () => {
   const locale = useLocale();
@@ -20,16 +17,14 @@ export const GoogleAuthButton = () => {
 
   return (
     <>
-      <FieldSeparator className="text-muted-foreground text-xs">{t("LABEL_OR")}</FieldSeparator>
+      <FieldSeparator className="font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+        {t("LABEL_OR")}
+      </FieldSeparator>
       <Button
         type="button"
-        variant="ghost"
+        variant="outline"
         onClick={handleClick}
-        className={cn(
-          "bg-background hover:bg-background h-11 w-full gap-2.5 rounded-xl border-0 text-sm font-medium transition-all hover:-translate-y-0.5",
-          SHADOW_RAISED,
-          SHADOW_RAISED_HOVER,
-        )}
+        className="border-auth-line-strong text-auth-ink-700 hover:bg-auth-ghost-hover h-11 w-full gap-2.5 rounded-[6px] text-sm font-medium"
       >
         <GoogleIcon />
         {t("BUTTON_GOOGLE")}
