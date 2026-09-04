@@ -38,10 +38,6 @@
     "BUTTON_SIGNUP_LOADING": "Создаём билет…",
     "BUTTON_GOOGLE": "Продолжить с Google",
     "TERMS": "Создавая билет, вы соглашаетесь с <terms>условиями</terms> и <privacy>политикой конфиденциальности</privacy>.",
-    "VISIBILITY_PUBLIC_LABEL": "Публичный профиль",
-    "VISIBILITY_PUBLIC_DESC": "Любой сможет найти ваши вещи в профиле и в ленте.",
-    "VISIBILITY_PRIVATE_LABEL": "Приватный профиль",
-    "VISIBILITY_PRIVATE_DESC": "Только вы будете видеть то, что храните.",
     "ERROR_SIGNIN": "Не удалось войти. Проверьте почту и пароль.",
     "ERROR_SIGNUP": "Не удалось создать аккаунт. Попробуйте ещё раз."
   }

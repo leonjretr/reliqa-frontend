@@ -57,7 +57,7 @@ const UserIcon = (
   </svg>
 );
 
-const TABS: Tab[] = [
+const buildTabs = (profileSlug: string | null): Tab[] => [
   { href: "/", label: "feed", icon: HouseIcon, match: (path) => path === "/" },
   {
     href: "/browse",
@@ -74,19 +74,20 @@ const TABS: Tab[] = [
   },
   { href: "/search", label: "find", icon: SearchIcon, match: (path) => path.startsWith("/search") },
   {
-    href: "/keeper/marta-ilves",
+    href: profileSlug ? `/keeper/${profileSlug}` : "/login",
     label: "shelf",
     icon: UserIcon,
     match: (path) => path.startsWith("/keeper") || path.startsWith("/story"),
   },
 ];
 
-export const TabBar = () => {
+export const TabBar = ({ profileSlug = null }: { profileSlug?: string | null }) => {
   const pathname = usePathname();
+  const tabs = buildTabs(profileSlug);
 
   return (
     <nav className="border-ink bg-chalk flex flex-none items-stretch border-t">
-      {TABS.map((tab) => {
+      {tabs.map((tab) => {
         const isActive = tab.match(pathname);
         if (tab.center) {
           return (

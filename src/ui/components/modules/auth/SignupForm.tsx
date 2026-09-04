@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,12 +15,10 @@ import { signUpSchema, SignUpValues } from "@/ui/validation";
 import { AuthField } from "./AuthField";
 import { AuthHeading } from "./AuthHeading";
 import { GoogleAuthButton } from "./GoogleAuthButton";
-import { VisibilityToggle } from "./VisibilityToggle";
 
 export const SignupForm = () => {
   const router = useRouter();
   const t = useTranslations("Auth");
-  const [isPublic, setIsPublic] = useState(true);
 
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
@@ -76,8 +73,6 @@ export const SignupForm = () => {
           {...register("password")}
         />
       </FieldGroup>
-
-      <VisibilityToggle isPublic={isPublic} onChange={setIsPublic} />
 
       <FieldError errors={[formState.errors.root]} className="text-[12px]" />
 

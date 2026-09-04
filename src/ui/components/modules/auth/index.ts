@@ -4,5 +4,4 @@ export { AuthHeading } from "./AuthHeading";
 export { SigninForm } from "./SigninForm";
 export { SignupForm } from "./SignupForm";
 export { SpecimenIndex } from "./SpecimenIndex";
-export { VisibilityToggle } from "./VisibilityToggle";
 export { GoogleAuthButton } from "./GoogleAuthButton";

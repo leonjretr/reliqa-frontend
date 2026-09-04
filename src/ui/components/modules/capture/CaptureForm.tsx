@@ -2,7 +2,10 @@
 
 import { useState, type ChangeEvent } from "react";
 
+import { useRouter } from "@/i18n";
+import { submitCapture } from "@/service/actions";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn } from "@/ui/utils/shadcn";
 
 const CAP = 140;
@@ -16,6 +19,7 @@ const textareaClassName =
   "text-ink placeholder:text-ink-faint bg-stock border-ink w-full resize-none border px-[12px] py-[11px] text-[15.5px] leading-[1.5] font-light outline-none placeholder:italic focus:bg-white";
 
 export const CaptureForm = () => {
+  const router = useRouter();
   const [arrival, setArrival] = useState("inherited");
   const [previous, setPrevious] = useState("my grandmother");
   const [place, setPlace] = useState("Tartu");
@@ -25,6 +29,9 @@ export const CaptureForm = () => {
   );
   const [longread, setLongread] = useState("");
   const [photo, setPhoto] = useState<string | undefined>(undefined);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const remaining = CAP - memory.length;
   const held = year ? 2026 - Number(year) : "—";
@@ -35,6 +42,28 @@ export const CaptureForm = () => {
     if (!file) return;
     if (photo) URL.revokeObjectURL(photo);
     setPhoto(URL.createObjectURL(file));
+    setPhotoFile(file);
+  };
+
+  const handleSubmit = async () => {
+    if (!memory || !photoFile) return;
+
+    setIsSubmitting(true);
+    setError(null);
+
+    const result = await submitCapture({
+      story: longread.trim() || memory,
+      photo: photoFile,
+    });
+
+    if (!result.success) {
+      setIsSubmitting(false);
+      setError(result.errors?.[0]?.detail ?? "Something went wrong. Try again.");
+      return;
+    }
+
+    router.replace("/");
+    router.refresh();
   };
 
   return (
@@ -231,11 +260,18 @@ export const CaptureForm = () => {
             {longread.trim() ? "with a longread" : "computed, not typed"}
           </span>
         </div>
+        {error && (
+          <p className="text-oxblood font-kept-mono mt-[10px] text-[10.5px] tracking-[0.05em]">
+            {error}
+          </p>
+        )}
         <button
+          onClick={handleSubmit}
           className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood disabled:bg-stock-2 disabled:text-ink-faint disabled:border-hair mt-[18px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold disabled:cursor-default"
-          disabled={!memory || !photo}
+          disabled={!memory || !photo || isSubmitting}
         >
-          Keep it
+          {isSubmitting && <Spinner />}
+          {isSubmitting ? "Keeping it…" : "Keep it"}
         </button>
       </div>
     </div>

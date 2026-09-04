@@ -1,3 +1,5 @@
+import type { APIFile } from "./objects";
+
 export type APITokens = {
   access: string;
   refresh: string;
@@ -9,6 +11,7 @@ export type APISettings = {
   language: APILanguage;
   is_push_enabled: boolean;
   is_email_enabled: boolean;
+  is_private: boolean;
 };
 
 export type APIUser = {
@@ -23,6 +26,7 @@ export type APIUser = {
 
 export type APICurrentUser = APIUser & {
   settings: APISettings;
+  avatar: APIFile | null;
 };
 
 export type APICreateUser = {

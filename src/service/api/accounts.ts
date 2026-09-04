@@ -7,6 +7,7 @@ import {
   APIGoogleOauthCallbackResponse,
   APIGoogleOauthRedirectURIResponse,
   APILoginResponse,
+  APISettings,
   APIUser,
 } from "@/service/types";
 
@@ -47,5 +48,19 @@ export const authenticateGoogleOauthCode = async (code: string, state: string) =
 export const getCurrentUser = async () => {
   return await fetchAuthenticated<APICurrentUser>(API_ENDPOINTS.CURRENT_USER, {
     method: "GET",
+  });
+};
+
+export const updateCurrentUser = async (profile: FormData) => {
+  return await fetchAuthenticated<APICurrentUser>(API_ENDPOINTS.CURRENT_USER, {
+    method: "PATCH",
+    body: profile,
+  });
+};
+
+export const updateSettings = async (patch: Partial<APISettings>) => {
+  return await fetchAuthenticated<APISettings>(API_ENDPOINTS.SETTINGS, {
+    method: "PATCH",
+    body: JSON.stringify(patch),
   });
 };

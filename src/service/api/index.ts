@@ -7,4 +7,9 @@ export {
   getGoogleOauthRedirectUri,
   authenticateGoogleOauthCode,
   getCurrentUser,
+  updateCurrentUser,
+  updateSettings,
 } from "./accounts";
+export { getFeedObject, createObject } from "./objects";
+export { getObjectStories, createStory } from "./stories";
+export { createStoryAttachment } from "./attachments";

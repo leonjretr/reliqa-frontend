@@ -38,10 +38,6 @@
     "BUTTON_SIGNUP_LOADING": "Creating your card…",
     "BUTTON_GOOGLE": "Continue with Google",
     "TERMS": "By making a card you agree to the <terms>terms</terms> and the <privacy>privacy note</privacy>.",
-    "VISIBILITY_PUBLIC_LABEL": "Public profile",
-    "VISIBILITY_PUBLIC_DESC": "Anyone can find your things on your profile and in the feed.",
-    "VISIBILITY_PRIVATE_LABEL": "Private profile",
-    "VISIBILITY_PRIVATE_DESC": "Only you will ever see what you keep.",
     "ERROR_SIGNIN": "Could not sign you in. Check your email and password.",
     "ERROR_SIGNUP": "Could not create your account. Please try again."
   }

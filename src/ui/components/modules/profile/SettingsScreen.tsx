@@ -2,15 +2,14 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
-import { signOut } from "@/service/actions";
+import { saveProfile, saveSettings, signOut } from "@/service/actions";
+import type { APICurrentUser, APILanguage } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
-import { CURRENT_KEEPER_SLUG, type Keeper } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn } from "@/ui/utils/shadcn";
 
 type SettingsScreenProps = {
-  keeper: Keeper;
-  email: string;
+  user: APICurrentUser;
 };
 
 const BIO_CAP = 160;
@@ -96,18 +95,23 @@ const Segmented = ({
   </div>
 );
 
-export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
-  const [name, setName] = useState(keeper.name);
-  const [place, setPlace] = useState(keeper.place);
-  const [bio, setBio] = useState(keeper.bio ?? "");
-  const [avatar, setAvatar] = useState<string | undefined>(keeper.avatar);
-  const [username, setUsername] = useState(keeper.slug);
-  const [visibility, setVisibility] = useState("everyone");
+const joinedYear = (isoDate: string) => String(new Date(isoDate).getFullYear());
+
+export const SettingsScreen = ({ user }: SettingsScreenProps) => {
+  const fullName = `${user.first_name} ${user.last_name}`.trim();
+  const [name, setName] = useState(fullName || user.username);
+  const [place, setPlace] = useState("");
+  const [bio, setBio] = useState("");
+  const [avatar, setAvatar] = useState<string | undefined>(user.avatar?.src);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [username, setUsername] = useState(user.username);
+  const [visibility, setVisibility] = useState(user.settings.is_private ? "private" : "everyone");
   const [showPlace, setShowPlace] = useState(true);
-  const [notifyKept, setNotifyKept] = useState(true);
+  const [notifyKept, setNotifyKept] = useState(user.settings.is_push_enabled);
   const [notifyThemes, setNotifyThemes] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState<string>(user.settings.language);
   const [saved, setSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const remaining = BIO_CAP - bio.length;
 
@@ -116,6 +120,7 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
     if (!file) return;
     if (avatar?.startsWith("blob:")) URL.revokeObjectURL(avatar);
     setAvatar(URL.createObjectURL(file));
+    setAvatarFile(file);
     setSaved(false);
   };
 
@@ -126,12 +131,41 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
       setSaved(false);
     };
 
+  const handleSave = async () => {
+    setIsSaving(true);
+
+    const [firstName, ...rest] = name.trim().split(/\s+/);
+    const profile = new FormData();
+    profile.set("first_name", firstName ?? "");
+    profile.set("last_name", rest.join(" "));
+    profile.set("username", username);
+    if (avatarFile) {
+      profile.set("avatar", avatarFile);
+    }
+
+    const [profileResult, settingsResult] = await Promise.all([
+      saveProfile(profile),
+      saveSettings({
+        language: language as APILanguage,
+        is_private: visibility === "private",
+        is_push_enabled: notifyKept,
+      }),
+    ]);
+
+    setIsSaving(false);
+
+    if (profileResult.success && settingsResult.success) {
+      setAvatarFile(null);
+      setSaved(true);
+    }
+  };
+
   return (
     <div className="bg-chalk relative flex h-full w-full flex-col overflow-hidden">
       <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section="settings"
-        back={{ href: `/keeper/${CURRENT_KEEPER_SLUG}`, label: "your shelf" }}
+        back={{ href: `/keeper/${user.username}`, label: "your shelf" }}
       />
 
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[14px] pb-[24px]">
@@ -231,7 +265,7 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
         <div>
           <FieldLabel>email</FieldLabel>
           <div className="border-hair text-ink-3 flex items-center justify-between border-b pt-[7px] pb-[6px] text-[16px]">
-            <span>{email}</span>
+            <span>{user.email}</span>
             <span className="text-ink-faint font-kept-mono text-[8.5px] tracking-[0.1em] uppercase">
               locked
             </span>
@@ -264,10 +298,11 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
         </div>
 
         <button
-          onClick={() => setSaved(true)}
-          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[24px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold"
+          onClick={handleSave}
+          disabled={isSaving}
+          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[24px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold disabled:opacity-60"
         >
-          {saved ? "Saved" : "Save changes"}
+          {isSaving ? "Saving…" : saved ? "Saved" : "Save changes"}
         </button>
 
         <form action={signOut}>
@@ -280,7 +315,7 @@ export const SettingsScreen = ({ keeper, email }: SettingsScreenProps) => {
         </form>
 
         <p className="text-ink-faint font-kept-mono mt-[14px] text-center text-[10px] leading-[1.6] tracking-[0.05em] lowercase">
-          keeper since {keeper.since} · reliqa
+          keeper since {joinedYear(user.created_at)} · reliqa
         </p>
       </div>
     </div>
