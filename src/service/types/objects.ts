@@ -36,17 +36,34 @@ export type APIAttachment = {
 
 export type APIObject = {
   id: string;
+  name: string;
+  description: string;
+  invented_at: string | null;
   created_by: APIUserSummary;
   categories: APICategory[];
   tags: APITag[];
   attachments: APIAttachment[];
+  stories_count: number;
   view_count: number;
   created_at: string;
   updated_at: string;
 };
 
+export type APIObjectListItem = {
+  id: string;
+  name: string;
+  description: string;
+  created_by: APIUserSummary;
+  categories: string[];
+  tags: string[];
+  created_at: string;
+};
+
 export type APICreatedObject = {
   id: string;
+  name: string;
+  description: string;
+  invented_at: string | null;
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];

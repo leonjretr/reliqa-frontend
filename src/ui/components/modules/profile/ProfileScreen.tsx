@@ -1,12 +1,26 @@
 import { Link } from "@/i18n";
+import type { APIObjectListItem, APIStory } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
-import { STOCK, type Keeper, type Story } from "@/ui/components/modules/feed";
+import { STOCK } from "@/ui/components/modules/feed";
+
+type ProfileKeeper = {
+  name: string;
+  place: string;
+  bio?: string;
+  avatar?: string;
+  since: string;
+};
 
 type ProfileScreenProps = {
-  keeper: Keeper;
-  stories: Story[];
+  keeper: ProfileKeeper;
+  objects: APIObjectListItem[];
+  stories: APIStory[];
   isOwn: boolean;
 };
+
+const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
+
+const SNIPPET_LENGTH = 120;
 
 const SettingsIcon = (
   <svg
@@ -33,9 +47,9 @@ const Stat = ({ label, value }: { label: string; value: string }) => (
   </div>
 );
 
-export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) => {
+export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreenProps) => {
   const hasStories = stories.length > 0;
-  const hasKept = keeper.kept.length > 0;
+  const hasKept = objects.length > 0;
   const firstName = keeper.name.split(/\s+/)[0];
 
   return (
@@ -55,7 +69,8 @@ export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) =>
           <KeeperAvatar name={keeper.name} src={keeper.avatar} size={74} />
           <div className="pb-[2px] text-[#f6e9ee]">
             <div className="font-kept-mono mb-[6px] text-[9px] tracking-[0.1em] text-[rgba(246,233,238,0.75)] uppercase">
-              keeper since {keeper.since} · {keeper.place}
+              keeper since {keeper.since}
+              {keeper.place ? ` · ${keeper.place}` : ""}
             </div>
             <div className="text-[30px] leading-[1.02] font-bold tracking-[-0.02em]">
               {keeper.name}
@@ -72,7 +87,7 @@ export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) =>
         )}
 
         <div className="bg-ink border-ink mb-[22px] grid grid-cols-3 gap-px border">
-          <Stat label="kept" value={String(keeper.kept.length)} />
+          <Stat label="kept" value={String(objects.length)} />
           <Stat label="written" value={String(stories.length)} />
           <Stat label="since" value={keeper.since} />
         </div>
@@ -85,20 +100,21 @@ export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) =>
             <div className="mb-[24px] flex flex-col gap-[10px]">
               {stories.map((story) => (
                 <Link
-                  key={story.slug}
-                  href={`/story/${story.slug}`}
+                  key={story.id}
+                  href={`/story/${story.id}`}
                   className="bg-stock border-ink block rounded-[3px] border px-[14px] pt-[11px] pb-[13px] no-underline"
                 >
                   <div className="mb-[6px] flex items-baseline justify-between">
-                    <span className="text-ink-soft font-kept-mono text-[8.5px] tracking-[0.1em] uppercase">
-                      {story.model} · {story.category}
-                    </span>
                     <span className="text-ink-faint font-kept-mono text-[8.5px] tracking-[0.1em] uppercase lining-nums tabular-nums">
-                      {story.year}
+                      {yearOf(story.created_at)}
                     </span>
                   </div>
                   <p className="text-ink-2 text-[15px] leading-[1.4] font-light italic">
-                    “{story.text}”
+                    “
+                    {story.story.length > SNIPPET_LENGTH
+                      ? `${story.story.slice(0, SNIPPET_LENGTH)}…`
+                      : story.story}
+                    ”
                   </p>
                 </Link>
               ))}
@@ -109,15 +125,15 @@ export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) =>
         {hasKept && (
           <>
             <div className="text-ink-faint font-kept-mono mb-[14px] text-[9px] tracking-[0.1em] uppercase">
-              on the shelf · {keeper.kept.length} things
+              on the shelf · {objects.length} things
             </div>
             <div className="grid grid-cols-2 gap-[14px]">
-              {keeper.kept.map((item, index) => {
-                const stock = STOCK[item.stock % STOCK.length];
+              {objects.map((object, index) => {
+                const stock = STOCK[index % STOCK.length];
                 return (
                   <Link
-                    key={item.objectSlug}
-                    href={`/thing/${item.objectSlug}`}
+                    key={object.id}
+                    href={`/thing/${object.id}`}
                     className="border-ink rounded-[3px] border px-[12px] pt-[11px] pb-[12px] no-underline shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]"
                     style={{
                       background: stock.bg,
@@ -126,9 +142,9 @@ export const ProfileScreen = ({ keeper, stories, isOwn }: ProfileScreenProps) =>
                     }}
                   >
                     <div className="font-kept-mono mb-[5px] text-[8px] tracking-[0.1em] uppercase opacity-[0.72]">
-                      {item.category} · {item.year}
+                      {object.categories[0] ?? ""} · {yearOf(object.created_at)}
                     </div>
-                    <div className="text-[16px] leading-[1.15] font-semibold">{item.name}</div>
+                    <div className="text-[16px] leading-[1.15] font-semibold">{object.name}</div>
                   </Link>
                 );
               })}

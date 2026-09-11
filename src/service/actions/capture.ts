@@ -3,8 +3,13 @@
 import { createObject, createStory, createStoryAttachment } from "@/service/api";
 import { ActionResult, CaptureInput } from "@/service/types";
 
-export const submitCapture = async ({ story, photo }: CaptureInput): Promise<ActionResult> => {
-  const object = await createObject();
+export const submitCapture = async ({
+  name,
+  category,
+  story,
+  photo,
+}: CaptureInput): Promise<ActionResult> => {
+  const object = await createObject({ name, categories: [category] });
 
   if (!object.success) {
     return { success: false, errors: object.errors };

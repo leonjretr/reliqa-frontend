@@ -8,11 +8,17 @@ export {
   getCurrentUser,
   updateCurrentUser,
   updateSettings,
+  getUserByUsername,
   getFeedObject,
+  getObject,
+  getObjects,
   createObject,
   getObjectStories,
+  getUserStories,
+  getStory,
   createStory,
   createStoryAttachment,
+  getCategories,
 } from "./api";
 export type { FetchAPIOptions } from "./api";
 export {
@@ -24,5 +30,6 @@ export {
   saveSettings,
   loadFeedEntries,
   submitCapture,
+  loadKeeperShelf,
 } from "./actions";
 export { getSession, setSession, clearSession, setOauthState, popOauthState } from "./session";

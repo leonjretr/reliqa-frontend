@@ -1,19 +1,19 @@
 import { notFound } from "next/navigation";
 
+import { getObject, getObjectStories } from "@/service";
 import { ObjectDetail } from "@/ui/components/modules/catalog";
-import { getObject, OBJECTS } from "@/ui/components/modules/feed";
-
-export const generateStaticParams = () => OBJECTS.map((object) => ({ slug: object.slug }));
 
 const Page = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
   const { slug } = await params;
-  const object = getObject(slug);
+  const object = await getObject(slug);
 
-  if (!object) {
+  if (!object.success) {
     notFound();
   }
 
-  return <ObjectDetail object={object} />;
+  const stories = await getObjectStories(object.id);
+
+  return <ObjectDetail object={object} stories={stories.success ? stories.results : []} />;
 };
 
 export default Page;

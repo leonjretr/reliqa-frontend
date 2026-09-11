@@ -4,13 +4,13 @@ import { useState, type ChangeEvent } from "react";
 
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
+import type { APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn } from "@/ui/utils/shadcn";
 
 const CAP = 140;
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
-const CATEGORY = "cameras";
 
 const fieldClassName =
   "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-[7px] pb-[6px] text-[17px] outline-none placeholder:font-light placeholder:italic";
@@ -18,15 +18,20 @@ const fieldClassName =
 const textareaClassName =
   "text-ink placeholder:text-ink-faint bg-stock border-ink w-full resize-none border px-[12px] py-[11px] text-[15.5px] leading-[1.5] font-light outline-none placeholder:italic focus:bg-white";
 
-export const CaptureForm = () => {
+type CaptureFormProps = {
+  categories: APICategoryListItem[];
+  keeperName: string;
+};
+
+export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
   const router = useRouter();
+  const [name, setName] = useState("");
+  const [categorySlug, setCategorySlug] = useState(categories[0]?.slug ?? "");
   const [arrival, setArrival] = useState("inherited");
-  const [previous, setPrevious] = useState("my grandmother");
-  const [place, setPlace] = useState("Tartu");
-  const [year, setYear] = useState("1974");
-  const [memory, setMemory] = useState(
-    "It lived above the radio and nobody was allowed to touch it.",
-  );
+  const [previous, setPrevious] = useState("");
+  const [place, setPlace] = useState("");
+  const [year, setYear] = useState("");
+  const [memory, setMemory] = useState("");
   const [longread, setLongread] = useState("");
   const [photo, setPhoto] = useState<string | undefined>(undefined);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -34,8 +39,9 @@ export const CaptureForm = () => {
   const [error, setError] = useState<string | null>(null);
 
   const remaining = CAP - memory.length;
-  const held = year ? 2026 - Number(year) : "—";
+  const held = year ? new Date().getFullYear() - Number(year) : "—";
   const longWords = longread.trim() ? longread.trim().split(/\s+/).length : 0;
+  const canSubmit = Boolean(name && categorySlug && memory && photoFile && !isSubmitting);
 
   const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -46,12 +52,14 @@ export const CaptureForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!memory || !photoFile) return;
+    if (!canSubmit || !photoFile) return;
 
     setIsSubmitting(true);
     setError(null);
 
     const result = await submitCapture({
+      name,
+      category: categorySlug,
       story: longread.trim() || memory,
       photo: photoFile,
     });
@@ -85,11 +93,31 @@ export const CaptureForm = () => {
         <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
           the thing
         </div>
-        <div className="border-ink mt-[5px] flex items-baseline justify-between border-b pb-[7px]">
-          <span className="text-[26px] font-bold tracking-[-0.025em]">35 mm camera</span>
-          <span className="text-oxblood font-kept-mono text-[9px] tracking-[0.1em] uppercase">
-            change
-          </span>
+        <input
+          className="text-ink placeholder:text-ink-faint border-ink mt-[5px] w-full border-0 border-b bg-transparent pb-[7px] text-[26px] font-bold tracking-[-0.025em] outline-none placeholder:font-light placeholder:italic"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="what is it?"
+        />
+
+        <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
+          category
+        </div>
+        <div className="mt-[7px] flex flex-wrap gap-[6px]">
+          {categories.map((category) => (
+            <button
+              key={category.slug}
+              onClick={() => setCategorySlug(category.slug)}
+              className={cn(
+                "border-ink font-kept-mono cursor-pointer border px-[11px] py-[9px] text-[10.5px] tracking-[0.05em] lowercase",
+                categorySlug === category.slug
+                  ? "bg-ink text-chalk"
+                  : "text-ink-2 hover:bg-stock-2 bg-transparent",
+              )}
+            >
+              {category.name}
+            </button>
+          ))}
         </div>
 
         <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
@@ -100,7 +128,7 @@ export const CaptureForm = () => {
           {photo ? (
             <div className="border-ink relative h-[214px] border">
               <KeptPhoto
-                category={CATEGORY}
+                category={categorySlug}
                 src={photo}
                 alt="your object"
                 className="absolute inset-0"
@@ -239,13 +267,18 @@ export const CaptureForm = () => {
           this is what it becomes
         </div>
         <div className="border-ink relative h-[220px] overflow-hidden border">
-          <KeptPhoto category={CATEGORY} src={photo} alt="preview" className="absolute inset-0" />
+          <KeptPhoto
+            category={categorySlug}
+            src={photo}
+            alt="preview"
+            className="absolute inset-0"
+          />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.4)_45%,rgba(20,14,9,0)_72%)]" />
           <div className="absolute inset-x-0 bottom-0 px-[14px] pb-[14px]">
             <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               {place || "—"} · {previous ? `${previous}’s` : arrival} · {year || "—"}
             </div>
-            <div className="text-chalk mt-[5px] text-[20px] font-bold">Marta Ilves</div>
+            <div className="text-chalk mt-[5px] text-[20px] font-bold">{keeperName}</div>
             <p className="text-chalk mt-[8px] text-[15.5px] leading-[1.42] font-light">
               “{memory || "—"}”
             </p>
@@ -268,7 +301,7 @@ export const CaptureForm = () => {
         <button
           onClick={handleSubmit}
           className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood disabled:bg-stock-2 disabled:text-ink-faint disabled:border-hair mt-[18px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold disabled:cursor-default"
-          disabled={!memory || !photo || isSubmitting}
+          disabled={!canSubmit}
         >
           {isSubmitting && <Spinner />}
           {isSubmitting ? "Keeping it…" : "Keep it"}

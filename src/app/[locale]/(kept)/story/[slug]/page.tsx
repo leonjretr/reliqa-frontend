@@ -1,15 +1,13 @@
 import { notFound } from "next/navigation";
 
-import { getStory, STORIES } from "@/ui/components/modules/feed";
+import { getStory } from "@/service";
 import { StoryScreen } from "@/ui/components/modules/story";
-
-export const generateStaticParams = () => STORIES.map((story) => ({ slug: story.slug }));
 
 const Page = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
   const { slug } = await params;
-  const story = getStory(slug);
+  const story = await getStory(slug);
 
-  if (!story) {
+  if (!story.success) {
     notFound();
   }
 

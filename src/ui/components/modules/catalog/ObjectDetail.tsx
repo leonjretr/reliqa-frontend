@@ -3,9 +3,11 @@
 import { useState } from "react";
 
 import { Link } from "@/i18n";
+import type { APIObject, APIStory } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { STOCK, type ObjectDetail as ObjectDetailData } from "@/ui/components/modules/feed";
+import { STOCK } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
+import { formatKeeperName } from "@/ui/utils";
 
 const POSITIONS: [number, number, number][] = [
   [14, 18, -6],
@@ -15,39 +17,57 @@ const POSITIONS: [number, number, number][] = [
   [62, 296, -2],
 ];
 
+const NOTE_LENGTH = 140;
+
+const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
+
 type ObjectDetailProps = {
-  object: ObjectDetailData;
+  object: APIObject;
+  stories: APIStory[];
 };
 
-export const ObjectDetail = ({ object }: ObjectDetailProps) => {
+export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
   const [open, setOpen] = useState<number | null>(null);
-  const labels = object.stuckOn.slice(0, 5);
+  const category = object.categories[0];
+  const notes = stories.slice(0, 5);
+  const facts = [
+    { label: "category", value: category?.name ?? "—" },
+    { label: "invented", value: object.invented_at ? yearOf(object.invented_at) : "—" },
+    { label: "kept since", value: yearOf(object.created_at) },
+  ];
 
   return (
     <div className="relative flex h-full flex-col">
       <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
-        section={object.category}
-        right={`${object.keepers} kept`}
+        section={category?.name ?? "kept thing"}
+        right={`${object.stories_count} ${object.stories_count === 1 ? "story" : "stories"}`}
         back={{ href: "/browse", label: "the catalogue" }}
       />
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[16px] pb-[24px]">
         <h1 className="mb-[7px] text-[46px] leading-[0.94] font-bold tracking-[-0.03em]">
           {object.name}
         </h1>
-        <p className="text-ink-2 mb-[15px] max-w-[33ch] text-[18px] leading-[1.38] font-light italic">
-          {object.blurb}
-        </p>
+        {object.description && (
+          <p className="text-ink-2 mb-[15px] max-w-[33ch] text-[18px] leading-[1.38] font-light italic">
+            {object.description}
+          </p>
+        )}
 
         <div className="border-ink relative h-[398px] border">
-          <KeptPhoto category={object.category} className="absolute inset-0" />
-          {labels.map((label, index) => {
+          <KeptPhoto
+            category={category?.slug}
+            src={object.attachments[0]?.file.src ?? undefined}
+            className="absolute inset-0"
+          />
+          {notes.map((story, index) => {
             const [x, y, rotate] = POSITIONS[index];
-            const stock = STOCK[label.stock % STOCK.length];
+            const stock = STOCK[index % STOCK.length];
             const isActive = open === index;
+            const keeperName = formatKeeperName(story.created_by);
             return (
               <button
-                key={label.keeperSlug + index}
+                key={story.id}
                 onClick={() => setOpen(isActive ? null : index)}
                 className="border-ink absolute w-[174px] cursor-pointer rounded-[3px] border px-[12px] pt-[10px] pb-[11px] text-left transition-[transform,box-shadow] duration-[340ms] ease-[cubic-bezier(0.2,0.9,0.2,1)]"
                 style={{
@@ -63,19 +83,19 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
                 }}
               >
                 <div className="mb-[3px] flex items-baseline justify-between opacity-[0.76]">
-                  <span className="font-kept-mono text-[8.5px] tracking-[0.1em] uppercase">
-                    {label.place}
-                  </span>
                   <span className="font-kept-mono text-[8.5px] tracking-[0.1em] uppercase lining-nums tabular-nums">
-                    {label.year}
+                    {yearOf(story.created_at)}
                   </span>
                 </div>
-                <div className="text-[16px] leading-[1.12] font-semibold">{label.name}</div>
+                <div className="text-[16px] leading-[1.12] font-semibold">{keeperName}</div>
                 {isActive && (
                   <>
-                    <p className="mt-[8px] text-[13.5px] leading-[1.42] font-light">{label.text}</p>
+                    <p className="mt-[8px] text-[13.5px] leading-[1.42] font-light">
+                      {story.story.slice(0, NOTE_LENGTH)}
+                      {story.story.length > NOTE_LENGTH ? "…" : ""}
+                    </p>
                     <Link
-                      href={`/keeper/${label.keeperSlug}`}
+                      href={`/keeper/${story.created_by.username}`}
                       className="font-kept-mono mt-[8px] inline-block text-[9px] tracking-[0.1em] uppercase"
                     >
                       their shelf →
@@ -87,13 +107,13 @@ export const ObjectDetail = ({ object }: ObjectDetailProps) => {
           })}
           <div className="bg-ink text-chalk absolute -bottom-px -left-px px-[10px] pt-[6px] pb-[5px]">
             <span className="text-chalk font-kept-mono text-[9px] tracking-[0.1em] uppercase">
-              {object.keepers} people kept one
+              {object.stories_count} {object.stories_count === 1 ? "story" : "stories"} stuck on
             </span>
           </div>
         </div>
 
         <div className="bg-ink border-ink mt-[13px] grid grid-cols-3 gap-px border">
-          {object.facts.map((fact) => (
+          {facts.map((fact) => (
             <div key={fact.label} className="bg-chalk px-[10px] py-[8px]">
               <div className="text-ink-faint font-kept-mono mb-[3px] text-[8px] tracking-[0.1em] uppercase">
                 {fact.label}

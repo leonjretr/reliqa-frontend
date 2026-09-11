@@ -9,7 +9,9 @@ export {
   getCurrentUser,
   updateCurrentUser,
   updateSettings,
+  getUserByUsername,
 } from "./accounts";
-export { getFeedObject, createObject } from "./objects";
-export { getObjectStories, createStory } from "./stories";
+export { getFeedObject, getObject, getObjects, createObject } from "./objects";
+export { getObjectStories, getUserStories, getStory, createStory } from "./stories";
 export { createStoryAttachment } from "./attachments";
+export { getCategories } from "./categories";

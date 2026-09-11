@@ -11,4 +11,6 @@ export const API_ENDPOINTS = {
   OBJECTS: "objects/",
   OBJECTS_FEED: "objects/feed/",
   STORIES: "stories/",
+  CATEGORIES: "categories/",
+  USER_BY_USERNAME: "users/by-username/",
 };

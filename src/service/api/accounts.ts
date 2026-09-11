@@ -9,6 +9,7 @@ import {
   APILoginResponse,
   APISettings,
   APIUser,
+  APIUserPublic,
 } from "@/service/types";
 
 import { fetchAPI } from "./api";
@@ -63,4 +64,11 @@ export const updateSettings = async (patch: Partial<APISettings>) => {
     method: "PATCH",
     body: JSON.stringify(patch),
   });
+};
+
+export const getUserByUsername = async (username: string) => {
+  return await fetchAPI<APIUserPublic>(
+    `${API_ENDPOINTS.USER_BY_USERNAME}${encodeURIComponent(username)}/`,
+    { method: "GET" },
+  );
 };

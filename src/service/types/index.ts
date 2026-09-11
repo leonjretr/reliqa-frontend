@@ -14,6 +14,7 @@ export type {
   APISettings,
   APIUser,
   APICurrentUser,
+  APIUserPublic,
   APICreateUser,
   APILoginResponse,
   APIRefreshResponse,
@@ -29,8 +30,10 @@ export type {
   APITag,
   APIAttachment,
   APIObject,
+  APIObjectListItem,
   APICreatedObject,
 } from "./objects";
-export type { APIStory, APICreatedStory } from "./stories";
+export type { APIStory, APICreatedStory, APIStoryDetail } from "./stories";
+export type { APICategoryListItem } from "./categories";
 export type { FeedEntry } from "./feed";
 export type { CaptureInput } from "./capture";

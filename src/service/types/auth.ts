@@ -21,12 +21,25 @@ export type APIUser = {
   first_name: string;
   last_name: string;
   born_at: string | null;
+  bio: string;
+  residence: string;
   created_at: string;
 };
 
 export type APICurrentUser = APIUser & {
   settings: APISettings;
   avatar: APIFile | null;
+};
+
+export type APIUserPublic = {
+  id: string;
+  username: string;
+  avatar: APIFile | null;
+  first_name: string;
+  last_name: string;
+  bio: string;
+  residence: string;
+  created_at: string;
 };
 
 export type APICreateUser = {

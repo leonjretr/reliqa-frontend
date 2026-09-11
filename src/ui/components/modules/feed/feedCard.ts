@@ -1,4 +1,5 @@
-import type { APIUserSummary, FeedEntry } from "@/service/types";
+import type { FeedEntry } from "@/service/types";
+import { formatKeeperName } from "@/ui/utils";
 
 export type FeedCard = {
   id: string;
@@ -11,11 +12,6 @@ export type FeedCard = {
   year?: string;
   viewCount: number;
   quote?: string;
-};
-
-const formatKeeperName = (user: APIUserSummary) => {
-  const fullName = `${user.first_name} ${user.last_name}`.trim();
-  return fullName || user.username;
 };
 
 const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());

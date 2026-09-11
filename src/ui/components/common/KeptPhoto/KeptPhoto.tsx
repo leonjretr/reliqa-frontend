@@ -20,6 +20,14 @@ const DUOTONES: Record<string, Duotone> = {
   kitchen: { hue: "#b3822c", deep: "#2c1e07" },
   sewing: { hue: "#4a5a33", deep: "#141c0d" },
   radios: { hue: "#6f4a2e", deep: "#1c1109" },
+  books: { hue: "#6b4226", deep: "#180f08" },
+  clothing: { hue: "#3d5266", deep: "#0d141c" },
+  jewellery: { hue: "#9c7a2e", deep: "#241b08" },
+  letters: { hue: "#8f7c5c", deep: "#201c14" },
+  photographs: { hue: "#55483d", deep: "#140f0a" },
+  tableware: { hue: "#3f6b5c", deep: "#0d1a15" },
+  toys: { hue: "#bf5a2e", deep: "#2b1208" },
+  watches: { hue: "#7a6234", deep: "#1c1608" },
 };
 
 const FALLBACK: Duotone = { hue: "#6b5f53", deep: "#1b150f" };
@@ -78,6 +86,57 @@ const GLYPHS: Record<string, ReactNode> = {
       <circle cx="33" cy="25.5" r="5" />
       <path d="M12 21h13M12 25.5h13M12 30h13" />
       <path d="M15 15l7-6" />
+    </>
+  ),
+  books: (
+    <>
+      <path d="M24 14c-4-3-10-3-14-1v22c4-2 10-2 14 1 4-3 10-3 14-1V13c-4-2-10-2-14 1Z" />
+      <path d="M24 14v22" />
+    </>
+  ),
+  clothing: (
+    <>
+      <path d="M17 10 10 15v6h5v17h18V21h5v-6l-7-5-3 3h-8l-3-3Z" />
+    </>
+  ),
+  jewellery: (
+    <>
+      <circle cx="24" cy="28" r="10" />
+      <path d="M19 18l5-8 5 8" />
+      <circle cx="24" cy="18" r="2.4" />
+    </>
+  ),
+  letters: (
+    <>
+      <rect x="8" y="14" width="32" height="22" rx="2" />
+      <path d="M8 16l16 13 16-13" />
+    </>
+  ),
+  photographs: (
+    <>
+      <rect x="10" y="10" width="22" height="22" rx="1" transform="rotate(-6 21 21)" />
+      <rect x="14" y="14" width="22" height="22" rx="1" transform="rotate(6 25 25)" />
+    </>
+  ),
+  tableware: (
+    <>
+      <path d="M12 20h18v8a9 9 0 0 1-9 9h0a9 9 0 0 1-9-9v-8Z" />
+      <path d="M30 22h4a4 4 0 0 1 0 8h-3" />
+      <ellipse cx="21" cy="39" rx="13" ry="2.4" />
+    </>
+  ),
+  toys: (
+    <>
+      <rect x="14" y="24" width="20" height="14" rx="2" />
+      <circle cx="24" cy="16" r="6" />
+    </>
+  ),
+  watches: (
+    <>
+      <circle cx="24" cy="24" r="10" />
+      <path d="M24 18v6l4 3" />
+      <path d="M20 8h8l-1 6h-6l-1-6Z" />
+      <path d="M20 40h8l-1-6h-6l-1 6Z" />
     </>
   ),
 };
