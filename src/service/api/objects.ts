@@ -26,12 +26,14 @@ export const getObject = async (id: string) => {
 
 export type GetObjectsParams = {
   createdBy?: string;
+  categories?: string;
   ordering?: string;
 };
 
-export const getObjects = async ({ createdBy, ordering }: GetObjectsParams = {}) => {
+export const getObjects = async ({ createdBy, categories, ordering }: GetObjectsParams = {}) => {
   const params = new URLSearchParams();
   if (createdBy) params.set("created_by", createdBy);
+  if (categories) params.set("categories", categories);
   if (ordering) params.set("ordering", ordering);
   const query = params.toString() ? `?${params.toString()}` : "";
 

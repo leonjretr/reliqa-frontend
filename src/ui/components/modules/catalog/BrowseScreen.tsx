@@ -1,8 +1,11 @@
 import { Link } from "@/i18n";
+import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { groupThousands, OBJECTS, STOCK } from "@/ui/components/modules/feed";
+import { groupThousands, STOCK } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn } from "@/ui/utils/shadcn";
+
+export type BrowseObject = APIObjectListItem & { stories_count: number };
 
 const DECADES = [
   { label: "50s", count: 8 },
@@ -14,7 +17,7 @@ const DECADES = [
   { label: "10s", count: 14 },
 ];
 
-const totalKept = OBJECTS.reduce((sum, item) => sum + item.keepers, 0);
+const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
 
 const DecadesBand = () => {
   const max = Math.max(...DECADES.map((decade) => decade.count));
@@ -51,27 +54,37 @@ const DecadesBand = () => {
   );
 };
 
-export const BrowseScreen = () => {
+type BrowseScreenProps = {
+  objects: BrowseObject[];
+  totalCount: number;
+  category?: APICategoryDetail;
+};
+
+export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProps) => {
   return (
     <div className="relative flex h-full flex-col">
       <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
-      <ScreenHeader section="the catalogue" right={`${OBJECTS.length} things`} />
+      <ScreenHeader
+        section={category?.name ?? "the catalogue"}
+        right={`${totalCount} things`}
+        back={category ? { href: "/search", label: "categories" } : undefined}
+      />
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
         <div className="px-[18px] pt-[16px] pb-[6px]">
           <h1 className="text-[29px] leading-[1.05] font-bold tracking-[-0.028em]">
-            Things people kept
+            {category?.name ?? "Things people kept"}
           </h1>
           <div className="text-ink-faint font-kept-mono mt-[7px] text-[9px] tracking-[0.1em] uppercase">
-            {groupThousands(totalKept)} memories stuck on so far
+            {groupThousands(totalCount)} {totalCount === 1 ? "thing" : "things"} kept so far
           </div>
         </div>
         <div className="flex flex-col gap-[18px] px-[18px] pt-[12px] pb-[22px]">
-          {OBJECTS.map((object, objectIndex) => {
-            const layers = Math.min(4, Math.round(object.keepers / 24) + 1);
+          {objects.map((object, objectIndex) => {
+            const layers = Math.min(4, Math.round(object.stories_count / 24) + 1);
             return (
               <Link
-                key={object.slug}
-                href={`/thing/${object.slug}`}
+                key={object.id}
+                href={`/thing/${object.id}`}
                 className="relative pb-[26px] text-inherit no-underline"
               >
                 {Array.from({ length: layers }).map((_, layer) => (
@@ -88,24 +101,33 @@ export const BrowseScreen = () => {
                 ))}
                 <div className="bg-chalk border-ink relative z-[1] flex items-center gap-[13px] rounded-[3px] border p-[11px]">
                   <KeptPhoto
-                    category={object.category}
+                    category={object.categories[0]}
                     className="border-ink h-[76px] w-[76px] flex-none border"
                   />
                   <div className="flex-1">
                     <div className="text-ink-faint font-kept-mono mb-[4px] text-[8px] tracking-[0.1em] uppercase">
-                      {object.category} · {object.year}
+                      {object.categories[0] ?? ""} · {yearOf(object.created_at)}
                     </div>
                     <div className="text-[24px] leading-none font-bold tracking-[-0.02em]">
                       {object.name}
                     </div>
                     <div className="text-oxblood mt-[6px] text-[13px] font-semibold">
-                      {object.keepers} kept one
+                      {object.stories_count} kept one
                     </div>
                   </div>
                 </div>
               </Link>
             );
           })}
+          {objects.length === 0 && (
+            <div className="border-hair rounded-[3px] border border-dashed px-[16px] py-[26px] text-center">
+              <p className="text-ink-3 text-[15px] leading-[1.5] font-light">
+                {category
+                  ? `Nothing kept in ${category.name.toLowerCase()} yet.`
+                  : "Nothing kept yet."}
+              </p>
+            </div>
+          )}
           <div>
             <div className="text-ink-faint font-kept-mono mb-[8px] text-[9px] tracking-[0.1em] uppercase">
               when the memories happened

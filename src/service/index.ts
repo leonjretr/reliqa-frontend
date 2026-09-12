@@ -19,6 +19,7 @@ export {
   createStory,
   createStoryAttachment,
   getCategories,
+  getCategory,
 } from "./api";
 export type { FetchAPIOptions } from "./api";
 export {
