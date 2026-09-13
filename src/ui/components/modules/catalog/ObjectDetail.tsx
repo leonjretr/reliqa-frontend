@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Link } from "@/i18n";
-import type { APIObject, APIStory } from "@/service/types";
+import type { APIObject, APIStoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { STOCK } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
@@ -17,13 +17,11 @@ const POSITIONS: [number, number, number][] = [
   [62, 296, -2],
 ];
 
-const NOTE_LENGTH = 140;
-
 const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
 
 type ObjectDetailProps = {
   object: APIObject;
-  stories: APIStory[];
+  stories: APIStoryListItem[];
 };
 
 export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
@@ -91,8 +89,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
                 {isActive && (
                   <>
                     <p className="mt-[8px] text-[13.5px] leading-[1.42] font-light">
-                      {story.story.slice(0, NOTE_LENGTH)}
-                      {story.story.length > NOTE_LENGTH ? "…" : ""}
+                      {story.short_story || "—"}
                     </p>
                     <Link
                       href={`/keeper/${story.created_by.username}`}

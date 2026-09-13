@@ -1,5 +1,5 @@
 import { Link } from "@/i18n";
-import type { APIObjectListItem, APIStory } from "@/service/types";
+import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { STOCK } from "@/ui/components/modules/feed";
 
@@ -14,13 +14,11 @@ type ProfileKeeper = {
 type ProfileScreenProps = {
   keeper: ProfileKeeper;
   objects: APIObjectListItem[];
-  stories: APIStory[];
+  stories: APIStoryListItem[];
   isOwn: boolean;
 };
 
 const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
-
-const SNIPPET_LENGTH = 120;
 
 const SettingsIcon = (
   <svg
@@ -110,11 +108,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
                     </span>
                   </div>
                   <p className="text-ink-2 text-[15px] leading-[1.4] font-light italic">
-                    “
-                    {story.story.length > SNIPPET_LENGTH
-                      ? `${story.story.slice(0, SNIPPET_LENGTH)}…`
-                      : story.story}
-                    ”
+                    “{story.short_story || "—"}”
                   </p>
                 </Link>
               ))}

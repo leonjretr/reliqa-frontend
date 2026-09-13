@@ -9,6 +9,9 @@ import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn } from "@/ui/utils/shadcn";
 
+import { CategoryPicker } from "./CategoryPicker";
+import { TagPicker } from "./TagPicker";
+
 const CAP = 140;
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
 
@@ -27,6 +30,7 @@ export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [categorySlug, setCategorySlug] = useState(categories[0]?.slug ?? "");
+  const [tags, setTags] = useState<string[]>([]);
   const [arrival, setArrival] = useState("inherited");
   const [previous, setPrevious] = useState("");
   const [place, setPlace] = useState("");
@@ -60,7 +64,9 @@ export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
     const result = await submitCapture({
       name,
       category: categorySlug,
+      tags,
       story: longread.trim() || memory,
+      shortStory: memory,
       photo: photoFile,
     });
 
@@ -103,21 +109,15 @@ export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
         <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
           category
         </div>
-        <div className="mt-[7px] flex flex-wrap gap-[6px]">
-          {categories.map((category) => (
-            <button
-              key={category.slug}
-              onClick={() => setCategorySlug(category.slug)}
-              className={cn(
-                "border-ink font-kept-mono cursor-pointer border px-[11px] py-[9px] text-[10.5px] tracking-[0.05em] lowercase",
-                categorySlug === category.slug
-                  ? "bg-ink text-chalk"
-                  : "text-ink-2 hover:bg-stock-2 bg-transparent",
-              )}
-            >
-              {category.name}
-            </button>
-          ))}
+        <div className="mt-[7px]">
+          <CategoryPicker categories={categories} value={categorySlug} onChange={setCategorySlug} />
+        </div>
+
+        <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">
+          tags <span className="tracking-normal normal-case">— optional</span>
+        </div>
+        <div className="mt-[7px]">
+          <TagPicker value={tags} onChange={setTags} />
         </div>
 
         <div className="text-ink-faint font-kept-mono mt-[20px] text-[9px] tracking-[0.1em] uppercase">

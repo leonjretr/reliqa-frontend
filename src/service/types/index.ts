@@ -33,7 +33,8 @@ export type {
   APIObjectListItem,
   APICreatedObject,
 } from "./objects";
-export type { APIStory, APICreatedStory, APIStoryDetail } from "./stories";
+export type { APIStorySource, APIStoryListItem, APICreatedStory, APIStoryDetail } from "./stories";
 export type { APICategoryDetail, APICategoryListItem } from "./categories";
+export type { APITagListItem } from "./tags";
 export type { FeedEntry } from "./feed";
 export type { CaptureInput } from "./capture";

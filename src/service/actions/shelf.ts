@@ -1,11 +1,11 @@
 "use server";
 
 import { getObjects, getUserStories } from "@/service/api";
-import type { APIObjectListItem, APIStory } from "@/service/types";
+import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 
 export const loadKeeperShelf = async (
   userId: string,
-): Promise<{ objects: APIObjectListItem[]; stories: APIStory[] }> => {
+): Promise<{ objects: APIObjectListItem[]; stories: APIStoryListItem[] }> => {
   const [objects, stories] = await Promise.all([
     getObjects({ createdBy: userId, ordering: "-created_at" }),
     getUserStories(userId),

@@ -26,5 +26,5 @@ export const buildFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
   keeperName: formatKeeperName(story?.created_by ?? object.created_by),
   year: yearOf(story?.created_at ?? object.created_at),
   viewCount: object.view_count,
-  quote: story?.story,
+  quote: story?.short_story,
 });

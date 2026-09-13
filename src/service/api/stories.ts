@@ -1,16 +1,22 @@
 "use server";
 
 import { API_ENDPOINTS } from "@/config";
-import { APICreatedStory, APIPaginatedResponse, APIStory, APIStoryDetail } from "@/service/types";
+import {
+  APICreatedStory,
+  APIPaginatedResponse,
+  APIStoryDetail,
+  APIStoryListItem,
+} from "@/service/types";
 
 import { fetchAPI } from "./api";
 import { fetchAuthenticated } from "./auth";
 
 const listStories = async (params: Record<string, string>) => {
   const query = new URLSearchParams(params).toString();
-  return await fetchAPI<APIPaginatedResponse<APIStory>>(`${API_ENDPOINTS.STORIES}?${query}`, {
-    method: "GET",
-  });
+  return await fetchAPI<APIPaginatedResponse<APIStoryListItem>>(
+    `${API_ENDPOINTS.STORIES}?${query}`,
+    { method: "GET" },
+  );
 };
 
 export const getObjectStories = async (objectId: string) => {
@@ -27,9 +33,9 @@ export const getStory = async (id: string) => {
   });
 };
 
-export const createStory = async (objectId: string, story: string) => {
+export const createStory = async (objectId: string, story: string, shortStory: string) => {
   return await fetchAuthenticated<APICreatedStory>(API_ENDPOINTS.STORIES, {
     method: "POST",
-    body: JSON.stringify({ object: objectId, story }),
+    body: JSON.stringify({ object: objectId, story, short_story: shortStory }),
   });
 };
