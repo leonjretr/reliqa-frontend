@@ -5,6 +5,7 @@ export type FeedCard = {
   id: string;
   objectId: string;
   storyId?: string;
+  name: string;
   photo?: string;
   category?: string;
   tags: string[];
@@ -20,6 +21,7 @@ export const buildFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
   id: object.id,
   objectId: object.id,
   storyId: story?.id,
+  name: object.name,
   photo: object.attachments[0]?.file.src,
   category: object.categories[0]?.name,
   tags: object.tags.map((tag) => tag.slug),

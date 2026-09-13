@@ -52,7 +52,7 @@ const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
       <KeptPhoto
         category={card.category?.toLowerCase()}
         src={card.photo}
-        alt={card.keeperName}
+        alt={card.name}
         className="absolute inset-0"
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.5)_38%,rgba(20,14,9,0)_70%)]" />
@@ -111,7 +111,7 @@ const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
           </div>
         )}
         <div className="text-chalk mt-[6px] text-[26px] leading-[1.04] font-bold tracking-[-0.02em]">
-          {card.keeperName}
+          {card.name}
         </div>
         {tagLine && (
           <div className="text-chalk/72 font-kept-mono mt-[4px] text-[9px] tracking-[0.1em] uppercase">
@@ -119,9 +119,14 @@ const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
           </div>
         )}
         {card.quote ? (
-          <p className="text-chalk mt-[12px] text-[19px] leading-[1.4] font-light">
-            “{card.quote}”
-          </p>
+          <>
+            <p className="text-chalk mt-[12px] text-[19px] leading-[1.4] font-light">
+              “{card.quote}”
+            </p>
+            <div className="text-chalk/72 font-kept-mono mt-[6px] text-[9px] tracking-[0.1em] uppercase">
+              — {card.keeperName}
+            </div>
+          </>
         ) : (
           <p className="text-chalk/50 mt-[12px] text-[15px] leading-[1.4] font-light italic">
             Nobody has told this object’s story yet.

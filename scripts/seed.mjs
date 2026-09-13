@@ -148,66 +148,89 @@ const STORIES = [
   {
     object: "kalevipoeg",
     keeper: "elin-haas",
+    shortStory: "My grandmother read two pages of it every night, whether we asked or not.",
     text: "My grandmother read two pages of it every night whether we asked or not, and fell asleep herself before I did more often than either of us admitted.\n\nThe spine gave out sometime in the nineties and she mended it with packing tape, which embarrassed my mother and never once embarrassed her. I have bought two newer editions since. I keep reading this one, tape and all, because the tape is also hers.",
   },
   {
     object: "atlas",
     keeper: "juhan-kask",
+    shortStory:
+      "Every border that moved after 1991 got a new pencil line drawn over the old one, at our kitchen table.",
     text: "Every border that moved after 1991 got a new pencil line drawn over the old one, in my father's hand, at the kitchen table, while the radio said the names of places changing.\n\nHe never erased the old lines. He said a map that pretends nothing happened is worse than a map that is wrong. I still check it before I check my phone, out of habit more than need.",
   },
   {
     object: "coat",
     keeper: "kaia-lepik",
+    shortStory: "I put it on one October out of curiosity and never really took it off again.",
     text: "It hung at the back of the wardrobe behind the coats anyone actually wore, and I put it on one October out of curiosity and never really took it off again.\n\nIt is two sizes too big and the lining has been redone twice by two different hands I never met. I have been told to get it taken in. I have not, because I like disappearing into something that was hers before it decided to be mine.",
   },
   {
     object: "ring",
     keeper: "marta-ilves",
+    shortStory:
+      "Worn thin on the inside from fifty-one years of the same hand turning it without thinking.",
     text: "It is worn thin on the inside, thinner than the outside, from fifty-one years of the same hand turning it without thinking.\n\nI do not wear it. I keep it in the same small box it has always lived in, and open the box maybe twice a year, and each time it takes me a moment to remember whose hand actually wore it thin.",
   },
   {
     object: "letters",
     keeper: "anna-rozite",
+    shortStory: "Tied with the same string, re-tied so many times it's gone soft as fabric.",
     text: "They are tied with the same piece of string, re-tied so many times it has gone soft as fabric, and nobody in the family agrees on whose handwriting is on the outer one.\n\nI have read maybe a third of them. Some are in a hand I cannot place at all, from a person nobody living remembers, and I have decided I would rather not know than ask around and lose the not-knowing.",
   },
   {
     object: "wedding-photo",
     keeper: "toomas-vali",
+    shortStory:
+      "Everyone's looking the wrong way except our mother, who knew it would be the one that lasted.",
     text: "Everyone in it is looking slightly the wrong way except our mother, who is looking dead into the lens like she already knew it would be the one that lasted.\n\nI have the actual print. My sister has the memory of the day the frame fell and cracked the glass, which she tells better than I do, because she was the one holding it when it happened.",
   },
   {
     object: "wedding-photo",
     keeper: "kaia-lepik",
+    shortStory:
+      "I was the one holding it when the glass cracked, not him, whatever he tells people.",
     text: "I was the one holding it when the glass cracked, not him, whatever he tells people, and I have never once let him forget it.\n\nIt still has the crack in the corner, a thin line across the collar of a man who was, by every account, deeply unimportant to the day. We have never had it reframed. The crack is thirty years old now and outranks most of the people in the photograph.",
   },
   {
     object: "teacup",
     keeper: "dario-pini",
+    shortStory:
+      "One chip, right where your lip lands if you're right-handed and don't think about it.",
     text: "One chip, on the inside of the rim, exactly where your lip lands if you're right-handed and don't think about it, which after enough cups nobody does.\n\nIt came from a set of six and is the only survivor. I have been offered a full replacement set more than once. I keep drinking from the chipped one, out of the six, like loyalty is a thing you can owe a cup.",
   },
   {
     object: "bowls",
     keeper: "priit-saar",
+    shortStory:
+      "Five bowls in a green nobody makes anymore. The smallest has been missing longer than I've been alive.",
     text: "Five bowls that stack into one shape on the shelf, in a green nobody has manufactured in decades, and the smallest one is missing, and has been missing longer than I've been alive.\n\nMy mother swears it will turn up. It has not turned up in forty years. We keep the other four stacked with the gap where it should sit, which is somehow worse and better than replacing it would be.",
   },
   {
     object: "top",
     keeper: "juhan-kask",
+    shortStory:
+      "My father carved it on a lathe in one evening, off-hand, and it outlasted every toy we ever bought.",
     text: "My father carved it on a lathe in an evening, off-hand, the way other fathers might fix a fence, and it has outlasted every toy either of us ever bought.\n\nI gave it to a friend when his own father died and he had nothing to spin at the funeral reception, which is a strange thing to need but he needed it. He gave it back a year later without explaining why. I did not ask.",
   },
   {
     object: "top",
     keeper: "priit-saar",
+    shortStory:
+      "He put it in my hand at the worst possible moment and didn't say anything, which was exactly right.",
     text: "He put it in my hand at the worst possible moment and did not say anything, which was exactly right, because there was nothing to say and a top does not require conversation, only a flat surface and a wrist.\n\nI kept it a year. I am still not sure why I gave it back instead of buying my own. Some things are only the right weight in a hand if somebody else trusted you with them first.",
   },
   {
     object: "pocket-watch",
     keeper: "elin-haas",
+    shortStory:
+      "The crack runs corner to corner across the eight, which caused one genuinely alarming missed train in 1987.",
     text: "The crack runs corner to corner across the eight, so from certain angles it reads as a five, which caused one genuinely alarming missed train in 1987.\n\nIt has not kept accurate time since before I owned it. I wind it anyway, every few months, for the sound, which is the only thing about it that still works exactly as it should.",
   },
   {
     object: "pocket-watch",
     keeper: "marta-ilves",
+    shortStory:
+      "She let me hold it once, at her kitchen table, and told me the crack was older than its second owner.",
     text: "She let me hold it once, just once, at her kitchen table, and told me the crack was older than the watch's second owner, which did not make arithmetic sense and which I never once asked her to explain.\n\nI think about that kitchen table more than I think about the watch. The watch I only saw the one time. The not-explaining I have carried for thirty years.",
   },
 ];
@@ -303,7 +326,7 @@ const main = async () => {
     const created = await request("stories/", {
       method: "POST",
       token: tokens[story.keeper],
-      body: { object: objectId, story: story.text },
+      body: { object: objectId, story: story.text, short_story: story.shortStory },
     });
     if (!created.ok) {
       console.log(

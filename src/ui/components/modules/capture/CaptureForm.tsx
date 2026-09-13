@@ -278,10 +278,15 @@ export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
             <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               {place || "—"} · {previous ? `${previous}’s` : arrival} · {year || "—"}
             </div>
-            <div className="text-chalk mt-[5px] text-[20px] font-bold">{keeperName}</div>
+            <div className="text-chalk mt-[5px] text-[20px] font-bold">{name || "—"}</div>
             <p className="text-chalk mt-[8px] text-[15.5px] leading-[1.42] font-light">
               “{memory || "—"}”
             </p>
+            {memory && (
+              <div className="text-chalk/72 font-kept-mono mt-[6px] text-[9px] tracking-[0.1em] uppercase">
+                — {keeperName}
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-[8px] flex items-baseline gap-[9px]">
