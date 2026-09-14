@@ -1,7 +1,7 @@
 "use server";
 
-import { createObject, createStory, createStoryAttachment } from "@/service/api";
-import { ActionResult, CaptureInput } from "@/service/types";
+import { createObject, createStory } from "@/service/api";
+import { CaptureInput, CaptureResult } from "@/service/types";
 
 export const submitCapture = async ({
   name,
@@ -9,8 +9,7 @@ export const submitCapture = async ({
   tags,
   story,
   shortStory,
-  photo,
-}: CaptureInput): Promise<ActionResult> => {
+}: CaptureInput): Promise<CaptureResult> => {
   const object = await createObject({ name, categories: [category], tags });
 
   if (!object.success) {
@@ -23,9 +22,5 @@ export const submitCapture = async ({
     return { success: false, errors: createdStory.errors };
   }
 
-  if (photo) {
-    await createStoryAttachment(createdStory.id, photo);
-  }
-
-  return { success: true };
+  return { success: true, storyId: createdStory.id };
 };

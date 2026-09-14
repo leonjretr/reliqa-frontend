@@ -4,7 +4,7 @@ import { useState, type ChangeEvent } from "react";
 
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
-import type { APICategoryListItem } from "@/service/types";
+import type { ActionResult, APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn } from "@/ui/utils/shadcn";
@@ -14,6 +14,18 @@ import { TagPicker } from "./TagPicker";
 
 const CAP = 140;
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
+
+const uploadStoryPhoto = async (storyId: string, file: File): Promise<ActionResult> => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`/api/stories/${storyId}/attachments`, {
+    method: "POST",
+    body: formData,
+  });
+
+  return (await response.json()) as ActionResult;
+};
 
 const fieldClassName =
   "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-[7px] pb-[6px] text-[17px] outline-none placeholder:font-light placeholder:italic";
@@ -67,12 +79,21 @@ export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
       tags,
       story: longread.trim() || memory,
       shortStory: memory,
-      photo: photoFile,
     });
 
     if (!result.success) {
       setIsSubmitting(false);
       setError(result.errors?.[0]?.detail ?? "Something went wrong. Try again.");
+      return;
+    }
+
+    const uploadResult = await uploadStoryPhoto(result.storyId, photoFile);
+
+    if (!uploadResult.success) {
+      setIsSubmitting(false);
+      setError(
+        uploadResult.errors?.[0]?.detail ?? "Something went wrong uploading your photo. Try again.",
+      );
       return;
     }
 
