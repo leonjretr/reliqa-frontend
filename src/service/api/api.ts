@@ -2,7 +2,12 @@
 
 import { headers } from "next/headers";
 
-import { API_URL } from "@/config";
+import {
+  API_DEFAULT_LANGUAGE,
+  API_DEFAULT_VERSION,
+  API_URL,
+  API_VERSION_PLACEHOLDER,
+} from "@/config";
 import { APIErrorResponse, APISuccessfulResponse } from "@/service/types";
 
 export type FetchAPIOptions = {
@@ -30,7 +35,7 @@ export const fetchAPI = async <T>(
   const acceptLanguage = language || nextHeaders.get("accept-language");
   const requestHeaders: HeadersInit = {
     ...(!(options.body instanceof FormData) && { "Content-Type": "application/json" }),
-    "Accept-Language": acceptLanguage || "en",
+    "Accept-Language": acceptLanguage || API_DEFAULT_LANGUAGE,
     "X-Forwarded-For": clientIp,
     "X-Client-Referer": referer ?? "",
     "X-Client-User-Agent": userAgent ?? "",
@@ -41,7 +46,7 @@ export const fetchAPI = async <T>(
 
   try {
     const response = await fetch(
-      `${API_URL.replace("[version]", version ? version : "v1")}${endpoint}`,
+      `${API_URL.replace(API_VERSION_PLACEHOLDER, version ? version : API_DEFAULT_VERSION)}${endpoint}`,
       {
         ...actualFetchOptions,
         headers: requestHeaders,

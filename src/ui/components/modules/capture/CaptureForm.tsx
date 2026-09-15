@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent } from "react";
 
-import { PAGES } from "@/config";
+import { CHARACTERS_LOW_THRESHOLD, PAGES, SHORT_STORY_MAX_LENGTH, YEAR_MAX_LENGTH } from "@/config";
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
 import type { ActionResult, APICategoryListItem } from "@/service/types";
@@ -13,7 +13,6 @@ import { cn } from "@/ui/utils/shadcn";
 import { CategoryPicker } from "./CategoryPicker";
 import { TagPicker } from "./TagPicker";
 
-const CAP = 140;
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
 
 const uploadStoryPhoto = async (storyId: string, file: File): Promise<ActionResult> => {
@@ -56,7 +55,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const remaining = CAP - memory.length;
+  const remaining = SHORT_STORY_MAX_LENGTH - memory.length;
   const held = year ? new Date().getFullYear() - Number(year) : "—";
   const longWords = longread.trim() ? longread.trim().split(/\s+/).length : 0;
   const canSubmit = Boolean(name && categorySlug && memory && photoFile && !isSubmitting);
@@ -236,7 +235,9 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
             <input
               className={cn(fieldClassName, "font-kept-mono text-[16px] lining-nums tabular-nums")}
               value={year}
-              onChange={(event) => setYear(event.target.value.replace(/\D/g, "").slice(0, 4))}
+              onChange={(event) =>
+                setYear(event.target.value.replace(/\D/g, "").slice(0, YEAR_MAX_LENGTH))
+              }
               placeholder="year"
             />
           </div>
@@ -249,7 +250,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
           <span
             className={cn(
               "font-kept-mono text-[11px] lining-nums tabular-nums",
-              remaining < 20 ? "text-oxblood" : "text-ink-faint",
+              remaining < CHARACTERS_LOW_THRESHOLD ? "text-oxblood" : "text-ink-faint",
             )}
           >
             {remaining}
@@ -258,7 +259,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
         <div className="mt-[6px]">
           <textarea
             className={cn(textareaClassName, "h-[74px]")}
-            maxLength={CAP}
+            maxLength={SHORT_STORY_MAX_LENGTH}
             value={memory}
             onChange={(event) => setMemory(event.target.value)}
             placeholder="Not the history of it. One thing."

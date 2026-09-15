@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 
+import { SEARCH_DEBOUNCE_MS } from "@/config";
 import { getTags } from "@/service/api";
 import type { APITagListItem } from "@/service/types";
 import {
@@ -41,7 +42,7 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
   const [results, setResults] = useState<APITagListItem[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isPending, startTransition] = useTransition();
-  const debouncedQuery = useDebouncedValue(inputValue.trim(), 250);
+  const debouncedQuery = useDebouncedValue(inputValue.trim(), SEARCH_DEBOUNCE_MS);
   const requestIdRef = useRef(0);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 "use server";
 
-import { API_ENDPOINTS } from "@/config";
+import { API_ENDPOINTS, API_ORDERINGS } from "@/config";
 import {
   APICreatedStory,
   APIPaginatedResponse,
@@ -24,7 +24,7 @@ export const getObjectStories = async (objectId: string) => {
 };
 
 export const getUserStories = async (createdBy: string) => {
-  return await listStories({ created_by: createdBy, ordering: "-created_at" });
+  return await listStories({ created_by: createdBy, ordering: API_ORDERINGS.NEWEST });
 };
 
 export const getStory = async (id: string) => {

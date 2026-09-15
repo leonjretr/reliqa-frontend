@@ -3,7 +3,14 @@
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
-import { PAGES, storyPath, thingPath } from "@/config";
+import {
+  FEED_LOAD_MORE_BATCH_SIZE,
+  FEED_LOAD_MORE_THRESHOLD,
+  FEED_TAGS_SHOWN,
+  PAGES,
+  storyPath,
+  thingPath,
+} from "@/config";
 import { Link } from "@/i18n";
 import { loadFeedEntries } from "@/service/actions";
 import type { FeedEntry } from "@/service/types";
@@ -12,9 +19,6 @@ import { cn } from "@/ui/utils/shadcn";
 
 import { groupThousands } from "./data";
 import { buildFeedCard, type FeedCard } from "./feedCard";
-
-const LOAD_MORE_BATCH_SIZE = 4;
-const LOAD_MORE_THRESHOLD = 2;
 
 const RailButton = ({
   href,
@@ -67,7 +71,7 @@ const Slide = ({
   const railX = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [28, 0, 28]);
 
   const subtitle = [card.category, card.year].filter(Boolean).join(" · ");
-  const tagLine = card.tags.slice(0, 3).join(" · ");
+  const tagLine = card.tags.slice(0, FEED_TAGS_SHOWN).join(" · ");
 
   return (
     <section
@@ -225,10 +229,10 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
   useEffect(() => {
     if (reachedEndRef.current || isLoadingRef.current) return;
-    if (active < cards.length - LOAD_MORE_THRESHOLD) return;
+    if (active < cards.length - FEED_LOAD_MORE_THRESHOLD) return;
 
     isLoadingRef.current = true;
-    loadFeedEntries(LOAD_MORE_BATCH_SIZE, [...seenIdsRef.current]).then((moreEntries) => {
+    loadFeedEntries(FEED_LOAD_MORE_BATCH_SIZE, [...seenIdsRef.current]).then((moreEntries) => {
       isLoadingRef.current = false;
 
       const additions = moreEntries.filter((entry) => !seenIdsRef.current.has(entry.object.id));

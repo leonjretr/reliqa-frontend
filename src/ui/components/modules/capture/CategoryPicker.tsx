@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 
+import { SEARCH_DEBOUNCE_MS } from "@/config";
 import { getCategories } from "@/service/api";
 import type { APICategoryListItem } from "@/service/types";
 import {
@@ -30,7 +31,7 @@ export const CategoryPicker = ({ categories, value, onChange }: CategoryPickerPr
     () => categories.find((category) => category.slug === value)?.name ?? "",
   );
   const [isPending, startTransition] = useTransition();
-  const debouncedQuery = useDebouncedValue(inputValue.trim(), 250);
+  const debouncedQuery = useDebouncedValue(inputValue.trim(), SEARCH_DEBOUNCE_MS);
   const requestIdRef = useRef(0);
 
   const selected = useMemo(() => {

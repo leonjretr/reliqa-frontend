@@ -3,11 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { QUERIES } from "@/config";
+import { QUERIES, SEARCH_DEBOUNCE_MS } from "@/config";
 import { usePathname, useRouter } from "@/i18n";
 import { useDebouncedValue } from "@/ui/hooks";
-
-const SEARCH_DEBOUNCE_MS = 300;
 
 export const CategorySearch = () => {
   const router = useRouter();

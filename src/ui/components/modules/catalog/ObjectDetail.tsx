@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { keeperPath, PAGES } from "@/config";
+import { keeperPath, OBJECT_NOTES_SHOWN, PAGES } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObject, APIStoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -28,7 +28,7 @@ type ObjectDetailProps = {
 export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
   const [open, setOpen] = useState<number | null>(null);
   const category = object.categories[0];
-  const notes = stories.slice(0, 5);
+  const notes = stories.slice(0, OBJECT_NOTES_SHOWN);
   const facts = [
     { label: "category", value: category?.name ?? "—" },
     { label: "invented", value: object.invented_at ? yearOf(object.invented_at) : "—" },

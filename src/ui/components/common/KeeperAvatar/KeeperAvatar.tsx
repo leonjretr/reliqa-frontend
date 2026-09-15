@@ -1,3 +1,4 @@
+import { INITIALS_LENGTH } from "@/config";
 import { cn } from "@/ui/utils/shadcn";
 
 type KeeperAvatarProps = {
@@ -13,7 +14,7 @@ const initials = (name: string) =>
   name
     .split(/\s+/)
     .filter(Boolean)
-    .slice(0, 2)
+    .slice(0, INITIALS_LENGTH)
     .map((part) => part[0])
     .join("")
     .toUpperCase();

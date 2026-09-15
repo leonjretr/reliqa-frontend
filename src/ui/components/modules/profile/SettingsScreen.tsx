@@ -2,7 +2,8 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
-import { keeperPath } from "@/config";
+import { BIO_MAX_LENGTH, CHARACTERS_LOW_THRESHOLD, keeperPath, LOCALE_NAMES } from "@/config";
+import { routing } from "@/i18n";
 import { saveSettings, signOut } from "@/service/actions";
 import type { ActionResult, APICurrentUser, APILanguage } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
@@ -13,7 +14,10 @@ type SettingsScreenProps = {
   user: APICurrentUser;
 };
 
-const BIO_CAP = 160;
+const LANGUAGE_OPTIONS = routing.locales.map((locale) => ({
+  value: locale,
+  label: LOCALE_NAMES[locale],
+}));
 
 const saveProfile = async (profile: FormData): Promise<ActionResult> => {
   const response = await fetch("/api/users/me", {
@@ -123,7 +127,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
   const [saved, setSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  const remaining = BIO_CAP - bio.length;
+  const remaining = BIO_MAX_LENGTH - bio.length;
 
   const handleAvatar = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -218,7 +222,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           <span
             className={cn(
               "font-kept-mono text-[11px] lining-nums tabular-nums",
-              remaining < 20 ? "text-oxblood" : "text-ink-faint",
+              remaining < CHARACTERS_LOW_THRESHOLD ? "text-oxblood" : "text-ink-faint",
             )}
           >
             {remaining}
@@ -227,7 +231,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         <div className="mt-[6px]">
           <textarea
             className={cn(textareaClassName, "h-[92px]")}
-            maxLength={BIO_CAP}
+            maxLength={BIO_MAX_LENGTH}
             value={bio}
             onChange={(event) => track(setBio)(event.target.value)}
             placeholder="What you keep, and why. A line or two for the people who visit your shelf."
@@ -298,15 +302,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         <div className="mt-[18px]">
           <FieldLabel>language</FieldLabel>
           <div className="mt-[7px]">
-            <Segmented
-              options={[
-                { value: "en", label: "english" },
-                { value: "uk", label: "українська" },
-                { value: "ru", label: "русский" },
-              ]}
-              value={language}
-              onChange={track(setLanguage)}
-            />
+            <Segmented options={LANGUAGE_OPTIONS} value={language} onChange={track(setLanguage)} />
           </div>
         </div>
 
