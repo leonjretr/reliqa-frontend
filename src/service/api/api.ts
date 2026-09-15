@@ -7,6 +7,7 @@ import {
   API_DEFAULT_VERSION,
   API_URL,
   API_VERSION_PLACEHOLDER,
+  LOCALE_HEADER,
 } from "@/config";
 import { APIErrorResponse, APISuccessfulResponse } from "@/service/types";
 
@@ -32,14 +33,15 @@ export const fetchAPI = async <T>(
     "unknown";
   const referer = nextHeaders.get("referer");
   const userAgent = nextHeaders.get("user-agent");
-  const acceptLanguage = language || nextHeaders.get("accept-language");
+  const clientLanguage = nextHeaders.get("accept-language");
+  const acceptLanguage = language || nextHeaders.get(LOCALE_HEADER) || clientLanguage;
   const requestHeaders: HeadersInit = {
     ...(!(options.body instanceof FormData) && { "Content-Type": "application/json" }),
     "Accept-Language": acceptLanguage || API_DEFAULT_LANGUAGE,
     "X-Forwarded-For": clientIp,
     "X-Client-Referer": referer ?? "",
     "X-Client-User-Agent": userAgent ?? "",
-    "X-Client-Accept-Language": acceptLanguage || "",
+    "X-Client-Accept-Language": clientLanguage || "",
     ...(actualFetchOptions.headers || {}),
     ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
   };
