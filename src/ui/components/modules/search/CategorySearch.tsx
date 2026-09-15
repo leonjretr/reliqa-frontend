@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 import { QUERIES, SEARCH_DEBOUNCE_MS } from "@/config";
 import { usePathname, useRouter } from "@/i18n";
+import { SearchIcon } from "@/ui/components/common/icons";
 import { useDebouncedValue } from "@/ui/hooks";
 
 export const CategorySearch = () => {
@@ -28,18 +29,7 @@ export const CategorySearch = () => {
 
   return (
     <label className="bg-chalk border-ink rounded-paper shadow-card flex items-center gap-2 border px-3.25 py-2.75">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="text-ink-faint flex-none"
-      >
-        <circle cx="11" cy="11" r="7" />
-        <path d="m20 20-3.5-3.5" strokeLinecap="round" />
-      </svg>
+      <SearchIcon className="text-ink-faint size-4 flex-none" />
       <input
         type="search"
         value={value}

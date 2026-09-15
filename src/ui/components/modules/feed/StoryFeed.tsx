@@ -14,6 +14,7 @@ import {
 import { Link } from "@/i18n";
 import { loadFeedEntries } from "@/service/actions";
 import type { FeedEntry } from "@/service/types";
+import { LinesIcon, PlusIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { cn, groupThousands } from "@/ui/utils";
 
@@ -107,37 +108,12 @@ const Slide = ({
           href={PAGES.ADD}
           filled
           label="add yours"
-          glyph={
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          }
+          glyph={<PlusIcon className="size-5" strokeWidth={1.6} />}
         />
         <RailButton
           href={thingPath(card.objectId)}
           label="the object"
-          glyph={
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          }
+          glyph={<LinesIcon className="size-5" />}
         />
       </motion.div>
 

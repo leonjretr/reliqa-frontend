@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 import { keeperPath, PAGES, QUERIES } from "@/config";
 import { Link, usePathname } from "@/i18n";
+import { GridIcon, HouseIcon, PlusIcon, SearchIcon, UserIcon } from "@/ui/components/common/icons";
 import { cn } from "@/ui/utils/shadcn";
 
 type Tab = {
@@ -15,75 +16,36 @@ type Tab = {
   center?: boolean;
 };
 
-const stroke = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.5,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-const HouseIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
-    <path d="M3 10.5 12 3l9 7.5" />
-    <path d="M5 9.5V21h14V9.5" />
-  </svg>
-);
-
-const GridIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
-    <rect x="3.5" y="3.5" width="7" height="7" />
-    <rect x="13.5" y="3.5" width="7" height="7" />
-    <rect x="3.5" y="13.5" width="7" height="7" />
-    <rect x="13.5" y="13.5" width="7" height="7" />
-  </svg>
-);
-
-const PlusIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
-    <path d="M12 5v14M5 12h14" />
-  </svg>
-);
-
-const SearchIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
-    <circle cx="11" cy="11" r="7" />
-    <path d="m20 20-3.5-3.5" />
-  </svg>
-);
-
-const UserIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" {...stroke}>
-    <circle cx="12" cy="8" r="4" />
-    <path d="M4 21c0-4 3.5-6 8-6s8 2 8 6" />
-  </svg>
-);
-
 const buildTabs = (profileSlug: string | null, category: string | null): Tab[] => [
-  { href: PAGES.FEED, label: "feed", icon: HouseIcon, match: (path) => path === PAGES.FEED },
+  {
+    href: PAGES.FEED,
+    label: "feed",
+    icon: <HouseIcon className="size-4.5" />,
+    match: (path) => path === PAGES.FEED,
+  },
   {
     href: PAGES.BROWSE,
     label: "browse",
-    icon: GridIcon,
+    icon: <GridIcon className="size-4.5" />,
     match: (path) => path.startsWith(PAGES.BROWSE) || path.startsWith(PAGES.THING),
   },
   {
     href: category ? `${PAGES.ADD}?${QUERIES.CATEGORY}=${encodeURIComponent(category)}` : PAGES.ADD,
     label: "keep",
-    icon: PlusIcon,
+    icon: <PlusIcon className="size-4.5" />,
     match: (path) => path.startsWith(PAGES.ADD),
     center: true,
   },
   {
     href: PAGES.SEARCH,
     label: "find",
-    icon: SearchIcon,
+    icon: <SearchIcon className="size-4.5" />,
     match: (path) => path.startsWith(PAGES.SEARCH),
   },
   {
     href: profileSlug ? keeperPath(profileSlug) : PAGES.LOGIN,
     label: "shelf",
-    icon: UserIcon,
+    icon: <UserIcon className="size-4.5" />,
     match: (path) => path.startsWith(PAGES.KEEPER) || path.startsWith(PAGES.STORY),
   },
 ];

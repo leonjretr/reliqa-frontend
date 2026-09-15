@@ -12,6 +12,7 @@ import {
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
 import type { APICategoryListItem } from "@/service/types";
+import { CameraIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn, countWords, sendFormData, yearsSince } from "@/ui/utils";
@@ -160,20 +161,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
             </div>
           ) : (
             <div className="bg-stock-2 border-ink flex h-53.5 flex-col items-center justify-center gap-2.5 border border-dashed">
-              <svg
-                width="34"
-                height="34"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-ink-faint"
-              >
-                <path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
-                <circle cx="12" cy="13" r="3.5" />
-              </svg>
+              <CameraIcon className="text-ink-faint size-8.5" strokeWidth={1.4} />
               <span className="text-ink-faint font-kept-mono text-eyebrow tracking-widest uppercase">
                 add a photograph
               </span>
