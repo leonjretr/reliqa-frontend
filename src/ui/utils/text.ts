@@ -18,7 +18,7 @@ export const slugify = (raw: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const USERNAME_DISALLOWED = /[^a-z0-9-]/gi;
+const USERNAME_DISALLOWED = /[^a-z0-9_-]/gi;
 
 export const sanitizeUsername = (raw: string) => raw.replace(USERNAME_DISALLOWED, "").toLowerCase();
 
