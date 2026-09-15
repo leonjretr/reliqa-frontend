@@ -219,7 +219,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
       <div
         ref={containerRef}
-        className="kept-scroll h-full snap-y snap-mandatory overflow-y-auto [-webkit-overflow-scrolling:touch]"
+        className="h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
       >
         {cards.map((card, index) => (
           <Slide key={card.id} card={card} index={index} />
