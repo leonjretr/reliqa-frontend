@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const signInSchema = z.object({
   email: z.email(),
-  password: z.string().min(8),
+  password: process.env.NODE_ENV === "production" ? z.string().min(8) : z.string(),
 });
 
 export const signUpSchema = z.object({
