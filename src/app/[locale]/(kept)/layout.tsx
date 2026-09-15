@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
 import { DM_Mono, Literata } from "next/font/google";
 
-import { getCurrentUser } from "@/service";
+import { getCurrentUser } from "@/service/api";
 import { TabBar } from "@/ui/components/modules/navigation";
 
 const literata = Literata({
@@ -18,7 +17,7 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-const KeptLayout = async ({ children }: { children: ReactNode }) => {
+const Layout = async ({ children }: LayoutProps<"/[locale]">) => {
   const user = await getCurrentUser();
   const profileSlug = user.success ? user.username : null;
 
@@ -34,4 +33,4 @@ const KeptLayout = async ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default KeptLayout;
+export default Layout;

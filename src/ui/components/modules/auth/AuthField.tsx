@@ -4,11 +4,8 @@ import { useState } from "react";
 import { FieldError as FieldErrorType } from "react-hook-form";
 
 import { EyeIcon, EyeOffIcon } from "@/ui/components/common/icons";
-import { Button } from "@/ui/components/lib/shadcn/button";
-import { Field, FieldError } from "@/ui/components/lib/shadcn/field";
-import { Input } from "@/ui/components/lib/shadcn/input";
-import { Label } from "@/ui/components/lib/shadcn/label";
-import { cn } from "@/ui/utils/shadcn";
+import { Button, Field, FieldError, Input, Label } from "@/ui/components/lib/shadcn";
+import { cn } from "@/ui/utils";
 
 type Props = React.ComponentProps<typeof Input> & {
   id: string;

@@ -4,8 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { startGoogleOauth } from "@/service/actions";
 import { GoogleIcon } from "@/ui/components/common/icons";
-import { Button } from "@/ui/components/lib/shadcn/button";
-import { FieldSeparator } from "@/ui/components/lib/shadcn/field";
+import { Button, FieldSeparator } from "@/ui/components/lib/shadcn";
 
 export const GoogleAuthButton = () => {
   const locale = useLocale();

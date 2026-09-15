@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 
-import { getObject, getObjectStories } from "@/service";
+import { getObject, getObjectStories } from "@/service/api";
 import { ObjectDetail } from "@/ui/components/modules/catalog";
 
-const Page = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]/thing/[slug]">) => {
   const { slug } = await params;
   const object = await getObject(slug);
 

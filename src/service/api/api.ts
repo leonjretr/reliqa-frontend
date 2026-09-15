@@ -10,7 +10,7 @@ import {
 } from "@/config";
 import { APIErrorResponse, APISuccessfulResponse } from "@/service/types";
 
-export type FetchAPIOptions = {
+type FetchAPIOptions = {
   accessToken?: string;
   language?: string;
   version?: string;

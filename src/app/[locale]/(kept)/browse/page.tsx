@@ -1,12 +1,10 @@
-import { getCategory, getObjects, getObjectStories } from "@/service";
+import { QUERIES } from "@/config";
+import { getCategory, getObjects, getObjectStories } from "@/service/api";
 import { BrowseScreen, type BrowseObject } from "@/ui/components/modules/catalog";
+import { getSearchParam } from "@/ui/utils";
 
-type PageProps = {
-  searchParams: Promise<{ category?: string }>;
-};
-
-const Page = async ({ searchParams }: PageProps) => {
-  const { category: categorySlug } = await searchParams;
+const Page = async ({ searchParams }: PageProps<"/[locale]/browse">) => {
+  const categorySlug = getSearchParam((await searchParams)[QUERIES.CATEGORY]);
 
   const [objects, category] = await Promise.all([
     getObjects({ categories: categorySlug }),

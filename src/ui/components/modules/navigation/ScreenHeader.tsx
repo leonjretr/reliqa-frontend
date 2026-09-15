@@ -1,12 +1,12 @@
 import { Link } from "@/i18n";
 
-type ScreenHeaderProps = {
+type Props = {
   section: string;
   right?: string;
   back?: { href: string; label: string };
 };
 
-export const ScreenHeader = ({ section, right, back }: ScreenHeaderProps) => {
+export const ScreenHeader = ({ section, right, back }: Props) => {
   return (
     <div className="bg-chalk flex-none px-4.5 pt-3.75 pb-2.25">
       <div className="flex items-baseline justify-between">

@@ -2,11 +2,11 @@ import type { CSSProperties } from "react";
 
 import { DUOTONES, FALLBACK_DUOTONE } from "@/config";
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
-import { cn } from "@/ui/utils/shadcn";
+import { cn } from "@/ui/utils";
 
 import { FALLBACK_GLYPH, GLYPH_STROKE, GLYPHS } from "./glyphs";
 
-type KeptPhotoProps = {
+type Props = {
   category?: string;
   src?: string;
   alt?: string;
@@ -22,7 +22,7 @@ export const KeptPhoto = ({
   style,
   className,
   vignette = true,
-}: KeptPhotoProps) => {
+}: Props) => {
   const tone = (category && DUOTONES[category]) || FALLBACK_DUOTONE;
   const glyph = (category && GLYPHS[category]) || FALLBACK_GLYPH;
 

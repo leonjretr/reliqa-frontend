@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/lib/shadcn/tabs";
-import { cn } from "@/ui/utils/shadcn";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/lib/shadcn";
+import { cn } from "@/ui/utils";
 
 import { SigninForm } from "./SigninForm";
 import { SignupForm } from "./SignupForm";

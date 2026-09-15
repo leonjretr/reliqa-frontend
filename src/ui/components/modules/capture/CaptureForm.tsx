@@ -16,7 +16,7 @@ import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { CameraIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { PhotoShade } from "@/ui/components/common/PhotoShade";
-import { Spinner } from "@/ui/components/lib/shadcn/spinner";
+import { Spinner } from "@/ui/components/lib/shadcn";
 import { cn, countWords, sendFormData, yearsSince } from "@/ui/utils";
 
 import { CategoryPicker } from "./CategoryPicker";

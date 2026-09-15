@@ -6,13 +6,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { PAGES } from "@/config";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/i18n";
 import { signIn } from "@/service/actions";
-import { Button } from "@/ui/components/lib/shadcn/button";
-import { Checkbox } from "@/ui/components/lib/shadcn/checkbox";
-import { FieldError, FieldGroup } from "@/ui/components/lib/shadcn/field";
-import { Label } from "@/ui/components/lib/shadcn/label";
-import { Spinner } from "@/ui/components/lib/shadcn/spinner";
+import {
+  Button,
+  Checkbox,
+  FieldError,
+  FieldGroup,
+  Label,
+  Spinner,
+} from "@/ui/components/lib/shadcn";
 import { applyActionErrors } from "@/ui/utils";
 import { signInSchema, SignInValues } from "@/ui/validation";
 

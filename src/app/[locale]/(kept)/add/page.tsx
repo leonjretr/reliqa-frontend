@@ -1,18 +1,13 @@
-import { PAGES } from "@/config";
+import { PAGES, QUERIES } from "@/config";
 import { redirect } from "@/i18n";
-import { getCategories, getCategory, getCurrentUser } from "@/service";
+import { getCategories, getCategory, getCurrentUser } from "@/service/api";
 import { getSession } from "@/service/session";
 import { CaptureForm } from "@/ui/components/modules/capture";
-import { formatKeeperName } from "@/ui/utils";
+import { formatKeeperName, getSearchParam } from "@/ui/utils";
 
-type PageProps = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{ category?: string }>;
-};
-
-const Page = async ({ params, searchParams }: PageProps) => {
+const Page = async ({ params, searchParams }: PageProps<"/[locale]/add">) => {
   const { locale } = await params;
-  const { category: categorySlug } = await searchParams;
+  const categorySlug = getSearchParam((await searchParams)[QUERIES.CATEGORY]);
   const session = await getSession();
 
   if (!session) {

@@ -1,14 +1,14 @@
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { cn, getInitials, pickTone } from "@/ui/utils";
 
-type KeeperAvatarProps = {
+type Props = {
   name: string;
   src?: string;
   size?: number;
   className?: string;
 };
 
-export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarProps) => {
+export const KeeperAvatar = ({ name, src, size = 64, className }: Props) => {
   const tone = pickTone(name);
 
   return (

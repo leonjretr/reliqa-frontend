@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 
 import { UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
-import { routing } from "@/i18n/routing";
+import { routing } from "@/i18n";
 import { UmamiProvider } from "@/ui/components/common/providers";
 
 export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));
@@ -23,7 +23,7 @@ export const generateMetadata = async ({
   };
 };
 
-const RootLayout = async ({ children, params }: LayoutProps<"/[locale]">) => {
+const Layout = async ({ children, params }: LayoutProps<"/[locale]">) => {
   const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
@@ -40,4 +40,4 @@ const RootLayout = async ({ children, params }: LayoutProps<"/[locale]">) => {
   );
 };
 
-export default RootLayout;
+export default Layout;

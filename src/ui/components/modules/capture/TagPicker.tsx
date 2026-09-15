@@ -20,7 +20,7 @@ import {
   ComboboxPositioner,
   ComboboxStatus,
   ComboboxValue,
-} from "@/ui/components/lib/shadcn/combobox";
+} from "@/ui/components/lib/shadcn";
 import { useDebouncedValue } from "@/ui/hooks";
 import { slugify } from "@/ui/utils";
 

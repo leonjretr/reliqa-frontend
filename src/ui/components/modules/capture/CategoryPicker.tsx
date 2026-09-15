@@ -16,7 +16,7 @@ import {
   ComboboxPortal,
   ComboboxPositioner,
   ComboboxStatus,
-} from "@/ui/components/lib/shadcn/combobox";
+} from "@/ui/components/lib/shadcn";
 import { useDebouncedValue } from "@/ui/hooks";
 
 type CategoryPickerProps = {

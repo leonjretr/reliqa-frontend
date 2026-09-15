@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { keeperPath, PAGES, QUERIES } from "@/config";
 import { Link, usePathname } from "@/i18n";
 import { GridIcon, HouseIcon, PlusIcon, SearchIcon, UserIcon } from "@/ui/components/common/icons";
-import { cn } from "@/ui/utils/shadcn";
+import { cn } from "@/ui/utils";
 
 type Tab = {
   href: string;

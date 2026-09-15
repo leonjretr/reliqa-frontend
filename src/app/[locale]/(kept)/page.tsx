@@ -1,9 +1,10 @@
 import { PAGES } from "@/config";
 import { redirect } from "@/i18n";
-import { getSession, loadFeedEntries } from "@/service";
+import { loadFeedEntries } from "@/service/actions";
+import { getSession } from "@/service/session";
 import { StoryFeed } from "@/ui/components/modules/feed";
 
-const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]">) => {
   const { locale } = await params;
   const session = await getSession();
 

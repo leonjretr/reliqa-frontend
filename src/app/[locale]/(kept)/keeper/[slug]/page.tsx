@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 
-import { getCurrentUser, getUserByUsername, loadKeeperShelf } from "@/service";
+import { loadKeeperShelf } from "@/service/actions";
+import { getCurrentUser, getUserByUsername } from "@/service/api";
 import { ProfileScreen } from "@/ui/components/modules/profile";
 import { formatKeeperName, formatYear } from "@/ui/utils";
 
-const Page = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]/keeper/[slug]">) => {
   const { slug } = await params;
   const currentUser = await getCurrentUser();
   const isOwn = currentUser.success && slug === currentUser.username;

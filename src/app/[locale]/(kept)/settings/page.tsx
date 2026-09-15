@@ -1,9 +1,9 @@
 import { PAGES } from "@/config";
 import { redirect } from "@/i18n";
-import { getCurrentUser } from "@/service";
+import { getCurrentUser } from "@/service/api";
 import { SettingsScreen } from "@/ui/components/modules/profile";
 
-const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]/settings">) => {
   const { locale } = await params;
   const user = await getCurrentUser();
 
