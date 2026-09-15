@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { META_SEPARATOR, STOCK, thingPath } from "@/config";
+import { IMAGE_SIZES, META_SEPARATOR, STOCK, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { CatalogueObject } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -45,6 +45,7 @@ export const CatalogueCard = ({ object, index }: Props) => {
           category={object.categories[0]}
           src={object.attachments[0]?.file.src}
           alt={object.name}
+          sizes={IMAGE_SIZES.THUMBNAIL}
           className="border-ink h-19 w-19 flex-none border"
         />
         <div className="flex-1">

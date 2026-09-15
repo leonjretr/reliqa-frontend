@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
-import { cn, getInitials, pickTone } from "@/ui/utils";
+import { cn, getInitials, isLocalPreview, pickTone } from "@/ui/utils";
 
 type Props = {
   name: string;
@@ -20,7 +22,14 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: Props) => {
       style={{ width: size, height: size, background: tone }}
     >
       {src ? (
-        <img src={src} alt={name} className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={src}
+          alt={name}
+          fill
+          sizes={`${size}px`}
+          unoptimized={isLocalPreview(src)}
+          className="object-cover"
+        />
       ) : (
         <span className="text-blush tracking-snug font-bold" style={{ fontSize: size * 0.4 }}>
           {getInitials(name)}

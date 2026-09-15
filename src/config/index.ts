@@ -37,4 +37,5 @@ export { ROUTING, LOCALE_NAMES } from "./i18n";
 export type { Locale } from "./i18n";
 export { STOCK, AVATAR_TONES, DUOTONES, FALLBACK_DUOTONE, NOTE_SHADOWS } from "./palette";
 export { THEME_SCALES } from "./theme";
+export { MEDIA_REMOTE_PATTERNS, LOCAL_PREVIEW_PROTOCOL, IMAGE_SIZES } from "./media";
 export { APP_NAME, META_SEPARATOR } from "./app";

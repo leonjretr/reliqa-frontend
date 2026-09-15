@@ -16,3 +16,4 @@ export { groupThousands } from "./numbers";
 export { sendFormData } from "./requests";
 export { getSearchParam } from "./params";
 export { toProfileFormData, toSettingsPatch, toSettingsValues } from "./settings";
+export { isLocalPreview } from "./media";

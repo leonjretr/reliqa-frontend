@@ -1,8 +1,9 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 
-import { DUOTONES, FALLBACK_DUOTONE } from "@/config";
+import { DUOTONES, FALLBACK_DUOTONE, IMAGE_SIZES } from "@/config";
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
-import { cn } from "@/ui/utils";
+import { cn, isLocalPreview } from "@/ui/utils";
 
 import { FALLBACK_GLYPH, GLYPH_STROKE, GLYPHS } from "./glyphs";
 
@@ -10,6 +11,7 @@ type Props = {
   category?: string;
   src?: string;
   alt?: string;
+  sizes?: string;
   style?: CSSProperties;
   className?: string;
   vignette?: boolean;
@@ -19,6 +21,7 @@ export const KeptPhoto = ({
   category,
   src,
   alt = "",
+  sizes = IMAGE_SIZES.SCREEN,
   style,
   className,
   vignette = true,
@@ -37,7 +40,14 @@ export const KeptPhoto = ({
     >
       {src ? (
         <>
-          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes}
+            unoptimized={isLocalPreview(src)}
+            className="object-cover"
+          />
           <div
             className="absolute inset-0 opacity-32 mix-blend-color"
             style={{ background: tone.hue }}

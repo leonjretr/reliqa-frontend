@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { PAGES, QUERIES } from "@/config";
+import { IMAGE_SIZES, PAGES, QUERIES } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -29,6 +29,7 @@ export const CategoryCard = ({ category, index }: Props) => {
           category={category.slug}
           src={category.cover?.src}
           alt={category.name}
+          sizes={IMAGE_SIZES.CARD}
           className="absolute inset-0"
         />
       </div>
