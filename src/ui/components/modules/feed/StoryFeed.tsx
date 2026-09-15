@@ -213,20 +213,8 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
   return (
     <div className="relative h-full w-full bg-[#140e09]">
-      <div className="pointer-events-none absolute top-0 right-0 left-0 z-[6] flex items-baseline justify-between bg-[linear-gradient(to_bottom,rgba(20,14,9,0.6)_0%,rgba(20,14,9,0)_100%)] px-[18px] pt-[14px] pb-[22px]">
+      <div className="pointer-events-none absolute top-0 right-0 left-0 z-[6] bg-[linear-gradient(to_bottom,rgba(20,14,9,0.6)_0%,rgba(20,14,9,0)_100%)] px-[18px] pt-[14px] pb-[22px]">
         <span className="text-chalk text-[15px] font-bold">Reliqa</span>
-        <span className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase lining-nums tabular-nums">
-          {active + 1} / {cards.length}
-        </span>
-      </div>
-
-      <div className="pointer-events-none absolute top-[14px] right-[18px] left-[18px] z-[6] mt-[34px] flex gap-[3px]">
-        {cards.map((card, index) => (
-          <div
-            key={card.id}
-            className={cn("h-[2px] flex-1", index <= active ? "bg-[#e6a94d]" : "bg-chalk/28")}
-          />
-        ))}
       </div>
 
       <div
