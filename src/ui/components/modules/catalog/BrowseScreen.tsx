@@ -1,12 +1,10 @@
 import { PAGES, STOCK, thingPath } from "@/config";
 import { Link } from "@/i18n";
-import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
+import type { APICategoryDetail, CatalogueObject } from "@/service/types";
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn, formatYear, groupThousands } from "@/ui/utils";
-
-export type BrowseObject = APIObjectListItem & { stories_count: number };
 
 const DECADES = [
   { label: "50s", count: 8 },
@@ -51,7 +49,7 @@ const DecadesBand = () => {
 };
 
 type BrowseScreenProps = {
-  objects: BrowseObject[];
+  objects: CatalogueObject[];
   totalCount: number;
   category?: APICategoryDetail;
 };

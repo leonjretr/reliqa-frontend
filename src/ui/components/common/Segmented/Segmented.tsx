@@ -1,12 +1,8 @@
+import type { SegmentedOption } from "@/ui/types";
 import { cn } from "@/ui/utils";
 
-type Option<Value extends string> = {
-  value: Value;
-  label: string;
-};
-
 type Props<Value extends string> = {
-  options: Option<Value>[];
+  options: SegmentedOption<Value>[];
   value: Value;
   onChange: (next: Value) => void;
 };

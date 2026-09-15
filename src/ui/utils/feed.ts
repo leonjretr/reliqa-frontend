@@ -1,20 +1,10 @@
 import type { FeedEntry } from "@/service/types";
-import { formatKeeperName, formatYear } from "@/ui/utils";
+import type { FeedCard } from "@/ui/types";
 
-export type FeedCard = {
-  objectId: string;
-  storyId?: string;
-  name: string;
-  photo?: string;
-  category?: string;
-  tags: string[];
-  keeperName: string;
-  year?: string;
-  viewCount: number;
-  quote?: string;
-};
+import { formatYear } from "./dates";
+import { formatKeeperName } from "./keeper";
 
-export const buildFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
+export const toFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
   objectId: object.id,
   storyId: story?.id,
   name: object.name,

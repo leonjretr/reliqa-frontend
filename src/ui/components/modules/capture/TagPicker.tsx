@@ -22,9 +22,8 @@ import {
   ComboboxValue,
 } from "@/ui/components/lib/shadcn";
 import { useDebouncedValue } from "@/ui/hooks";
+import type { TagOption } from "@/ui/types";
 import { slugify } from "@/ui/utils";
-
-type TagOption = APITagListItem & { creatable?: string };
 
 type TagPickerProps = {
   value: string[];

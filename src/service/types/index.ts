@@ -25,3 +25,4 @@ export type { APICategoryDetail, APICategoryListItem } from "./categories";
 export type { APITagListItem } from "./tags";
 export type { FeedEntry } from "./feed";
 export type { CaptureInput, CaptureResult } from "./capture";
+export type { CatalogueObject } from "./catalogue";

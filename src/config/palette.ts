@@ -1,4 +1,6 @@
-export const STOCK = [
+import type { Duotone, Stock } from "@/ui/types";
+
+export const STOCK: Stock[] = [
   { bg: "var(--color-oxblood)", fg: "var(--color-oxblood-paper)" },
   { bg: "var(--color-ochre)", fg: "var(--color-ink)" },
   { bg: "var(--color-plum)", fg: "var(--color-blush)" },
@@ -15,7 +17,7 @@ export const AVATAR_TONES = [
   "var(--color-slate)",
 ];
 
-export const DUOTONES: Record<string, { hue: string; deep: string }> = {
+export const DUOTONES: Record<string, Duotone> = {
   cameras: { hue: "var(--color-duotone-cameras)", deep: "var(--color-duotone-cameras-deep)" },
   phones: { hue: "var(--color-duotone-phones)", deep: "var(--color-duotone-phones-deep)" },
   "record players": {
@@ -44,7 +46,7 @@ export const DUOTONES: Record<string, { hue: string; deep: string }> = {
   watches: { hue: "var(--color-duotone-watches)", deep: "var(--color-duotone-watches-deep)" },
 };
 
-export const FALLBACK_DUOTONE = {
+export const FALLBACK_DUOTONE: Duotone = {
   hue: "var(--color-duotone-fallback)",
   deep: "var(--color-duotone-fallback-deep)",
 };

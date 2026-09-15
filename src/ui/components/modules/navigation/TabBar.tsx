@@ -1,20 +1,12 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { keeperPath, PAGES, QUERIES } from "@/config";
 import { Link, usePathname } from "@/i18n";
 import { GridIcon, HouseIcon, PlusIcon, SearchIcon, UserIcon } from "@/ui/components/common/icons";
+import type { Tab } from "@/ui/types";
 import { cn } from "@/ui/utils";
-
-type Tab = {
-  href: string;
-  label: string;
-  icon: ReactNode;
-  match: (pathname: string) => boolean;
-  center?: boolean;
-};
 
 const buildTabs = (profileSlug: string | null, category: string | null): Tab[] => [
   {

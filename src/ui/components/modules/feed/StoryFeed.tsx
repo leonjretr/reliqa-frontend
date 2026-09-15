@@ -17,9 +17,8 @@ import type { FeedEntry } from "@/service/types";
 import { LinesIcon, PlusIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { PhotoShade } from "@/ui/components/common/PhotoShade";
-import { cn, groupThousands } from "@/ui/utils";
-
-import { buildFeedCard, type FeedCard } from "./feedCard";
+import type { FeedCard } from "@/ui/types";
+import { cn, groupThousands, toFeedCard } from "@/ui/utils";
 
 const RailButton = ({
   href,
@@ -181,7 +180,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
   const reachedEndRef = useRef(false);
   const seenIdsRef = useRef(new Set(entries.map((entry) => entry.object.id)));
 
-  const cards = entries.map((entry) => buildFeedCard(entry));
+  const cards = entries.map(toFeedCard);
 
   useEffect(() => {
     const root = containerRef.current;

@@ -1,6 +1,7 @@
 import { QUERIES } from "@/config";
 import { getCategory, getObjects, getObjectStories } from "@/service/api";
-import { BrowseScreen, type BrowseObject } from "@/ui/components/modules/catalog";
+import type { CatalogueObject } from "@/service/types";
+import { BrowseScreen } from "@/ui/components/modules/catalog";
 import { getSearchParam } from "@/ui/utils";
 
 const Page = async ({ searchParams }: PageProps<"/[locale]/browse">) => {
@@ -11,7 +12,7 @@ const Page = async ({ searchParams }: PageProps<"/[locale]/browse">) => {
     categorySlug ? getCategory(categorySlug) : undefined,
   ]);
 
-  const enrichedObjects: BrowseObject[] = objects.success
+  const enrichedObjects: CatalogueObject[] = objects.success
     ? await Promise.all(
         objects.results.map(async (object) => {
           const stories = await getObjectStories(object.id);

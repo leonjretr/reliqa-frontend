@@ -4,18 +4,11 @@ import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { SettingsIcon } from "@/ui/components/common/icons";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
+import type { KeeperProfile } from "@/ui/types";
 import { formatYear, getFirstName } from "@/ui/utils";
 
-type ProfileKeeper = {
-  name: string;
-  place: string;
-  bio?: string;
-  avatar?: string;
-  since: string;
-};
-
 type ProfileScreenProps = {
-  keeper: ProfileKeeper;
+  keeper: KeeperProfile;
   objects: APIObjectListItem[];
   stories: APIStoryListItem[];
   isOwn: boolean;
