@@ -1,39 +1,28 @@
-"use client";
-
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { PAGES } from "@/config";
-import { useRouter } from "@/i18n";
 import { signIn } from "@/service/actions";
-import {
-  Button,
-  Checkbox,
-  FieldError,
-  FieldGroup,
-  Label,
-  Spinner,
-} from "@/ui/components/lib/shadcn";
+import { Button, Checkbox, FieldError, FieldGroup, Label } from "@/ui/components/lib/shadcn";
 import { applyActionErrors } from "@/ui/utils";
-import { signInSchema, SignInValues } from "@/ui/validation";
+import { signInSchema, type SignInValues } from "@/ui/validation";
 
+import { useEnterApp } from "../hooks";
+import { AuthHeading, GoogleAuthButton } from "../sections";
 import { AuthField } from "./AuthField";
-import { AuthHeading } from "./AuthHeading";
-import { GoogleAuthButton } from "./GoogleAuthButton";
+import { AuthSubmitButton } from "./AuthSubmitButton";
+
+const REMEMBER_ID = "signin-remember";
 
 export const SigninForm = () => {
-  const router = useRouter();
   const t = useTranslations("Auth");
-  const [remember, setRemember] = useState(true);
-
-  const form = useForm<SignInValues>({
+  const enterApp = useEnterApp();
+  const [isRemembered, setIsRemembered] = useState(true);
+  const { formState, setError, register, handleSubmit } = useForm<SignInValues>({
     resolver: zodResolver(signInSchema),
     defaultValues: { email: "", password: "" },
-    mode: "onSubmit",
   });
-  const { formState, setError, register, handleSubmit } = form;
 
   const onSubmit = async (values: SignInValues) => {
     const result = await signIn(values.email, values.password);
@@ -43,8 +32,7 @@ export const SigninForm = () => {
       return;
     }
 
-    router.replace(PAGES.FEED);
-    router.refresh();
+    enterApp();
   };
 
   return (
@@ -76,13 +64,13 @@ export const SigninForm = () => {
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <Checkbox
-            id="signin-remember"
-            checked={remember}
-            onCheckedChange={setRemember}
+            id={REMEMBER_ID}
+            checked={isRemembered}
+            onCheckedChange={setIsRemembered}
             className="border-auth-line-strong data-[checked]:border-auth-brass-600 rounded-paper size-4.5"
           />
           <Label
-            htmlFor="signin-remember"
+            htmlFor={REMEMBER_ID}
             className="text-auth-ink-700 cursor-pointer text-sm font-normal whitespace-nowrap"
           >
             {t("LABEL_REMEMBER")}
@@ -101,14 +89,11 @@ export const SigninForm = () => {
       <FieldError errors={[formState.errors.root]} className="text-note" />
 
       <div className="flex flex-col gap-3.5">
-        <Button
-          type="submit"
-          disabled={formState.isSubmitting}
-          className="hover:bg-auth-brass-600 rounded-button h-13 text-base font-medium active:scale-97"
-        >
-          {formState.isSubmitting && <Spinner />}
-          {formState.isSubmitting ? t("BUTTON_SIGNIN_LOADING") : t("BUTTON_SIGNIN")}
-        </Button>
+        <AuthSubmitButton
+          isSubmitting={formState.isSubmitting}
+          label={t("BUTTON_SIGNIN")}
+          loadingLabel={t("BUTTON_SIGNIN_LOADING")}
+        />
         <Button
           type="button"
           variant="outline"

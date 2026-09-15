@@ -1,30 +1,29 @@
-"use client";
-
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { PAGES } from "@/config";
-import { useRouter } from "@/i18n";
 import { signUp } from "@/service/actions";
-import { Button, FieldError, FieldGroup, Spinner } from "@/ui/components/lib/shadcn";
+import { FieldError, FieldGroup } from "@/ui/components/lib/shadcn";
 import { applyActionErrors } from "@/ui/utils";
-import { signUpSchema, SignUpValues } from "@/ui/validation";
+import { signUpSchema, type SignUpValues } from "@/ui/validation";
 
+import { useEnterApp } from "../hooks";
+import { AuthHeading, GoogleAuthButton } from "../sections";
 import { AuthField } from "./AuthField";
-import { AuthHeading } from "./AuthHeading";
-import { GoogleAuthButton } from "./GoogleAuthButton";
+import { AuthSubmitButton } from "./AuthSubmitButton";
+
+const TermsLink = (chunks: ReactNode) => (
+  <span className="text-auth-brass-700 underline underline-offset-2">{chunks}</span>
+);
 
 export const SignupForm = () => {
-  const router = useRouter();
   const t = useTranslations("Auth");
-
-  const form = useForm<SignUpValues>({
+  const enterApp = useEnterApp();
+  const { formState, setError, register, handleSubmit } = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: { name: "", email: "", password: "" },
-    mode: "onSubmit",
   });
-  const { formState, setError, register, handleSubmit } = form;
 
   const onSubmit = async ({ email, password }: SignUpValues) => {
     const result = await signUp({ email, password });
@@ -34,8 +33,7 @@ export const SignupForm = () => {
       return;
     }
 
-    router.replace(PAGES.FEED);
-    router.refresh();
+    enterApp();
   };
 
   return (
@@ -76,23 +74,13 @@ export const SignupForm = () => {
       <FieldError errors={[formState.errors.root]} className="text-note" />
 
       <div className="flex flex-col gap-3.5">
-        <Button
-          type="submit"
-          disabled={formState.isSubmitting}
-          className="hover:bg-auth-brass-600 rounded-button h-13 text-base font-medium active:scale-97"
-        >
-          {formState.isSubmitting && <Spinner />}
-          {formState.isSubmitting ? t("BUTTON_SIGNUP_LOADING") : t("BUTTON_SIGNUP")}
-        </Button>
+        <AuthSubmitButton
+          isSubmitting={formState.isSubmitting}
+          label={t("BUTTON_SIGNUP")}
+          loadingLabel={t("BUTTON_SIGNUP_LOADING")}
+        />
         <p className="text-muted-foreground leading-subtitle text-center text-xs">
-          {t.rich("TERMS", {
-            terms: (chunks) => (
-              <span className="text-auth-brass-700 underline underline-offset-2">{chunks}</span>
-            ),
-            privacy: (chunks) => (
-              <span className="text-auth-brass-700 underline underline-offset-2">{chunks}</span>
-            ),
-          })}
+          {t.rich("TERMS", { terms: TermsLink, privacy: TermsLink })}
         </p>
         <GoogleAuthButton />
       </div>
