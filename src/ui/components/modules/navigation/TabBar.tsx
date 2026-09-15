@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { Link, usePathname } from "@/i18n";
 import { cn } from "@/ui/utils/shadcn";
@@ -57,7 +58,7 @@ const UserIcon = (
   </svg>
 );
 
-const buildTabs = (profileSlug: string | null): Tab[] => [
+const buildTabs = (profileSlug: string | null, category: string | null): Tab[] => [
   { href: "/", label: "feed", icon: HouseIcon, match: (path) => path === "/" },
   {
     href: "/browse",
@@ -66,7 +67,7 @@ const buildTabs = (profileSlug: string | null): Tab[] => [
     match: (path) => path.startsWith("/browse") || path.startsWith("/thing"),
   },
   {
-    href: "/add",
+    href: category ? `/add?category=${encodeURIComponent(category)}` : "/add",
     label: "keep",
     icon: PlusIcon,
     match: (path) => path.startsWith("/add"),
@@ -83,7 +84,9 @@ const buildTabs = (profileSlug: string | null): Tab[] => [
 
 export const TabBar = ({ profileSlug = null }: { profileSlug?: string | null }) => {
   const pathname = usePathname();
-  const tabs = buildTabs(profileSlug);
+  const searchParams = useSearchParams();
+  const category = pathname.startsWith("/browse") ? searchParams.get("category") : null;
+  const tabs = buildTabs(profileSlug, category);
 
   return (
     <nav className="border-ink bg-chalk flex flex-none items-stretch border-t">

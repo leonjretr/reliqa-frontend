@@ -65,9 +65,7 @@ export const CategoryPicker = ({ categories, value, onChange }: CategoryPickerPr
       inputValue={inputValue}
       itemToStringLabel={(category: APICategoryListItem) => category.name}
       filter={null}
-      onValueChange={(next) => {
-        if (next) onChange(next.slug);
-      }}
+      onValueChange={(next) => onChange(next?.slug ?? "")}
       onInputValueChange={setInputValue}
     >
       <ComboboxInputGroup className="border-ink font-kept-mono rounded-none border-0 border-b bg-transparent px-0 py-[6px]">

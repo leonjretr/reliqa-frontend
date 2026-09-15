@@ -36,12 +36,13 @@ const textareaClassName =
 type CaptureFormProps = {
   categories: APICategoryListItem[];
   keeperName: string;
+  initialCategory?: string;
 };
 
-export const CaptureForm = ({ categories, keeperName }: CaptureFormProps) => {
+export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: CaptureFormProps) => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [categorySlug, setCategorySlug] = useState(categories[0]?.slug ?? "");
+  const [categorySlug, setCategorySlug] = useState(initialCategory);
   const [tags, setTags] = useState<string[]>([]);
   const [arrival, setArrival] = useState("inherited");
   const [previous, setPrevious] = useState("");
