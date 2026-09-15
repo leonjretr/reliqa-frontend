@@ -52,7 +52,8 @@ export const fetchAPI = async <T>(
         headers: requestHeaders,
       },
     );
-    const data = await response.json();
+    const body = await response.text();
+    const data = body ? JSON.parse(body) : {};
     return { success: response.ok, ...data };
   } catch (error) {
     console.error(error);
