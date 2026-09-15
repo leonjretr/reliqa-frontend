@@ -67,5 +67,25 @@
     "EMPTY_RESULTS": "За запитом «{query}» нічого не збережено.",
     "PLACEHOLDER_SEARCH": "фотоапарат, радіо, стілець…",
     "LABEL_SEARCH": "Пошук категорій"
+  },
+  "Catalogue": {
+    "SECTION_CATALOGUE": "каталог",
+    "LINK_CATEGORIES": "категорії",
+    "TITLE_CATALOGUE": "Речі, які зберігають люди",
+    "KEPT_SO_FAR": "{count, plural, one {{formatted} річ збережено} few {{formatted} речі збережено} many {{formatted} речей збережено} other {{formatted} речі збережено}} на цей час",
+    "KEPT_BY_COUNT": "зберегли: {count}",
+    "EMPTY_CATEGORY": "У категорії «{category}» ще нічого не збережено.",
+    "EMPTY_CATALOGUE": "Ще нічого не збережено.",
+    "TITLE_DECADES": "коли відбувалися спогади"
+  },
+  "Object": {
+    "SECTION_FALLBACK": "збережена річ",
+    "STORIES_COUNT": "{count, plural, one {# історія} few {# історії} many {# історій} other {# історії}}",
+    "STORIES_STUCK_ON": "{count, plural, one {# історія приколота} few {# історії приколоті} many {# історій приколото} other {# історії приколоті}}",
+    "FACT_CATEGORY": "категорія",
+    "FACT_INVENTED": "винайдено",
+    "FACT_KEPT_SINCE": "зберігається з",
+    "LINK_THEIR_SHELF": "полиця автора →",
+    "BUTTON_ADD_MEMORY": "Приколіть свій спогад"
   }
 }

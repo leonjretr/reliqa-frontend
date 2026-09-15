@@ -67,5 +67,25 @@
     "EMPTY_RESULTS": "Nothing kept under “{query}”.",
     "PLACEHOLDER_SEARCH": "a camera, a radio, a chair…",
     "LABEL_SEARCH": "Search categories"
+  },
+  "Catalogue": {
+    "SECTION_CATALOGUE": "the catalogue",
+    "LINK_CATEGORIES": "categories",
+    "TITLE_CATALOGUE": "Things people kept",
+    "KEPT_SO_FAR": "{count, plural, one {{formatted} thing} other {{formatted} things}} kept so far",
+    "KEPT_BY_COUNT": "{count} kept one",
+    "EMPTY_CATEGORY": "Nothing kept in {category} yet.",
+    "EMPTY_CATALOGUE": "Nothing kept yet.",
+    "TITLE_DECADES": "when the memories happened"
+  },
+  "Object": {
+    "SECTION_FALLBACK": "kept thing",
+    "STORIES_COUNT": "{count, plural, one {# story} other {# stories}}",
+    "STORIES_STUCK_ON": "{count, plural, one {# story} other {# stories}} stuck on",
+    "FACT_CATEGORY": "category",
+    "FACT_INVENTED": "invented",
+    "FACT_KEPT_SINCE": "kept since",
+    "LINK_THEIR_SHELF": "their shelf →",
+    "BUTTON_ADD_MEMORY": "Stick your memory on"
   }
 }
