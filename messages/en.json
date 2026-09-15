@@ -48,5 +48,17 @@
     "TAB_FIND": "find",
     "TAB_SHELF": "shelf",
     "LINK_BACK": "← {label}"
+  },
+  "Common": {
+    "QUOTE": "“{text}”",
+    "EMPTY_VALUE": "—"
+  },
+  "Story": {
+    "LINK_FEED": "← the feed",
+    "PHOTO_ALT": "{object} kept by {keeper}",
+    "LABEL_WRITTEN": "written {year}",
+    "LINK_SHELF_TITLE": "{keeper}’s shelf",
+    "LINK_EVERYTHING_KEPT": "everything kept →",
+    "LINK_EVERYONE_KEPT": "everyone who kept one →"
   }
 }

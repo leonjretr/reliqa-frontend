@@ -48,5 +48,17 @@
     "TAB_FIND": "пошук",
     "TAB_SHELF": "полиця",
     "LINK_BACK": "← {label}"
+  },
+  "Common": {
+    "QUOTE": "«{text}»",
+    "EMPTY_VALUE": "—"
+  },
+  "Story": {
+    "LINK_FEED": "← до стрічки",
+    "PHOTO_ALT": "{object} — зберігає {keeper}",
+    "LABEL_WRITTEN": "написано {year}",
+    "LINK_SHELF_TITLE": "Полиця: {keeper}",
+    "LINK_EVERYTHING_KEPT": "усе збережене →",
+    "LINK_EVERYONE_KEPT": "усі, хто це зберігає →"
   }
 }

@@ -48,5 +48,17 @@
     "TAB_FIND": "поиск",
     "TAB_SHELF": "полка",
     "LINK_BACK": "← {label}"
+  },
+  "Common": {
+    "QUOTE": "«{text}»",
+    "EMPTY_VALUE": "—"
+  },
+  "Story": {
+    "LINK_FEED": "← в ленту",
+    "PHOTO_ALT": "{object} — хранит {keeper}",
+    "LABEL_WRITTEN": "написано {year}",
+    "LINK_SHELF_TITLE": "Полка: {keeper}",
+    "LINK_EVERYTHING_KEPT": "всё сохранённое →",
+    "LINK_EVERYONE_KEPT": "все, кто это хранит →"
   }
 }
