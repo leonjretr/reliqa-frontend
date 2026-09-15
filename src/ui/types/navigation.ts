@@ -4,6 +4,6 @@ export type Tab = {
   href: string;
   label: string;
   icon: ReactNode;
-  match: (pathname: string) => boolean;
+  isActive: boolean;
   center?: boolean;
 };

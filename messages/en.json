@@ -40,5 +40,13 @@
     "TERMS": "By making a card you agree to the <terms>terms</terms> and the <privacy>privacy note</privacy>.",
     "ERROR_SIGNIN": "Could not sign you in. Check your email and password.",
     "ERROR_SIGNUP": "Could not create your account. Please try again."
+  },
+  "Navigation": {
+    "TAB_FEED": "feed",
+    "TAB_BROWSE": "browse",
+    "TAB_KEEP": "keep",
+    "TAB_FIND": "find",
+    "TAB_SHELF": "shelf",
+    "LINK_BACK": "← {label}"
   }
 }

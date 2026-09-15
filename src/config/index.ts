@@ -35,3 +35,4 @@ export {
 export { LOCALE_NAMES } from "./i18n";
 export { STOCK, AVATAR_TONES, DUOTONES, FALLBACK_DUOTONE, NOTE_SHADOWS } from "./palette";
 export { THEME_SCALES } from "./theme";
+export { APP_NAME, META_SEPARATOR } from "./app";
