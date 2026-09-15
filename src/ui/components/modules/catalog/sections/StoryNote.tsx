@@ -4,7 +4,7 @@ import { keeperPath, NOTE_SHADOWS, OBJECT_NOTES_SHOWN, STOCK } from "@/config";
 import { Link } from "@/i18n";
 import type { APIStoryListItem } from "@/service/types";
 import { MonoLabel } from "@/ui/components/common/MonoLabel";
-import { formatKeeperName, formatYear } from "@/ui/utils";
+import { cn, formatKeeperName, formatYear } from "@/ui/utils";
 
 const NOTE_POSITIONS = [
   { left: 14, top: 18, rotate: -6 },
@@ -32,9 +32,8 @@ export const StoryNote = ({ story, index, isOpen, onToggle }: Props) => {
   const stock = STOCK[index % STOCK.length];
 
   return (
-    <button
-      onClick={onToggle}
-      className="border-ink rounded-paper ease-lift absolute w-43.5 cursor-pointer border px-3 pt-2.5 pb-2.75 text-left transition-[transform,box-shadow] duration-340"
+    <div
+      className="border-ink rounded-paper ease-lift absolute w-43.5 border transition-[transform,box-shadow] duration-340"
       style={{
         left: position.left,
         top: position.top,
@@ -45,27 +44,39 @@ export const StoryNote = ({ story, index, isOpen, onToggle }: Props) => {
         zIndex: isOpen ? RAISED_LAYER : index + 1,
       }}
     >
-      <div className="mb-0.75 flex items-baseline justify-between opacity-76">
-        <MonoLabel as="span" className="text-stamp text-inherit lining-nums tabular-nums">
-          {formatYear(story.created_at)}
-        </MonoLabel>
-      </div>
-      <div className="text-copy-lg leading-card font-semibold">
-        {formatKeeperName(story.created_by)}
-      </div>
-      {isOpen && (
-        <>
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        onClick={onToggle}
+        className={cn(
+          "block w-full cursor-pointer px-3 pt-2.5 text-left",
+          isOpen ? "pb-0" : "pb-2.75",
+        )}
+      >
+        <div className="mb-0.75 flex items-baseline justify-between opacity-76">
+          <MonoLabel as="span" className="text-stamp text-inherit lining-nums tabular-nums">
+            {formatYear(story.created_at)}
+          </MonoLabel>
+        </div>
+        <div className="text-copy-lg leading-card font-semibold">
+          {formatKeeperName(story.created_by)}
+        </div>
+        {isOpen && (
           <p className="text-aside leading-quote-lg mt-2 font-light">
             {story.short_story || common("EMPTY_VALUE")}
           </p>
+        )}
+      </button>
+      {isOpen && (
+        <div className="px-3 pb-2.75">
           <Link
             href={keeperPath(story.created_by.username)}
             className="font-kept-mono text-eyebrow mt-2 inline-block tracking-widest uppercase"
           >
             {t("LINK_THEIR_SHELF")}
           </Link>
-        </>
+        </div>
       )}
-    </button>
+    </div>
   );
 };
