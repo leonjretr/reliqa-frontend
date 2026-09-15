@@ -149,7 +149,8 @@
     "BUTTON_SAVE": "Сохранить изменения",
     "BUTTON_SAVING": "Сохраняем…",
     "BUTTON_SAVED": "Сохранено",
-    "BUTTON_SIGN_OUT": "Выйти"
+    "BUTTON_SIGN_OUT": "Выйти",
+    "ERROR_SAVE": "Не удалось сохранить изменения. Попробуйте ещё раз."
   },
   "Capture": {
     "SECTION_ADD": "добавьте своё",

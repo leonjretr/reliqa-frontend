@@ -149,7 +149,8 @@
     "BUTTON_SAVE": "Save changes",
     "BUTTON_SAVING": "Saving…",
     "BUTTON_SAVED": "Saved",
-    "BUTTON_SIGN_OUT": "Sign out"
+    "BUTTON_SIGN_OUT": "Sign out",
+    "ERROR_SAVE": "Could not save your changes. Try again."
   },
   "Capture": {
     "SECTION_ADD": "add yours",

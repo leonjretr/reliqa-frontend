@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 
 import type { APICategoryListItem } from "@/service/types";
+import { FormError } from "@/ui/components/common/FormError";
 import { KeptButton } from "@/ui/components/common/KeptButton";
 import { Spinner } from "@/ui/components/lib/shadcn";
 import { useFilePreview } from "@/ui/hooks";
@@ -60,11 +61,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Pr
         <ProvenanceSection />
         <MemorySection />
         <CapturePreview preview={preview} keeperName={keeperName} />
-        {errors.root?.message && (
-          <p className="text-oxblood font-kept-mono text-caption mt-2.5 tracking-wider">
-            {errors.root.message}
-          </p>
-        )}
+        <FormError message={errors.root?.message} />
         <KeptButton
           onClick={handleSubmit(onSubmit)}
           disabled={!isValid || isBusy}

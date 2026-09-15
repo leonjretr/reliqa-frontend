@@ -8,6 +8,7 @@ import { ROUTE_HANDLERS } from "@/config";
 import { saveSettings } from "@/service/actions";
 import type { APICurrentUser } from "@/service/types";
 import { Divider } from "@/ui/components/common/Divider";
+import { FormError } from "@/ui/components/common/FormError";
 import { KeptButton } from "@/ui/components/common/KeptButton";
 import { sendFormData, toProfileFormData, toSettingsPatch, toSettingsValues } from "@/ui/utils";
 import { settingsSchema, type SettingsValues } from "@/ui/validation";
@@ -28,7 +29,7 @@ export const SettingsForm = ({ user }: Props) => {
     defaultValues: toSettingsValues(user),
   });
   const { formState, handleSubmit, reset, setError } = form;
-  const { dirtyFields, isDirty, isSubmitSuccessful, isSubmitting } = formState;
+  const { dirtyFields, errors, isDirty, isSubmitSuccessful, isSubmitting } = formState;
   const isSaved = isSubmitSuccessful && !isDirty;
 
   const onSubmit = async (values: SettingsValues) => {
@@ -41,8 +42,10 @@ export const SettingsForm = ({ user }: Props) => {
       saveSettings(toSettingsPatch(values)),
     ]);
 
-    if (!profileResult.success || !settingsResult.success) {
-      setError("root", { type: "server" });
+    const failure = [profileResult, settingsResult].find((result) => !result.success);
+
+    if (failure && !failure.success) {
+      setError("root", { message: failure.errors?.[0]?.detail ?? t("ERROR_SAVE") });
       return;
     }
 
@@ -65,6 +68,7 @@ export const SettingsForm = ({ user }: Props) => {
         <NotificationsSection />
         <Divider className="mt-4.5" />
         <AccountSection email={user.email} />
+        <FormError message={errors.root?.message} />
         <KeptButton type="submit" disabled={isSubmitting} className="mt-6 disabled:opacity-60">
           {saveLabel}
         </KeptButton>
