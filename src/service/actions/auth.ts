@@ -1,6 +1,5 @@
 "use server";
 
-import { getLocale } from "next-intl/server";
 import { redirect as rootRedirect } from "next/navigation";
 
 import { PAGES } from "@/config";
@@ -49,8 +48,7 @@ export const startGoogleOauth = async (next?: string) => {
   rootRedirect(response.redirect_uri);
 };
 
-export const signOut = async () => {
+export const signOut = async (locale: string) => {
   await clearSession();
-  const locale = await getLocale();
   redirect({ href: PAGES.LOGIN, locale });
 };
