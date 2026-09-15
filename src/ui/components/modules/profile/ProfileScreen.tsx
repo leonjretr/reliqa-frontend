@@ -52,30 +52,28 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
 
   return (
     <div className="flex h-full flex-col">
-      <div className="torn-edge bg-plum relative flex-none pt-[26px] pb-[22px]">
-        <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
+      <header className="torn-edge bg-plum relative flex flex-none items-end gap-[14px] px-[20px] pt-[26px] pb-[22px] text-[#f6e9ee]">
+        <KeeperAvatar name={keeper.name} src={keeper.avatar} size={74} />
+        <div className="min-w-0 flex-1 pb-[2px]">
+          <div className="font-kept-mono mb-[6px] text-[9px] tracking-[0.1em] text-[rgba(246,233,238,0.75)] uppercase">
+            keeper since {keeper.since}
+            {keeper.place ? ` · ${keeper.place}` : ""}
+          </div>
+          <div className="text-[30px] leading-[1.02] font-bold tracking-[-0.02em] break-words">
+            {keeper.name}
+          </div>
+        </div>
         {isOwn && (
           <Link
             href="/settings"
             aria-label="settings"
-            className="absolute top-[16px] right-[16px] z-[41] flex h-[34px] w-[34px] items-center justify-center rounded-full border border-[rgba(246,233,238,0.3)] text-[#f6e9ee] no-underline"
+            className="flex size-[34px] flex-none items-center justify-center self-start rounded-full border border-[rgba(246,233,238,0.3)] text-inherit no-underline"
           >
             {SettingsIcon}
           </Link>
         )}
-        <div className="relative z-[41] flex items-end gap-[14px] px-[20px]">
-          <KeeperAvatar name={keeper.name} src={keeper.avatar} size={74} />
-          <div className="pb-[2px] text-[#f6e9ee]">
-            <div className="font-kept-mono mb-[6px] text-[9px] tracking-[0.1em] text-[rgba(246,233,238,0.75)] uppercase">
-              keeper since {keeper.since}
-              {keeper.place ? ` · ${keeper.place}` : ""}
-            </div>
-            <div className="text-[30px] leading-[1.02] font-bold tracking-[-0.02em]">
-              {keeper.name}
-            </div>
-          </div>
-        </div>
-      </div>
+        <div className="grain-texture pointer-events-none absolute inset-0 opacity-[0.055] mix-blend-multiply" />
+      </header>
 
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] py-[20px]">
         {keeper.bio && (
