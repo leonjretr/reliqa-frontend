@@ -46,6 +46,7 @@ export const SearchScreen = ({ categories }: SearchScreenProps) => {
             <div className="border-ink relative aspect-[4/3] w-full overflow-hidden border">
               <KeptPhoto
                 category={category.name.toLowerCase()}
+                src={category.cover?.src}
                 alt={category.name}
                 className="absolute inset-0"
               />

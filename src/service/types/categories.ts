@@ -4,6 +4,7 @@ export type APICategoryListItem = {
   id: string;
   name: string;
   slug: string;
+  cover: APIFile | null;
   objects_count: number;
   stories_count: number;
 };
