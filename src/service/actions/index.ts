@@ -5,3 +5,4 @@ export { submitCapture } from "./capture";
 export { loadCatalogue, loadCaptureOptions } from "./catalogue";
 export { loadKeeperPage } from "./shelf";
 export { searchCategories, searchTags } from "./search";
+export { loadCurrentUserId } from "./account";

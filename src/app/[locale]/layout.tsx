@@ -5,8 +5,9 @@ import { notFound } from "next/navigation";
 
 import "../globals.css";
 
-import { ROUTING, UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
-import { UmamiProvider } from "@/ui/components/common/providers";
+import { ONESIGNAL_APP_ID, ROUTING, UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
+import { loadCurrentUserId } from "@/service/actions";
+import { OneSignalProvider, UmamiProvider } from "@/ui/components/common/providers";
 
 export const generateStaticParams = () => ROUTING.locales.map((locale) => ({ locale }));
 
@@ -29,10 +30,13 @@ const Layout = async ({ children, params }: LayoutProps<"/[locale]">) => {
     notFound();
   }
 
+  const userId = await loadCurrentUserId();
+
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <OneSignalProvider appId={ONESIGNAL_APP_ID} userId={userId} />
       </body>
       <UmamiProvider url={UMAMI_URL} websiteId={UMAMI_WEBSITE_ID} />
     </html>
