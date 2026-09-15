@@ -12,6 +12,7 @@ type Props = {
   src?: string;
   alt?: string;
   sizes?: string;
+  loading?: "eager" | "lazy";
   style?: CSSProperties;
   className?: string;
   vignette?: boolean;
@@ -22,6 +23,7 @@ export const KeptPhoto = ({
   src,
   alt = "",
   sizes = IMAGE_SIZES.SCREEN,
+  loading,
   style,
   className,
   vignette = true,
@@ -45,6 +47,7 @@ export const KeptPhoto = ({
             alt={alt}
             fill
             sizes={sizes}
+            loading={loading}
             unoptimized={isLocalPreview(src)}
             className="object-cover"
           />

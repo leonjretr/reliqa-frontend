@@ -23,7 +23,7 @@ export const NoteBoard = ({ category, photo, stories, storiesCount }: Props) => 
 
   return (
     <div className="border-ink relative isolate h-99.5 border">
-      <KeptPhoto category={category} src={photo} className="absolute inset-0" />
+      <KeptPhoto category={category} src={photo} loading="eager" className="absolute inset-0" />
       {stories.slice(0, OBJECT_NOTES_SHOWN).map((story, index) => (
         <StoryNote
           key={story.id}

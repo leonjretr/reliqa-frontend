@@ -35,6 +35,7 @@ export const Slide = ({ card, index, containerRef }: Props) => {
         <KeptPhoto
           category={card.categorySlug}
           src={card.photo}
+          loading={index === 0 ? "eager" : "lazy"}
           alt={card.name}
           className="absolute inset-0"
         />

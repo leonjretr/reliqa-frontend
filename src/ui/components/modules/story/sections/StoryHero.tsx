@@ -24,6 +24,7 @@ export const StoryHero = ({ objectName, keeperName, category, photo, year, quote
       <KeptPhoto
         category={category}
         src={photo}
+        loading="eager"
         alt={t("PHOTO_ALT", { object: objectName, keeper: keeperName })}
         className="absolute inset-0"
       />
