@@ -2,8 +2,8 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
-import { saveProfile, saveSettings, signOut } from "@/service/actions";
-import type { APICurrentUser, APILanguage } from "@/service/types";
+import { saveSettings, signOut } from "@/service/actions";
+import type { ActionResult, APICurrentUser, APILanguage } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn } from "@/ui/utils/shadcn";
@@ -13,6 +13,15 @@ type SettingsScreenProps = {
 };
 
 const BIO_CAP = 160;
+
+const saveProfile = async (profile: FormData): Promise<ActionResult> => {
+  const response = await fetch("/api/users/me", {
+    method: "PATCH",
+    body: profile,
+  });
+
+  return (await response.json()) as ActionResult;
+};
 
 const fieldClassName =
   "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-[7px] pb-[6px] text-[17px] outline-none placeholder:font-light placeholder:italic";
