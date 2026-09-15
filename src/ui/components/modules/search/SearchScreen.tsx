@@ -2,37 +2,29 @@ import { Link } from "@/i18n";
 import type { APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 
+import { CategorySearch } from "./CategorySearch";
+
 type SearchScreenProps = {
   categories: APICategoryListItem[];
+  query?: string;
 };
 
 const thingsLabel = (count: number) => `${count} thing${count === 1 ? "" : "s"}`;
 
-export const SearchScreen = ({ categories }: SearchScreenProps) => {
+export const SearchScreen = ({ categories, query }: SearchScreenProps) => {
   return (
     <div className="cork-texture flex h-full flex-col">
       <div className="px-[18px] pt-[18px] pb-[4px]">
         <div className="text-chalk/75 font-kept-mono mb-[8px] text-[9px] tracking-[0.1em] uppercase">
           find something kept
         </div>
-        <div className="bg-chalk border-ink flex items-center gap-[8px] rounded-[3px] border px-[13px] py-[11px] shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="text-ink-faint"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" strokeLinecap="round" />
-          </svg>
-          <span className="text-ink-soft text-[15px] font-light italic">
-            a camera, a radio, a chair…
-          </span>
-        </div>
+        <CategorySearch />
       </div>
+      {categories.length === 0 && query && (
+        <p className="text-chalk/75 font-kept-mono px-[18px] pt-[22px] text-[11px] tracking-[0.1em] uppercase">
+          Nothing kept under “{query}”.
+        </p>
+      )}
       <div className="kept-scroll grid min-h-0 flex-1 [scrollbar-gutter:stable] grid-cols-2 content-start gap-x-[16px] gap-y-[28px] overflow-y-auto overscroll-contain px-[16px] pt-[22px] pb-[24px]">
         {categories.map((category, index) => (
           <Link
