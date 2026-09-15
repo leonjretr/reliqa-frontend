@@ -13,7 +13,16 @@ export {
   SESSION_OPTIONS,
 } from "./session";
 export { UMAMI_URL, UMAMI_WEBSITE_ID } from "./umami";
-export { PAGES, QUERIES, QUERY_ERRORS, thingPath, storyPath, keeperPath } from "./nav";
+export {
+  PAGES,
+  QUERIES,
+  QUERY_ERRORS,
+  ROUTE_HANDLERS,
+  thingPath,
+  storyPath,
+  keeperPath,
+  storyAttachmentsRoute,
+} from "./nav";
 export {
   SHORT_STORY_MAX_LENGTH,
   BIO_MAX_LENGTH,

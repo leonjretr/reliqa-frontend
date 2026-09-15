@@ -1,4 +1,4 @@
-import { APIError } from "./api";
+import type { ActionResult } from "./actions";
 
 export type CaptureInput = {
   name: string;
@@ -8,5 +8,4 @@ export type CaptureInput = {
   shortStory: string;
 };
 
-export type CaptureResult =
-  { success: true; storyId: string } | { success: false; errors?: APIError[] };
+export type CaptureResult = ActionResult<{ storyId: string }>;

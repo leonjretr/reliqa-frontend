@@ -2,6 +2,7 @@ import { PAGES, STOCK, storyPath, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
+import { formatYear, getFirstName } from "@/ui/utils";
 
 type ProfileKeeper = {
   name: string;
@@ -17,8 +18,6 @@ type ProfileScreenProps = {
   stories: APIStoryListItem[];
   isOwn: boolean;
 };
-
-const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
 
 const SettingsIcon = (
   <svg
@@ -48,7 +47,7 @@ const Stat = ({ label, value }: { label: string; value: string }) => (
 export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreenProps) => {
   const hasStories = stories.length > 0;
   const hasKept = objects.length > 0;
-  const firstName = keeper.name.split(/\s+/)[0];
+  const firstName = getFirstName(keeper.name);
 
   return (
     <div className="flex h-full flex-col">
@@ -102,7 +101,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
                 >
                   <div className="mb-1.5 flex items-baseline justify-between">
                     <span className="text-ink-faint font-kept-mono text-stamp tracking-widest uppercase lining-nums tabular-nums">
-                      {yearOf(story.created_at)}
+                      {formatYear(story.created_at)}
                     </span>
                   </div>
                   <p className="text-ink-2 text-copy leading-quote font-light italic">
@@ -134,7 +133,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
                     }}
                   >
                     <div className="font-kept-mono text-micro mb-1.25 tracking-widest uppercase opacity-72">
-                      {object.categories[0] ?? ""} · {yearOf(object.created_at)}
+                      {object.categories[0] ?? ""} · {formatYear(object.created_at)}
                     </div>
                     <div className="text-copy-lg leading-card-lg font-semibold">{object.name}</div>
                   </Link>

@@ -3,6 +3,8 @@
 import { createObject, createStory } from "@/service/api";
 import { CaptureInput, CaptureResult } from "@/service/types";
 
+import { toActionFailure } from "./result";
+
 export const submitCapture = async ({
   name,
   category,
@@ -13,13 +15,13 @@ export const submitCapture = async ({
   const object = await createObject({ name, categories: [category], tags });
 
   if (!object.success) {
-    return { success: false, errors: object.errors };
+    return toActionFailure(object);
   }
 
   const createdStory = await createStory(object.id, story, shortStory);
 
   if (!createdStory.success) {
-    return { success: false, errors: createdStory.errors };
+    return toActionFailure(createdStory);
   }
 
   return { success: true, storyId: createdStory.id };

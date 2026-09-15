@@ -15,9 +15,8 @@ import { Link } from "@/i18n";
 import { loadFeedEntries } from "@/service/actions";
 import type { FeedEntry } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { cn } from "@/ui/utils/shadcn";
+import { cn, groupThousands } from "@/ui/utils";
 
-import { groupThousands } from "./data";
 import { buildFeedCard, type FeedCard } from "./feedCard";
 
 const RailButton = ({
@@ -262,7 +261,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
         className="relative h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
       >
         {cards.map((card, index) => (
-          <Slide key={card.id} card={card} index={index} containerRef={containerRef} />
+          <Slide key={card.objectId} card={card} index={index} containerRef={containerRef} />
         ))}
       </div>
 

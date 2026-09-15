@@ -7,7 +7,7 @@ import { Link } from "@/i18n";
 import type { APIObject, APIStoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
-import { formatKeeperName } from "@/ui/utils";
+import { formatKeeperName, formatYear } from "@/ui/utils";
 
 const POSITIONS: [number, number, number][] = [
   [14, 18, -6],
@@ -16,8 +16,6 @@ const POSITIONS: [number, number, number][] = [
   [158, 212, -3],
   [62, 296, -2],
 ];
-
-const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
 
 type ObjectDetailProps = {
   object: APIObject;
@@ -30,8 +28,8 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
   const notes = stories.slice(0, OBJECT_NOTES_SHOWN);
   const facts = [
     { label: "category", value: category?.name ?? "—" },
-    { label: "invented", value: object.invented_at ? yearOf(object.invented_at) : "—" },
-    { label: "kept since", value: yearOf(object.created_at) },
+    { label: "invented", value: object.invented_at ? formatYear(object.invented_at) : "—" },
+    { label: "kept since", value: formatYear(object.created_at) },
   ];
 
   return (
@@ -79,7 +77,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
               >
                 <div className="mb-0.75 flex items-baseline justify-between opacity-76">
                   <span className="font-kept-mono text-stamp tracking-widest uppercase lining-nums tabular-nums">
-                    {yearOf(story.created_at)}
+                    {formatYear(story.created_at)}
                   </span>
                 </div>
                 <div className="text-copy-lg leading-card font-semibold">{keeperName}</div>

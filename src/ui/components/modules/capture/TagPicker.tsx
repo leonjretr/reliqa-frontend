@@ -22,15 +22,9 @@ import {
   ComboboxValue,
 } from "@/ui/components/lib/shadcn/combobox";
 import { useDebouncedValue } from "@/ui/hooks";
+import { slugify } from "@/ui/utils";
 
 type TagOption = APITagListItem & { creatable?: string };
-
-const slugify = (raw: string) =>
-  raw
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 
 type TagPickerProps = {
   value: string[];

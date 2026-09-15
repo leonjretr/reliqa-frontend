@@ -1,5 +1,4 @@
-import { AVATAR_TONES, INITIALS_LENGTH } from "@/config";
-import { cn } from "@/ui/utils/shadcn";
+import { cn, getInitials, pickTone } from "@/ui/utils";
 
 type KeeperAvatarProps = {
   name: string;
@@ -8,22 +7,8 @@ type KeeperAvatarProps = {
   className?: string;
 };
 
-const initials = (name: string) =>
-  name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, INITIALS_LENGTH)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-
-const toneFor = (name: string) => {
-  const sum = [...name].reduce((total, char) => total + char.charCodeAt(0), 0);
-  return AVATAR_TONES[sum % AVATAR_TONES.length];
-};
-
 export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarProps) => {
-  const tone = toneFor(name);
+  const tone = pickTone(name);
 
   return (
     <div
@@ -37,7 +22,7 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarPr
         <img src={src} alt={name} className="absolute inset-0 h-full w-full object-cover" />
       ) : (
         <span className="text-blush tracking-snug font-bold" style={{ fontSize: size * 0.4 }}>
-          {initials(name)}
+          {getInitials(name)}
         </span>
       )}
       <div className="grain-texture pointer-events-none absolute inset-0 opacity-9 mix-blend-multiply" />

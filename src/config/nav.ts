@@ -25,3 +25,9 @@ export const thingPath = (id: string) => `${PAGES.THING}/${id}`;
 export const storyPath = (id: string) => `${PAGES.STORY}/${id}`;
 
 export const keeperPath = (username: string) => `${PAGES.KEEPER}/${username}`;
+
+export const ROUTE_HANDLERS = {
+  CURRENT_USER: "/api/users/me",
+};
+
+export const storyAttachmentsRoute = (storyId: string) => `/api/stories/${storyId}/attachments`;

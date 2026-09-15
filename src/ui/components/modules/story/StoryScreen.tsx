@@ -2,19 +2,11 @@ import { keeperPath, PAGES, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIStoryDetail } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { formatKeeperName } from "@/ui/utils";
+import { formatKeeperName, formatYear, splitParagraphs } from "@/ui/utils";
 
 type StoryScreenProps = {
   story: APIStoryDetail;
 };
-
-const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
-
-const splitParagraphs = (text: string) =>
-  text
-    .split(/\n{2,}/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
 
 export const StoryScreen = ({ story }: StoryScreenProps) => {
   const keeperName = formatKeeperName(story.created_by);
@@ -39,7 +31,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
             </span>
           </Link>
           <span className="text-chalk/72 font-kept-mono text-eyebrow absolute top-3.75 right-4.5 tracking-widest uppercase lining-nums tabular-nums">
-            {yearOf(story.created_at)}
+            {formatYear(story.created_at)}
           </span>
           <div className="absolute inset-x-0 bottom-0 px-4.5 pb-4.5">
             {category && (
@@ -61,7 +53,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
             </span>
             <span className="bg-hair h-px flex-1 -translate-y-0.75" />
             <span className="text-ink-faint font-kept-mono text-eyebrow tracking-widest uppercase lining-nums tabular-nums">
-              written {yearOf(story.created_at)}
+              written {formatYear(story.created_at)}
             </span>
           </div>
 

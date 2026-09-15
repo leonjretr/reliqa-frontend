@@ -4,18 +4,15 @@ import { API_ENDPOINTS } from "@/config";
 import { APICategoryDetail, APICategoryListItem, APIPaginatedResponse } from "@/service/types";
 
 import { fetchAPI } from "./api";
+import { withQuery } from "./query";
 
 export type GetCategoriesParams = {
   query?: string;
 };
 
 export const getCategories = async ({ query }: GetCategoriesParams = {}) => {
-  const params = new URLSearchParams();
-  if (query) params.set("query", query);
-  const search = params.toString() ? `?${params.toString()}` : "";
-
   return await fetchAPI<APIPaginatedResponse<APICategoryListItem>>(
-    `${API_ENDPOINTS.CATEGORIES}${search}`,
+    withQuery(API_ENDPOINTS.CATEGORIES, { query }),
     { method: "GET" },
   );
 };

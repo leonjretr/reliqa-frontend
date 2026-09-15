@@ -2,9 +2,8 @@ import { PAGES, STOCK, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { groupThousands } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
-import { cn } from "@/ui/utils/shadcn";
+import { cn, formatYear, groupThousands } from "@/ui/utils";
 
 export type BrowseObject = APIObjectListItem & { stories_count: number };
 
@@ -17,8 +16,6 @@ const DECADES = [
   { label: "00s", count: 26 },
   { label: "10s", count: 14 },
 ];
-
-const yearOf = (isoDate: string) => String(new Date(isoDate).getFullYear());
 
 const DecadesBand = () => {
   const max = Math.max(...DECADES.map((decade) => decade.count));
@@ -105,7 +102,7 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
                   />
                   <div className="flex-1">
                     <div className="text-ink-faint font-kept-mono text-micro mb-1 tracking-widest uppercase">
-                      {object.categories[0] ?? ""} · {yearOf(object.created_at)}
+                      {object.categories[0] ?? ""} · {formatYear(object.created_at)}
                     </div>
                     <div className="text-title tracking-snug leading-none font-bold">
                       {object.name}

@@ -2,30 +2,24 @@
 
 import { useState, type ChangeEvent } from "react";
 
-import { CHARACTERS_LOW_THRESHOLD, PAGES, SHORT_STORY_MAX_LENGTH, YEAR_MAX_LENGTH } from "@/config";
+import {
+  CHARACTERS_LOW_THRESHOLD,
+  PAGES,
+  SHORT_STORY_MAX_LENGTH,
+  storyAttachmentsRoute,
+  YEAR_MAX_LENGTH,
+} from "@/config";
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
-import type { ActionResult, APICategoryListItem } from "@/service/types";
+import type { APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
-import { cn } from "@/ui/utils/shadcn";
+import { cn, countWords, sendFormData, yearsSince } from "@/ui/utils";
 
 import { CategoryPicker } from "./CategoryPicker";
 import { TagPicker } from "./TagPicker";
 
 const ARRIVALS = ["inherited", "bought", "a gift", "found at home", "made it"];
-
-const uploadStoryPhoto = async (storyId: string, file: File): Promise<ActionResult> => {
-  const formData = new FormData();
-  formData.append("file", file);
-
-  const response = await fetch(`/api/stories/${storyId}/attachments`, {
-    method: "POST",
-    body: formData,
-  });
-
-  return (await response.json()) as ActionResult;
-};
 
 const fieldClassName =
   "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-1.75 pb-1.5 text-field outline-none placeholder:font-light placeholder:italic";
@@ -56,8 +50,8 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
   const [error, setError] = useState<string | null>(null);
 
   const remaining = SHORT_STORY_MAX_LENGTH - memory.length;
-  const held = year ? new Date().getFullYear() - Number(year) : "—";
-  const longWords = longread.trim() ? longread.trim().split(/\s+/).length : 0;
+  const held = year ? yearsSince(Number(year)) : "—";
+  const longWords = countWords(longread);
   const canSubmit = Boolean(name && categorySlug && memory && photoFile && !isSubmitting);
 
   const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +82,13 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
       return;
     }
 
-    const uploadResult = await uploadStoryPhoto(result.storyId, photoFile);
+    const attachment = new FormData();
+    attachment.append("file", photoFile);
+    const uploadResult = await sendFormData(
+      storyAttachmentsRoute(result.storyId),
+      "POST",
+      attachment,
+    );
 
     if (!uploadResult.success) {
       setIsSubmitting(false);

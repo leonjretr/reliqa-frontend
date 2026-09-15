@@ -2,13 +2,19 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
-import { BIO_MAX_LENGTH, CHARACTERS_LOW_THRESHOLD, keeperPath, LOCALE_NAMES } from "@/config";
+import {
+  BIO_MAX_LENGTH,
+  CHARACTERS_LOW_THRESHOLD,
+  keeperPath,
+  LOCALE_NAMES,
+  ROUTE_HANDLERS,
+} from "@/config";
 import { routing } from "@/i18n";
 import { saveSettings, signOut } from "@/service/actions";
-import type { ActionResult, APICurrentUser, APILanguage } from "@/service/types";
+import type { APICurrentUser, APILanguage } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
-import { cn } from "@/ui/utils/shadcn";
+import { cn, formatKeeperName, formatYear, sendFormData, splitWords } from "@/ui/utils";
 
 type SettingsScreenProps = {
   user: APICurrentUser;
@@ -18,15 +24,6 @@ const LANGUAGE_OPTIONS = routing.locales.map((locale) => ({
   value: locale,
   label: LOCALE_NAMES[locale],
 }));
-
-const saveProfile = async (profile: FormData): Promise<ActionResult> => {
-  const response = await fetch("/api/users/me", {
-    method: "PATCH",
-    body: profile,
-  });
-
-  return (await response.json()) as ActionResult;
-};
 
 const fieldClassName =
   "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-1.75 pb-1.5 text-field outline-none placeholder:font-light placeholder:italic";
@@ -107,11 +104,8 @@ const Segmented = ({
   </div>
 );
 
-const joinedYear = (isoDate: string) => String(new Date(isoDate).getFullYear());
-
 export const SettingsScreen = ({ user }: SettingsScreenProps) => {
-  const fullName = `${user.first_name} ${user.last_name}`.trim();
-  const [name, setName] = useState(fullName || user.username);
+  const [name, setName] = useState(formatKeeperName(user));
   const [place, setPlace] = useState(user.residence);
   const [bio, setBio] = useState(user.bio);
   const [avatar, setAvatar] = useState<string | undefined>(user.avatar?.src);
@@ -146,7 +140,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
   const handleSave = async () => {
     setIsSaving(true);
 
-    const [firstName, ...rest] = name.trim().split(/\s+/);
+    const [firstName, ...rest] = splitWords(name);
     const profile = new FormData();
     profile.set("first_name", firstName ?? "");
     profile.set("last_name", rest.join(" "));
@@ -158,7 +152,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
     }
 
     const [profileResult, settingsResult] = await Promise.all([
-      saveProfile(profile),
+      sendFormData(ROUTE_HANDLERS.CURRENT_USER, "PATCH", profile),
       saveSettings({
         language: language as APILanguage,
         is_private: visibility === "private",
@@ -321,7 +315,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         </form>
 
         <p className="text-ink-faint font-kept-mono text-fine leading-note mt-3.5 text-center tracking-wider lowercase">
-          keeper since {joinedYear(user.created_at)} · reliqa
+          keeper since {formatYear(user.created_at)} · reliqa
         </p>
       </div>
       <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />

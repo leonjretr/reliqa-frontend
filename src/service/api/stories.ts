@@ -10,11 +10,11 @@ import {
 
 import { fetchAPI } from "./api";
 import { fetchAuthenticated } from "./auth";
+import { QueryParams, withQuery } from "./query";
 
-const listStories = async (params: Record<string, string>) => {
-  const query = new URLSearchParams(params).toString();
+const listStories = async (params: QueryParams) => {
   return await fetchAPI<APIPaginatedResponse<APIStoryListItem>>(
-    `${API_ENDPOINTS.STORIES}?${query}`,
+    withQuery(API_ENDPOINTS.STORIES, params),
     { method: "GET" },
   );
 };

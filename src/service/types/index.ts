@@ -21,7 +21,7 @@ export type {
   APIGoogleOauthRedirectURIResponse,
   APIGoogleOauthCallbackResponse,
 } from "./auth";
-export type { ActionResult } from "./actions";
+export type { ActionFailure, ActionResult } from "./actions";
 export type { Session } from "./session";
 export type {
   APIUserSummary,

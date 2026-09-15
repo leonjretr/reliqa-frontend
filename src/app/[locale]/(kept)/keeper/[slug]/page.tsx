@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { getCurrentUser, getUserByUsername, loadKeeperShelf } from "@/service";
 import { ProfileScreen } from "@/ui/components/modules/profile";
+import { formatKeeperName, formatYear } from "@/ui/utils";
 
 const Page = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
   const { slug } = await params;
@@ -10,13 +11,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string; slug: string
 
   if (isOwn) {
     const { objects, stories } = await loadKeeperShelf(currentUser.id);
-    const fullName = `${currentUser.first_name} ${currentUser.last_name}`.trim();
     const keeper = {
-      name: fullName || currentUser.username,
+      name: formatKeeperName(currentUser),
       place: currentUser.settings.is_residence_visible ? currentUser.residence : "",
       bio: currentUser.bio,
       avatar: currentUser.avatar?.src ?? undefined,
-      since: String(new Date(currentUser.created_at).getFullYear()),
+      since: formatYear(currentUser.created_at),
     };
 
     return <ProfileScreen keeper={keeper} objects={objects} stories={stories} isOwn />;
@@ -29,13 +29,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string; slug: string
   }
 
   const { objects, stories } = await loadKeeperShelf(publicUser.id);
-  const fullName = `${publicUser.first_name} ${publicUser.last_name}`.trim();
   const keeper = {
-    name: fullName || publicUser.username,
+    name: formatKeeperName(publicUser),
     place: publicUser.residence ?? "",
     bio: publicUser.bio,
     avatar: publicUser.avatar?.src ?? undefined,
-    since: String(new Date(publicUser.created_at).getFullYear()),
+    since: formatYear(publicUser.created_at),
   };
 
   return <ProfileScreen keeper={keeper} objects={objects} stories={stories} isOwn={false} />;

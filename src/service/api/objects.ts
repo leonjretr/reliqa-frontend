@@ -10,12 +10,15 @@ import {
 
 import { fetchAPI } from "./api";
 import { fetchAuthenticated } from "./auth";
+import { withQuery } from "./query";
 
 export const getFeedObject = async (exclude: string[] = []) => {
-  const query = exclude.length ? `?exclude=${exclude.map(encodeURIComponent).join(",")}` : "";
-  return await fetchAPI<APIObject>(`${API_ENDPOINTS.OBJECTS_FEED}${query}`, {
-    method: "GET",
-  });
+  return await fetchAPI<APIObject>(
+    withQuery(API_ENDPOINTS.OBJECTS_FEED, { exclude: exclude.join(",") }),
+    {
+      method: "GET",
+    },
+  );
 };
 
 export const getObject = async (id: string) => {
@@ -31,14 +34,8 @@ export type GetObjectsParams = {
 };
 
 export const getObjects = async ({ createdBy, categories, ordering }: GetObjectsParams = {}) => {
-  const params = new URLSearchParams();
-  if (createdBy) params.set("created_by", createdBy);
-  if (categories) params.set("categories", categories);
-  if (ordering) params.set("ordering", ordering);
-  const query = params.toString() ? `?${params.toString()}` : "";
-
   return await fetchAPI<APIPaginatedResponse<APIObjectListItem>>(
-    `${API_ENDPOINTS.OBJECTS}${query}`,
+    withQuery(API_ENDPOINTS.OBJECTS, { created_by: createdBy, categories, ordering }),
     { method: "GET" },
   );
 };
