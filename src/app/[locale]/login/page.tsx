@@ -1,14 +1,9 @@
-import { redirect } from "@/i18n";
-import { getSession } from "@/service/session";
+import { redirectSignedIn } from "@/service/guards";
 import { AuthCard } from "@/ui/components/modules/auth";
 
-const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]/login">) => {
   const { locale } = await params;
-  const session = await getSession();
-
-  if (session) {
-    redirect({ href: "/", locale });
-  }
+  await redirectSignedIn(locale);
 
   return <AuthCard />;
 };

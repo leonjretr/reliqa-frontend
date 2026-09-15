@@ -1,6 +1,7 @@
 import { timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 
+import { PAGES, QUERIES, QUERY_ERRORS } from "@/config";
 import { authenticateGoogleOauthCode } from "@/service/api";
 import { popOauthState, setSession } from "@/service/session";
 
@@ -15,6 +16,8 @@ const isSameState = (received: string, expected: string) => {
   return timingSafeEqual(receivedBytes, expectedBytes);
 };
 
+const OAUTH_ERROR_PATH = `${PAGES.FEED}?${QUERIES.ERROR}=${QUERY_ERRORS.OAUTH}`;
+
 const isRelativePath = (path: string) => path.startsWith("/") && !path.startsWith("//");
 
 const redirectTo = (path: string) =>
@@ -26,16 +29,16 @@ export const GET = async (request: NextRequest) => {
   const expectedState = await popOauthState();
 
   if (!code || !state || !expectedState || !isSameState(state, expectedState)) {
-    return redirectTo("/?error=oauth");
+    return redirectTo(OAUTH_ERROR_PATH);
   }
 
   const response = await authenticateGoogleOauthCode(code, state);
 
   if (!response.success) {
-    return redirectTo("/?error=oauth");
+    return redirectTo(OAUTH_ERROR_PATH);
   }
 
   await setSession({ accessToken: response.access, refreshToken: response.refresh });
 
-  return redirectTo(response.next && isRelativePath(response.next) ? response.next : "/");
+  return redirectTo(response.next && isRelativePath(response.next) ? response.next : PAGES.FEED);
 };

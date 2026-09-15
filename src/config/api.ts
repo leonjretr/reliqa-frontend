@@ -1,4 +1,13 @@
+import { ROUTING } from "./i18n";
+
 export const API_URL = process.env.API_URL!;
+export const API_VERSION_PLACEHOLDER = "[version]";
+export const API_DEFAULT_VERSION = "v1";
+export const API_DEFAULT_LANGUAGE = ROUTING.defaultLocale;
+
+export const API_ORDERINGS = {
+  NEWEST: "-created_at",
+};
 
 export const API_ENDPOINTS = {
   LOGIN: "tokens/",

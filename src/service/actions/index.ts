@@ -1,5 +1,8 @@
 export { signIn, signUp, startGoogleOauth, signOut } from "./auth";
-export { saveProfile, saveSettings } from "./profile";
+export { saveSettings } from "./profile";
 export { loadFeedEntries } from "./feed";
 export { submitCapture } from "./capture";
-export { loadKeeperShelf } from "./shelf";
+export { loadCatalogue, loadCaptureOptions } from "./catalogue";
+export { loadKeeperPage } from "./shelf";
+export { searchCategories, searchTags } from "./search";
+export { loadCurrentUserId } from "./account";

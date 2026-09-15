@@ -1,2 +1,1 @@
-export { TabBar } from "./TabBar";
-export { ScreenHeader } from "./ScreenHeader";
+export { TabBar, ScreenHeader } from "./bars";

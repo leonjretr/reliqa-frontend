@@ -1,0 +1,1 @@
+export { PhotoShade } from "./PhotoShade";

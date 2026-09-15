@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
 import { Archivo, IBM_Plex_Mono, Newsreader } from "next/font/google";
 
-import { cn } from "@/ui/utils/shadcn";
+import { cn } from "@/ui/utils";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -24,7 +23,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const LoginLayout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: LayoutProps<"/[locale]/login">) => {
   return (
     <div
       className={cn(
@@ -39,4 +38,4 @@ const LoginLayout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default LoginLayout;
+export default Layout;

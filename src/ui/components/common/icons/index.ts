@@ -1,1 +1,11 @@
 export { GoogleIcon } from "./GoogleIcon";
+export { HouseIcon } from "./HouseIcon";
+export { GridIcon } from "./GridIcon";
+export { PlusIcon } from "./PlusIcon";
+export { SearchIcon } from "./SearchIcon";
+export { UserIcon } from "./UserIcon";
+export { LinesIcon } from "./LinesIcon";
+export { CameraIcon } from "./CameraIcon";
+export { SettingsIcon } from "./SettingsIcon";
+export { EyeIcon } from "./EyeIcon";
+export { EyeOffIcon } from "./EyeOffIcon";

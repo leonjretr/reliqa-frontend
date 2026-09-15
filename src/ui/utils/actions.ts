@@ -1,9 +1,9 @@
 import { FieldValues, Path, UseFormSetError } from "react-hook-form";
 
-import { ActionResult } from "@/service/types";
+import type { ActionFailure } from "@/service/types";
 
 export const applyActionErrors = <T extends FieldValues>(
-  result: ActionResult,
+  result: ActionFailure,
   setError: UseFormSetError<T>,
   fields: Path<T>[],
   fallback: string,

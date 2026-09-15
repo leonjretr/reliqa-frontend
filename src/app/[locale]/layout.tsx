@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 
 import "../globals.css";
 
-import { UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
-import { routing } from "@/i18n/routing";
-import { UmamiProvider } from "@/ui/components/common/providers";
+import { ONESIGNAL_APP_ID, ROUTING, UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
+import { loadCurrentUserId } from "@/service/actions";
+import { OneSignalProvider, UmamiProvider } from "@/ui/components/common/providers";
 
-export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));
+export const generateStaticParams = () => ROUTING.locales.map((locale) => ({ locale }));
 
 export const generateMetadata = async ({
   params,
@@ -23,21 +23,24 @@ export const generateMetadata = async ({
   };
 };
 
-const RootLayout = async ({ children, params }: LayoutProps<"/[locale]">) => {
+const Layout = async ({ children, params }: LayoutProps<"/[locale]">) => {
   const { locale } = await params;
 
-  if (!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(ROUTING.locales, locale)) {
     notFound();
   }
+
+  const userId = await loadCurrentUserId();
 
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <OneSignalProvider appId={ONESIGNAL_APP_ID} userId={userId} />
       </body>
       <UmamiProvider url={UMAMI_URL} websiteId={UMAMI_WEBSITE_ID} />
     </html>
   );
 };
 
-export default RootLayout;
+export default Layout;

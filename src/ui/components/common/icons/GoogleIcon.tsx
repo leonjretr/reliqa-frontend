@@ -1,4 +1,4 @@
-import { cn } from "@/ui/utils/shadcn";
+import { cn } from "@/ui/utils";
 
 export const GoogleIcon = ({ className, ...props }: React.ComponentProps<"svg">) => {
   return (

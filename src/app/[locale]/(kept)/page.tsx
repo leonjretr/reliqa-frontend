@@ -1,17 +1,13 @@
-import { redirect } from "@/i18n";
-import { getSession, loadFeedEntries } from "@/service";
+import { loadFeedEntries } from "@/service/actions";
+import { requireSession } from "@/service/guards";
 import { StoryFeed } from "@/ui/components/modules/feed";
 
-const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+const Page = async ({ params }: PageProps<"/[locale]">) => {
   const { locale } = await params;
-  const session = await getSession();
+  await requireSession(locale);
+  const entries = await loadFeedEntries();
 
-  if (session) {
-    const entries = await loadFeedEntries();
-    return <StoryFeed initialEntries={entries} />;
-  } else {
-    redirect({ href: "/login", locale });
-  }
+  return <StoryFeed initialEntries={entries} />;
 };
 
 export default Page;

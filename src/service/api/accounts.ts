@@ -1,4 +1,6 @@
-"use server";
+import "server-only";
+
+import { cache } from "react";
 
 import { API_ENDPOINTS } from "@/config";
 import {
@@ -46,11 +48,11 @@ export const authenticateGoogleOauthCode = async (code: string, state: string) =
   });
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = cache(async () => {
   return await fetchAuthenticated<APICurrentUser>(API_ENDPOINTS.CURRENT_USER, {
     method: "GET",
   });
-};
+});
 
 export const updateCurrentUser = async (profile: FormData) => {
   return await fetchAuthenticated<APICurrentUser>(API_ENDPOINTS.CURRENT_USER, {

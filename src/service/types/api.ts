@@ -26,12 +26,3 @@ export type APIPaginatedResponse<T> = {
   count: number;
   results: T[];
 } & APISuccessfulResponse;
-
-export type APIPaginationParams = {
-  limit?: number;
-  offset?: number;
-};
-
-export type APIOrderingParams = {
-  ordering?: string;
-};
