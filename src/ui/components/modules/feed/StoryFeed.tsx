@@ -27,7 +27,12 @@ export const StoryFeed = ({ initialEntries }: Props) => {
         className="scrollbar-hidden relative h-full snap-y snap-mandatory overflow-y-auto"
       >
         {entries.map(toFeedCard).map((card, index) => (
-          <Slide key={card.objectId} card={card} index={index} containerRef={containerRef} />
+          <Slide
+            key={`${card.objectId}-${index}`}
+            card={card}
+            index={index}
+            containerRef={containerRef}
+          />
         ))}
       </div>
       <FeedTopBar />

@@ -1,31 +1,12 @@
 "use server";
 
-import { FEED_BATCH_SIZE, FEED_FETCH_ATTEMPTS_PER_ENTRY } from "@/config";
+import { FEED_BATCH_SIZE } from "@/config";
 import { getFeedObject, getObjectStories } from "@/service/api";
 import type { APIObject, FeedEntry } from "@/service/types";
 
-export const loadFeedEntries = async (
-  count: number = FEED_BATCH_SIZE,
-  exclude: string[] = [],
-): Promise<FeedEntry[]> => {
-  const seen = new Set(exclude);
-  const objects: APIObject[] = [];
-  const maxAttempts = count * FEED_FETCH_ATTEMPTS_PER_ENTRY;
-
-  for (let attempt = 0; objects.length < count && attempt < maxAttempts; attempt++) {
-    const object = await getFeedObject([...seen]);
-
-    if (!object.success) {
-      break;
-    }
-
-    if (seen.has(object.id)) {
-      continue;
-    }
-
-    seen.add(object.id);
-    objects.push(object);
-  }
+export const loadFeedEntries = async (count: number = FEED_BATCH_SIZE): Promise<FeedEntry[]> => {
+  const responses = await Promise.all(Array.from({ length: count }, () => getFeedObject()));
+  const objects: APIObject[] = responses.filter((object) => object.success);
 
   return await Promise.all(
     objects.map(async (object) => {
