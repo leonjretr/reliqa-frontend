@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Link } from "@/i18n";
 import { loadFeedEntries } from "@/service/actions";
@@ -40,24 +41,56 @@ const RailButton = ({
   </Link>
 );
 
-const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
+const Slide = ({
+  card,
+  index,
+  containerRef,
+}: {
+  card: FeedCard;
+  index: number;
+  containerRef: RefObject<HTMLDivElement | null>;
+}) => {
+  const slideRef = useRef<HTMLElement>(null);
+  const isReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    container: containerRef,
+    target: slideRef,
+    offset: ["start end", "end start"],
+  });
+
+  const photoY = useTransform(scrollYProgress, [0, 0.5, 1], ["9%", "0%", "-9%"]);
+  const photoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.08]);
+  const shade = useTransform(scrollYProgress, [0, 0.5, 1], [0.75, 0, 0.75]);
+  const copyOpacity = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 1, 0]);
+  const copyY = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [48, 0, -24]);
+  const railX = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [28, 0, 28]);
+
   const subtitle = [card.category, card.year].filter(Boolean).join(" · ");
   const tagLine = card.tags.slice(0, 3).join(" · ");
 
   return (
     <section
+      ref={slideRef}
       data-slide={index}
       className="relative h-full w-full flex-none snap-start snap-always overflow-hidden"
     >
-      <KeptPhoto
-        category={card.category?.toLowerCase()}
-        src={card.photo}
-        alt={card.name}
-        className="absolute inset-0"
-      />
+      <motion.div
+        className="absolute inset-x-0 -top-[12%] -bottom-[12%]"
+        style={isReducedMotion ? undefined : { y: photoY, scale: photoScale }}
+      >
+        <KeptPhoto
+          category={card.category?.toLowerCase()}
+          src={card.photo}
+          alt={card.name}
+          className="absolute inset-0"
+        />
+      </motion.div>
       <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.5)_38%,rgba(20,14,9,0)_70%)]" />
 
-      <div className="absolute right-[12px] bottom-[132px] z-[3] flex flex-col items-center gap-[20px]">
+      <motion.div
+        className="absolute right-[12px] bottom-[132px] z-[3] flex flex-col items-center gap-[20px]"
+        style={{ opacity: copyOpacity, x: isReducedMotion ? 0 : railX }}
+      >
         <div className="flex flex-col items-center gap-[3px]">
           <span className="text-chalk font-kept-mono text-[17px] font-medium lining-nums tabular-nums">
             {groupThousands(card.viewCount)}
@@ -102,9 +135,12 @@ const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
             </svg>
           }
         />
-      </div>
+      </motion.div>
 
-      <div className="absolute right-[62px] bottom-[22px] left-0 z-[3] px-[18px]">
+      <motion.div
+        className="absolute right-[62px] bottom-[22px] left-0 z-[3] px-[18px]"
+        style={{ opacity: copyOpacity, y: isReducedMotion ? 0 : copyY }}
+      >
         {subtitle && (
           <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
             {subtitle}
@@ -139,7 +175,12 @@ const Slide = ({ card, index }: { card: FeedCard; index: number }) => {
             </span>
           </Link>
         )}
-      </div>
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-[4] bg-[#140e09]"
+        style={{ opacity: shade }}
+      />
     </section>
   );
 };
@@ -219,10 +260,10 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
       <div
         ref={containerRef}
-        className="h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+        className="relative h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
       >
         {cards.map((card, index) => (
-          <Slide key={card.id} card={card} index={index} />
+          <Slide key={card.id} card={card} index={index} containerRef={containerRef} />
         ))}
       </div>
     </div>
