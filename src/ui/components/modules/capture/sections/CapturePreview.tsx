@@ -14,7 +14,7 @@ import { CaptureLabel } from "./CaptureLabel";
 
 type Props = {
   preview?: string;
-  keeperName: string;
+  keeperName?: string;
 };
 
 export const CapturePreview = ({ preview, keeperName }: Props) => {
@@ -52,7 +52,7 @@ export const CapturePreview = ({ preview, keeperName }: Props) => {
           </p>
           {memory && (
             <MonoLabel className="text-chalk/72 mt-1.5">
-              {feed("QUOTE_AUTHOR", { keeper: keeperName })}
+              {feed("QUOTE_AUTHOR", { keeper: keeperName ?? t("KEEPER_FALLBACK") })}
             </MonoLabel>
           )}
         </div>

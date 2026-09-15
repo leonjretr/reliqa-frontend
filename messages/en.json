@@ -198,6 +198,7 @@
     "PLACEHOLDER_TAG": "add a tag",
     "EMPTY_TAGS": "type to add a tag",
     "BUTTON_CREATE_TAG": "add \"{tag}\"",
-    "LABEL_REMOVE_TAG": "remove {tag}"
+    "LABEL_REMOVE_TAG": "remove {tag}",
+    "KEEPER_FALLBACK": "you"
   }
 }

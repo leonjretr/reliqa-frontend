@@ -12,7 +12,7 @@ const TOTAL_STEPS = 1;
 
 type Props = {
   categories: APICategoryListItem[];
-  keeperName: string;
+  keeperName?: string;
   initialCategory?: string;
 };
 

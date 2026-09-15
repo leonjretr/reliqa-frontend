@@ -22,7 +22,7 @@ import {
 
 type Props = {
   categories: APICategoryListItem[];
-  keeperName: string;
+  keeperName?: string;
   initialCategory?: string;
 };
 

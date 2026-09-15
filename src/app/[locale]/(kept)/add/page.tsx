@@ -15,7 +15,7 @@ const Page = async ({ params, searchParams }: PageProps<"/[locale]/add">) => {
   return (
     <CaptureScreen
       categories={options.categories}
-      keeperName={user.success ? formatKeeperName(user) : "you"}
+      keeperName={user.success ? formatKeeperName(user) : undefined}
       initialCategory={options.initialCategory}
     />
   );

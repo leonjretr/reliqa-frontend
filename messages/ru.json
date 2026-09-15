@@ -198,6 +198,7 @@
     "PLACEHOLDER_TAG": "добавить тег",
     "EMPTY_TAGS": "начните вводить, чтобы добавить тег",
     "BUTTON_CREATE_TAG": "добавить «{tag}»",
-    "LABEL_REMOVE_TAG": "убрать {tag}"
+    "LABEL_REMOVE_TAG": "убрать {tag}",
+    "KEEPER_FALLBACK": "вы"
   }
 }
