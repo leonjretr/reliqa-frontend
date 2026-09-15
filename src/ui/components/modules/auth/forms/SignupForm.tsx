@@ -33,7 +33,7 @@ export const SignupForm = () => {
       return;
     }
 
-    enterApp();
+    enterApp(result.locale);
   };
 
   return (

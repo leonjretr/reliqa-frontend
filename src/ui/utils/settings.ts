@@ -1,3 +1,6 @@
+import { hasLocale } from "next-intl";
+
+import { ROUTING } from "@/config";
 import type { APICurrentUser, APISettings } from "@/service/types";
 import type { SettingsValues } from "@/ui/validation";
 
@@ -7,7 +10,7 @@ import { splitFullName } from "./text";
 const PRIVATE_VISIBILITY: SettingsValues["visibility"] = "private";
 const PUBLIC_VISIBILITY: SettingsValues["visibility"] = "everyone";
 
-export const toSettingsValues = (user: APICurrentUser): SettingsValues => ({
+export const toSettingsValues = (user: APICurrentUser, locale: string): SettingsValues => ({
   name: formatKeeperName(user),
   place: user.residence,
   bio: user.bio,
@@ -17,7 +20,7 @@ export const toSettingsValues = (user: APICurrentUser): SettingsValues => ({
   isPlaceVisible: user.settings.is_residence_visible,
   isNotifyingKept: user.settings.is_push_enabled,
   isNotifyingThemes: false,
-  language: user.settings.language,
+  language: hasLocale(ROUTING.locales, locale) ? locale : ROUTING.defaultLocale,
 });
 
 export const toProfileFormData = (values: SettingsValues, hasNewAvatar: boolean) => {

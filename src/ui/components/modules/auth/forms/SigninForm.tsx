@@ -32,7 +32,7 @@ export const SigninForm = () => {
       return;
     }
 
-    enterApp();
+    enterApp(result.locale);
   };
 
   return (

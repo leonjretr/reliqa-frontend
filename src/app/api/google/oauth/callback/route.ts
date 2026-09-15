@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { PAGES, QUERIES, QUERY_ERRORS } from "@/config";
 import { authenticateGoogleOauthCode } from "@/service/api";
+import { applyPreferredLocale } from "@/service/locale";
 import { popOauthState, setSession } from "@/service/session";
 
 const isSameState = (received: string, expected: string) => {
@@ -39,6 +40,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   await setSession({ accessToken: response.access, refreshToken: response.refresh });
+  await applyPreferredLocale();
 
   return redirectTo(response.next && isRelativePath(response.next) ? response.next : PAGES.FEED);
 };

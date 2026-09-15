@@ -1,0 +1,1 @@
+export { applyPreferredLocale } from "./locale";

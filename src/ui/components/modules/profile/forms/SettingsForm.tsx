@@ -1,10 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { ROUTE_HANDLERS } from "@/config";
+import { usePathname, useRouter } from "@/i18n";
 import { saveSettings } from "@/service/actions";
 import type { APICurrentUser } from "@/service/types";
 import { Divider } from "@/ui/components/common/Divider";
@@ -24,9 +25,12 @@ type Props = {
 
 export const SettingsForm = ({ user }: Props) => {
   const t = useTranslations("Settings");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
   const form = useForm<SettingsValues>({
     resolver: zodResolver(settingsSchema),
-    defaultValues: toSettingsValues(user),
+    defaultValues: toSettingsValues(user, locale),
   });
   const { formState, handleSubmit, reset, setError } = form;
   const { dirtyFields, errors, isDirty, isSubmitSuccessful, isSubmitting } = formState;
@@ -50,6 +54,10 @@ export const SettingsForm = ({ user }: Props) => {
     }
 
     reset(values, { keepIsSubmitSuccessful: true });
+
+    if (values.language !== locale) {
+      router.replace(pathname, { locale: values.language });
+    }
   };
 
   const saveLabel = isSubmitting

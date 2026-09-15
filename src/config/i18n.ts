@@ -1,9 +1,12 @@
 import { defineRouting } from "next-intl/routing";
 
+export const LOCALE_COOKIE = { name: "NEXT_LOCALE", sameSite: "lax", path: "/" } as const;
+
 export const ROUTING = defineRouting({
   locales: ["en", "uk", "ru"],
   defaultLocale: "en",
   localePrefix: "always",
+  localeCookie: LOCALE_COOKIE,
 });
 
 export type Locale = (typeof ROUTING.locales)[number];

@@ -2,15 +2,19 @@
 
 import { redirect as rootRedirect } from "next/navigation";
 
-import { PAGES } from "@/config";
+import { PAGES, type Locale } from "@/config";
 import { redirect } from "@/i18n";
 import { getGoogleOauthRedirectUri, login, register } from "@/service/api";
+import { applyPreferredLocale } from "@/service/locale";
 import { clearSession, setOauthState, setSession } from "@/service/session";
 import { ActionResult, APICreateUser } from "@/service/types";
 
 import { toActionFailure } from "./result";
 
-export const signIn = async (email: string, password: string): Promise<ActionResult> => {
+export const signIn = async (
+  email: string,
+  password: string,
+): Promise<ActionResult<{ locale?: Locale }>> => {
   const response = await login(email, password);
 
   if (!response.success) {
@@ -18,10 +22,10 @@ export const signIn = async (email: string, password: string): Promise<ActionRes
   }
 
   await setSession({ accessToken: response.access, refreshToken: response.refresh });
-  return { success: true };
+  return { success: true, locale: await applyPreferredLocale() };
 };
 
-export const signUp = async (user: APICreateUser): Promise<ActionResult> => {
+export const signUp = async (user: APICreateUser): Promise<ActionResult<{ locale?: Locale }>> => {
   const response = await register(user);
 
   if (!response.success) {
