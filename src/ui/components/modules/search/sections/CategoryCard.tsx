@@ -26,7 +26,7 @@ export const CategoryCard = ({ category, index }: Props) => {
       <div className="fiber-texture pointer-events-none absolute inset-0 opacity-40" />
       <div className="border-ink relative aspect-4/3 w-full overflow-hidden border">
         <KeptPhoto
-          category={category.name.toLowerCase()}
+          category={category.slug}
           src={category.cover?.src}
           alt={category.name}
           className="absolute inset-0"

@@ -33,7 +33,7 @@ export const Slide = ({ card, index, containerRef }: Props) => {
         }
       >
         <KeptPhoto
-          category={card.category?.toLowerCase()}
+          category={card.categorySlug}
           src={card.photo}
           alt={card.name}
           className="absolute inset-0"

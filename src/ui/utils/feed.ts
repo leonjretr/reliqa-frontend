@@ -10,6 +10,7 @@ export const toFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
   name: object.name,
   photo: object.attachments[0]?.file.src,
   category: object.categories[0]?.name,
+  categorySlug: object.categories[0]?.slug,
   tags: object.tags.map((tag) => tag.slug),
   keeperName: formatKeeperName(story?.created_by ?? object.created_by),
   year: formatYear(story?.created_at ?? object.created_at),

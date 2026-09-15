@@ -26,7 +26,7 @@ export const GLYPHS: Record<string, ReactNode> = {
       <circle cx="24" cy="37" r="1.4" />
     </>
   ),
-  "record players": (
+  "record-players": (
     <>
       <circle cx="24" cy="24" r="15" />
       <circle cx="24" cy="24" r="4" />

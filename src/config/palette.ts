@@ -20,7 +20,7 @@ export const AVATAR_TONES = [
 export const DUOTONES: Record<string, Duotone> = {
   cameras: { hue: "var(--color-duotone-cameras)", deep: "var(--color-duotone-cameras-deep)" },
   phones: { hue: "var(--color-duotone-phones)", deep: "var(--color-duotone-phones-deep)" },
-  "record players": {
+  "record-players": {
     hue: "var(--color-duotone-record-players)",
     deep: "var(--color-duotone-record-players-deep)",
   },
