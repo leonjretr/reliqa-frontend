@@ -1,6 +1,7 @@
 import { PAGES, STOCK, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn, formatYear, groupThousands } from "@/ui/utils";
@@ -63,7 +64,7 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
         right={`${totalCount} things`}
         back={category ? { href: PAGES.SEARCH, label: "categories" } : undefined}
       />
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain">
         <div className="px-4.5 pt-4 pb-1.5">
           <h1 className="text-heading leading-headline tracking-heading font-bold">
             {category?.name ?? "Things people kept"}
@@ -132,7 +133,7 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
           </div>
         </div>
       </div>
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
+      <GrainOverlay />
     </div>
   );
 };

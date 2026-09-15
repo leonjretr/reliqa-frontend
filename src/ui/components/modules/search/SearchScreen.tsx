@@ -26,7 +26,7 @@ export const SearchScreen = ({ categories, query }: SearchScreenProps) => {
           Nothing kept under “{query}”.
         </p>
       )}
-      <div className="kept-scroll grid min-h-0 flex-1 [scrollbar-gutter:stable] grid-cols-2 content-start gap-x-4 gap-y-7 overflow-y-auto overscroll-contain px-4 pt-5.5 pb-6">
+      <div className="kept-scroll grid min-h-0 flex-1 grid-cols-2 content-start gap-x-4 gap-y-7 overflow-y-auto overscroll-contain px-4 pt-5.5 pb-6">
         {categories.map((category, index) => (
           <Link
             key={category.slug}

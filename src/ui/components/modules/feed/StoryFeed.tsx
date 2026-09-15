@@ -16,6 +16,7 @@ import { loadFeedEntries } from "@/service/actions";
 import type { FeedEntry } from "@/service/types";
 import { LinesIcon, PlusIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { PhotoShade } from "@/ui/components/common/PhotoShade";
 import { cn, groupThousands } from "@/ui/utils";
 
 import { buildFeedCard, type FeedCard } from "./feedCard";
@@ -90,7 +91,7 @@ const Slide = ({
           className="absolute inset-0"
         />
       </motion.div>
-      <div className="photo-shade-feed absolute inset-0" />
+      <PhotoShade variant="feed" />
 
       <motion.div
         className="absolute right-3 bottom-33 flex flex-col items-center gap-5"
@@ -234,7 +235,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
     <div className="bg-night relative h-full w-full">
       <div
         ref={containerRef}
-        className="relative h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+        className="scrollbar-hidden relative h-full snap-y snap-mandatory overflow-y-auto"
       >
         {cards.map((card, index) => (
           <Slide key={card.objectId} card={card} index={index} containerRef={containerRef} />

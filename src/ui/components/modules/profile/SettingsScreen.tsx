@@ -12,6 +12,7 @@ import {
 import { routing } from "@/i18n";
 import { saveSettings, signOut } from "@/service/actions";
 import type { APICurrentUser, APILanguage } from "@/service/types";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn, formatKeeperName, formatYear, sendFormData, splitWords } from "@/ui/utils";
@@ -176,7 +177,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         back={{ href: keeperPath(user.username), label: "your shelf" }}
       />
 
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 pt-3.5 pb-6">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-4.5 pt-3.5 pb-6">
         <SectionLabel>profile</SectionLabel>
         <div className="flex items-center gap-4">
           <KeeperAvatar name={name} src={avatar} size={72} />
@@ -318,7 +319,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           keeper since {formatYear(user.created_at)} · reliqa
         </p>
       </div>
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
+      <GrainOverlay />
     </div>
   );
 };

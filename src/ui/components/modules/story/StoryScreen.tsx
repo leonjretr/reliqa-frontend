@@ -2,6 +2,7 @@ import { keeperPath, PAGES, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIStoryDetail } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { PhotoShade } from "@/ui/components/common/PhotoShade";
 import { formatKeeperName, formatYear, splitParagraphs } from "@/ui/utils";
 
 type StoryScreenProps = {
@@ -16,7 +17,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
 
   return (
     <div className="relative flex h-full flex-col">
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain">
         <div className="relative h-93">
           <KeptPhoto
             category={category}
@@ -24,7 +25,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
             alt={`${story.object.name} kept by ${keeperName}`}
             className="absolute inset-0"
           />
-          <div className="photo-shade-story absolute inset-0" />
+          <PhotoShade variant="story" />
           <Link href={PAGES.FEED} className="absolute top-3.75 left-4.5 no-underline">
             <span className="text-chalk font-kept-mono text-eyebrow tracking-widest uppercase">
               ← the feed

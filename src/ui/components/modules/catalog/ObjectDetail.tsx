@@ -5,9 +5,11 @@ import { useState } from "react";
 import { keeperPath, NOTE_SHADOWS, OBJECT_NOTES_SHOWN, PAGES, STOCK } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObject, APIStoryListItem } from "@/service/types";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
+import { keptButtonVariants } from "@/ui/components/common/KeptButton";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
-import { formatKeeperName, formatYear } from "@/ui/utils";
+import { cn, formatKeeperName, formatYear } from "@/ui/utils";
 
 const POSITIONS: [number, number, number][] = [
   [14, 18, -6],
@@ -39,7 +41,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
         right={`${object.stories_count} ${object.stories_count === 1 ? "story" : "stories"}`}
         back={{ href: PAGES.BROWSE, label: "the catalogue" }}
       />
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 pt-4 pb-6">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-4.5 pt-4 pb-6">
         <h1 className="text-display leading-display tracking-display mb-1.75 font-bold">
           {object.name}
         </h1>
@@ -117,14 +119,11 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
           ))}
         </div>
 
-        <Link
-          href={PAGES.ADD}
-          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood text-copy mt-4.5 flex h-13 w-full items-center justify-center gap-2.25 border font-semibold no-underline"
-        >
+        <Link href={PAGES.ADD} className={cn(keptButtonVariants(), "mt-4.5 no-underline")}>
           Stick your memory on
         </Link>
       </div>
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
+      <GrainOverlay />
     </div>
   );
 };

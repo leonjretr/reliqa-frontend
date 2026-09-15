@@ -1,3 +1,4 @@
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { cn, getInitials, pickTone } from "@/ui/utils";
 
 type KeeperAvatarProps = {
@@ -25,7 +26,7 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarPr
           {getInitials(name)}
         </span>
       )}
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-9 mix-blend-multiply" />
+      <GrainOverlay className="opacity-9" />
     </div>
   );
 };

@@ -36,7 +36,7 @@ export const CategorySearch = () => {
         onChange={(event) => setValue(event.target.value)}
         placeholder="a camera, a radio, a chair…"
         aria-label="Search categories"
-        className="text-ink placeholder:text-ink-soft text-copy min-w-0 flex-1 bg-transparent font-light outline-none placeholder:italic [&::-webkit-search-cancel-button]:hidden"
+        className="text-ink placeholder:text-ink-soft text-copy search-cancel-hidden min-w-0 flex-1 bg-transparent font-light outline-none placeholder:italic"
       />
     </label>
   );

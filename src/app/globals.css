@@ -264,6 +264,21 @@
   --ease-lift: cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility search-cancel-hidden {
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
 @utility photo-shade-feed {
   background-image: linear-gradient(
     to top,
@@ -320,6 +335,10 @@
     visibility: hidden;
     pointer-events: none;
   }
+}
+
+.kept-scroll {
+  scrollbar-gutter: stable;
 }
 
 .kept-scroll::-webkit-scrollbar {

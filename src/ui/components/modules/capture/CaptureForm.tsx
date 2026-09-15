@@ -12,8 +12,10 @@ import {
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
 import type { APICategoryListItem } from "@/service/types";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { CameraIcon } from "@/ui/components/common/icons";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
+import { PhotoShade } from "@/ui/components/common/PhotoShade";
 import { Spinner } from "@/ui/components/lib/shadcn/spinner";
 import { cn, countWords, sendFormData, yearsSince } from "@/ui/utils";
 
@@ -117,7 +119,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
         </div>
         <div className="bg-ink mt-2.25 h-px" />
       </div>
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 pt-3.5 pb-6">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-4.5 pt-3.5 pb-6">
         <div className="text-ink-faint font-kept-mono text-eyebrow tracking-widest uppercase">
           the thing
         </div>
@@ -284,7 +286,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
             alt="preview"
             className="absolute inset-0"
           />
-          <div className="photo-shade-preview absolute inset-0" />
+          <PhotoShade variant="preview" />
           <div className="absolute inset-x-0 bottom-0 px-3.5 pb-3.5">
             <div className="text-chalk/72 font-kept-mono text-eyebrow tracking-widest uppercase">
               {place || "—"} · {previous ? `${previous}’s` : arrival} · {year || "—"}
@@ -321,7 +323,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
           {isSubmitting ? "Keeping it…" : "Keep it"}
         </button>
       </div>
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
+      <GrainOverlay />
     </div>
   );
 };

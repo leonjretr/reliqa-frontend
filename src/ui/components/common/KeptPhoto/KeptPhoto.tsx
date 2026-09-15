@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
 import { DUOTONES, FALLBACK_DUOTONE } from "@/config";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { cn } from "@/ui/utils/shadcn";
 
 import { FALLBACK_GLYPH, GLYPH_STROKE, GLYPHS } from "./glyphs";
@@ -54,7 +55,7 @@ export const KeptPhoto = ({
         </div>
       )}
       {vignette && <div className="vignette pointer-events-none absolute inset-0" />}
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-9 mix-blend-multiply" />
+      <GrainOverlay className="opacity-9" />
     </div>
   );
 };

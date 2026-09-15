@@ -1,6 +1,7 @@
 import { PAGES, STOCK, storyPath, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
+import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { SettingsIcon } from "@/ui/components/common/icons";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { formatYear, getFirstName } from "@/ui/utils";
@@ -56,10 +57,10 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
             <SettingsIcon className="size-4.25" />
           </Link>
         )}
-        <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
+        <GrainOverlay />
       </header>
 
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 py-5">
+      <div className="kept-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-4.5 py-5">
         {keeper.bio && (
           <p className="text-ink-2 text-copy-lg mb-4.5 leading-normal font-light italic">
             {keeper.bio}
