@@ -12,6 +12,7 @@ export type APISettings = {
   is_push_enabled: boolean;
   is_email_enabled: boolean;
   is_private: boolean;
+  is_residence_visible: boolean;
 };
 
 export type APIUser = {
@@ -38,7 +39,7 @@ export type APIUserPublic = {
   first_name: string;
   last_name: string;
   bio: string;
-  residence: string;
+  residence: string | null;
   created_at: string;
 };
 

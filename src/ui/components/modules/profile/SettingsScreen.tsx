@@ -109,13 +109,13 @@ const joinedYear = (isoDate: string) => String(new Date(isoDate).getFullYear());
 export const SettingsScreen = ({ user }: SettingsScreenProps) => {
   const fullName = `${user.first_name} ${user.last_name}`.trim();
   const [name, setName] = useState(fullName || user.username);
-  const [place, setPlace] = useState("");
-  const [bio, setBio] = useState("");
+  const [place, setPlace] = useState(user.residence);
+  const [bio, setBio] = useState(user.bio);
   const [avatar, setAvatar] = useState<string | undefined>(user.avatar?.src);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [username, setUsername] = useState(user.username);
   const [visibility, setVisibility] = useState(user.settings.is_private ? "private" : "everyone");
-  const [showPlace, setShowPlace] = useState(true);
+  const [showPlace, setShowPlace] = useState(user.settings.is_residence_visible);
   const [notifyKept, setNotifyKept] = useState(user.settings.is_push_enabled);
   const [notifyThemes, setNotifyThemes] = useState(false);
   const [language, setLanguage] = useState<string>(user.settings.language);
@@ -148,6 +148,8 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
     profile.set("first_name", firstName ?? "");
     profile.set("last_name", rest.join(" "));
     profile.set("username", username);
+    profile.set("residence", place.trim());
+    profile.set("bio", bio.trim());
     if (avatarFile) {
       profile.set("avatar", avatarFile);
     }
@@ -157,6 +159,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
       saveSettings({
         language: language as APILanguage,
         is_private: visibility === "private",
+        is_residence_visible: showPlace,
         is_push_enabled: notifyKept,
       }),
     ]);

@@ -13,7 +13,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string; slug: string
     const fullName = `${currentUser.first_name} ${currentUser.last_name}`.trim();
     const keeper = {
       name: fullName || currentUser.username,
-      place: currentUser.residence,
+      place: currentUser.settings.is_residence_visible ? currentUser.residence : "",
       bio: currentUser.bio,
       avatar: currentUser.avatar?.src ?? undefined,
       since: String(new Date(currentUser.created_at).getFullYear()),
@@ -32,7 +32,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string; slug: string
   const fullName = `${publicUser.first_name} ${publicUser.last_name}`.trim();
   const keeper = {
     name: fullName || publicUser.username,
-    place: publicUser.residence,
+    place: publicUser.residence ?? "",
     bio: publicUser.bio,
     avatar: publicUser.avatar?.src ?? undefined,
     since: String(new Date(publicUser.created_at).getFullYear()),
