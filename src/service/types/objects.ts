@@ -56,6 +56,7 @@ export type APIObjectListItem = {
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];
+  attachments: APIAttachment[];
   created_at: string;
 };
 

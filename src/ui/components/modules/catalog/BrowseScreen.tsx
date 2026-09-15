@@ -102,6 +102,8 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
                 <div className="bg-chalk border-ink relative z-[1] flex items-center gap-[13px] rounded-[3px] border p-[11px]">
                   <KeptPhoto
                     category={object.categories[0]}
+                    src={object.attachments[0]?.file.src}
+                    alt={object.name}
                     className="border-ink h-[76px] w-[76px] flex-none border"
                   />
                   <div className="flex-1">
