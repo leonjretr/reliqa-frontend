@@ -1,4 +1,4 @@
-import { INITIALS_LENGTH } from "@/config";
+import { AVATAR_TONES, INITIALS_LENGTH } from "@/config";
 import { cn } from "@/ui/utils/shadcn";
 
 type KeeperAvatarProps = {
@@ -7,8 +7,6 @@ type KeeperAvatarProps = {
   size?: number;
   className?: string;
 };
-
-const TONES = ["#96382a", "#b3822c", "#63304a", "#4a5a33", "#3b4a55"];
 
 const initials = (name: string) =>
   name
@@ -21,7 +19,7 @@ const initials = (name: string) =>
 
 const toneFor = (name: string) => {
   const sum = [...name].reduce((total, char) => total + char.charCodeAt(0), 0);
-  return TONES[sum % TONES.length];
+  return AVATAR_TONES[sum % AVATAR_TONES.length];
 };
 
 export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarProps) => {
@@ -38,10 +36,7 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarPr
       {src ? (
         <img src={src} alt={name} className="absolute inset-0 h-full w-full object-cover" />
       ) : (
-        <span
-          className="font-bold tracking-[-0.02em] text-[#f6e9ee]"
-          style={{ fontSize: size * 0.4 }}
-        >
+        <span className="text-blush font-bold tracking-[-0.02em]" style={{ fontSize: size * 0.4 }}>
           {initials(name)}
         </span>
       )}

@@ -1,8 +1,7 @@
-import { PAGES, storyPath, thingPath } from "@/config";
+import { PAGES, STOCK, storyPath, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
-import { STOCK } from "@/ui/components/modules/feed";
 
 type ProfileKeeper = {
   name: string;
@@ -53,10 +52,10 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
 
   return (
     <div className="flex h-full flex-col">
-      <header className="torn-edge bg-plum relative flex flex-none items-end gap-[14px] px-[20px] pt-[26px] pb-[22px] text-[#f6e9ee]">
+      <header className="torn-edge bg-plum text-blush relative flex flex-none items-end gap-[14px] px-[20px] pt-[26px] pb-[22px]">
         <KeeperAvatar name={keeper.name} src={keeper.avatar} size={74} />
         <div className="min-w-0 flex-1 pb-[2px]">
-          <div className="font-kept-mono mb-[6px] text-[9px] tracking-[0.1em] text-[rgba(246,233,238,0.75)] uppercase">
+          <div className="font-kept-mono text-blush/75 mb-[6px] text-[9px] tracking-[0.1em] uppercase">
             keeper since {keeper.since}
             {keeper.place ? ` · ${keeper.place}` : ""}
           </div>
@@ -68,7 +67,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
           <Link
             href={PAGES.SETTINGS}
             aria-label="settings"
-            className="flex size-[34px] flex-none items-center justify-center self-start rounded-full border border-[rgba(246,233,238,0.3)] text-inherit no-underline"
+            className="border-blush/30 flex size-[34px] flex-none items-center justify-center self-start rounded-full border text-inherit no-underline"
           >
             {SettingsIcon}
           </Link>

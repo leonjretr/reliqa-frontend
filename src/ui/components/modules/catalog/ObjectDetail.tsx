@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 
-import { keeperPath, OBJECT_NOTES_SHOWN, PAGES } from "@/config";
+import { keeperPath, NOTE_SHADOWS, OBJECT_NOTES_SHOWN, PAGES, STOCK } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObject, APIStoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { STOCK } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { formatKeeperName } from "@/ui/utils";
 
@@ -75,9 +74,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
                   background: stock.bg,
                   color: stock.fg,
                   transform: `rotate(${rotate}deg) translateY(${isActive ? -16 : 0}px) scale(${isActive ? 1.04 : 1})`,
-                  boxShadow: isActive
-                    ? "0 16px 26px -10px rgba(31,26,21,.5)"
-                    : "0 2.5px 0 rgba(31,26,21,.2)",
+                  boxShadow: isActive ? NOTE_SHADOWS.RAISED : NOTE_SHADOWS.RESTING,
                   zIndex: isActive ? 9 : index + 1,
                 }}
               >

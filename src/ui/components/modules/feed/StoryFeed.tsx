@@ -35,7 +35,7 @@ const RailButton = ({
     <span
       className={cn(
         "text-chalk flex h-[44px] w-[44px] items-center justify-center rounded-full border backdrop-blur-[2px]",
-        filled ? "bg-oxblood border-oxblood" : "border-chalk/50 bg-[rgba(20,14,9,0.35)]",
+        filled ? "bg-oxblood border-oxblood" : "border-chalk/50 bg-night/35",
       )}
     >
       {glyph}
@@ -175,7 +175,7 @@ const Slide = ({
         )}
         {card.storyId && (
           <Link href={storyPath(card.storyId)} className="mt-[12px] inline-block no-underline">
-            <span className="font-kept-mono text-[9px] tracking-[0.1em] text-[#e6a94d] uppercase">
+            <span className="font-kept-mono text-honey text-[9px] tracking-[0.1em] uppercase">
               read the whole thing →
             </span>
           </Link>
@@ -183,7 +183,7 @@ const Slide = ({
       </motion.div>
 
       <motion.div
-        className="pointer-events-none absolute inset-0 z-[4] bg-[#140e09]"
+        className="bg-night pointer-events-none absolute inset-0 z-[4]"
         style={{ opacity: shade }}
       />
     </section>
@@ -249,7 +249,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
   if (cards.length === 0) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-[#140e09] px-[24px] text-center">
+      <div className="bg-night flex h-full w-full items-center justify-center px-[24px] text-center">
         <p className="text-chalk/72 font-kept-mono text-[11px] tracking-[0.1em] uppercase">
           Nothing kept yet. Be the first to add something.
         </p>
@@ -258,7 +258,7 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
   }
 
   return (
-    <div className="relative h-full w-full bg-[#140e09]">
+    <div className="bg-night relative h-full w-full">
       <div className="pointer-events-none absolute top-0 right-0 left-0 z-[6] bg-[linear-gradient(to_bottom,rgba(20,14,9,0.6)_0%,rgba(20,14,9,0)_100%)] px-[18px] pt-[14px] pb-[22px]">
         <span className="text-chalk text-[15px] font-bold">Reliqa</span>
       </div>

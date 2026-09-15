@@ -155,7 +155,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
                 alt="your object"
                 className="absolute inset-0"
               />
-              <span className="text-chalk font-kept-mono absolute right-[8px] bottom-[8px] bg-[rgba(20,14,9,0.6)] px-[8px] py-[5px] text-[9px] tracking-[0.1em] uppercase">
+              <span className="text-chalk font-kept-mono bg-night/60 absolute right-[8px] bottom-[8px] px-[8px] py-[5px] text-[9px] tracking-[0.1em] uppercase">
                 replace
               </span>
             </div>

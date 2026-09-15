@@ -18,7 +18,7 @@ type Props = React.ComponentProps<typeof Input> & {
 };
 
 const inputClassName =
-  "border-input focus-visible:border-primary aria-invalid:border-destructive text-auth-ink-700 placeholder:text-auth-ink-300 h-10 rounded-none border-0 border-b bg-transparent px-0 py-0 text-base shadow-none transition-shadow focus-visible:shadow-[0_1px_0_#b8874a] focus-visible:ring-0 aria-invalid:shadow-none aria-invalid:ring-0 md:text-base md:py-0";
+  "border-input focus-visible:border-primary aria-invalid:border-destructive text-auth-ink-700 placeholder:text-auth-ink-300 h-10 rounded-none border-0 border-b bg-transparent px-0 py-0 text-base shadow-none transition-shadow focus-visible:shadow-auth-focus focus-visible:ring-0 aria-invalid:shadow-none aria-invalid:ring-0 md:text-base md:py-0";
 
 const EyeIcon = () => (
   <svg

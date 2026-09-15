@@ -1,8 +1,8 @@
-import { PAGES, thingPath } from "@/config";
+import { PAGES, STOCK, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
-import { groupThousands, STOCK } from "@/ui/components/modules/feed";
+import { groupThousands } from "@/ui/components/modules/feed";
 import { ScreenHeader } from "@/ui/components/modules/navigation";
 import { cn } from "@/ui/utils/shadcn";
 

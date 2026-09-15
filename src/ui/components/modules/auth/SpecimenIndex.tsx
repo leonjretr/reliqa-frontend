@@ -34,7 +34,7 @@ export const SpecimenIndex = () => {
               className="border-auth-line-on-dark flex items-center gap-4 border-t py-3.5"
             >
               <div className="bg-auth-ink-700 flex h-16 w-[52px] flex-none items-center justify-center rounded-[3px]">
-                <span className="font-plex-mono text-[9px] tracking-[0.14em] text-[rgba(244,240,232,0.38)] uppercase">
+                <span className="font-plex-mono text-auth-text-on-dark/38 text-[9px] tracking-[0.14em] uppercase">
                   Photo
                 </span>
               </div>

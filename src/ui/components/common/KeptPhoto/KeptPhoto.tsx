@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
+import { DUOTONES, FALLBACK_DUOTONE } from "@/config";
 import { cn } from "@/ui/utils/shadcn";
 
 type KeptPhotoProps = {
@@ -10,27 +11,6 @@ type KeptPhotoProps = {
   className?: string;
   vignette?: boolean;
 };
-
-type Duotone = { hue: string; deep: string };
-
-const DUOTONES: Record<string, Duotone> = {
-  cameras: { hue: "#96382a", deep: "#241109" },
-  phones: { hue: "#3b4a55", deep: "#0f171c" },
-  "record players": { hue: "#63304a", deep: "#1c0c15" },
-  kitchen: { hue: "#b3822c", deep: "#2c1e07" },
-  sewing: { hue: "#4a5a33", deep: "#141c0d" },
-  radios: { hue: "#6f4a2e", deep: "#1c1109" },
-  books: { hue: "#6b4226", deep: "#180f08" },
-  clothing: { hue: "#3d5266", deep: "#0d141c" },
-  jewellery: { hue: "#9c7a2e", deep: "#241b08" },
-  letters: { hue: "#8f7c5c", deep: "#201c14" },
-  photographs: { hue: "#55483d", deep: "#140f0a" },
-  tableware: { hue: "#3f6b5c", deep: "#0d1a15" },
-  toys: { hue: "#bf5a2e", deep: "#2b1208" },
-  watches: { hue: "#7a6234", deep: "#1c1608" },
-};
-
-const FALLBACK: Duotone = { hue: "#6b5f53", deep: "#1b150f" };
 
 const glyphStroke = {
   fill: "none",
@@ -157,7 +137,7 @@ export const KeptPhoto = ({
   className,
   vignette = true,
 }: KeptPhotoProps) => {
-  const tone = (category && DUOTONES[category]) || FALLBACK;
+  const tone = (category && DUOTONES[category]) || FALLBACK_DUOTONE;
   const glyph = (category && GLYPHS[category]) || FALLBACK_GLYPH;
 
   return (
