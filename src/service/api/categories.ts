@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import { API_ENDPOINTS } from "@/config";
 import { APICategoryDetail, APICategoryListItem, APIPaginatedResponse } from "@/service/types";

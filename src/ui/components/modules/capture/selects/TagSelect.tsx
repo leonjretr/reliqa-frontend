@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
+import { searchTags } from "@/service/actions";
 import type { APITagListItem } from "@/service/types";
 import {
   Combobox,
@@ -15,7 +16,6 @@ import { useRemoteOptions } from "@/ui/hooks";
 import type { TagOption } from "@/ui/types";
 import { cn, slugify } from "@/ui/utils";
 
-import { fetchTagOptions } from "./fetchers";
 import { SelectItem } from "./SelectItem";
 import { SelectPopup } from "./SelectPopup";
 import {
@@ -54,7 +54,7 @@ export const TagSelect = ({ value, onChange }: Props) => {
 
   const { results, isPending } = useRemoteOptions({
     query: inputValue,
-    fetchOptions: fetchTagOptions,
+    fetchOptions: searchTags,
     initialOptions: NO_TAGS,
     onResults: rememberTags,
   });

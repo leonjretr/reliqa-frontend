@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import { API_ENDPOINTS, API_ORDERINGS } from "@/config";
 import {

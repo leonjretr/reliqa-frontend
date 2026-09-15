@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
+import { searchCategories } from "@/service/actions";
 import type { APICategoryListItem } from "@/service/types";
 import { Combobox, ComboboxInput, ComboboxInputGroup } from "@/ui/components/lib/shadcn";
 import { useRemoteOptions } from "@/ui/hooks";
 
-import { fetchCategoryOptions } from "./fetchers";
 import { SelectItem } from "./SelectItem";
 import { SelectPopup } from "./SelectPopup";
 import { SELECT_INPUT_CLASS_NAME, SELECT_INPUT_GROUP_CLASS_NAME } from "./styles";
@@ -24,7 +24,7 @@ export const CategorySelect = ({ categories, value, onChange }: Props) => {
   const [inputValue, setInputValue] = useState(() => findBySlug(categories, value)?.name ?? "");
   const { results, isPending } = useRemoteOptions({
     query: inputValue,
-    fetchOptions: fetchCategoryOptions,
+    fetchOptions: searchCategories,
     initialOptions: categories,
   });
 
