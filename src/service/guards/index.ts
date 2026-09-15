@@ -1,1 +1,1 @@
-export { requireSession, redirectSignedIn } from "./guards";
+export { requireSession, redirectSignedIn, requirePreferredLocale } from "./guards";

@@ -17,6 +17,7 @@ export {
   storyPath,
   keeperPath,
   storyAttachmentsRoute,
+  PATHNAME_HEADER,
 } from "./nav";
 export {
   SHORT_STORY_MAX_LENGTH,

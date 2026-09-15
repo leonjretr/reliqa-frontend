@@ -1,1 +1,1 @@
-export { applyPreferredLocale } from "./locale";
+export { applyPreferredLocale, readPreferredLocale } from "./locale";

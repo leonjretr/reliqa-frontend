@@ -10,7 +10,7 @@ import { splitFullName } from "./text";
 const PRIVATE_VISIBILITY: SettingsValues["visibility"] = "private";
 const PUBLIC_VISIBILITY: SettingsValues["visibility"] = "everyone";
 
-export const toSettingsValues = (user: APICurrentUser, locale: string): SettingsValues => ({
+export const toSettingsValues = (user: APICurrentUser): SettingsValues => ({
   name: formatKeeperName(user),
   place: user.residence,
   bio: user.bio,
@@ -20,7 +20,9 @@ export const toSettingsValues = (user: APICurrentUser, locale: string): Settings
   isPlaceVisible: user.settings.is_residence_visible,
   isNotifyingKept: user.settings.is_push_enabled,
   isNotifyingThemes: false,
-  language: hasLocale(ROUTING.locales, locale) ? locale : ROUTING.defaultLocale,
+  language: hasLocale(ROUTING.locales, user.settings.language)
+    ? user.settings.language
+    : ROUTING.defaultLocale,
 });
 
 export const toProfileFormData = (values: SettingsValues, hasNewAvatar: boolean) => {

@@ -30,7 +30,7 @@ export const SettingsForm = ({ user }: Props) => {
   const router = useRouter();
   const form = useForm<SettingsValues>({
     resolver: zodResolver(settingsSchema),
-    defaultValues: toSettingsValues(user, locale),
+    defaultValues: toSettingsValues(user),
   });
   const { formState, handleSubmit, reset, setError } = form;
   const { dirtyFields, errors, isDirty, isSubmitSuccessful, isSubmitting } = formState;

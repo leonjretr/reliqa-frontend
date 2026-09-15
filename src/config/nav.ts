@@ -26,6 +26,8 @@ export const storyPath = (id: string) => `${PAGES.STORY}/${id}`;
 
 export const keeperPath = (username: string) => `${PAGES.KEEPER}/${username}`;
 
+export const PATHNAME_HEADER = "x-pathname";
+
 export const ROUTE_HANDLERS = {
   CURRENT_USER: "/api/users/me",
 };

@@ -7,6 +7,7 @@ import "../globals.css";
 
 import { ONESIGNAL_APP_ID, ROUTING, UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
 import { loadCurrentUserId } from "@/service/actions";
+import { requirePreferredLocale } from "@/service/guards";
 import { OneSignalProvider, UmamiProvider } from "@/ui/components/common/providers";
 
 export const generateStaticParams = () => ROUTING.locales.map((locale) => ({ locale }));
@@ -29,6 +30,8 @@ const Layout = async ({ children, params }: LayoutProps<"/[locale]">) => {
   if (!hasLocale(ROUTING.locales, locale)) {
     notFound();
   }
+
+  await requirePreferredLocale(locale);
 
   const userId = await loadCurrentUserId();
 
