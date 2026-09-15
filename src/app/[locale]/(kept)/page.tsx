@@ -1,5 +1,5 @@
 import { loadFeedEntries } from "@/service/actions";
-import { requireSession } from "@/service/session";
+import { requireSession } from "@/service/guards";
 import { StoryFeed } from "@/ui/components/modules/feed";
 
 const Page = async ({ params }: PageProps<"/[locale]">) => {

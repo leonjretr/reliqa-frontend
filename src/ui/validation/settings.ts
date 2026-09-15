@@ -1,7 +1,6 @@
 import { z } from "zod";
 
-import { BIO_MAX_LENGTH } from "@/config";
-import { routing } from "@/i18n";
+import { BIO_MAX_LENGTH, ROUTING } from "@/config";
 
 export const VISIBILITIES = ["everyone", "private"] as const;
 
@@ -15,7 +14,7 @@ export const settingsSchema = z.object({
   isPlaceVisible: z.boolean(),
   isNotifyingKept: z.boolean(),
   isNotifyingThemes: z.boolean(),
-  language: z.enum(routing.locales),
+  language: z.enum(ROUTING.locales),
 });
 
 export type SettingsValues = z.infer<typeof settingsSchema>;

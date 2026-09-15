@@ -1,4 +1,4 @@
-import { redirectSignedIn } from "@/service/session";
+import { redirectSignedIn } from "@/service/guards";
 import { AuthCard } from "@/ui/components/modules/auth";
 
 const Page = async ({ params }: PageProps<"/[locale]/login">) => {

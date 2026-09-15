@@ -1,7 +1,8 @@
+import "server-only";
+
 import { PAGES } from "@/config";
 import { redirect } from "@/i18n";
-
-import { getSession } from "./session";
+import { getSession } from "@/service/session";
 
 export const requireSession = async (locale: string) => {
   const session = await getSession();

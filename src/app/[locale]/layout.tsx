@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 
 import "../globals.css";
 
-import { UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
-import { routing } from "@/i18n";
+import { ROUTING, UMAMI_URL, UMAMI_WEBSITE_ID } from "@/config";
 import { UmamiProvider } from "@/ui/components/common/providers";
 
-export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));
+export const generateStaticParams = () => ROUTING.locales.map((locale) => ({ locale }));
 
 export const generateMetadata = async ({
   params,
@@ -26,7 +25,7 @@ export const generateMetadata = async ({
 const Layout = async ({ children, params }: LayoutProps<"/[locale]">) => {
   const { locale } = await params;
 
-  if (!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(ROUTING.locales, locale)) {
     notFound();
   }
 

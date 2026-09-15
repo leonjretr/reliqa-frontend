@@ -1,15 +1,14 @@
 import { useTranslations } from "next-intl";
 import { Controller, useFormContext } from "react-hook-form";
 
-import { LOCALE_NAMES } from "@/config";
-import { routing } from "@/i18n";
+import { LOCALE_NAMES, ROUTING } from "@/config";
 import { KeptInput } from "@/ui/components/common/KeptInput";
 import { MonoLabel } from "@/ui/components/common/MonoLabel";
 import { Segmented } from "@/ui/components/common/Segmented";
 import { sanitizeUsername } from "@/ui/utils";
 import type { SettingsValues } from "@/ui/validation";
 
-const LANGUAGE_OPTIONS = routing.locales.map((locale) => ({
+const LANGUAGE_OPTIONS = ROUTING.locales.map((locale) => ({
   value: locale,
   label: LOCALE_NAMES[locale],
 }));

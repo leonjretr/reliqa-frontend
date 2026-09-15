@@ -1,7 +1,7 @@
 import { QUERIES } from "@/config";
 import { loadCaptureOptions } from "@/service/actions";
 import { getCurrentUser } from "@/service/api";
-import { requireSession } from "@/service/session";
+import { requireSession } from "@/service/guards";
 import { CaptureScreen } from "@/ui/components/modules/capture";
 import { formatKeeperName, getSearchParam } from "@/ui/utils";
 
