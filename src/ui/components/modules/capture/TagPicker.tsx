@@ -136,8 +136,8 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
       onValueChange={handleValueChange}
       onInputValueChange={setInputValue}
     >
-      <ComboboxInputGroup className="border-ink font-kept-mono rounded-none border-0 border-b bg-transparent px-0 py-[6px]">
-        <ComboboxChips className="gap-[6px]">
+      <ComboboxInputGroup className="border-ink font-kept-mono rounded-none border-0 border-b bg-transparent px-0 py-1.5">
+        <ComboboxChips className="gap-1.5">
           <ComboboxValue>
             {(chips: APITagListItem[]) => (
               <>
@@ -145,7 +145,7 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
                   <ComboboxChip
                     key={tag.slug}
                     aria-label={tag.slug}
-                    className="border-ink text-ink-2 focus-within:bg-ink focus-within:text-chalk rounded-none border bg-transparent text-[10.5px] tracking-[0.05em] lowercase"
+                    className="border-ink text-ink-2 focus-within:bg-ink focus-within:text-chalk text-caption rounded-none border bg-transparent tracking-wider lowercase"
                   >
                     {tag.slug}
                     <ComboboxChipRemove aria-label={`remove ${tag.slug}`}>×</ComboboxChipRemove>
@@ -153,7 +153,7 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
                 ))}
                 <ComboboxInput
                   placeholder={chips.length ? "" : "add a tag"}
-                  className="text-ink placeholder:text-ink-faint h-auto text-[15px] tracking-[0.02em] lowercase placeholder:font-light placeholder:italic"
+                  className="text-ink placeholder:text-ink-faint text-copy tracking-slight h-auto lowercase placeholder:font-light placeholder:italic"
                 />
               </>
             )}
@@ -166,10 +166,10 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
             aria-busy={isPending || undefined}
             className="border-ink bg-chalk font-kept-mono rounded-none shadow-none"
           >
-            <ComboboxStatus className="text-ink-faint text-[10.5px] tracking-[0.05em] lowercase">
+            <ComboboxStatus className="text-ink-faint text-caption tracking-wider lowercase">
               {isPending ? "searching…" : null}
             </ComboboxStatus>
-            <ComboboxEmpty className="text-ink-faint text-[10.5px] tracking-[0.05em] lowercase">
+            <ComboboxEmpty className="text-ink-faint text-caption tracking-wider lowercase">
               type to add a tag
             </ComboboxEmpty>
             <ComboboxList>
@@ -177,7 +177,7 @@ export const TagPicker = ({ value, onChange }: TagPickerProps) => {
                 <ComboboxItem
                   key={tag.id}
                   value={tag}
-                  className="text-ink-2 data-highlighted:bg-ink data-highlighted:text-chalk rounded-none text-[10.5px] tracking-[0.05em] lowercase"
+                  className="text-ink-2 data-highlighted:bg-ink data-highlighted:text-chalk text-caption rounded-none tracking-wider lowercase"
                 >
                   {tag.creatable ? `add "${tag.creatable}"` : tag.slug}
                 </ComboboxItem>

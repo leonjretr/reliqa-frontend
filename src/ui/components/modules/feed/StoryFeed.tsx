@@ -31,16 +31,16 @@ const RailButton = ({
   label: string;
   filled?: boolean;
 }) => (
-  <Link href={href} className="text-chalk flex flex-col items-center gap-[5px] no-underline">
+  <Link href={href} className="text-chalk flex flex-col items-center gap-1.25 no-underline">
     <span
       className={cn(
-        "text-chalk flex h-[44px] w-[44px] items-center justify-center rounded-full border backdrop-blur-[2px]",
+        "text-chalk backdrop-blur-veil flex h-11 w-11 items-center justify-center rounded-full border",
         filled ? "bg-oxblood border-oxblood" : "border-chalk/50 bg-night/35",
       )}
     >
       {glyph}
     </span>
-    <span className="text-chalk/72 font-kept-mono text-[8px] tracking-[0.1em] uppercase">
+    <span className="text-chalk/72 font-kept-mono text-micro tracking-widest uppercase">
       {label}
     </span>
   </Link>
@@ -80,7 +80,7 @@ const Slide = ({
       className="relative h-full w-full flex-none snap-start snap-always overflow-hidden"
     >
       <motion.div
-        className="absolute inset-x-0 -top-[12%] -bottom-[12%]"
+        className="-top-parallax -bottom-parallax absolute inset-x-0"
         style={isReducedMotion ? undefined : { y: photoY, scale: photoScale }}
       >
         <KeptPhoto
@@ -90,17 +90,17 @@ const Slide = ({
           className="absolute inset-0"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.5)_38%,rgba(20,14,9,0)_70%)]" />
+      <div className="photo-shade-feed absolute inset-0" />
 
       <motion.div
-        className="absolute right-[12px] bottom-[132px] z-[3] flex flex-col items-center gap-[20px]"
+        className="absolute right-3 bottom-33 flex flex-col items-center gap-5"
         style={{ opacity: copyOpacity, x: isReducedMotion ? 0 : railX }}
       >
-        <div className="flex flex-col items-center gap-[3px]">
-          <span className="text-chalk font-kept-mono text-[17px] font-medium lining-nums tabular-nums">
+        <div className="flex flex-col items-center gap-0.75">
+          <span className="text-chalk font-kept-mono text-field font-medium lining-nums tabular-nums">
             {groupThousands(card.viewCount)}
           </span>
-          <span className="text-chalk/72 font-kept-mono text-[8px] tracking-[0.1em] uppercase">
+          <span className="text-chalk/72 font-kept-mono text-micro tracking-widest uppercase">
             seen
           </span>
         </div>
@@ -143,39 +143,37 @@ const Slide = ({
       </motion.div>
 
       <motion.div
-        className="absolute right-[62px] bottom-[22px] left-0 z-[3] px-[18px]"
+        className="absolute right-15.5 bottom-5.5 left-0 px-4.5"
         style={{ opacity: copyOpacity, y: isReducedMotion ? 0 : copyY }}
       >
         {subtitle && (
-          <div className="text-chalk/72 font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+          <div className="text-chalk/72 font-kept-mono text-eyebrow tracking-widest uppercase">
             {subtitle}
           </div>
         )}
-        <div className="text-chalk mt-[6px] text-[26px] leading-[1.04] font-bold tracking-[-0.02em]">
+        <div className="text-chalk text-title-lg leading-title tracking-snug mt-1.5 font-bold">
           {card.name}
         </div>
         {tagLine && (
-          <div className="text-chalk/72 font-kept-mono mt-[4px] text-[9px] tracking-[0.1em] uppercase">
+          <div className="text-chalk/72 font-kept-mono text-eyebrow mt-1 tracking-widest uppercase">
             {tagLine}
           </div>
         )}
         {card.quote ? (
           <>
-            <p className="text-chalk mt-[12px] text-[19px] leading-[1.4] font-light">
-              “{card.quote}”
-            </p>
-            <div className="text-chalk/72 font-kept-mono mt-[6px] text-[9px] tracking-[0.1em] uppercase">
+            <p className="text-chalk text-quote leading-quote mt-3 font-light">“{card.quote}”</p>
+            <div className="text-chalk/72 font-kept-mono text-eyebrow mt-1.5 tracking-widest uppercase">
               — {card.keeperName}
             </div>
           </>
         ) : (
-          <p className="text-chalk/50 mt-[12px] text-[15px] leading-[1.4] font-light italic">
+          <p className="text-chalk/50 text-copy leading-quote mt-3 font-light italic">
             Nobody has told this object’s story yet.
           </p>
         )}
         {card.storyId && (
-          <Link href={storyPath(card.storyId)} className="mt-[12px] inline-block no-underline">
-            <span className="font-kept-mono text-honey text-[9px] tracking-[0.1em] uppercase">
+          <Link href={storyPath(card.storyId)} className="mt-3 inline-block no-underline">
+            <span className="font-kept-mono text-honey text-eyebrow tracking-widest uppercase">
               read the whole thing →
             </span>
           </Link>
@@ -183,7 +181,7 @@ const Slide = ({
       </motion.div>
 
       <motion.div
-        className="bg-night pointer-events-none absolute inset-0 z-[4]"
+        className="bg-night pointer-events-none absolute inset-0"
         style={{ opacity: shade }}
       />
     </section>
@@ -249,8 +247,8 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
   if (cards.length === 0) {
     return (
-      <div className="bg-night flex h-full w-full items-center justify-center px-[24px] text-center">
-        <p className="text-chalk/72 font-kept-mono text-[11px] tracking-[0.1em] uppercase">
+      <div className="bg-night flex h-full w-full items-center justify-center px-6 text-center">
+        <p className="text-chalk/72 font-kept-mono text-meta tracking-widest uppercase">
           Nothing kept yet. Be the first to add something.
         </p>
       </div>
@@ -259,10 +257,6 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
 
   return (
     <div className="bg-night relative h-full w-full">
-      <div className="pointer-events-none absolute top-0 right-0 left-0 z-[6] bg-[linear-gradient(to_bottom,rgba(20,14,9,0.6)_0%,rgba(20,14,9,0)_100%)] px-[18px] pt-[14px] pb-[22px]">
-        <span className="text-chalk text-[15px] font-bold">Reliqa</span>
-      </div>
-
       <div
         ref={containerRef}
         className="relative h-full snap-y snap-mandatory [scrollbar-width:none] overflow-y-auto [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
@@ -270,6 +264,10 @@ export const StoryFeed = ({ initialEntries }: { initialEntries: FeedEntry[] }) =
         {cards.map((card, index) => (
           <Slide key={card.id} card={card} index={index} containerRef={containerRef} />
         ))}
+      </div>
+
+      <div className="feed-top-fade pointer-events-none absolute top-0 right-0 left-0 px-4.5 pt-3.5 pb-5.5">
+        <span className="text-chalk text-copy font-bold">Reliqa</span>
       </div>
     </div>
   );

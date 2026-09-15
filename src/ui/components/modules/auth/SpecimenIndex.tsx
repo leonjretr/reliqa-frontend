@@ -15,16 +15,16 @@ export const SpecimenIndex = () => {
   return (
     <aside className="bg-auth-ink-900 hidden min-w-0 flex-col justify-between gap-10 px-10 py-11 lg:flex lg:w-1/2">
       <div className="flex flex-nowrap items-baseline justify-between gap-6">
-        <span className="text-auth-text-on-dark font-newsreader text-[26px] tracking-[-0.02em]">
+        <span className="text-auth-text-on-dark font-newsreader text-title-lg tracking-snug">
           Reliqa
         </span>
-        <span className="text-auth-text-on-dark-muted font-plex-mono text-[11px] tracking-[0.14em] whitespace-nowrap uppercase">
+        <span className="text-auth-text-on-dark-muted font-plex-mono text-meta tracking-spaced whitespace-nowrap uppercase">
           {t("KICKER")}
         </span>
       </div>
 
       <div className="flex flex-col gap-7">
-        <p className="text-auth-text-on-dark font-newsreader max-w-[520px] text-[26px] leading-[1.18] tracking-[-0.02em] text-pretty">
+        <p className="text-auth-text-on-dark font-newsreader max-w-promise text-title-lg leading-promise tracking-snug text-pretty">
           {t("PROMISE")}
         </p>
         <ul className="flex flex-col">
@@ -33,16 +33,16 @@ export const SpecimenIndex = () => {
               key={specimen.name}
               className="border-auth-line-on-dark flex items-center gap-4 border-t py-3.5"
             >
-              <div className="bg-auth-ink-700 flex h-16 w-[52px] flex-none items-center justify-center rounded-[3px]">
-                <span className="font-plex-mono text-auth-text-on-dark/38 text-[9px] tracking-[0.14em] uppercase">
+              <div className="bg-auth-ink-700 rounded-paper flex h-16 w-13 flex-none items-center justify-center">
+                <span className="font-plex-mono text-auth-text-on-dark/38 text-eyebrow tracking-spaced uppercase">
                   Photo
                 </span>
               </div>
-              <div className="flex min-w-0 flex-1 flex-col gap-[5px]">
+              <div className="flex min-w-0 flex-1 flex-col gap-1.25">
                 <span className="text-auth-text-on-dark font-newsreader text-lg">
                   {specimen.name}
                 </span>
-                <span className="text-auth-text-on-dark-muted font-plex-mono text-[11px] tracking-[0.1em] uppercase">
+                <span className="text-auth-text-on-dark-muted font-plex-mono text-meta tracking-widest uppercase">
                   {specimen.meta}
                 </span>
               </div>
@@ -51,11 +51,11 @@ export const SpecimenIndex = () => {
         </ul>
       </div>
 
-      <figure className="border-auth-line-on-dark flex max-w-[440px] flex-col gap-2.5 border-t pt-6">
-        <blockquote className="text-auth-paper-200 font-newsreader text-lg leading-[1.62] text-pretty">
+      <figure className="border-auth-line-on-dark max-w-quote flex flex-col gap-2.5 border-t pt-6">
+        <blockquote className="text-auth-paper-200 font-newsreader leading-reading text-lg text-pretty">
           {t("QUOTE")}
         </blockquote>
-        <figcaption className="text-auth-text-on-dark-muted font-plex-mono text-[11px] tracking-[0.1em] uppercase">
+        <figcaption className="text-auth-text-on-dark-muted font-plex-mono text-meta tracking-widest uppercase">
           {t("QUOTE_ATTRIBUTION")}
         </figcaption>
       </figure>

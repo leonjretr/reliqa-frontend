@@ -29,19 +29,19 @@ const saveProfile = async (profile: FormData): Promise<ActionResult> => {
 };
 
 const fieldClassName =
-  "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-[7px] pb-[6px] text-[17px] outline-none placeholder:font-light placeholder:italic";
+  "text-ink placeholder:text-ink-faint border-ink w-full border-0 border-b bg-transparent pt-1.75 pb-1.5 text-field outline-none placeholder:font-light placeholder:italic";
 
 const textareaClassName =
-  "text-ink placeholder:text-ink-faint bg-stock border-ink w-full resize-none border px-[12px] py-[11px] text-[15.5px] leading-[1.5] font-light outline-none placeholder:italic focus:bg-white";
+  "text-ink placeholder:text-ink-faint bg-stock border-ink w-full resize-none border px-3 py-2.75 text-reading leading-normal font-light outline-none placeholder:italic focus:bg-white";
 
 const SectionLabel = ({ children }: { children: ReactNode }) => (
-  <div className="text-ink-faint font-kept-mono mt-[24px] mb-[10px] text-[9px] tracking-[0.1em] uppercase">
+  <div className="text-ink-faint font-kept-mono text-eyebrow mt-6 mb-2.5 tracking-widest uppercase">
     {children}
   </div>
 );
 
 const FieldLabel = ({ children }: { children: ReactNode }) => (
-  <div className="text-ink-faint font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+  <div className="text-ink-faint font-kept-mono text-eyebrow tracking-widest uppercase">
     {children}
   </div>
 );
@@ -59,24 +59,22 @@ const Toggle = ({
 }) => (
   <button
     onClick={() => onChange(!checked)}
-    className="border-hair flex w-full items-center justify-between gap-[12px] border-b py-[13px] text-left last:border-b-0"
+    className="border-hair flex w-full items-center justify-between gap-3 border-b py-3.25 text-left last:border-b-0"
   >
     <span className="min-w-0">
-      <span className="block text-[15px] font-medium">{label}</span>
-      {hint && (
-        <span className="text-ink-3 mt-[2px] block text-[12.5px] leading-[1.4]">{hint}</span>
-      )}
+      <span className="text-copy block font-medium">{label}</span>
+      {hint && <span className="text-ink-3 text-hint leading-quote mt-0.5 block">{hint}</span>}
     </span>
     <span
       className={cn(
-        "relative h-[22px] w-[38px] flex-none rounded-full border transition-colors",
+        "relative h-5.5 w-9.5 flex-none rounded-full border transition-colors",
         checked ? "bg-oxblood border-oxblood" : "bg-stock-2 border-ink",
       )}
     >
       <span
         className={cn(
-          "bg-chalk absolute top-[2px] h-[16px] w-[16px] rounded-full transition-[left]",
-          checked ? "left-[18px]" : "left-[2px]",
+          "bg-chalk absolute top-0.5 h-4 w-4 rounded-full transition-[left]",
+          checked ? "left-4.5" : "left-0.5",
         )}
       />
     </span>
@@ -92,13 +90,13 @@ const Segmented = ({
   value: string;
   onChange: (next: string) => void;
 }) => (
-  <div className="border-ink flex overflow-hidden rounded-[3px] border">
+  <div className="border-ink rounded-paper flex overflow-hidden border">
     {options.map((option, index) => (
       <button
         key={option.value}
         onClick={() => onChange(option.value)}
         className={cn(
-          "font-kept-mono flex-1 px-[6px] py-[10px] text-[10.5px] tracking-[0.05em] lowercase",
+          "font-kept-mono text-caption flex-1 px-1.5 py-2.5 tracking-wider lowercase",
           index > 0 && "border-ink border-l",
           value === option.value ? "bg-ink text-chalk" : "text-ink-2 bg-transparent",
         )}
@@ -179,25 +177,24 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
 
   return (
     <div className="bg-chalk relative flex h-full w-full flex-col overflow-hidden">
-      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section="settings"
         back={{ href: keeperPath(user.username), label: "your shelf" }}
       />
 
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[14px] pb-[24px]">
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 pt-3.5 pb-6">
         <SectionLabel>profile</SectionLabel>
-        <div className="flex items-center gap-[16px]">
+        <div className="flex items-center gap-4">
           <KeeperAvatar name={name} src={avatar} size={72} />
           <label className="cursor-pointer">
             <input type="file" accept="image/*" onChange={handleAvatar} className="hidden" />
-            <span className="border-ink font-kept-mono inline-block border px-[12px] py-[9px] text-[10.5px] tracking-[0.05em] lowercase">
+            <span className="border-ink font-kept-mono text-caption inline-block border px-3 py-2.25 tracking-wider lowercase">
               change photo
             </span>
           </label>
         </div>
 
-        <div className="mt-[18px]">
+        <div className="mt-4.5">
           <FieldLabel>display name</FieldLabel>
           <input
             className={fieldClassName}
@@ -207,7 +204,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           />
         </div>
 
-        <div className="mt-[18px]">
+        <div className="mt-4.5">
           <FieldLabel>where you live</FieldLabel>
           <input
             className={fieldClassName}
@@ -217,20 +214,20 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           />
         </div>
 
-        <div className="mt-[18px] flex items-baseline justify-between">
+        <div className="mt-4.5 flex items-baseline justify-between">
           <FieldLabel>about you</FieldLabel>
           <span
             className={cn(
-              "font-kept-mono text-[11px] lining-nums tabular-nums",
+              "font-kept-mono text-meta lining-nums tabular-nums",
               remaining < CHARACTERS_LOW_THRESHOLD ? "text-oxblood" : "text-ink-faint",
             )}
           >
             {remaining}
           </span>
         </div>
-        <div className="mt-[6px]">
+        <div className="mt-1.5">
           <textarea
-            className={cn(textareaClassName, "h-[92px]")}
+            className={cn(textareaClassName, "h-23")}
             maxLength={BIO_MAX_LENGTH}
             value={bio}
             onChange={(event) => track(setBio)(event.target.value)}
@@ -238,7 +235,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           />
         </div>
 
-        <div className="bg-ink mt-[24px] h-px" />
+        <div className="bg-ink mt-6 h-px" />
 
         <SectionLabel>who sees your shelf</SectionLabel>
         <Segmented
@@ -249,7 +246,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           value={visibility}
           onChange={track(setVisibility)}
         />
-        <div className="mt-[6px]">
+        <div className="mt-1.5">
           <Toggle
             label="Show where you live"
             hint="Your city appears beside your name on your profile."
@@ -258,7 +255,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           />
         </div>
 
-        <div className="bg-ink mt-[18px] h-px" />
+        <div className="bg-ink mt-4.5 h-px" />
 
         <SectionLabel>notifications</SectionLabel>
         <div>
@@ -276,19 +273,19 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
           />
         </div>
 
-        <div className="bg-ink mt-[18px] h-px" />
+        <div className="bg-ink mt-4.5 h-px" />
 
         <SectionLabel>account</SectionLabel>
         <div>
           <FieldLabel>email</FieldLabel>
-          <div className="border-hair text-ink-3 flex items-center justify-between border-b pt-[7px] pb-[6px] text-[16px]">
+          <div className="border-hair text-ink-3 text-copy-lg flex items-center justify-between border-b pt-1.75 pb-1.5">
             <span>{user.email}</span>
-            <span className="text-ink-faint font-kept-mono text-[8.5px] tracking-[0.1em] uppercase">
+            <span className="text-ink-faint font-kept-mono text-stamp tracking-widest uppercase">
               locked
             </span>
           </div>
         </div>
-        <div className="mt-[18px]">
+        <div className="mt-4.5">
           <FieldLabel>username</FieldLabel>
           <input
             className={fieldClassName}
@@ -299,9 +296,9 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
             placeholder="username"
           />
         </div>
-        <div className="mt-[18px]">
+        <div className="mt-4.5">
           <FieldLabel>language</FieldLabel>
-          <div className="mt-[7px]">
+          <div className="mt-1.75">
             <Segmented options={LANGUAGE_OPTIONS} value={language} onChange={track(setLanguage)} />
           </div>
         </div>
@@ -309,7 +306,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[24px] flex h-[52px] w-full cursor-pointer items-center justify-center gap-[9px] border text-[15px] font-semibold disabled:opacity-60"
+          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood text-copy mt-6 flex h-13 w-full cursor-pointer items-center justify-center gap-2.25 border font-semibold disabled:opacity-60"
         >
           {isSaving ? "Saving…" : saved ? "Saved" : "Save changes"}
         </button>
@@ -317,16 +314,17 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
         <form action={signOut}>
           <button
             type="submit"
-            className="border-oxblood text-oxblood hover:bg-oxblood hover:text-chalk mt-[10px] flex h-[48px] w-full cursor-pointer items-center justify-center border text-[14px] font-semibold"
+            className="border-oxblood text-oxblood hover:bg-oxblood hover:text-chalk text-control mt-2.5 flex h-12 w-full cursor-pointer items-center justify-center border font-semibold"
           >
             Sign out
           </button>
         </form>
 
-        <p className="text-ink-faint font-kept-mono mt-[14px] text-center text-[10px] leading-[1.6] tracking-[0.05em] lowercase">
+        <p className="text-ink-faint font-kept-mono text-fine leading-note mt-3.5 text-center tracking-wider lowercase">
           keeper since {joinedYear(user.created_at)} · reliqa
         </p>
       </div>
+      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
     </div>
   );
 };

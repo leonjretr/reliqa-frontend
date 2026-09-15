@@ -192,6 +192,121 @@
   --shadow-auth-plate: 0 1px 0 rgba(11, 10, 9, 0.06), 0 1px 2px rgba(11, 10, 9, 0.05);
 }
 
+@theme {
+  --text-micro: 8px;
+  --text-stamp: 8.5px;
+  --text-eyebrow: 9px;
+  --text-fine: 10px;
+  --text-caption: 10.5px;
+  --text-meta: 11px;
+  --text-fact: 11.5px;
+  --text-note: 12px;
+  --text-hint: 12.5px;
+  --text-detail: 13px;
+  --text-aside: 13.5px;
+  --text-control: 14px;
+  --text-copy: 15px;
+  --text-reading: 15.5px;
+  --text-copy-lg: 16px;
+  --text-field: 17px;
+  --text-lede: 18px;
+  --text-quote: 19px;
+  --text-title-sm: 20px;
+  --text-title: 24px;
+  --text-title-lg: 26px;
+  --text-heading: 29px;
+  --text-heading-lg: 30px;
+  --text-display-sm: 33px;
+  --text-display: 46px;
+
+  --tracking-spaced: 0.14em;
+  --tracking-slight: 0.02em;
+  --tracking-snug: -0.02em;
+  --tracking-heading: -0.028em;
+  --tracking-display: -0.03em;
+  --tracking-brand: -0.005em;
+
+  --leading-display: 0.94;
+  --leading-heading: 1.02;
+  --leading-title: 1.04;
+  --leading-headline: 1.05;
+  --leading-card: 1.12;
+  --leading-card-lg: 1.15;
+  --leading-promise: 1.18;
+  --leading-lede: 1.38;
+  --leading-quote: 1.4;
+  --leading-quote-lg: 1.42;
+  --leading-subtitle: 1.45;
+  --leading-note: 1.6;
+  --leading-reading: 1.62;
+
+  --radius-paper: 3px;
+  --radius-button: 6px;
+
+  --shadow-card: 0 6px 14px -8px rgba(31, 26, 21, 0.4);
+  --shadow-avatar: 0 6px 14px -8px rgba(31, 26, 21, 0.5);
+  --shadow-print: 0 12px 20px -9px rgba(0, 0, 0, 0.45);
+  --shadow-pin: 0 2px 4px rgba(0, 0, 0, 0.45);
+  --shadow-phone: 0 22px 54px -18px rgba(40, 31, 22, 0.45);
+
+  --container-auth: 404px;
+  --container-phone: 420px;
+  --container-quote: 440px;
+  --container-promise: 520px;
+  --container-lede: 33ch;
+
+  --spacing-bar: 2.5px;
+  --spacing-bar-gap: 1.5px;
+  --spacing-parallax: 12%;
+  --spacing-phone-frame: min(864px, calc(100svh - 4rem));
+
+  --blur-veil: 2px;
+  --ease-lift: cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@utility photo-shade-feed {
+  background-image: linear-gradient(
+    to top,
+    rgba(20, 14, 9, 0.92) 0%,
+    rgba(20, 14, 9, 0.5) 38%,
+    rgba(20, 14, 9, 0) 70%
+  );
+}
+
+@utility photo-shade-story {
+  background-image: linear-gradient(
+    to top,
+    rgba(20, 14, 9, 0.92) 0%,
+    rgba(20, 14, 9, 0.35) 45%,
+    rgba(20, 14, 9, 0.35) 100%
+  );
+}
+
+@utility photo-shade-preview {
+  background-image: linear-gradient(
+    to top,
+    rgba(20, 14, 9, 0.92) 0%,
+    rgba(20, 14, 9, 0.4) 45%,
+    rgba(20, 14, 9, 0) 72%
+  );
+}
+
+@utility feed-top-fade {
+  background-image: linear-gradient(to bottom, rgba(20, 14, 9, 0.6) 0%, rgba(20, 14, 9, 0) 100%);
+}
+
+@utility vignette {
+  background-image: radial-gradient(
+    120% 100% at 50% 30%,
+    transparent 40%,
+    rgba(20, 14, 9, 0.55) 100%
+  );
+}
+
+@utility pin-head {
+  background-image: radial-gradient(circle at 35% 30%, #f4b4a8, #b8402a 70%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

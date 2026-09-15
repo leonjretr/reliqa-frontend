@@ -45,10 +45,10 @@ export const SigninForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[26px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6.5">
       <AuthHeading title={t("TITLE_SIGNIN")} subtitle={t("SUBTITLE_SIGNIN")} />
 
-      <FieldGroup className="gap-[22px]">
+      <FieldGroup className="gap-5.5">
         <AuthField
           id="signin-email"
           label={t("LABEL_EMAIL")}
@@ -76,7 +76,7 @@ export const SigninForm = () => {
             id="signin-remember"
             checked={remember}
             onCheckedChange={setRemember}
-            className="border-auth-line-strong data-[checked]:border-auth-brass-600 size-[18px] rounded-[3px]"
+            className="border-auth-line-strong data-[checked]:border-auth-brass-600 rounded-paper size-4.5"
           />
           <Label
             htmlFor="signin-remember"
@@ -95,13 +95,13 @@ export const SigninForm = () => {
         </Button>
       </div>
 
-      <FieldError errors={[formState.errors.root]} className="text-[12px]" />
+      <FieldError errors={[formState.errors.root]} className="text-note" />
 
       <div className="flex flex-col gap-3.5">
         <Button
           type="submit"
           disabled={formState.isSubmitting}
-          className="hover:bg-auth-brass-600 h-[52px] rounded-[6px] text-base font-medium active:scale-[0.97]"
+          className="hover:bg-auth-brass-600 rounded-button h-13 text-base font-medium active:scale-97"
         >
           {formState.isSubmitting && <Spinner />}
           {formState.isSubmitting ? t("BUTTON_SIGNIN_LOADING") : t("BUTTON_SIGNIN")}
@@ -110,7 +110,7 @@ export const SigninForm = () => {
           type="button"
           variant="outline"
           disabled
-          className="border-auth-line-strong text-auth-ink-700 hover:bg-auth-ghost-hover h-11 rounded-[6px] text-sm font-medium"
+          className="border-auth-line-strong text-auth-ink-700 hover:bg-auth-ghost-hover rounded-button h-11 text-sm font-medium"
         >
           {t("BUTTON_MAGIC_LINK")}
         </Button>

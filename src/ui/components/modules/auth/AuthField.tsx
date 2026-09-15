@@ -28,7 +28,7 @@ const EyeIcon = () => (
     strokeWidth="1.75"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="size-[17px]"
+    className="size-4.25"
     aria-hidden="true"
   >
     <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
@@ -44,7 +44,7 @@ const EyeOffIcon = () => (
     strokeWidth="1.75"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="size-[17px]"
+    className="size-4.25"
     aria-hidden="true"
   >
     <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
@@ -59,10 +59,10 @@ export const AuthField = ({ id, label, error, revealable, toggleLabel, type, ...
   const resolvedType = revealable ? (revealed ? "text" : "password") : type;
 
   return (
-    <Field className="gap-[7px]">
+    <Field className="gap-1.75">
       <Label
         htmlFor={id}
-        className="text-muted-foreground font-plex-mono text-[11px] tracking-[0.14em] uppercase"
+        className="text-muted-foreground font-plex-mono text-meta tracking-spaced uppercase"
       >
         {label}
       </Label>
@@ -81,7 +81,7 @@ export const AuthField = ({ id, label, error, revealable, toggleLabel, type, ...
             size="icon"
             aria-label={toggleLabel}
             onClick={() => setRevealed((current) => !current)}
-            className="text-auth-ink-300 hover:bg-auth-ghost-hover hover:text-auth-ink-700 absolute top-[3px] right-0 size-8 rounded-full"
+            className="text-auth-ink-300 hover:bg-auth-ghost-hover hover:text-auth-ink-700 absolute top-0.75 right-0 size-8 rounded-full"
           >
             {revealed ? <EyeOffIcon /> : <EyeIcon />}
           </Button>
@@ -89,7 +89,7 @@ export const AuthField = ({ id, label, error, revealable, toggleLabel, type, ...
       ) : (
         <Input id={id} type={type} aria-invalid={!!error} className={inputClassName} {...props} />
       )}
-      <FieldError errors={[error]} className="text-[12px]" />
+      <FieldError errors={[error]} className="text-note" />
     </Field>
   );
 };

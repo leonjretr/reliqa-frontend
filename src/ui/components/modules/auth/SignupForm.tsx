@@ -41,10 +41,10 @@ export const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[26px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6.5">
       <AuthHeading title={t("TITLE_SIGNUP")} subtitle={t("SUBTITLE_SIGNUP")} />
 
-      <FieldGroup className="gap-[22px]">
+      <FieldGroup className="gap-5.5">
         <AuthField
           id="signup-name"
           label={t("LABEL_NAME")}
@@ -75,18 +75,18 @@ export const SignupForm = () => {
         />
       </FieldGroup>
 
-      <FieldError errors={[formState.errors.root]} className="text-[12px]" />
+      <FieldError errors={[formState.errors.root]} className="text-note" />
 
       <div className="flex flex-col gap-3.5">
         <Button
           type="submit"
           disabled={formState.isSubmitting}
-          className="hover:bg-auth-brass-600 h-[52px] rounded-[6px] text-base font-medium active:scale-[0.97]"
+          className="hover:bg-auth-brass-600 rounded-button h-13 text-base font-medium active:scale-97"
         >
           {formState.isSubmitting && <Spinner />}
           {formState.isSubmitting ? t("BUTTON_SIGNUP_LOADING") : t("BUTTON_SIGNUP")}
         </Button>
-        <p className="text-muted-foreground text-center text-xs leading-[1.45]">
+        <p className="text-muted-foreground leading-subtitle text-center text-xs">
           {t.rich("TERMS", {
             terms: (chunks) => (
               <span className="text-auth-brass-700 underline underline-offset-2">{chunks}</span>

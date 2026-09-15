@@ -13,7 +13,7 @@ import { SpecimenIndex } from "./SpecimenIndex";
 type Mode = "signin" | "signup";
 
 const triggerClassName = cn(
-  "text-auth-ink-300 h-auto flex-none rounded-none border-0 border-b-2 font-plex-mono border-transparent px-0 pb-2.5 text-xs tracking-[0.14em] uppercase transition-colors",
+  "text-auth-ink-300 h-auto flex-none rounded-none border-0 border-b-2 font-plex-mono border-transparent px-0 pb-2.5 text-xs tracking-spaced uppercase transition-colors",
   "data-active:border-auth-brass-500 data-active:text-auth-ink-900 data-active:bg-transparent",
 );
 
@@ -26,12 +26,12 @@ export const AuthCard = () => {
       <SpecimenIndex />
 
       <div className="bg-auth-paper-50 shadow-auth-sheet flex min-w-0 flex-1 flex-col justify-center px-6 py-12 lg:w-1/2 lg:px-12">
-        <div className="mx-auto flex w-full max-w-[404px] flex-col gap-[22px]">
-          <div className="border-auth-line-hairline flex items-center justify-between gap-4 border-b pb-[18px]">
-            <span className="text-muted-foreground font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+        <div className="max-w-auth mx-auto flex w-full flex-col gap-5.5">
+          <div className="border-auth-line-hairline flex items-center justify-between gap-4 border-b pb-4.5">
+            <span className="text-muted-foreground font-plex-mono text-meta tracking-spaced uppercase">
               {t("READERS_CARD")}
             </span>
-            <span className="text-auth-ink-300 font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+            <span className="text-auth-ink-300 font-plex-mono text-meta tracking-spaced uppercase">
               {t("RECORDS_COUNT")}
             </span>
           </div>

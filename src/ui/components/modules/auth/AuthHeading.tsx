@@ -6,10 +6,10 @@ type Props = {
 export const AuthHeading = ({ title, subtitle }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-auth-ink-900 font-newsreader text-[33px] leading-[1.04] tracking-[-0.02em]">
+      <h1 className="text-auth-ink-900 font-newsreader text-display-sm leading-title tracking-snug">
         {title}
       </h1>
-      <p className="text-muted-foreground text-sm leading-[1.45]">{subtitle}</p>
+      <p className="text-muted-foreground leading-subtitle text-sm">{subtitle}</p>
     </div>
   );
 };

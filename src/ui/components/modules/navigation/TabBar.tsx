@@ -103,17 +103,17 @@ export const TabBar = ({ profileSlug = null }: { profileSlug?: string | null }) 
             <Link
               key={tab.href}
               href={tab.href}
-              className="text-chalk flex flex-1 flex-col items-center justify-center gap-1 pt-2 pb-[9px] no-underline"
+              className="text-chalk flex flex-1 flex-col items-center justify-center gap-1 pt-2 pb-2.25 no-underline"
             >
               <span
                 className={cn(
-                  "text-chalk flex h-[34px] w-[34px] items-center justify-center border",
+                  "text-chalk flex h-8.5 w-8.5 items-center justify-center border",
                   isActive ? "bg-oxblood border-oxblood" : "bg-ink border-ink",
                 )}
               >
                 {tab.icon}
               </span>
-              <span className="text-ink-soft font-kept-mono text-[8px] tracking-[0.1em] uppercase">
+              <span className="text-ink-soft font-kept-mono text-micro tracking-widest uppercase">
                 {tab.label}
               </span>
             </Link>
@@ -124,14 +124,14 @@ export const TabBar = ({ profileSlug = null }: { profileSlug?: string | null }) 
             key={tab.href}
             href={tab.href}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center gap-[5px] pt-[9px] pb-[10px] no-underline",
+              "flex flex-1 flex-col items-center justify-center gap-1.25 pt-2.25 pb-2.5 no-underline",
               isActive ? "text-ink" : "text-ink-faint",
             )}
           >
             {tab.icon}
             <span
               className={cn(
-                "font-kept-mono text-[8px] tracking-[0.1em] uppercase",
+                "font-kept-mono text-micro tracking-widest uppercase",
                 isActive ? "text-oxblood" : "text-ink-faint",
               )}
             >

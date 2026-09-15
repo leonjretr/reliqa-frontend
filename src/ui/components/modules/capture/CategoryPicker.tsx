@@ -69,10 +69,10 @@ export const CategoryPicker = ({ categories, value, onChange }: CategoryPickerPr
       onValueChange={(next) => onChange(next?.slug ?? "")}
       onInputValueChange={setInputValue}
     >
-      <ComboboxInputGroup className="border-ink font-kept-mono rounded-none border-0 border-b bg-transparent px-0 py-[6px]">
+      <ComboboxInputGroup className="border-ink font-kept-mono rounded-none border-0 border-b bg-transparent px-0 py-1.5">
         <ComboboxInput
           placeholder="search categories"
-          className="text-ink placeholder:text-ink-faint h-auto text-[15px] tracking-[0.02em] lowercase placeholder:font-light placeholder:italic"
+          className="text-ink placeholder:text-ink-faint text-copy tracking-slight h-auto lowercase placeholder:font-light placeholder:italic"
         />
       </ComboboxInputGroup>
       <ComboboxPortal>
@@ -81,10 +81,10 @@ export const CategoryPicker = ({ categories, value, onChange }: CategoryPickerPr
             aria-busy={isPending || undefined}
             className="border-ink bg-chalk font-kept-mono rounded-none shadow-none"
           >
-            <ComboboxStatus className="text-ink-faint text-[10.5px] tracking-[0.05em] lowercase">
+            <ComboboxStatus className="text-ink-faint text-caption tracking-wider lowercase">
               {isPending ? "searching…" : null}
             </ComboboxStatus>
-            <ComboboxEmpty className="text-ink-faint text-[10.5px] tracking-[0.05em] lowercase">
+            <ComboboxEmpty className="text-ink-faint text-caption tracking-wider lowercase">
               no categories found
             </ComboboxEmpty>
             <ComboboxList>
@@ -92,7 +92,7 @@ export const CategoryPicker = ({ categories, value, onChange }: CategoryPickerPr
                 <ComboboxItem
                   key={category.id}
                   value={category}
-                  className="text-ink-2 data-highlighted:bg-ink data-highlighted:text-chalk rounded-none text-[10.5px] tracking-[0.05em] lowercase"
+                  className="text-ink-2 data-highlighted:bg-ink data-highlighted:text-chalk text-caption rounded-none tracking-wider lowercase"
                 >
                   {category.name}
                 </ComboboxItem>

@@ -30,19 +30,16 @@ const DecadesBand = () => {
         return (
           <div
             key={decade.label}
-            className="bg-chalk flex flex-1 flex-col items-center gap-[5px] pt-[7px] pb-[6px]"
+            className="bg-chalk flex flex-1 flex-col items-center gap-1.25 pt-1.75 pb-1.5"
           >
-            <div className="flex h-[30px] flex-col-reverse justify-start gap-[1.5px]">
+            <div className="gap-bar-gap flex h-7.5 flex-col-reverse justify-start">
               {Array.from({ length: bars }).map((_, index) => (
-                <div
-                  key={index}
-                  className={cn("h-[2.5px] w-[16px]", isPeak ? "bg-oxblood" : "bg-ink-2")}
-                />
+                <div key={index} className={cn("h-bar w-4", isPeak ? "bg-oxblood" : "bg-ink-2")} />
               ))}
             </div>
             <span
               className={cn(
-                "font-kept-mono text-[8px] tracking-[0.1em] uppercase",
+                "font-kept-mono text-micro tracking-widest uppercase",
                 isPeak ? "text-oxblood" : "text-ink-faint",
               )}
             >
@@ -64,34 +61,33 @@ type BrowseScreenProps = {
 export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProps) => {
   return (
     <div className="relative flex h-full flex-col">
-      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section={category?.name ?? "the catalogue"}
         right={`${totalCount} things`}
         back={category ? { href: PAGES.SEARCH, label: "categories" } : undefined}
       />
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
-        <div className="px-[18px] pt-[16px] pb-[6px]">
-          <h1 className="text-[29px] leading-[1.05] font-bold tracking-[-0.028em]">
+        <div className="px-4.5 pt-4 pb-1.5">
+          <h1 className="text-heading leading-headline tracking-heading font-bold">
             {category?.name ?? "Things people kept"}
           </h1>
-          <div className="text-ink-faint font-kept-mono mt-[7px] text-[9px] tracking-[0.1em] uppercase">
+          <div className="text-ink-faint font-kept-mono text-eyebrow mt-1.75 tracking-widest uppercase">
             {groupThousands(totalCount)} {totalCount === 1 ? "thing" : "things"} kept so far
           </div>
         </div>
-        <div className="flex flex-col gap-[18px] px-[18px] pt-[12px] pb-[22px]">
+        <div className="flex flex-col gap-4.5 px-4.5 pt-3 pb-5.5">
           {objects.map((object, objectIndex) => {
             const layers = Math.min(4, Math.round(object.stories_count / 24) + 1);
             return (
               <Link
                 key={object.id}
                 href={thingPath(object.id)}
-                className="relative pb-[26px] text-inherit no-underline"
+                className="relative pb-6.5 text-inherit no-underline"
               >
                 {Array.from({ length: layers }).map((_, layer) => (
                   <div
                     key={layer}
-                    className="border-ink absolute z-0 h-[12px] rounded-[3px] border"
+                    className="border-ink rounded-paper absolute h-3 border"
                     style={{
                       left: 7 + layer * 5,
                       right: 7 + layer * 5,
@@ -100,21 +96,21 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
                     }}
                   />
                 ))}
-                <div className="bg-chalk border-ink relative z-[1] flex items-center gap-[13px] rounded-[3px] border p-[11px]">
+                <div className="bg-chalk border-ink rounded-paper relative flex items-center gap-3.25 border p-2.75">
                   <KeptPhoto
                     category={object.categories[0]}
                     src={object.attachments[0]?.file.src}
                     alt={object.name}
-                    className="border-ink h-[76px] w-[76px] flex-none border"
+                    className="border-ink h-19 w-19 flex-none border"
                   />
                   <div className="flex-1">
-                    <div className="text-ink-faint font-kept-mono mb-[4px] text-[8px] tracking-[0.1em] uppercase">
+                    <div className="text-ink-faint font-kept-mono text-micro mb-1 tracking-widest uppercase">
                       {object.categories[0] ?? ""} · {yearOf(object.created_at)}
                     </div>
-                    <div className="text-[24px] leading-none font-bold tracking-[-0.02em]">
+                    <div className="text-title tracking-snug leading-none font-bold">
                       {object.name}
                     </div>
-                    <div className="text-oxblood mt-[6px] text-[13px] font-semibold">
+                    <div className="text-oxblood text-detail mt-1.5 font-semibold">
                       {object.stories_count} kept one
                     </div>
                   </div>
@@ -123,8 +119,8 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
             );
           })}
           {objects.length === 0 && (
-            <div className="border-hair rounded-[3px] border border-dashed px-[16px] py-[26px] text-center">
-              <p className="text-ink-3 text-[15px] leading-[1.5] font-light">
+            <div className="border-hair rounded-paper border border-dashed px-4 py-6.5 text-center">
+              <p className="text-ink-3 text-copy leading-normal font-light">
                 {category
                   ? `Nothing kept in ${category.name.toLowerCase()} yet.`
                   : "Nothing kept yet."}
@@ -132,13 +128,14 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
             </div>
           )}
           <div>
-            <div className="text-ink-faint font-kept-mono mb-[8px] text-[9px] tracking-[0.1em] uppercase">
+            <div className="text-ink-faint font-kept-mono text-eyebrow mb-2 tracking-widest uppercase">
               when the memories happened
             </div>
             <DecadesBand />
           </div>
         </div>
       </div>
+      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
     </div>
   );
 };

@@ -36,23 +36,22 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
 
   return (
     <div className="relative flex h-full flex-col">
-      <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section={category?.name ?? "kept thing"}
         right={`${object.stories_count} ${object.stories_count === 1 ? "story" : "stories"}`}
         back={{ href: PAGES.BROWSE, label: "the catalogue" }}
       />
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[16px] pb-[24px]">
-        <h1 className="mb-[7px] text-[46px] leading-[0.94] font-bold tracking-[-0.03em]">
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 pt-4 pb-6">
+        <h1 className="text-display leading-display tracking-display mb-1.75 font-bold">
           {object.name}
         </h1>
         {object.description && (
-          <p className="text-ink-2 mb-[15px] max-w-[33ch] text-[18px] leading-[1.38] font-light italic">
+          <p className="text-ink-2 max-w-lede text-lede leading-lede mb-3.75 font-light italic">
             {object.description}
           </p>
         )}
 
-        <div className="border-ink relative h-[398px] border">
+        <div className="border-ink relative isolate h-99.5 border">
           <KeptPhoto
             category={category?.slug}
             src={object.attachments[0]?.file.src ?? undefined}
@@ -67,7 +66,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
               <button
                 key={story.id}
                 onClick={() => setOpen(isActive ? null : index)}
-                className="border-ink absolute w-[174px] cursor-pointer rounded-[3px] border px-[12px] pt-[10px] pb-[11px] text-left transition-[transform,box-shadow] duration-[340ms] ease-[cubic-bezier(0.2,0.9,0.2,1)]"
+                className="border-ink rounded-paper ease-lift absolute w-43.5 cursor-pointer border px-3 pt-2.5 pb-2.75 text-left transition-[transform,box-shadow] duration-340"
                 style={{
                   left: x,
                   top: y,
@@ -78,20 +77,20 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
                   zIndex: isActive ? 9 : index + 1,
                 }}
               >
-                <div className="mb-[3px] flex items-baseline justify-between opacity-[0.76]">
-                  <span className="font-kept-mono text-[8.5px] tracking-[0.1em] uppercase lining-nums tabular-nums">
+                <div className="mb-0.75 flex items-baseline justify-between opacity-76">
+                  <span className="font-kept-mono text-stamp tracking-widest uppercase lining-nums tabular-nums">
                     {yearOf(story.created_at)}
                   </span>
                 </div>
-                <div className="text-[16px] leading-[1.12] font-semibold">{keeperName}</div>
+                <div className="text-copy-lg leading-card font-semibold">{keeperName}</div>
                 {isActive && (
                   <>
-                    <p className="mt-[8px] text-[13.5px] leading-[1.42] font-light">
+                    <p className="text-aside leading-quote-lg mt-2 font-light">
                       {story.short_story || "—"}
                     </p>
                     <Link
                       href={keeperPath(story.created_by.username)}
-                      className="font-kept-mono mt-[8px] inline-block text-[9px] tracking-[0.1em] uppercase"
+                      className="font-kept-mono text-eyebrow mt-2 inline-block tracking-widest uppercase"
                     >
                       their shelf →
                     </Link>
@@ -100,20 +99,20 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
               </button>
             );
           })}
-          <div className="bg-ink text-chalk absolute -bottom-px -left-px px-[10px] pt-[6px] pb-[5px]">
-            <span className="text-chalk font-kept-mono text-[9px] tracking-[0.1em] uppercase">
+          <div className="bg-ink text-chalk absolute -bottom-px -left-px px-2.5 pt-1.5 pb-1.25">
+            <span className="text-chalk font-kept-mono text-eyebrow tracking-widest uppercase">
               {object.stories_count} {object.stories_count === 1 ? "story" : "stories"} stuck on
             </span>
           </div>
         </div>
 
-        <div className="bg-ink border-ink mt-[13px] grid grid-cols-3 gap-px border">
+        <div className="bg-ink border-ink mt-3.25 grid grid-cols-3 gap-px border">
           {facts.map((fact) => (
-            <div key={fact.label} className="bg-chalk px-[10px] py-[8px]">
-              <div className="text-ink-faint font-kept-mono mb-[3px] text-[8px] tracking-[0.1em] uppercase">
+            <div key={fact.label} className="bg-chalk px-2.5 py-2">
+              <div className="text-ink-faint font-kept-mono text-micro mb-0.75 tracking-widest uppercase">
                 {fact.label}
               </div>
-              <div className="font-kept-mono text-[11.5px] font-medium lining-nums tabular-nums">
+              <div className="font-kept-mono text-fact font-medium lining-nums tabular-nums">
                 {fact.value}
               </div>
             </div>
@@ -122,11 +121,12 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
 
         <Link
           href={PAGES.ADD}
-          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[18px] flex h-[52px] w-full items-center justify-center gap-[9px] border text-[15px] font-semibold no-underline"
+          className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood text-copy mt-4.5 flex h-13 w-full items-center justify-center gap-2.25 border font-semibold no-underline"
         >
           Stick your memory on
         </Link>
       </div>
+      <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
     </div>
   );
 };

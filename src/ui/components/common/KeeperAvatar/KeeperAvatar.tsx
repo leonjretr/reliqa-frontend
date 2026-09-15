@@ -28,7 +28,7 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarPr
   return (
     <div
       className={cn(
-        "border-ink relative flex flex-none items-center justify-center overflow-hidden rounded-full border shadow-[0_6px_14px_-8px_rgba(31,26,21,0.5)]",
+        "border-ink shadow-avatar relative flex flex-none items-center justify-center overflow-hidden rounded-full border",
         className,
       )}
       style={{ width: size, height: size, background: tone }}
@@ -36,11 +36,11 @@ export const KeeperAvatar = ({ name, src, size = 64, className }: KeeperAvatarPr
       {src ? (
         <img src={src} alt={name} className="absolute inset-0 h-full w-full object-cover" />
       ) : (
-        <span className="text-blush font-bold tracking-[-0.02em]" style={{ fontSize: size * 0.4 }}>
+        <span className="text-blush tracking-snug font-bold" style={{ fontSize: size * 0.4 }}>
           {initials(name)}
         </span>
       )}
-      <div className="grain-texture pointer-events-none absolute inset-0 opacity-[0.09] mix-blend-multiply" />
+      <div className="grain-texture pointer-events-none absolute inset-0 opacity-9 mix-blend-multiply" />
     </div>
   );
 };

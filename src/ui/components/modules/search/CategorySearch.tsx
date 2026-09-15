@@ -27,7 +27,7 @@ export const CategorySearch = () => {
   }, [debouncedQuery, pathname, router]);
 
   return (
-    <label className="bg-chalk border-ink flex items-center gap-[8px] rounded-[3px] border px-[13px] py-[11px] shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]">
+    <label className="bg-chalk border-ink rounded-paper shadow-card flex items-center gap-2 border px-3.25 py-2.75">
       <svg
         width="16"
         height="16"
@@ -46,7 +46,7 @@ export const CategorySearch = () => {
         onChange={(event) => setValue(event.target.value)}
         placeholder="a camera, a radio, a chair…"
         aria-label="Search categories"
-        className="text-ink placeholder:text-ink-soft min-w-0 flex-1 bg-transparent text-[15px] font-light outline-none placeholder:italic [&::-webkit-search-cancel-button]:hidden"
+        className="text-ink placeholder:text-ink-soft text-copy min-w-0 flex-1 bg-transparent font-light outline-none placeholder:italic [&::-webkit-search-cancel-button]:hidden"
       />
     </label>
   );

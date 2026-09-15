@@ -17,14 +17,14 @@ export const GoogleAuthButton = () => {
 
   return (
     <>
-      <FieldSeparator className="font-plex-mono text-[11px] tracking-[0.14em] uppercase">
+      <FieldSeparator className="font-plex-mono text-meta tracking-spaced uppercase">
         {t("LABEL_OR")}
       </FieldSeparator>
       <Button
         type="button"
         variant="outline"
         onClick={handleClick}
-        className="border-auth-line-strong text-auth-ink-700 hover:bg-auth-ghost-hover h-11 w-full gap-2.5 rounded-[6px] text-sm font-medium"
+        className="border-auth-line-strong text-auth-ink-700 hover:bg-auth-ghost-hover rounded-button h-11 w-full gap-2.5 text-sm font-medium"
       >
         <GoogleIcon />
         {t("BUTTON_GOOGLE")}

@@ -153,11 +153,11 @@ export const KeptPhoto = ({
         <>
           <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
           <div
-            className="absolute inset-0 opacity-[0.32] mix-blend-color"
+            className="absolute inset-0 opacity-32 mix-blend-color"
             style={{ background: tone.hue }}
           />
           <div
-            className="absolute inset-0 opacity-[0.18] mix-blend-multiply"
+            className="absolute inset-0 opacity-18 mix-blend-multiply"
             style={{ background: tone.deep }}
           />
         </>
@@ -168,10 +168,8 @@ export const KeptPhoto = ({
           </svg>
         </div>
       )}
-      {vignette && (
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_30%,transparent_40%,rgba(20,14,9,0.55)_100%)]" />
-      )}
-      <div className="grain-texture pointer-events-none absolute inset-0 z-[2] opacity-[0.09] mix-blend-multiply" />
+      {vignette && <div className="vignette pointer-events-none absolute inset-0" />}
+      <div className="grain-texture pointer-events-none absolute inset-0 opacity-9 mix-blend-multiply" />
     </div>
   );
 };

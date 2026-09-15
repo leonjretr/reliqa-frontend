@@ -37,11 +37,11 @@ const SettingsIcon = (
 );
 
 const Stat = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-chalk px-[10px] py-[9px]">
-    <div className="text-ink-faint font-kept-mono mb-[3px] text-[8px] tracking-[0.1em] uppercase">
+  <div className="bg-chalk px-2.5 py-2.25">
+    <div className="text-ink-faint font-kept-mono text-micro mb-0.75 tracking-widest uppercase">
       {label}
     </div>
-    <div className="font-kept-mono text-[13px] font-medium lining-nums tabular-nums">{value}</div>
+    <div className="font-kept-mono text-detail font-medium lining-nums tabular-nums">{value}</div>
   </div>
 );
 
@@ -52,14 +52,14 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
 
   return (
     <div className="flex h-full flex-col">
-      <header className="torn-edge bg-plum text-blush relative flex flex-none items-end gap-[14px] px-[20px] pt-[26px] pb-[22px]">
+      <header className="torn-edge bg-plum text-blush relative flex flex-none items-end gap-3.5 px-5 pt-6.5 pb-5.5">
         <KeeperAvatar name={keeper.name} src={keeper.avatar} size={74} />
-        <div className="min-w-0 flex-1 pb-[2px]">
-          <div className="font-kept-mono text-blush/75 mb-[6px] text-[9px] tracking-[0.1em] uppercase">
+        <div className="min-w-0 flex-1 pb-0.5">
+          <div className="font-kept-mono text-blush/75 text-eyebrow mb-1.5 tracking-widest uppercase">
             keeper since {keeper.since}
             {keeper.place ? ` · ${keeper.place}` : ""}
           </div>
-          <div className="text-[30px] leading-[1.02] font-bold tracking-[-0.02em] break-words">
+          <div className="text-heading-lg leading-heading tracking-snug font-bold break-words">
             {keeper.name}
           </div>
         </div>
@@ -67,22 +67,22 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
           <Link
             href={PAGES.SETTINGS}
             aria-label="settings"
-            className="border-blush/30 flex size-[34px] flex-none items-center justify-center self-start rounded-full border text-inherit no-underline"
+            className="border-blush/30 flex size-8.5 flex-none items-center justify-center self-start rounded-full border text-inherit no-underline"
           >
             {SettingsIcon}
           </Link>
         )}
-        <div className="grain-texture pointer-events-none absolute inset-0 opacity-[0.055] mix-blend-multiply" />
+        <div className="grain-texture pointer-events-none absolute inset-0 opacity-5.5 mix-blend-multiply" />
       </header>
 
-      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] py-[20px]">
+      <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-4.5 py-5">
         {keeper.bio && (
-          <p className="text-ink-2 mb-[18px] text-[16px] leading-[1.5] font-light italic">
+          <p className="text-ink-2 text-copy-lg mb-4.5 leading-normal font-light italic">
             {keeper.bio}
           </p>
         )}
 
-        <div className="bg-ink border-ink mb-[22px] grid grid-cols-3 gap-px border">
+        <div className="bg-ink border-ink mb-5.5 grid grid-cols-3 gap-px border">
           <Stat label="kept" value={String(objects.length)} />
           <Stat label="written" value={String(stories.length)} />
           <Stat label="since" value={keeper.since} />
@@ -90,22 +90,22 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
 
         {hasStories && (
           <>
-            <div className="text-ink-faint font-kept-mono mb-[12px] text-[9px] tracking-[0.1em] uppercase">
+            <div className="text-ink-faint font-kept-mono text-eyebrow mb-3 tracking-widest uppercase">
               written
             </div>
-            <div className="mb-[24px] flex flex-col gap-[10px]">
+            <div className="mb-6 flex flex-col gap-2.5">
               {stories.map((story) => (
                 <Link
                   key={story.id}
                   href={storyPath(story.id)}
-                  className="bg-stock border-ink block rounded-[3px] border px-[14px] pt-[11px] pb-[13px] no-underline"
+                  className="bg-stock border-ink rounded-paper block border px-3.5 pt-2.75 pb-3.25 no-underline"
                 >
-                  <div className="mb-[6px] flex items-baseline justify-between">
-                    <span className="text-ink-faint font-kept-mono text-[8.5px] tracking-[0.1em] uppercase lining-nums tabular-nums">
+                  <div className="mb-1.5 flex items-baseline justify-between">
+                    <span className="text-ink-faint font-kept-mono text-stamp tracking-widest uppercase lining-nums tabular-nums">
                       {yearOf(story.created_at)}
                     </span>
                   </div>
-                  <p className="text-ink-2 text-[15px] leading-[1.4] font-light italic">
+                  <p className="text-ink-2 text-copy leading-quote font-light italic">
                     “{story.short_story || "—"}”
                   </p>
                 </Link>
@@ -116,27 +116,27 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
 
         {hasKept && (
           <>
-            <div className="text-ink-faint font-kept-mono mb-[14px] text-[9px] tracking-[0.1em] uppercase">
+            <div className="text-ink-faint font-kept-mono text-eyebrow mb-3.5 tracking-widest uppercase">
               on the shelf · {objects.length} things
             </div>
-            <div className="grid grid-cols-2 gap-[14px]">
+            <div className="grid grid-cols-2 gap-3.5">
               {objects.map((object, index) => {
                 const stock = STOCK[index % STOCK.length];
                 return (
                   <Link
                     key={object.id}
                     href={thingPath(object.id)}
-                    className="border-ink rounded-[3px] border px-[12px] pt-[11px] pb-[12px] no-underline shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]"
+                    className="border-ink rounded-paper shadow-card border px-3 pt-2.75 pb-3 no-underline"
                     style={{
                       background: stock.bg,
                       color: stock.fg,
                       transform: `rotate(${index % 2 ? 2 : -2}deg)`,
                     }}
                   >
-                    <div className="font-kept-mono mb-[5px] text-[8px] tracking-[0.1em] uppercase opacity-[0.72]">
+                    <div className="font-kept-mono text-micro mb-1.25 tracking-widest uppercase opacity-72">
                       {object.categories[0] ?? ""} · {yearOf(object.created_at)}
                     </div>
-                    <div className="text-[16px] leading-[1.15] font-semibold">{object.name}</div>
+                    <div className="text-copy-lg leading-card-lg font-semibold">{object.name}</div>
                   </Link>
                 );
               })}
@@ -145,8 +145,8 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
         )}
 
         {!hasStories && !hasKept && (
-          <div className="border-hair mt-[8px] rounded-[3px] border border-dashed px-[16px] py-[26px] text-center">
-            <p className="text-ink-3 text-[15px] leading-[1.5] font-light">
+          <div className="border-hair rounded-paper mt-2 border border-dashed px-4 py-6.5 text-center">
+            <p className="text-ink-3 text-copy leading-normal font-light">
               {isOwn
                 ? "Your shelf is empty. Keep your first thing and its memory."
                 : `${firstName} hasn’t kept anything here yet.`}
@@ -154,7 +154,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
             {isOwn && (
               <Link
                 href={PAGES.ADD}
-                className="text-oxblood font-kept-mono mt-[10px] inline-block text-[9px] tracking-[0.1em] uppercase no-underline"
+                className="text-oxblood font-kept-mono text-eyebrow mt-2.5 inline-block tracking-widest uppercase no-underline"
               >
                 keep something →
               </Link>
