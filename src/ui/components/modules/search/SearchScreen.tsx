@@ -1,3 +1,4 @@
+import { PAGES, QUERIES } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -29,7 +30,7 @@ export const SearchScreen = ({ categories, query }: SearchScreenProps) => {
         {categories.map((category, index) => (
           <Link
             key={category.slug}
-            href={{ pathname: "/browse", query: { category: category.slug } }}
+            href={{ pathname: PAGES.BROWSE, query: { [QUERIES.CATEGORY]: category.slug } }}
             className="border-ink text-ink bg-chalk relative block rounded-[2px] border p-[7px] pb-[11px] no-underline shadow-[0_12px_20px_-9px_rgba(0,0,0,0.45)]"
             style={{ transform: `rotate(${(index % 3) - 1}deg)` }}
           >

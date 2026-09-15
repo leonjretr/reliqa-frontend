@@ -1,3 +1,4 @@
+import { PAGES, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -67,7 +68,7 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
       <ScreenHeader
         section={category?.name ?? "the catalogue"}
         right={`${totalCount} things`}
-        back={category ? { href: "/search", label: "categories" } : undefined}
+        back={category ? { href: PAGES.SEARCH, label: "categories" } : undefined}
       />
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain">
         <div className="px-[18px] pt-[16px] pb-[6px]">
@@ -84,7 +85,7 @@ export const BrowseScreen = ({ objects, totalCount, category }: BrowseScreenProp
             return (
               <Link
                 key={object.id}
-                href={`/thing/${object.id}`}
+                href={thingPath(object.id)}
                 className="relative pb-[26px] text-inherit no-underline"
               >
                 {Array.from({ length: layers }).map((_, layer) => (

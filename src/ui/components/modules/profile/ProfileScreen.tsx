@@ -1,3 +1,4 @@
+import { PAGES, storyPath, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
@@ -65,7 +66,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
         </div>
         {isOwn && (
           <Link
-            href="/settings"
+            href={PAGES.SETTINGS}
             aria-label="settings"
             className="flex size-[34px] flex-none items-center justify-center self-start rounded-full border border-[rgba(246,233,238,0.3)] text-inherit no-underline"
           >
@@ -97,7 +98,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
               {stories.map((story) => (
                 <Link
                   key={story.id}
-                  href={`/story/${story.id}`}
+                  href={storyPath(story.id)}
                   className="bg-stock border-ink block rounded-[3px] border px-[14px] pt-[11px] pb-[13px] no-underline"
                 >
                   <div className="mb-[6px] flex items-baseline justify-between">
@@ -125,7 +126,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
                 return (
                   <Link
                     key={object.id}
-                    href={`/thing/${object.id}`}
+                    href={thingPath(object.id)}
                     className="border-ink rounded-[3px] border px-[12px] pt-[11px] pb-[12px] no-underline shadow-[0_6px_14px_-8px_rgba(31,26,21,0.4)]"
                     style={{
                       background: stock.bg,
@@ -153,7 +154,7 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: ProfileScreen
             </p>
             {isOwn && (
               <Link
-                href="/add"
+                href={PAGES.ADD}
                 className="text-oxblood font-kept-mono mt-[10px] inline-block text-[9px] tracking-[0.1em] uppercase no-underline"
               >
                 keep something →

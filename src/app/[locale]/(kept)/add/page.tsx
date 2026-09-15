@@ -1,3 +1,4 @@
+import { PAGES } from "@/config";
 import { redirect } from "@/i18n";
 import { getCategories, getCategory, getCurrentUser } from "@/service";
 import { getSession } from "@/service/session";
@@ -14,7 +15,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
   const session = await getSession();
 
   if (!session) {
-    redirect({ href: "/login", locale });
+    redirect({ href: PAGES.LOGIN, locale });
   }
 
   const [categories, user, category] = await Promise.all([

@@ -1,3 +1,4 @@
+import { keeperPath, PAGES, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import type { APIStoryDetail } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -32,7 +33,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
             className="absolute inset-0"
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,14,9,0.92)_0%,rgba(20,14,9,0.35)_45%,rgba(20,14,9,0.35)_100%)]" />
-          <Link href="/" className="absolute top-[15px] left-[18px] z-[2] no-underline">
+          <Link href={PAGES.FEED} className="absolute top-[15px] left-[18px] z-[2] no-underline">
             <span className="text-chalk font-kept-mono text-[9px] tracking-[0.1em] uppercase">
               ← the feed
             </span>
@@ -79,7 +80,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
 
           <div className="bg-ink border-ink mt-[22px] flex flex-col gap-px border">
             <Link
-              href={`/keeper/${story.created_by.username}`}
+              href={keeperPath(story.created_by.username)}
               className="bg-chalk flex items-baseline justify-between px-[14px] py-[13px] text-inherit no-underline"
             >
               <span className="text-[15px] font-semibold">{keeperName}’s shelf</span>
@@ -88,7 +89,7 @@ export const StoryScreen = ({ story }: StoryScreenProps) => {
               </span>
             </Link>
             <Link
-              href={`/thing/${story.object.id}`}
+              href={thingPath(story.object.id)}
               className="bg-chalk flex items-baseline justify-between px-[14px] py-[13px] text-inherit no-underline"
             >
               <span className="text-[15px] font-semibold">{story.object.name}</span>

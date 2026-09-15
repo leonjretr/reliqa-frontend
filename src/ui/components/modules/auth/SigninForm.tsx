@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
+import { PAGES } from "@/config";
 import { useRouter } from "@/i18n/navigation";
 import { signIn } from "@/service/actions";
 import { Button } from "@/ui/components/lib/shadcn/button";
@@ -39,7 +40,7 @@ export const SigninForm = () => {
       return;
     }
 
-    router.replace("/");
+    router.replace(PAGES.FEED);
     router.refresh();
   };
 

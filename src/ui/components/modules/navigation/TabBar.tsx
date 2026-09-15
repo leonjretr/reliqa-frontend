@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { keeperPath, PAGES, QUERIES } from "@/config";
 import { Link, usePathname } from "@/i18n";
 import { cn } from "@/ui/utils/shadcn";
 
@@ -59,33 +60,38 @@ const UserIcon = (
 );
 
 const buildTabs = (profileSlug: string | null, category: string | null): Tab[] => [
-  { href: "/", label: "feed", icon: HouseIcon, match: (path) => path === "/" },
+  { href: PAGES.FEED, label: "feed", icon: HouseIcon, match: (path) => path === PAGES.FEED },
   {
-    href: "/browse",
+    href: PAGES.BROWSE,
     label: "browse",
     icon: GridIcon,
-    match: (path) => path.startsWith("/browse") || path.startsWith("/thing"),
+    match: (path) => path.startsWith(PAGES.BROWSE) || path.startsWith(PAGES.THING),
   },
   {
-    href: category ? `/add?category=${encodeURIComponent(category)}` : "/add",
+    href: category ? `${PAGES.ADD}?${QUERIES.CATEGORY}=${encodeURIComponent(category)}` : PAGES.ADD,
     label: "keep",
     icon: PlusIcon,
-    match: (path) => path.startsWith("/add"),
+    match: (path) => path.startsWith(PAGES.ADD),
     center: true,
   },
-  { href: "/search", label: "find", icon: SearchIcon, match: (path) => path.startsWith("/search") },
   {
-    href: profileSlug ? `/keeper/${profileSlug}` : "/login",
+    href: PAGES.SEARCH,
+    label: "find",
+    icon: SearchIcon,
+    match: (path) => path.startsWith(PAGES.SEARCH),
+  },
+  {
+    href: profileSlug ? keeperPath(profileSlug) : PAGES.LOGIN,
     label: "shelf",
     icon: UserIcon,
-    match: (path) => path.startsWith("/keeper") || path.startsWith("/story"),
+    match: (path) => path.startsWith(PAGES.KEEPER) || path.startsWith(PAGES.STORY),
   },
 ];
 
 export const TabBar = ({ profileSlug = null }: { profileSlug?: string | null }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const category = pathname.startsWith("/browse") ? searchParams.get("category") : null;
+  const category = pathname.startsWith(PAGES.BROWSE) ? searchParams.get(QUERIES.CATEGORY) : null;
   const tabs = buildTabs(profileSlug, category);
 
   return (

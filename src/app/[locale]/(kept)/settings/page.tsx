@@ -1,3 +1,4 @@
+import { PAGES } from "@/config";
 import { redirect } from "@/i18n";
 import { getCurrentUser } from "@/service";
 import { SettingsScreen } from "@/ui/components/modules/profile";
@@ -7,7 +8,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const user = await getCurrentUser();
 
   if (!user.success) {
-    redirect({ href: "/login", locale });
+    redirect({ href: PAGES.LOGIN, locale });
   }
 
   return <SettingsScreen user={user} />;

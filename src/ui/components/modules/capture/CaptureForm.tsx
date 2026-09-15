@@ -2,6 +2,7 @@
 
 import { useState, type ChangeEvent } from "react";
 
+import { PAGES } from "@/config";
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
 import type { ActionResult, APICategoryListItem } from "@/service/types";
@@ -98,7 +99,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Ca
       return;
     }
 
-    router.replace("/");
+    router.replace(PAGES.FEED);
     router.refresh();
   };
 

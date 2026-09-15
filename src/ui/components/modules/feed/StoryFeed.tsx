@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
+import { PAGES, storyPath, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import { loadFeedEntries } from "@/service/actions";
 import type { FeedEntry } from "@/service/types";
@@ -100,7 +101,7 @@ const Slide = ({
           </span>
         </div>
         <RailButton
-          href="/add"
+          href={PAGES.ADD}
           filled
           label="add yours"
           glyph={
@@ -118,7 +119,7 @@ const Slide = ({
           }
         />
         <RailButton
-          href={`/thing/${card.objectId}`}
+          href={thingPath(card.objectId)}
           label="the object"
           glyph={
             <svg
@@ -169,7 +170,7 @@ const Slide = ({
           </p>
         )}
         {card.storyId && (
-          <Link href={`/story/${card.storyId}`} className="mt-[12px] inline-block no-underline">
+          <Link href={storyPath(card.storyId)} className="mt-[12px] inline-block no-underline">
             <span className="font-kept-mono text-[9px] tracking-[0.1em] text-[#e6a94d] uppercase">
               read the whole thing →
             </span>

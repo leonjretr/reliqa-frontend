@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { QUERIES } from "@/config";
 import { usePathname, useRouter } from "@/i18n";
 import { useDebouncedValue } from "@/ui/hooks";
 
@@ -12,7 +13,7 @@ export const CategorySearch = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const initialQuery = searchParams.get("query") ?? "";
+  const initialQuery = searchParams.get(QUERIES.QUERY) ?? "";
   const [value, setValue] = useState(initialQuery);
   const debouncedQuery = useDebouncedValue(value.trim(), SEARCH_DEBOUNCE_MS);
   const lastQueryRef = useRef(initialQuery);
@@ -22,7 +23,7 @@ export const CategorySearch = () => {
     lastQueryRef.current = debouncedQuery;
 
     router.replace(
-      { pathname, query: debouncedQuery ? { query: debouncedQuery } : {} },
+      { pathname, query: debouncedQuery ? { [QUERIES.QUERY]: debouncedQuery } : {} },
       { scroll: false },
     );
   }, [debouncedQuery, pathname, router]);

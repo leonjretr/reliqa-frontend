@@ -2,6 +2,7 @@
 
 import { useState, type ChangeEvent, type ReactNode } from "react";
 
+import { keeperPath } from "@/config";
 import { saveSettings, signOut } from "@/service/actions";
 import type { ActionResult, APICurrentUser, APILanguage } from "@/service/types";
 import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
@@ -177,7 +178,7 @@ export const SettingsScreen = ({ user }: SettingsScreenProps) => {
       <div className="grain-texture pointer-events-none absolute inset-0 z-40 opacity-[0.055] mix-blend-multiply" />
       <ScreenHeader
         section="settings"
-        back={{ href: `/keeper/${user.username}`, label: "your shelf" }}
+        back={{ href: keeperPath(user.username), label: "your shelf" }}
       />
 
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[14px] pb-[24px]">

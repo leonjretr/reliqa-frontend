@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { keeperPath, PAGES } from "@/config";
 import { Link } from "@/i18n";
 import type { APIObject, APIStoryListItem } from "@/service/types";
 import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
@@ -40,7 +41,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
       <ScreenHeader
         section={category?.name ?? "kept thing"}
         right={`${object.stories_count} ${object.stories_count === 1 ? "story" : "stories"}`}
-        back={{ href: "/browse", label: "the catalogue" }}
+        back={{ href: PAGES.BROWSE, label: "the catalogue" }}
       />
       <div className="kept-scroll min-h-0 flex-1 [scrollbar-gutter:stable] overflow-y-auto overscroll-contain px-[18px] pt-[16px] pb-[24px]">
         <h1 className="mb-[7px] text-[46px] leading-[0.94] font-bold tracking-[-0.03em]">
@@ -92,7 +93,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
                       {story.short_story || "—"}
                     </p>
                     <Link
-                      href={`/keeper/${story.created_by.username}`}
+                      href={keeperPath(story.created_by.username)}
                       className="font-kept-mono mt-[8px] inline-block text-[9px] tracking-[0.1em] uppercase"
                     >
                       their shelf →
@@ -123,7 +124,7 @@ export const ObjectDetail = ({ object, stories }: ObjectDetailProps) => {
         </div>
 
         <Link
-          href="/add"
+          href={PAGES.ADD}
           className="border-ink bg-ink text-chalk hover:bg-oxblood hover:border-oxblood mt-[18px] flex h-[52px] w-full items-center justify-center gap-[9px] border text-[15px] font-semibold no-underline"
         >
           Stick your memory on
