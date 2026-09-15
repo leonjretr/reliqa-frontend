@@ -51,7 +51,8 @@
   },
   "Common": {
     "QUOTE": "«{text}»",
-    "EMPTY_VALUE": "—"
+    "EMPTY_VALUE": "—",
+    "THINGS_COUNT": "{count, plural, one {# вещь} few {# вещи} many {# вещей} other {# вещи}}"
   },
   "Story": {
     "LINK_FEED": "← в ленту",
@@ -60,5 +61,11 @@
     "LINK_SHELF_TITLE": "Полка: {keeper}",
     "LINK_EVERYTHING_KEPT": "всё сохранённое →",
     "LINK_EVERYONE_KEPT": "все, кто это хранит →"
+  },
+  "Search": {
+    "TITLE_SEARCH": "найдите что-то сохранённое",
+    "EMPTY_RESULTS": "По запросу «{query}» ничего не сохранено.",
+    "PLACEHOLDER_SEARCH": "фотоаппарат, радио, стул…",
+    "LABEL_SEARCH": "Поиск категорий"
   }
 }

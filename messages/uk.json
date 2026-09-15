@@ -51,7 +51,8 @@
   },
   "Common": {
     "QUOTE": "«{text}»",
-    "EMPTY_VALUE": "—"
+    "EMPTY_VALUE": "—",
+    "THINGS_COUNT": "{count, plural, one {# річ} few {# речі} many {# речей} other {# речі}}"
   },
   "Story": {
     "LINK_FEED": "← до стрічки",
@@ -60,5 +61,11 @@
     "LINK_SHELF_TITLE": "Полиця: {keeper}",
     "LINK_EVERYTHING_KEPT": "усе збережене →",
     "LINK_EVERYONE_KEPT": "усі, хто це зберігає →"
+  },
+  "Search": {
+    "TITLE_SEARCH": "знайдіть щось збережене",
+    "EMPTY_RESULTS": "За запитом «{query}» нічого не збережено.",
+    "PLACEHOLDER_SEARCH": "фотоапарат, радіо, стілець…",
+    "LABEL_SEARCH": "Пошук категорій"
   }
 }

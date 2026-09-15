@@ -51,7 +51,8 @@
   },
   "Common": {
     "QUOTE": "“{text}”",
-    "EMPTY_VALUE": "—"
+    "EMPTY_VALUE": "—",
+    "THINGS_COUNT": "{count, plural, one {# thing} other {# things}}"
   },
   "Story": {
     "LINK_FEED": "← the feed",
@@ -60,5 +61,11 @@
     "LINK_SHELF_TITLE": "{keeper}’s shelf",
     "LINK_EVERYTHING_KEPT": "everything kept →",
     "LINK_EVERYONE_KEPT": "everyone who kept one →"
+  },
+  "Search": {
+    "TITLE_SEARCH": "find something kept",
+    "EMPTY_RESULTS": "Nothing kept under “{query}”.",
+    "PLACEHOLDER_SEARCH": "a camera, a radio, a chair…",
+    "LABEL_SEARCH": "Search categories"
   }
 }
