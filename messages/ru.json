@@ -87,5 +87,14 @@
     "FACT_KEPT_SINCE": "хранится с",
     "LINK_THEIR_SHELF": "полка автора →",
     "BUTTON_ADD_MEMORY": "Приколите своё воспоминание"
+  },
+  "Feed": {
+    "LABEL_SEEN": "просмотров",
+    "RAIL_ADD": "добавить своё",
+    "RAIL_OBJECT": "вещь",
+    "QUOTE_AUTHOR": "— {keeper}",
+    "EMPTY_STORY": "Историю этой вещи ещё никто не рассказал.",
+    "LINK_READ_STORY": "читать полностью →",
+    "EMPTY_FEED": "Пока ничего не сохранено. Добавьте что-нибудь первыми."
   }
 }

@@ -87,5 +87,14 @@
     "FACT_KEPT_SINCE": "зберігається з",
     "LINK_THEIR_SHELF": "полиця автора →",
     "BUTTON_ADD_MEMORY": "Приколіть свій спогад"
+  },
+  "Feed": {
+    "LABEL_SEEN": "переглядів",
+    "RAIL_ADD": "додати своє",
+    "RAIL_OBJECT": "річ",
+    "QUOTE_AUTHOR": "— {keeper}",
+    "EMPTY_STORY": "Історію цієї речі ще ніхто не розповів.",
+    "LINK_READ_STORY": "читати повністю →",
+    "EMPTY_FEED": "Ще нічого не збережено. Додайте щось першими."
   }
 }

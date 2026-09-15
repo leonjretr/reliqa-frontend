@@ -16,3 +16,12 @@ export const toFeedCard = ({ object, story }: FeedEntry): FeedCard => ({
   viewCount: object.view_count,
   quote: story?.short_story,
 });
+
+export const dedupeByObject = (entries: FeedEntry[]): FeedEntry[] => {
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.object.id)) return false;
+    seen.add(entry.object.id);
+    return true;
+  });
+};

@@ -87,5 +87,14 @@
     "FACT_KEPT_SINCE": "kept since",
     "LINK_THEIR_SHELF": "their shelf →",
     "BUTTON_ADD_MEMORY": "Stick your memory on"
+  },
+  "Feed": {
+    "LABEL_SEEN": "seen",
+    "RAIL_ADD": "add yours",
+    "RAIL_OBJECT": "the object",
+    "QUOTE_AUTHOR": "— {keeper}",
+    "EMPTY_STORY": "Nobody has told this object’s story yet.",
+    "LINK_READ_STORY": "read the whole thing →",
+    "EMPTY_FEED": "Nothing kept yet. Be the first to add something."
   }
 }
