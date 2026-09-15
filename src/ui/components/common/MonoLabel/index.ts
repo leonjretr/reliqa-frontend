@@ -1,1 +1,1 @@
-export { MonoLabel } from "./MonoLabel";
+export { MonoLabel, monoLabelClassName } from "./MonoLabel";

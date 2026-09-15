@@ -52,7 +52,9 @@
   "Common": {
     "QUOTE": "«{text}»",
     "EMPTY_VALUE": "—",
-    "THINGS_COUNT": "{count, plural, one {# вещь} few {# вещи} many {# вещей} other {# вещи}}"
+    "THINGS_COUNT": "{count, plural, one {# вещь} few {# вещи} many {# вещей} other {# вещи}}",
+    "KEEPER_SINCE": "хранит с {year}",
+    "PLACEHOLDER_CITY": "город"
   },
   "Story": {
     "LINK_FEED": "← в ленту",
@@ -96,5 +98,47 @@
     "EMPTY_STORY": "Историю этой вещи ещё никто не рассказал.",
     "LINK_READ_STORY": "читать полностью →",
     "EMPTY_FEED": "Пока ничего не сохранено. Добавьте что-нибудь первыми."
+  },
+  "Profile": {
+    "LABEL_SETTINGS": "настройки",
+    "STAT_KEPT": "сохранено",
+    "STAT_WRITTEN": "написано",
+    "STAT_SINCE": "с",
+    "TITLE_WRITTEN": "написанное",
+    "TITLE_SHELF": "на полке",
+    "EMPTY_OWN_SHELF": "Ваша полка пуста. Сохраните первую вещь и воспоминание о ней.",
+    "EMPTY_SHELF": "{name}: здесь пока ничего не сохранено.",
+    "LINK_KEEP": "сохранить что-нибудь →"
+  },
+  "Settings": {
+    "SECTION_SETTINGS": "настройки",
+    "LINK_SHELF": "ваша полка",
+    "TITLE_PROFILE": "профиль",
+    "BUTTON_CHANGE_PHOTO": "сменить фото",
+    "LABEL_NAME": "отображаемое имя",
+    "PLACEHOLDER_NAME": "ваше имя",
+    "LABEL_PLACE": "где вы живёте",
+    "LABEL_BIO": "о вас",
+    "PLACEHOLDER_BIO": "Что вы храните и почему. Строчка-другая для тех, кто заглянет на вашу полку.",
+    "TITLE_VISIBILITY": "кто видит вашу полку",
+    "VISIBILITY_EVERYONE": "все",
+    "VISIBILITY_PRIVATE": "только я",
+    "TOGGLE_PLACE": "Показывать, где вы живёте",
+    "HINT_PLACE": "Ваш город отображается рядом с именем в профиле.",
+    "TITLE_NOTIFICATIONS": "уведомления",
+    "TOGGLE_KEPT": "Когда кто-то сохраняет вещь, которую сохранили вы",
+    "HINT_KEPT": "У вас с незнакомцем общая вещь — мы сообщим, когда это случится.",
+    "TOGGLE_THEMES": "Темы недели",
+    "HINT_THEMES": "Каждую неделю — подсказка, какую вещь стоит отыскать.",
+    "TITLE_ACCOUNT": "аккаунт",
+    "LABEL_EMAIL": "почта",
+    "LABEL_LOCKED": "не меняется",
+    "LABEL_USERNAME": "имя пользователя",
+    "PLACEHOLDER_USERNAME": "имя пользователя",
+    "LABEL_LANGUAGE": "язык",
+    "BUTTON_SAVE": "Сохранить изменения",
+    "BUTTON_SAVING": "Сохраняем…",
+    "BUTTON_SAVED": "Сохранено",
+    "BUTTON_SIGN_OUT": "Выйти"
   }
 }

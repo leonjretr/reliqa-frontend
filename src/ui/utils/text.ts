@@ -17,3 +17,12 @@ export const slugify = (raw: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+
+const USERNAME_DISALLOWED = /[^a-z0-9-]/gi;
+
+export const sanitizeUsername = (raw: string) => raw.replace(USERNAME_DISALLOWED, "").toLowerCase();
+
+export const splitFullName = (name: string) => {
+  const [firstName = "", ...rest] = splitWords(name);
+  return { firstName, lastName: rest.join(" ") };
+};

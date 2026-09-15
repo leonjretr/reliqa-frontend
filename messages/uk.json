@@ -52,7 +52,9 @@
   "Common": {
     "QUOTE": "«{text}»",
     "EMPTY_VALUE": "—",
-    "THINGS_COUNT": "{count, plural, one {# річ} few {# речі} many {# речей} other {# речі}}"
+    "THINGS_COUNT": "{count, plural, one {# річ} few {# речі} many {# речей} other {# речі}}",
+    "KEEPER_SINCE": "зберігає з {year}",
+    "PLACEHOLDER_CITY": "місто"
   },
   "Story": {
     "LINK_FEED": "← до стрічки",
@@ -96,5 +98,47 @@
     "EMPTY_STORY": "Історію цієї речі ще ніхто не розповів.",
     "LINK_READ_STORY": "читати повністю →",
     "EMPTY_FEED": "Ще нічого не збережено. Додайте щось першими."
+  },
+  "Profile": {
+    "LABEL_SETTINGS": "налаштування",
+    "STAT_KEPT": "збережено",
+    "STAT_WRITTEN": "написано",
+    "STAT_SINCE": "з",
+    "TITLE_WRITTEN": "написане",
+    "TITLE_SHELF": "на полиці",
+    "EMPTY_OWN_SHELF": "Ваша полиця порожня. Збережіть першу річ і спогад про неї.",
+    "EMPTY_SHELF": "{name}: тут ще нічого не збережено.",
+    "LINK_KEEP": "зберегти щось →"
+  },
+  "Settings": {
+    "SECTION_SETTINGS": "налаштування",
+    "LINK_SHELF": "ваша полиця",
+    "TITLE_PROFILE": "профіль",
+    "BUTTON_CHANGE_PHOTO": "змінити фото",
+    "LABEL_NAME": "відображуване ім'я",
+    "PLACEHOLDER_NAME": "ваше ім'я",
+    "LABEL_PLACE": "де ви живете",
+    "LABEL_BIO": "про вас",
+    "PLACEHOLDER_BIO": "Що ви зберігаєте і чому. Рядок-два для тих, хто завітає на вашу полицю.",
+    "TITLE_VISIBILITY": "хто бачить вашу полицю",
+    "VISIBILITY_EVERYONE": "усі",
+    "VISIBILITY_PRIVATE": "лише я",
+    "TOGGLE_PLACE": "Показувати, де ви живете",
+    "HINT_PLACE": "Ваше місто з'являється поруч з ім'ям у профілі.",
+    "TITLE_NOTIFICATIONS": "сповіщення",
+    "TOGGLE_KEPT": "Коли хтось зберігає річ, яку зберегли ви",
+    "HINT_KEPT": "У вас із незнайомцем спільна річ — ми повідомимо, коли це станеться.",
+    "TOGGLE_THEMES": "Теми тижня",
+    "HINT_THEMES": "Щотижня — підказка, яку річ варто відшукати.",
+    "TITLE_ACCOUNT": "обліковий запис",
+    "LABEL_EMAIL": "пошта",
+    "LABEL_LOCKED": "не змінюється",
+    "LABEL_USERNAME": "ім'я користувача",
+    "PLACEHOLDER_USERNAME": "ім'я користувача",
+    "LABEL_LANGUAGE": "мова",
+    "BUTTON_SAVE": "Зберегти зміни",
+    "BUTTON_SAVING": "Зберігаємо…",
+    "BUTTON_SAVED": "Збережено",
+    "BUTTON_SIGN_OUT": "Вийти"
   }
 }

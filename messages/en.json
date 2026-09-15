@@ -52,7 +52,9 @@
   "Common": {
     "QUOTE": "“{text}”",
     "EMPTY_VALUE": "—",
-    "THINGS_COUNT": "{count, plural, one {# thing} other {# things}}"
+    "THINGS_COUNT": "{count, plural, one {# thing} other {# things}}",
+    "KEEPER_SINCE": "keeper since {year}",
+    "PLACEHOLDER_CITY": "city"
   },
   "Story": {
     "LINK_FEED": "← the feed",
@@ -96,5 +98,47 @@
     "EMPTY_STORY": "Nobody has told this object’s story yet.",
     "LINK_READ_STORY": "read the whole thing →",
     "EMPTY_FEED": "Nothing kept yet. Be the first to add something."
+  },
+  "Profile": {
+    "LABEL_SETTINGS": "settings",
+    "STAT_KEPT": "kept",
+    "STAT_WRITTEN": "written",
+    "STAT_SINCE": "since",
+    "TITLE_WRITTEN": "written",
+    "TITLE_SHELF": "on the shelf",
+    "EMPTY_OWN_SHELF": "Your shelf is empty. Keep your first thing and its memory.",
+    "EMPTY_SHELF": "{name} hasn’t kept anything here yet.",
+    "LINK_KEEP": "keep something →"
+  },
+  "Settings": {
+    "SECTION_SETTINGS": "settings",
+    "LINK_SHELF": "your shelf",
+    "TITLE_PROFILE": "profile",
+    "BUTTON_CHANGE_PHOTO": "change photo",
+    "LABEL_NAME": "display name",
+    "PLACEHOLDER_NAME": "your name",
+    "LABEL_PLACE": "where you live",
+    "LABEL_BIO": "about you",
+    "PLACEHOLDER_BIO": "What you keep, and why. A line or two for the people who visit your shelf.",
+    "TITLE_VISIBILITY": "who sees your shelf",
+    "VISIBILITY_EVERYONE": "everyone",
+    "VISIBILITY_PRIVATE": "only me",
+    "TOGGLE_PLACE": "Show where you live",
+    "HINT_PLACE": "Your city appears beside your name on your profile.",
+    "TITLE_NOTIFICATIONS": "notifications",
+    "TOGGLE_KEPT": "When someone keeps a thing you kept",
+    "HINT_KEPT": "You share an object with a stranger — we tell you when it happens.",
+    "TOGGLE_THEMES": "Weekly themes",
+    "HINT_THEMES": "A prompt each week for the kind of thing worth digging out.",
+    "TITLE_ACCOUNT": "account",
+    "LABEL_EMAIL": "email",
+    "LABEL_LOCKED": "locked",
+    "LABEL_USERNAME": "username",
+    "PLACEHOLDER_USERNAME": "username",
+    "LABEL_LANGUAGE": "language",
+    "BUTTON_SAVE": "Save changes",
+    "BUTTON_SAVING": "Saving…",
+    "BUTTON_SAVED": "Saved",
+    "BUTTON_SIGN_OUT": "Sign out"
   }
 }
