@@ -26,3 +26,8 @@ export const splitFullName = (name: string) => {
   const [firstName = "", ...rest] = splitWords(name);
   return { firstName, lastName: rest.join(" ") };
 };
+
+const NON_DIGITS = /\D/g;
+
+export const sanitizeDigits = (raw: string, maxLength: number) =>
+  raw.replace(NON_DIGITS, "").slice(0, maxLength);

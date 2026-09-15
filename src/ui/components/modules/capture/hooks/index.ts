@@ -1,0 +1,1 @@
+export { useSubmitCapture } from "./useSubmitCapture";

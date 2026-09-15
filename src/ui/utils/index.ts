@@ -10,6 +10,7 @@ export {
   slugify,
   sanitizeUsername,
   splitFullName,
+  sanitizeDigits,
 } from "./text";
 export { groupThousands } from "./numbers";
 export { sendFormData } from "./requests";
