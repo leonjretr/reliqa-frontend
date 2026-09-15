@@ -14,12 +14,13 @@ const findBySlug = (categories: APICategoryListItem[], slug: string) =>
   categories.find((category) => category.slug === slug);
 
 type Props = {
+  inputId: string;
   categories: APICategoryListItem[];
   value: string;
   onChange: (slug: string) => void;
 };
 
-export const CategorySelect = ({ categories, value, onChange }: Props) => {
+export const CategorySelect = ({ inputId, categories, value, onChange }: Props) => {
   const t = useTranslations("Capture");
   const [inputValue, setInputValue] = useState(() => findBySlug(categories, value)?.name ?? "");
   const { results, isPending } = useRemoteOptions({
@@ -46,6 +47,7 @@ export const CategorySelect = ({ categories, value, onChange }: Props) => {
     >
       <ComboboxInputGroup className={SELECT_INPUT_GROUP_CLASS_NAME}>
         <ComboboxInput
+          id={inputId}
           placeholder={t("PLACEHOLDER_CATEGORY")}
           className={SELECT_INPUT_CLASS_NAME}
         />

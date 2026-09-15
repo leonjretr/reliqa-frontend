@@ -8,6 +8,8 @@ import { Segmented } from "@/ui/components/common/Segmented";
 import { sanitizeUsername } from "@/ui/utils";
 import type { SettingsValues } from "@/ui/validation";
 
+const USERNAME_ID = "settings-username";
+
 const LANGUAGE_OPTIONS = ROUTING.locales.map((locale) => ({
   value: locale,
   label: LOCALE_NAMES[locale],
@@ -34,12 +36,13 @@ export const AccountSection = ({ email }: Props) => {
         </div>
       </div>
       <div className="mt-4.5">
-        <MonoLabel>{t("LABEL_USERNAME")}</MonoLabel>
+        <MonoLabel htmlFor={USERNAME_ID}>{t("LABEL_USERNAME")}</MonoLabel>
         <Controller
           name="username"
           control={control}
           render={({ field }) => (
             <KeptInput
+              id={USERNAME_ID}
               {...field}
               onChange={(event) => field.onChange(sanitizeUsername(event.target.value))}
               placeholder={t("PLACEHOLDER_USERNAME")}

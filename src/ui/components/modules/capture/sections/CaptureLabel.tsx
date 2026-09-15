@@ -6,14 +6,15 @@ import { MonoLabel } from "@/ui/components/common/MonoLabel";
 type Props = {
   children: ReactNode;
   isOptional?: boolean;
+  htmlFor?: string;
   className?: string;
 };
 
-export const CaptureLabel = ({ children, isOptional, className }: Props) => {
+export const CaptureLabel = ({ children, isOptional, htmlFor, className }: Props) => {
   const t = useTranslations("Capture");
 
   return (
-    <MonoLabel className={className}>
+    <MonoLabel htmlFor={htmlFor} className={className}>
       {children}
       {isOptional && (
         <>

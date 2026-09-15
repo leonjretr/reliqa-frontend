@@ -8,6 +8,12 @@ import type { CaptureValues } from "@/ui/validation";
 
 import { CaptureLabel } from "./CaptureLabel";
 
+const FIELD_IDS = {
+  PREVIOUS_OWNER: "capture-previous-owner",
+  PLACE: "capture-place",
+  YEAR: "capture-year",
+};
+
 export const ProvenanceSection = () => {
   const t = useTranslations("Capture");
   const common = useTranslations("Common");
@@ -15,23 +21,32 @@ export const ProvenanceSection = () => {
 
   return (
     <>
-      <CaptureLabel className="mt-5" isOptional>
+      <CaptureLabel htmlFor={FIELD_IDS.PREVIOUS_OWNER} className="mt-5" isOptional>
         {t("LABEL_PREVIOUS_OWNER")}
       </CaptureLabel>
-      <KeptInput {...register("previousOwner")} placeholder={t("PLACEHOLDER_PREVIOUS_OWNER")} />
+      <KeptInput
+        id={FIELD_IDS.PREVIOUS_OWNER}
+        {...register("previousOwner")}
+        placeholder={t("PLACEHOLDER_PREVIOUS_OWNER")}
+      />
 
       <div className="mt-5 flex gap-3.5">
         <div className="flex-1">
-          <CaptureLabel>{t("LABEL_PLACE")}</CaptureLabel>
-          <KeptInput {...register("place")} placeholder={common("PLACEHOLDER_CITY")} />
+          <CaptureLabel htmlFor={FIELD_IDS.PLACE}>{t("LABEL_PLACE")}</CaptureLabel>
+          <KeptInput
+            id={FIELD_IDS.PLACE}
+            {...register("place")}
+            placeholder={common("PLACEHOLDER_CITY")}
+          />
         </div>
         <div className="w-24">
-          <CaptureLabel>{t("LABEL_YEAR")}</CaptureLabel>
+          <CaptureLabel htmlFor={FIELD_IDS.YEAR}>{t("LABEL_YEAR")}</CaptureLabel>
           <Controller
             name="year"
             control={control}
             render={({ field }) => (
               <KeptInput
+                id={FIELD_IDS.YEAR}
                 {...field}
                 onChange={(event) =>
                   field.onChange(sanitizeDigits(event.target.value, YEAR_MAX_LENGTH))

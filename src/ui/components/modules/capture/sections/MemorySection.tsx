@@ -10,6 +10,11 @@ import type { CaptureValues } from "@/ui/validation";
 import { CaptureHint } from "./CaptureHint";
 import { CaptureLabel } from "./CaptureLabel";
 
+const FIELD_IDS = {
+  MEMORY: "capture-memory",
+  STORY: "capture-story",
+};
+
 export const MemorySection = () => {
   const t = useTranslations("Capture");
   const { register, control } = useFormContext<CaptureValues>();
@@ -18,11 +23,12 @@ export const MemorySection = () => {
   return (
     <>
       <div className="mt-5.5 flex items-baseline justify-between">
-        <CaptureLabel>{t("LABEL_MEMORY")}</CaptureLabel>
+        <CaptureLabel htmlFor={FIELD_IDS.MEMORY}>{t("LABEL_MEMORY")}</CaptureLabel>
         <CharCounter remaining={SHORT_STORY_MAX_LENGTH - memory.length} />
       </div>
       <div className="mt-1.5">
         <KeptTextarea
+          id={FIELD_IDS.MEMORY}
           {...register("memory")}
           className="h-18.5"
           maxLength={SHORT_STORY_MAX_LENGTH}
@@ -32,13 +38,16 @@ export const MemorySection = () => {
       <CaptureHint>{t("HINT_MEMORY")}</CaptureHint>
 
       <div className="mt-5.5 flex items-baseline justify-between">
-        <CaptureLabel isOptional>{t("LABEL_STORY")}</CaptureLabel>
+        <CaptureLabel htmlFor={FIELD_IDS.STORY} isOptional>
+          {t("LABEL_STORY")}
+        </CaptureLabel>
         <span className="text-ink-faint font-kept-mono text-meta lining-nums tabular-nums">
           {t("WORDS_COUNT", { count: countWords(story) })}
         </span>
       </div>
       <div className="mt-1.5">
         <KeptTextarea
+          id={FIELD_IDS.STORY}
           {...register("story")}
           className="h-37.5"
           placeholder={t("PLACEHOLDER_STORY")}

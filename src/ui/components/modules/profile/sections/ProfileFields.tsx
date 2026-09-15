@@ -11,6 +11,12 @@ import { MonoLabel } from "@/ui/components/common/MonoLabel";
 import { useFilePreview } from "@/ui/hooks";
 import type { SettingsValues } from "@/ui/validation";
 
+const FIELD_IDS = {
+  NAME: "settings-name",
+  PLACE: "settings-place",
+  BIO: "settings-bio",
+};
+
 const AVATAR_SIZE = 72;
 
 type Props = {
@@ -43,21 +49,26 @@ export const ProfileFields = ({ avatarSrc }: Props) => {
       </div>
 
       <div className="mt-4.5">
-        <MonoLabel>{t("LABEL_NAME")}</MonoLabel>
-        <KeptInput {...register("name")} placeholder={t("PLACEHOLDER_NAME")} />
+        <MonoLabel htmlFor={FIELD_IDS.NAME}>{t("LABEL_NAME")}</MonoLabel>
+        <KeptInput id={FIELD_IDS.NAME} {...register("name")} placeholder={t("PLACEHOLDER_NAME")} />
       </div>
 
       <div className="mt-4.5">
-        <MonoLabel>{t("LABEL_PLACE")}</MonoLabel>
-        <KeptInput {...register("place")} placeholder={common("PLACEHOLDER_CITY")} />
+        <MonoLabel htmlFor={FIELD_IDS.PLACE}>{t("LABEL_PLACE")}</MonoLabel>
+        <KeptInput
+          id={FIELD_IDS.PLACE}
+          {...register("place")}
+          placeholder={common("PLACEHOLDER_CITY")}
+        />
       </div>
 
       <div className="mt-4.5 flex items-baseline justify-between">
-        <MonoLabel>{t("LABEL_BIO")}</MonoLabel>
+        <MonoLabel htmlFor={FIELD_IDS.BIO}>{t("LABEL_BIO")}</MonoLabel>
         <CharCounter remaining={BIO_MAX_LENGTH - bio.length} />
       </div>
       <div className="mt-1.5">
         <KeptTextarea
+          id={FIELD_IDS.BIO}
           {...register("bio")}
           className="h-23"
           maxLength={BIO_MAX_LENGTH}

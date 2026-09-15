@@ -37,11 +37,12 @@ const localTag = (slug: string): APITagListItem => ({
 const hasSlug = (tags: APITagListItem[], slug: string) => tags.some((tag) => tag.slug === slug);
 
 type Props = {
+  inputId: string;
   value: string[];
   onChange: (slugs: string[]) => void;
 };
 
-export const TagSelect = ({ value, onChange }: Props) => {
+export const TagSelect = ({ inputId, value, onChange }: Props) => {
   const t = useTranslations("Capture");
   const [knownTags, setKnownTags] = useState<Map<string, APITagListItem>>(new Map());
   const [inputValue, setInputValue] = useState("");
@@ -137,6 +138,7 @@ export const TagSelect = ({ value, onChange }: Props) => {
                   </ComboboxChip>
                 ))}
                 <ComboboxInput
+                  id={inputId}
                   placeholder={chips.length ? "" : t("PLACEHOLDER_TAG")}
                   className={SELECT_INPUT_CLASS_NAME}
                 />
