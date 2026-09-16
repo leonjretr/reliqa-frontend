@@ -1,17 +1,15 @@
 import { useTranslations } from "next-intl";
 
 import { APP_NAME } from "@/config";
+import type { CatalogueObject } from "@/service/types";
 
 import { Specimen } from "./Specimen";
 
-const SPECIMENS = [
-  { key: "ZENIT", instances: 41 },
-  { key: "SINGER", instances: 18 },
-  { key: "BIALETTI", instances: 96 },
-  { key: "TATRA", instances: 7 },
-];
+type Props = {
+  specimens: CatalogueObject[];
+};
 
-export const SpecimenIndex = () => {
+export const SpecimenIndex = ({ specimens }: Props) => {
   const t = useTranslations("Auth");
 
   return (
@@ -30,13 +28,8 @@ export const SpecimenIndex = () => {
           {t("PROMISE")}
         </p>
         <ul className="flex flex-col">
-          {SPECIMENS.map((specimen) => (
-            <Specimen
-              key={specimen.key}
-              name={t(`SPECIMEN_${specimen.key}_NAME`)}
-              category={t(`SPECIMEN_${specimen.key}_CATEGORY`)}
-              instances={specimen.instances}
-            />
+          {specimens.map((specimen) => (
+            <Specimen key={specimen.id} object={specimen} />
           ))}
         </ul>
       </div>

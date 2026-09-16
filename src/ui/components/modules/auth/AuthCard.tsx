@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
+import type { CatalogueObject } from "@/service/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/lib/shadcn";
 import { cn } from "@/ui/utils";
 
@@ -18,13 +19,17 @@ const TRIGGER_CLASS_NAME = cn(
   "data-active:border-auth-brass-500 data-active:text-auth-ink-900 data-active:bg-transparent",
 );
 
-export const AuthCard = () => {
+type Props = {
+  specimens: CatalogueObject[];
+};
+
+export const AuthCard = ({ specimens }: Props) => {
   const t = useTranslations("Auth");
   const [mode, setMode] = useState<Mode>(MODES.SIGNIN);
 
   return (
     <div className="bg-auth-ink-900 flex min-h-svh">
-      <SpecimenIndex />
+      <SpecimenIndex specimens={specimens} />
 
       <div className="bg-auth-paper-50 shadow-auth-sheet flex min-w-0 flex-1 flex-col justify-center px-6 py-12 lg:w-1/2 lg:px-12">
         <div className="max-w-auth mx-auto flex w-full flex-col gap-5.5">

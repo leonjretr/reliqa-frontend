@@ -1,5 +1,6 @@
 "use server";
 
+import { API_ORDERINGS, SPECIMENS_SHOWN } from "@/config";
 import { getCategories, getCategory, getObjects, getObjectStories } from "@/service/api";
 import type {
   APIObjectListItem,
@@ -24,6 +25,15 @@ export const loadCatalogue = async (categorySlug?: string): Promise<Catalogue> =
     totalCount: objects.success ? objects.count : 0,
     category: category?.success ? category : undefined,
   };
+};
+
+export const loadSpecimens = async (): Promise<CatalogueObject[]> => {
+  const objects = await getObjects({ ordering: API_ORDERINGS.MOST_STORIES });
+  if (!objects.success) {
+    return [];
+  }
+
+  return await Promise.all(objects.results.slice(0, SPECIMENS_SHOWN).map(withStoriesCount));
 };
 
 export const loadCaptureOptions = async (categorySlug?: string): Promise<CaptureOptions> => {

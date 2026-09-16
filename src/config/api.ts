@@ -7,6 +7,7 @@ export const API_DEFAULT_LANGUAGE = ROUTING.defaultLocale;
 
 export const API_ORDERINGS = {
   NEWEST: "-created_at",
+  MOST_STORIES: "-stories_count",
 };
 
 export const API_ENDPOINTS = {
