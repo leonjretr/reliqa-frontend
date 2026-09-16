@@ -8,6 +8,11 @@ export const MEDIA_REMOTE_PATTERNS: RemotePatterns = [
     hostname: "**.amazonaws.com",
     pathname: "/media/**",
   },
+  {
+    protocol: "https",
+    hostname: "drbql25xccc8t.cloudfront.net",
+    pathname: "/media/**",
+  },
 ];
 
 export const LOCAL_PREVIEW_PROTOCOL = "blob:";
