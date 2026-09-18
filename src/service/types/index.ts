@@ -16,14 +16,13 @@ export type { Session } from "./session";
 export type {
   APIUserSummary,
   APIAttachment,
+  APIObjectSource,
   APIObject,
   APIObjectListItem,
   APICreatedObject,
 } from "./objects";
-export type { APIStoryListItem, APICreatedStory, APIStoryDetail } from "./stories";
 export type { APICategoryDetail, APICategoryListItem } from "./categories";
 export type { APITagListItem } from "./tags";
-export type { FeedEntry } from "./feed";
 export type { CaptureInput, CaptureResult } from "./capture";
-export type { CatalogueObject, Catalogue, CaptureOptions } from "./catalogue";
+export type { Catalogue, CaptureOptions } from "./catalogue";
 export type { KeeperShelf, KeeperPage } from "./keeper";

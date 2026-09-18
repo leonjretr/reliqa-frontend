@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { getObject, getObjectStories } from "@/service/api";
-import { ObjectDetail } from "@/ui/components/modules/catalog";
+import { getObject } from "@/service/api";
+import { ObjectScreen } from "@/ui/components/modules/object";
 
 const Page = async ({ params }: PageProps<"/[locale]/thing/[slug]">) => {
   const { slug } = await params;
@@ -11,9 +11,7 @@ const Page = async ({ params }: PageProps<"/[locale]/thing/[slug]">) => {
     notFound();
   }
 
-  const stories = await getObjectStories(object.id);
-
-  return <ObjectDetail object={object} stories={stories.success ? stories.results : []} />;
+  return <ObjectScreen object={object} />;
 };
 
 export default Page;

@@ -6,6 +6,10 @@ export type CaptureInput = {
   tags: string[];
   story: string;
   shortStory: string;
+  source: string;
+  location: string;
+  acquiredAt: string | null;
+  previousOwner: string;
 };
 
-export type CaptureResult = ActionResult<{ storyId: string }>;
+export type CaptureResult = ActionResult<{ objectId: string }>;

@@ -12,8 +12,6 @@ export const FEED_FETCH_ATTEMPTS_PER_ENTRY = 4;
 export const FEED_TAGS_SHOWN = 3;
 export const FEED_ACTIVE_SLIDE_RATIO = 0.6;
 
-export const OBJECT_NOTES_SHOWN = 5;
-
 export const SPECIMENS_SHOWN = 4;
 
 export const INITIALS_LENGTH = 2;

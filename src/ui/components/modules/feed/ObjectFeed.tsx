@@ -2,17 +2,17 @@
 
 import { useRef } from "react";
 
-import type { FeedEntry } from "@/service/types";
+import type { APIObject } from "@/service/types";
 import { toFeedCard } from "@/ui/utils";
 
 import { useInfiniteFeed } from "./hooks";
 import { EmptyFeed, FeedTopBar, Slide } from "./sections";
 
 type Props = {
-  initialEntries: FeedEntry[];
+  initialEntries: APIObject[];
 };
 
-export const StoryFeed = ({ initialEntries }: Props) => {
+export const ObjectFeed = ({ initialEntries }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const entries = useInfiniteFeed(initialEntries, containerRef);
 

@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { motion, type MotionValue } from "framer-motion";
 
-import { FEED_TAGS_SHOWN, META_SEPARATOR, storyPath } from "@/config";
+import { FEED_TAGS_SHOWN, META_SEPARATOR, thingPath } from "@/config";
 import { Link } from "@/i18n";
 import { MonoLabel } from "@/ui/components/common/MonoLabel";
 import type { FeedCard } from "@/ui/types";
@@ -36,13 +36,13 @@ export const SlideCopy = ({ card, opacity, y }: Props) => {
         </>
       ) : (
         <p className="text-chalk/50 text-copy leading-quote mt-3 font-light italic">
-          {t("EMPTY_STORY")}
+          {t("EMPTY_QUOTE")}
         </p>
       )}
-      {card.storyId && (
-        <Link href={storyPath(card.storyId)} className="mt-3 inline-block no-underline">
+      {card.hasStory && (
+        <Link href={thingPath(card.objectId)} className="mt-3 inline-block no-underline">
           <MonoLabel as="span" className="text-honey">
-            {t("LINK_READ_STORY")}
+            {t("LINK_READ_MORE")}
           </MonoLabel>
         </Link>
       )}

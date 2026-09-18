@@ -1,18 +1,16 @@
-import type { APIObjectListItem, APIStoryListItem } from "@/service/types";
+import type { APIObjectListItem } from "@/service/types";
 import { ScrollBody } from "@/ui/components/common/ScrollBody";
 import type { KeeperProfile } from "@/ui/types";
 
-import { EmptyShelf, ProfileHeader, ShelfGrid, ShelfStats, StoryList } from "./sections";
+import { EmptyShelf, ProfileHeader, ShelfGrid, ShelfStats } from "./sections";
 
 type Props = {
   keeper: KeeperProfile;
   objects: APIObjectListItem[];
-  stories: APIStoryListItem[];
   isOwn: boolean;
 };
 
-export const ProfileScreen = ({ keeper, objects, stories, isOwn }: Props) => {
-  const hasStories = stories.length > 0;
+export const ProfileScreen = ({ keeper, objects, isOwn }: Props) => {
   const hasKept = objects.length > 0;
 
   return (
@@ -24,10 +22,12 @@ export const ProfileScreen = ({ keeper, objects, stories, isOwn }: Props) => {
             {keeper.bio}
           </p>
         )}
-        <ShelfStats keptCount={objects.length} writtenCount={stories.length} since={keeper.since} />
-        {hasStories && <StoryList stories={stories} />}
-        {hasKept && <ShelfGrid objects={objects} />}
-        {!hasStories && !hasKept && <EmptyShelf keeperName={keeper.name} isOwn={isOwn} />}
+        <ShelfStats keptCount={objects.length} since={keeper.since} />
+        {hasKept ? (
+          <ShelfGrid objects={objects} />
+        ) : (
+          <EmptyShelf keeperName={keeper.name} isOwn={isOwn} />
+        )}
       </ScrollBody>
     </div>
   );

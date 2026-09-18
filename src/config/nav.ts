@@ -6,7 +6,6 @@ export const PAGES = {
   SEARCH: "/search",
   SETTINGS: "/settings",
   THING: "/thing",
-  STORY: "/story",
   KEEPER: "/keeper",
 };
 
@@ -22,8 +21,6 @@ export const QUERY_ERRORS = {
 
 export const thingPath = (id: string) => `${PAGES.THING}/${id}`;
 
-export const storyPath = (id: string) => `${PAGES.STORY}/${id}`;
-
 export const keeperPath = (username: string) => `${PAGES.KEEPER}/${username}`;
 
 export const PATHNAME_HEADER = "x-pathname";
@@ -32,4 +29,4 @@ export const ROUTE_HANDLERS = {
   CURRENT_USER: "/api/users/me",
 };
 
-export const storyAttachmentsRoute = (storyId: string) => `/api/stories/${storyId}/attachments`;
+export const objectAttachmentsRoute = (objectId: string) => `/api/objects/${objectId}/attachments`;

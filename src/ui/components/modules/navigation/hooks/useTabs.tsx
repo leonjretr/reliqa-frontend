@@ -49,7 +49,7 @@ export const useTabs = (profileSlug: string | null): Tab[] => {
       href: profileSlug ? keeperPath(profileSlug) : PAGES.LOGIN,
       label: t("TAB_SHELF"),
       icon: <UserIcon className={ICON_CLASS_NAME} />,
-      isActive: startsWithAny(pathname, [PAGES.KEEPER, PAGES.STORY]),
+      isActive: pathname.startsWith(PAGES.KEEPER),
     },
   ];
 };

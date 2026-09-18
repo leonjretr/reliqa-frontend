@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-import type { CatalogueObject } from "@/service/types";
+import type { APIObjectListItem } from "@/service/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/lib/shadcn";
 import { cn } from "@/ui/utils";
 
@@ -20,7 +20,7 @@ const TRIGGER_CLASS_NAME = cn(
 );
 
 type Props = {
-  specimens: CatalogueObject[];
+  specimens: APIObjectListItem[];
 };
 
 export const AuthCard = ({ specimens }: Props) => {

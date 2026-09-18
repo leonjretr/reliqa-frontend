@@ -1,1 +1,1 @@
-export { StoryFeed } from "./StoryFeed";
+export { ObjectFeed } from "./ObjectFeed";

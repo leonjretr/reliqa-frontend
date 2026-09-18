@@ -7,7 +7,7 @@ type Props = {
   action: string;
 };
 
-export const StoryLink = ({ href, title, action }: Props) => (
+export const ObjectLink = ({ href, title, action }: Props) => (
   <Link
     href={href}
     className="bg-chalk flex items-baseline justify-between px-3.5 py-3.25 text-inherit no-underline"

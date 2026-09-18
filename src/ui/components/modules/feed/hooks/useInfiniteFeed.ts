@@ -1,13 +1,13 @@
 import { useEffect, type RefObject } from "react";
 
 import { FEED_LOAD_MORE_THRESHOLD } from "@/config";
-import type { FeedEntry } from "@/service/types";
+import type { APIObject } from "@/service/types";
 
 import { useActiveSlide } from "./useActiveSlide";
 import { useFeedEntries } from "./useFeedEntries";
 
 export const useInfiniteFeed = (
-  initialEntries: FeedEntry[],
+  initialEntries: APIObject[],
   containerRef: RefObject<HTMLDivElement | null>,
 ) => {
   const { entries, loadMore } = useFeedEntries(initialEntries);

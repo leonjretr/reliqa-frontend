@@ -1,13 +1,13 @@
 import { loadFeedEntries } from "@/service/actions";
 import { requireSession } from "@/service/guards";
-import { StoryFeed } from "@/ui/components/modules/feed";
+import { ObjectFeed } from "@/ui/components/modules/feed";
 
 const Page = async ({ params }: PageProps<"/[locale]">) => {
   const { locale } = await params;
   await requireSession(locale);
   const entries = await loadFeedEntries();
 
-  return <StoryFeed initialEntries={entries} />;
+  return <ObjectFeed initialEntries={entries} />;
 };
 
 export default Page;

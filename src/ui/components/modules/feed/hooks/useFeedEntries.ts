@@ -2,9 +2,9 @@ import { useCallback, useRef, useState } from "react";
 
 import { FEED_LOAD_MORE_BATCH_SIZE } from "@/config";
 import { loadFeedEntries } from "@/service/actions";
-import type { FeedEntry } from "@/service/types";
+import type { APIObject } from "@/service/types";
 
-export const useFeedEntries = (initialEntries: FeedEntry[]) => {
+export const useFeedEntries = (initialEntries: APIObject[]) => {
   const [entries, setEntries] = useState(initialEntries);
   const isLoadingRef = useRef(false);
 

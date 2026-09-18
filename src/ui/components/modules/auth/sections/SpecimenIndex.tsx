@@ -1,12 +1,12 @@
 import { useTranslations } from "next-intl";
 
 import { APP_NAME } from "@/config";
-import type { CatalogueObject } from "@/service/types";
+import type { APIObjectListItem } from "@/service/types";
 
 import { Specimen } from "./Specimen";
 
 type Props = {
-  specimens: CatalogueObject[];
+  specimens: APIObjectListItem[];
 };
 
 export const SpecimenIndex = ({ specimens }: Props) => {

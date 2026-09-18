@@ -46,6 +46,12 @@ export type CreateObjectInput = {
   categories?: string[];
   tags?: string[];
   invented_at?: string;
+  short_story?: string;
+  story?: string;
+  source?: string | null;
+  location?: string;
+  acquired_at?: string | null;
+  previous_owner?: string;
 };
 
 export const createObject = async (input: CreateObjectInput) => {

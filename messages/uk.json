@@ -40,7 +40,6 @@
     "TERMS": "Створюючи картку, ви погоджуєтесь з <terms>умовами</terms> та <privacy>політикою приватності</privacy>.",
     "ERROR_SIGNIN": "Не вдалося увійти. Перевірте пошту та пароль.",
     "ERROR_SIGNUP": "Не вдалося створити акаунт. Спробуйте ще раз.",
-    "SPECIMEN_INSTANCES": "{count, plural, one {# примірник} few {# примірники} many {# примірників} other {# примірника}}",
     "LABEL_PHOTO_PLACEHOLDER": "Фото"
   },
   "Navigation": {
@@ -58,14 +57,6 @@
     "KEEPER_SINCE": "зберігає з {year}",
     "PLACEHOLDER_CITY": "місто"
   },
-  "Story": {
-    "LINK_FEED": "← до стрічки",
-    "PHOTO_ALT": "{object} — зберігає {keeper}",
-    "LABEL_WRITTEN": "написано {year}",
-    "LINK_SHELF_TITLE": "Полиця: {keeper}",
-    "LINK_EVERYTHING_KEPT": "усе збережене →",
-    "LINK_EVERYONE_KEPT": "усі, хто це зберігає →"
-  },
   "Search": {
     "TITLE_SEARCH": "знайдіть щось збережене",
     "EMPTY_RESULTS": "За запитом «{query}» нічого не збережено.",
@@ -77,36 +68,36 @@
     "LINK_CATEGORIES": "категорії",
     "TITLE_CATALOGUE": "Речі, які зберігають люди",
     "KEPT_SO_FAR": "{count, plural, one {{formatted} річ збережено} few {{formatted} речі збережено} many {{formatted} речей збережено} other {{formatted} речі збережено}} на цей час",
-    "KEPT_BY_COUNT": "зберегли: {count}",
     "EMPTY_CATEGORY": "У категорії «{category}» ще нічого не збережено.",
     "EMPTY_CATALOGUE": "Ще нічого не збережено.",
     "TITLE_DECADES": "коли відбувалися спогади"
   },
   "Object": {
-    "SECTION_FALLBACK": "збережена річ",
-    "STORIES_COUNT": "{count, plural, one {# історія} few {# історії} many {# історій} other {# історії}}",
-    "STORIES_STUCK_ON": "{count, plural, one {# історія приколота} few {# історії приколоті} many {# історій приколото} other {# історії приколоті}}",
+    "LINK_FEED": "← до стрічки",
+    "PHOTO_ALT": "{object} — зберігає {keeper}",
+    "LABEL_WRITTEN": "написано {year}",
+    "LINK_SHELF_TITLE": "Полиця: {keeper}",
+    "LINK_EVERYTHING_KEPT": "усе збережене →",
     "FACT_CATEGORY": "категорія",
     "FACT_INVENTED": "винайдено",
     "FACT_KEPT_SINCE": "зберігається з",
-    "LINK_THEIR_SHELF": "полиця автора →",
-    "BUTTON_ADD_MEMORY": "Приколіть свій спогад"
+    "FACT_SOURCE": "як потрапила",
+    "FACT_LOCATION": "де",
+    "FACT_PREVIOUS_OWNER": "чия була раніше"
   },
   "Feed": {
     "LABEL_SEEN": "переглядів",
     "RAIL_ADD": "додати своє",
     "RAIL_OBJECT": "річ",
     "QUOTE_AUTHOR": "— {keeper}",
-    "EMPTY_STORY": "Історію цієї речі ще ніхто не розповів.",
-    "LINK_READ_STORY": "читати повністю →",
+    "EMPTY_QUOTE": "Історію цієї речі ще ніхто не розповів.",
+    "LINK_READ_MORE": "читати повністю →",
     "EMPTY_FEED": "Ще нічого не збережено. Додайте щось першими."
   },
   "Profile": {
     "LABEL_SETTINGS": "налаштування",
     "STAT_KEPT": "збережено",
-    "STAT_WRITTEN": "написано",
     "STAT_SINCE": "з",
-    "TITLE_WRITTEN": "написане",
     "TITLE_SHELF": "на полиці",
     "EMPTY_OWN_SHELF": "Ваша полиця порожня. Збережіть першу річ і спогад про неї.",
     "EMPTY_SHELF": "{name}: тут ще нічого не збережено.",

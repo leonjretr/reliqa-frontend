@@ -9,26 +9,35 @@ import { PhotoShade } from "@/ui/components/common/PhotoShade";
 type Props = {
   objectName: string;
   keeperName: string;
-  category?: string;
+  categorySlug?: string;
+  categoryName?: string;
   photo?: string;
   year: string;
-  quote: string;
+  quote?: string;
 };
 
-export const StoryHero = ({ objectName, keeperName, category, photo, year, quote }: Props) => {
-  const t = useTranslations("Story");
+export const ObjectHero = ({
+  objectName,
+  keeperName,
+  categorySlug,
+  categoryName,
+  photo,
+  year,
+  quote,
+}: Props) => {
+  const t = useTranslations("Object");
   const common = useTranslations("Common");
 
   return (
     <div className="relative h-93">
       <KeptPhoto
-        category={category}
+        category={categorySlug}
         src={photo}
         loading="eager"
         alt={t("PHOTO_ALT", { object: objectName, keeper: keeperName })}
         className="absolute inset-0"
       />
-      <PhotoShade variant="story" />
+      <PhotoShade variant="object" />
       <Link href={PAGES.FEED} className="absolute top-3.75 left-4.5 no-underline">
         <MonoLabel as="span" className="text-chalk">
           {t("LINK_FEED")}
@@ -41,9 +50,9 @@ export const StoryHero = ({ objectName, keeperName, category, photo, year, quote
         {year}
       </MonoLabel>
       <div className="absolute inset-x-0 bottom-0 px-4.5 pb-4.5">
-        {category && (
+        {categoryName && (
           <MonoLabel className="text-chalk/72">
-            {category}
+            {categoryName}
             {META_SEPARATOR}
             {objectName}
           </MonoLabel>
@@ -51,9 +60,11 @@ export const StoryHero = ({ objectName, keeperName, category, photo, year, quote
         <div className="text-chalk text-heading-lg leading-heading mt-1.5 font-bold tracking-tight">
           {keeperName}
         </div>
-        <p className="text-chalk text-lede leading-quote mt-2.5 font-light italic">
-          {common("QUOTE", { text: quote })}
-        </p>
+        {quote && (
+          <p className="text-chalk text-lede leading-quote mt-2.5 font-light italic">
+            {common("QUOTE", { text: quote })}
+          </p>
+        )}
       </div>
     </div>
   );

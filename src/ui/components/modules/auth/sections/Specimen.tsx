@@ -1,11 +1,11 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-import { IMAGE_SIZES, META_SEPARATOR } from "@/config";
-import type { CatalogueObject } from "@/service/types";
+import { IMAGE_SIZES } from "@/config";
+import type { APIObjectListItem } from "@/service/types";
 
 type Props = {
-  object: CatalogueObject;
+  object: APIObjectListItem;
 };
 
 export const Specimen = ({ object }: Props) => {
@@ -35,13 +35,7 @@ export const Specimen = ({ object }: Props) => {
           {object.name}
         </span>
         <span className="text-auth-text-on-dark-muted font-plex-mono text-meta tracking-widest uppercase">
-          {category && (
-            <>
-              {category}
-              {META_SEPARATOR}
-            </>
-          )}
-          {t("SPECIMEN_INSTANCES", { count: object.stories_count })}
+          {category}
         </span>
       </div>
     </li>

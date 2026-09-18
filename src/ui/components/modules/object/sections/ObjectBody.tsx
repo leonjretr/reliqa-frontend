@@ -9,8 +9,8 @@ type Props = {
   paragraphs: string[];
 };
 
-export const StoryBody = ({ heading, year, paragraphs }: Props) => {
-  const t = useTranslations("Story");
+export const ObjectBody = ({ heading, year, paragraphs }: Props) => {
+  const t = useTranslations("Object");
 
   return (
     <>

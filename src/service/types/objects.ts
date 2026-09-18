@@ -27,6 +27,12 @@ export type APITag = {
   slug: string;
 };
 
+export type APIObjectSource = {
+  id: string;
+  slug: string;
+  name: string;
+};
+
 export type APIAttachment = {
   id: string;
   file: APIFile;
@@ -39,11 +45,16 @@ export type APIObject = {
   name: string;
   description: string;
   invented_at: string | null;
+  short_story: string;
+  story: string;
+  source: APIObjectSource | null;
+  location: string;
+  acquired_at: string | null;
+  previous_owner: string;
   created_by: APIUserSummary;
   categories: APICategory[];
   tags: APITag[];
   attachments: APIAttachment[];
-  stories_count: number;
   view_count: number;
   created_at: string;
   updated_at: string;
@@ -53,6 +64,10 @@ export type APIObjectListItem = {
   id: string;
   name: string;
   description: string;
+  short_story: string;
+  source: APIObjectSource | null;
+  location: string;
+  acquired_at: string | null;
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];
@@ -65,6 +80,12 @@ export type APICreatedObject = {
   name: string;
   description: string;
   invented_at: string | null;
+  short_story: string;
+  story: string;
+  source: string | null;
+  location: string;
+  acquired_at: string | null;
+  previous_owner: string;
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];

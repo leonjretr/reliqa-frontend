@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { SHORT_STORY_MAX_LENGTH } from "@/config";
 
-export const ARRIVALS = ["inherited", "bought", "gift", "found", "made"] as const;
+export const ARRIVALS = ["inherited", "bought", "a-gift", "found-at-home", "made-it"] as const;
 
 export const captureSchema = z.object({
   name: z.string().min(1),

@@ -1,6 +1,6 @@
 "use server";
 
-import { createObject, createStory } from "@/service/api";
+import { createObject } from "@/service/api";
 import { CaptureInput, CaptureResult } from "@/service/types";
 
 import { toActionFailure } from "./result";
@@ -11,18 +11,26 @@ export const submitCapture = async ({
   tags,
   story,
   shortStory,
+  source,
+  location,
+  acquiredAt,
+  previousOwner,
 }: CaptureInput): Promise<CaptureResult> => {
-  const object = await createObject({ name, categories: [category], tags });
+  const object = await createObject({
+    name,
+    categories: [category],
+    tags,
+    story,
+    short_story: shortStory,
+    source,
+    location,
+    acquired_at: acquiredAt,
+    previous_owner: previousOwner,
+  });
 
   if (!object.success) {
     return toActionFailure(object);
   }
 
-  const createdStory = await createStory(object.id, story, shortStory);
-
-  if (!createdStory.success) {
-    return toActionFailure(createdStory);
-  }
-
-  return { success: true, storyId: createdStory.id };
+  return { success: true, objectId: object.id };
 };

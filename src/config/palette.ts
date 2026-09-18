@@ -50,8 +50,3 @@ export const FALLBACK_DUOTONE: Duotone = {
   hue: "var(--color-duotone-fallback)",
   deep: "var(--color-duotone-fallback-deep)",
 };
-
-export const NOTE_SHADOWS = {
-  RESTING: "var(--shadow-note)",
-  RAISED: "var(--shadow-note-raised)",
-};

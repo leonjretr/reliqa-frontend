@@ -40,7 +40,6 @@
     "TERMS": "Создавая билет, вы соглашаетесь с <terms>условиями</terms> и <privacy>политикой конфиденциальности</privacy>.",
     "ERROR_SIGNIN": "Не удалось войти. Проверьте почту и пароль.",
     "ERROR_SIGNUP": "Не удалось создать аккаунт. Попробуйте ещё раз.",
-    "SPECIMEN_INSTANCES": "{count, plural, one {# экземпляр} few {# экземпляра} many {# экземпляров} other {# экземпляра}}",
     "LABEL_PHOTO_PLACEHOLDER": "Фото"
   },
   "Navigation": {
@@ -58,14 +57,6 @@
     "KEEPER_SINCE": "хранит с {year}",
     "PLACEHOLDER_CITY": "город"
   },
-  "Story": {
-    "LINK_FEED": "← в ленту",
-    "PHOTO_ALT": "{object} — хранит {keeper}",
-    "LABEL_WRITTEN": "написано {year}",
-    "LINK_SHELF_TITLE": "Полка: {keeper}",
-    "LINK_EVERYTHING_KEPT": "всё сохранённое →",
-    "LINK_EVERYONE_KEPT": "все, кто это хранит →"
-  },
   "Search": {
     "TITLE_SEARCH": "найдите что-то сохранённое",
     "EMPTY_RESULTS": "По запросу «{query}» ничего не сохранено.",
@@ -77,36 +68,36 @@
     "LINK_CATEGORIES": "категории",
     "TITLE_CATALOGUE": "Вещи, которые хранят люди",
     "KEPT_SO_FAR": "{count, plural, one {{formatted} вещь сохранена} few {{formatted} вещи сохранены} many {{formatted} вещей сохранено} other {{formatted} вещи сохранены}} на сегодня",
-    "KEPT_BY_COUNT": "сохранили: {count}",
     "EMPTY_CATEGORY": "В категории «{category}» пока ничего не сохранено.",
     "EMPTY_CATALOGUE": "Пока ничего не сохранено.",
     "TITLE_DECADES": "когда случились воспоминания"
   },
   "Object": {
-    "SECTION_FALLBACK": "сохранённая вещь",
-    "STORIES_COUNT": "{count, plural, one {# история} few {# истории} many {# историй} other {# истории}}",
-    "STORIES_STUCK_ON": "{count, plural, one {# история приколота} few {# истории приколоты} many {# историй приколото} other {# истории приколоты}}",
+    "LINK_FEED": "← в ленту",
+    "PHOTO_ALT": "{object} — хранит {keeper}",
+    "LABEL_WRITTEN": "написано {year}",
+    "LINK_SHELF_TITLE": "Полка: {keeper}",
+    "LINK_EVERYTHING_KEPT": "всё сохранённое →",
     "FACT_CATEGORY": "категория",
     "FACT_INVENTED": "изобретено",
     "FACT_KEPT_SINCE": "хранится с",
-    "LINK_THEIR_SHELF": "полка автора →",
-    "BUTTON_ADD_MEMORY": "Приколите своё воспоминание"
+    "FACT_SOURCE": "как попала",
+    "FACT_LOCATION": "где",
+    "FACT_PREVIOUS_OWNER": "чья была раньше"
   },
   "Feed": {
     "LABEL_SEEN": "просмотров",
     "RAIL_ADD": "добавить своё",
     "RAIL_OBJECT": "вещь",
     "QUOTE_AUTHOR": "— {keeper}",
-    "EMPTY_STORY": "Историю этой вещи ещё никто не рассказал.",
-    "LINK_READ_STORY": "читать полностью →",
+    "EMPTY_QUOTE": "Историю этой вещи ещё никто не рассказал.",
+    "LINK_READ_MORE": "читать полностью →",
     "EMPTY_FEED": "Пока ничего не сохранено. Добавьте что-нибудь первыми."
   },
   "Profile": {
     "LABEL_SETTINGS": "настройки",
     "STAT_KEPT": "сохранено",
-    "STAT_WRITTEN": "написано",
     "STAT_SINCE": "с",
-    "TITLE_WRITTEN": "написанное",
     "TITLE_SHELF": "на полке",
     "EMPTY_OWN_SHELF": "Ваша полка пуста. Сохраните первую вещь и воспоминание о ней.",
     "EMPTY_SHELF": "{name}: здесь пока ничего не сохранено.",

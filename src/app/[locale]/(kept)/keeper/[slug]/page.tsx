@@ -16,7 +16,6 @@ const Page = async ({ params }: PageProps<"/[locale]/keeper/[slug]">) => {
     <ProfileScreen
       keeper={toKeeperProfile(keeper.user)}
       objects={keeper.objects}
-      stories={keeper.stories}
       isOwn={keeper.isOwn}
     />
   );

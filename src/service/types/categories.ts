@@ -6,7 +6,6 @@ export type APICategoryListItem = {
   slug: string;
   cover: APIFile | null;
   objects_count: number;
-  stories_count: number;
 };
 
 export type APICategoryDetail = {
@@ -16,5 +15,4 @@ export type APICategoryDetail = {
   description: string;
   cover: APIFile | null;
   objects_count: number;
-  stories_count: number;
 };

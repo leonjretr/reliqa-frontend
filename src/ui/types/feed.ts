@@ -1,6 +1,6 @@
 export type FeedCard = {
   objectId: string;
-  storyId?: string;
+  hasStory: boolean;
   name: string;
   photo?: string;
   category?: string;

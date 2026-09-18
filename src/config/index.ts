@@ -14,9 +14,8 @@ export {
   QUERY_ERRORS,
   ROUTE_HANDLERS,
   thingPath,
-  storyPath,
   keeperPath,
-  storyAttachmentsRoute,
+  objectAttachmentsRoute,
   PATHNAME_HEADER,
 } from "./nav";
 export {
@@ -31,13 +30,12 @@ export {
   FEED_FETCH_ATTEMPTS_PER_ENTRY,
   FEED_TAGS_SHOWN,
   FEED_ACTIVE_SLIDE_RATIO,
-  OBJECT_NOTES_SHOWN,
   SPECIMENS_SHOWN,
   INITIALS_LENGTH,
 } from "./limits";
 export { ROUTING, LOCALE_NAMES, LOCALE_COOKIE, LOCALE_HEADER } from "./i18n";
 export type { Locale } from "./i18n";
-export { STOCK, AVATAR_TONES, DUOTONES, FALLBACK_DUOTONE, NOTE_SHADOWS } from "./palette";
+export { STOCK, AVATAR_TONES, DUOTONES, FALLBACK_DUOTONE } from "./palette";
 export { THEME_SCALES } from "./theme";
 export { MEDIA_REMOTE_PATTERNS, LOCAL_PREVIEW_PROTOCOL, IMAGE_SIZES } from "./media";
 export { APP_NAME, META_SEPARATOR } from "./app";

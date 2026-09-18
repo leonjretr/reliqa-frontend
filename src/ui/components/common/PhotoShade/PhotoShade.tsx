@@ -1,6 +1,6 @@
 const SHADES = {
   feed: "photo-shade-feed",
-  story: "photo-shade-story",
+  object: "photo-shade-object",
   preview: "photo-shade-preview",
 };
 

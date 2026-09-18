@@ -40,7 +40,6 @@
     "TERMS": "By making a card you agree to the <terms>terms</terms> and the <privacy>privacy note</privacy>.",
     "ERROR_SIGNIN": "Could not sign you in. Check your email and password.",
     "ERROR_SIGNUP": "Could not create your account. Please try again.",
-    "SPECIMEN_INSTANCES": "{count, plural, one {# instance} other {# instances}}",
     "LABEL_PHOTO_PLACEHOLDER": "Photo"
   },
   "Navigation": {
@@ -58,14 +57,6 @@
     "KEEPER_SINCE": "keeper since {year}",
     "PLACEHOLDER_CITY": "city"
   },
-  "Story": {
-    "LINK_FEED": "← the feed",
-    "PHOTO_ALT": "{object} kept by {keeper}",
-    "LABEL_WRITTEN": "written {year}",
-    "LINK_SHELF_TITLE": "{keeper}’s shelf",
-    "LINK_EVERYTHING_KEPT": "everything kept →",
-    "LINK_EVERYONE_KEPT": "everyone who kept one →"
-  },
   "Search": {
     "TITLE_SEARCH": "find something kept",
     "EMPTY_RESULTS": "Nothing kept under “{query}”.",
@@ -77,36 +68,36 @@
     "LINK_CATEGORIES": "categories",
     "TITLE_CATALOGUE": "Things people kept",
     "KEPT_SO_FAR": "{count, plural, one {{formatted} thing} other {{formatted} things}} kept so far",
-    "KEPT_BY_COUNT": "{count} kept one",
     "EMPTY_CATEGORY": "Nothing kept in {category} yet.",
     "EMPTY_CATALOGUE": "Nothing kept yet.",
     "TITLE_DECADES": "when the memories happened"
   },
   "Object": {
-    "SECTION_FALLBACK": "kept thing",
-    "STORIES_COUNT": "{count, plural, one {# story} other {# stories}}",
-    "STORIES_STUCK_ON": "{count, plural, one {# story} other {# stories}} stuck on",
+    "LINK_FEED": "← the feed",
+    "PHOTO_ALT": "{object} kept by {keeper}",
+    "LABEL_WRITTEN": "written {year}",
+    "LINK_SHELF_TITLE": "{keeper}’s shelf",
+    "LINK_EVERYTHING_KEPT": "everything kept →",
     "FACT_CATEGORY": "category",
     "FACT_INVENTED": "invented",
     "FACT_KEPT_SINCE": "kept since",
-    "LINK_THEIR_SHELF": "their shelf →",
-    "BUTTON_ADD_MEMORY": "Stick your memory on"
+    "FACT_SOURCE": "reached them",
+    "FACT_LOCATION": "where",
+    "FACT_PREVIOUS_OWNER": "before them"
   },
   "Feed": {
     "LABEL_SEEN": "seen",
     "RAIL_ADD": "add yours",
     "RAIL_OBJECT": "the object",
     "QUOTE_AUTHOR": "— {keeper}",
-    "EMPTY_STORY": "Nobody has told this object’s story yet.",
-    "LINK_READ_STORY": "read the whole thing →",
+    "EMPTY_QUOTE": "Nobody has told this object’s story yet.",
+    "LINK_READ_MORE": "read the whole thing →",
     "EMPTY_FEED": "Nothing kept yet. Be the first to add something."
   },
   "Profile": {
     "LABEL_SETTINGS": "settings",
     "STAT_KEPT": "kept",
-    "STAT_WRITTEN": "written",
     "STAT_SINCE": "since",
-    "TITLE_WRITTEN": "written",
     "TITLE_SHELF": "on the shelf",
     "EMPTY_OWN_SHELF": "Your shelf is empty. Keep your first thing and its memory.",
     "EMPTY_SHELF": "{name} hasn’t kept anything here yet.",

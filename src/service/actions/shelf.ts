@@ -1,19 +1,12 @@
 "use server";
 
 import { API_ORDERINGS } from "@/config";
-import { getCurrentUser, getObjects, getUserByUsername, getUserStories } from "@/service/api";
+import { getCurrentUser, getObjects, getUserByUsername } from "@/service/api";
 import type { KeeperPage, KeeperShelf } from "@/service/types";
 
 const loadKeeperShelf = async (userId: string): Promise<KeeperShelf> => {
-  const [objects, stories] = await Promise.all([
-    getObjects({ createdBy: userId, ordering: API_ORDERINGS.NEWEST }),
-    getUserStories(userId),
-  ]);
-
-  return {
-    objects: objects.success ? objects.results : [],
-    stories: stories.success ? stories.results : [],
-  };
+  const objects = await getObjects({ createdBy: userId, ordering: API_ORDERINGS.NEWEST });
+  return { objects: objects.success ? objects.results : [] };
 };
 
 export const loadKeeperPage = async (username: string): Promise<KeeperPage | null> => {

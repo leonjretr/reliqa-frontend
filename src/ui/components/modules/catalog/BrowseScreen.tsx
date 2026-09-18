@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { PAGES } from "@/config";
-import type { APICategoryDetail, CatalogueObject } from "@/service/types";
+import type { APICategoryDetail, APIObjectListItem } from "@/service/types";
 import { EmptyState } from "@/ui/components/common/EmptyState";
 import { GrainOverlay } from "@/ui/components/common/GrainOverlay";
 import { MonoLabel } from "@/ui/components/common/MonoLabel";
@@ -12,7 +12,7 @@ import { groupThousands } from "@/ui/utils";
 import { CatalogueCard, DecadesBand } from "./sections";
 
 type Props = {
-  objects: CatalogueObject[];
+  objects: APIObjectListItem[];
   totalCount: number;
   category?: APICategoryDetail;
 };

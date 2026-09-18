@@ -7,7 +7,6 @@ export const API_DEFAULT_LANGUAGE = ROUTING.defaultLocale;
 
 export const API_ORDERINGS = {
   NEWEST: "-created_at",
-  MOST_STORIES: "-stories_count",
 };
 
 export const API_ENDPOINTS = {
@@ -20,7 +19,6 @@ export const API_ENDPOINTS = {
   GOOGLE_OAUTH_CALLBACK: "google/oauth/callback/",
   OBJECTS: "objects/",
   OBJECTS_FEED: "objects/feed/",
-  STORIES: "stories/",
   CATEGORIES: "categories/",
   TAGS: "tags/",
   USER_BY_USERNAME: "users/by-username/",
