@@ -1,6 +1,7 @@
 export { GoogleIcon } from "./GoogleIcon";
 export { HouseIcon } from "./HouseIcon";
 export { GridIcon } from "./GridIcon";
+export { StoreIcon } from "./StoreIcon";
 export { PlusIcon } from "./PlusIcon";
 export { SearchIcon } from "./SearchIcon";
 export { UserIcon } from "./UserIcon";

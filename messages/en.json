@@ -47,8 +47,17 @@
     "TAB_BROWSE": "browse",
     "TAB_KEEP": "keep",
     "TAB_FIND": "find",
+    "TAB_MARKETPLACE": "market",
     "TAB_SHELF": "shelf",
     "LINK_BACK": "← {label}"
+  },
+  "Marketplace": {
+    "SECTION_MARKETPLACE": "the market",
+    "STATUS_SOON": "soon",
+    "BADGE_WIP": "wip",
+    "TITLE_MARKETPLACE": "The marketplace is coming",
+    "BODY_MARKETPLACE": "A place to trade the objects worth keeping. We're still building it.",
+    "HINT_BUILDING": "under construction"
   },
   "Common": {
     "QUOTE": "“{text}”",

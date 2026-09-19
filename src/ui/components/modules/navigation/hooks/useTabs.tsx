@@ -3,13 +3,10 @@ import { useSearchParams } from "next/navigation";
 
 import { keeperPath, PAGES, QUERIES } from "@/config";
 import { usePathname } from "@/i18n";
-import { GridIcon, HouseIcon, PlusIcon, SearchIcon, UserIcon } from "@/ui/components/common/icons";
+import { HouseIcon, PlusIcon, SearchIcon, StoreIcon, UserIcon } from "@/ui/components/common/icons";
 import type { Tab } from "@/ui/types";
 
 const ICON_CLASS_NAME = "size-4.5";
-
-const startsWithAny = (pathname: string, prefixes: string[]) =>
-  prefixes.some((prefix) => pathname.startsWith(prefix));
 
 export const useTabs = (profileSlug: string | null): Tab[] => {
   const t = useTranslations("Navigation");
@@ -25,10 +22,10 @@ export const useTabs = (profileSlug: string | null): Tab[] => {
       isActive: pathname === PAGES.FEED,
     },
     {
-      href: PAGES.BROWSE,
-      label: t("TAB_BROWSE"),
-      icon: <GridIcon className={ICON_CLASS_NAME} />,
-      isActive: startsWithAny(pathname, [PAGES.BROWSE, PAGES.THING]),
+      href: PAGES.SEARCH,
+      label: t("TAB_FIND"),
+      icon: <SearchIcon className={ICON_CLASS_NAME} />,
+      isActive: pathname.startsWith(PAGES.SEARCH),
     },
     {
       href: category
@@ -40,10 +37,10 @@ export const useTabs = (profileSlug: string | null): Tab[] => {
       center: true,
     },
     {
-      href: PAGES.SEARCH,
-      label: t("TAB_FIND"),
-      icon: <SearchIcon className={ICON_CLASS_NAME} />,
-      isActive: pathname.startsWith(PAGES.SEARCH),
+      href: PAGES.MARKETPLACE,
+      label: t("TAB_MARKETPLACE"),
+      icon: <StoreIcon className={ICON_CLASS_NAME} />,
+      isActive: pathname.startsWith(PAGES.MARKETPLACE),
     },
     {
       href: profileSlug ? keeperPath(profileSlug) : PAGES.LOGIN,

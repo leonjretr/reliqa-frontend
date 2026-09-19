@@ -47,8 +47,17 @@
     "TAB_BROWSE": "каталог",
     "TAB_KEEP": "сохранить",
     "TAB_FIND": "поиск",
+    "TAB_MARKETPLACE": "маркет",
     "TAB_SHELF": "полка",
     "LINK_BACK": "← {label}"
+  },
+  "Marketplace": {
+    "SECTION_MARKETPLACE": "маркет",
+    "STATUS_SOON": "скоро",
+    "BADGE_WIP": "wip",
+    "TITLE_MARKETPLACE": "Маркетплейс уже в пути",
+    "BODY_MARKETPLACE": "Место, чтобы обмениваться вещами, стоящими сохранения. В процессе постройки.",
+    "HINT_BUILDING": "в разработке"
   },
   "Common": {
     "QUOTE": "«{text}»",

@@ -3,6 +3,7 @@ export const PAGES = {
   LOGIN: "/login",
   ADD: "/add",
   BROWSE: "/browse",
+  MARKETPLACE: "/marketplace",
   SEARCH: "/search",
   SETTINGS: "/settings",
   THING: "/thing",
