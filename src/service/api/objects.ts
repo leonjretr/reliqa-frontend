@@ -34,7 +34,7 @@ export type GetObjectsParams = {
 };
 
 export const getObjects = async ({ createdBy, categories, ordering }: GetObjectsParams = {}) => {
-  return await fetchAPI<APIPaginatedResponse<APIObjectListItem>>(
+  return await fetchAuthenticated<APIPaginatedResponse<APIObjectListItem>>(
     withQuery(API_ENDPOINTS.OBJECTS, { created_by: createdBy, categories, ordering }),
     { method: "GET" },
   );
