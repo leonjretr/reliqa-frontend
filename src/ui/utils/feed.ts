@@ -8,7 +8,7 @@ export const toFeedCard = (object: APIObject): FeedCard => ({
   objectId: object.id,
   hasStory: Boolean(object.story),
   name: object.name,
-  photo: object.attachments[0]?.file.src,
+  photos: object.attachments.map((attachment) => attachment.file.src),
   category: object.categories[0]?.name,
   categorySlug: object.categories[0]?.slug,
   tags: object.tags.map((tag) => tag.slug),

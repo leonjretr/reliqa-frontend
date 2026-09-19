@@ -2,7 +2,7 @@ export type FeedCard = {
   objectId: string;
   hasStory: boolean;
   name: string;
-  photo?: string;
+  photos: string[];
   category?: string;
   categorySlug?: string;
   tags: string[];

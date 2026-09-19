@@ -9,5 +9,5 @@ type Props = {
 };
 
 export const PhotoShade = ({ variant }: Props) => (
-  <div className={`${SHADES[variant]} absolute inset-0`} />
+  <div className={`${SHADES[variant]} pointer-events-none absolute inset-0`} />
 );

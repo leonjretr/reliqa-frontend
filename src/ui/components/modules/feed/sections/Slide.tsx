@@ -1,12 +1,13 @@
-import { useRef, type RefObject } from "react";
+import { useRef, useState, type RefObject } from "react";
 import { motion } from "framer-motion";
 
-import { KeptPhoto } from "@/ui/components/common/KeptPhoto";
 import { PhotoShade } from "@/ui/components/common/PhotoShade";
 import type { FeedCard } from "@/ui/types";
 
 import { SLIDE_ATTRIBUTE, useSlideMotion } from "../hooks";
+import { PhotoSegments } from "./PhotoSegments";
 import { SlideCopy } from "./SlideCopy";
+import { SlidePhotos } from "./SlidePhotos";
 import { SlideRail } from "./SlideRail";
 
 type Props = {
@@ -19,6 +20,7 @@ export const Slide = ({ card, index, containerRef }: Props) => {
   const slideRef = useRef<HTMLElement>(null);
   const motionValues = useSlideMotion(containerRef, slideRef);
   const { isReducedMotion } = motionValues;
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   return (
     <section
@@ -32,15 +34,20 @@ export const Slide = ({ card, index, containerRef }: Props) => {
           isReducedMotion ? undefined : { y: motionValues.photoY, scale: motionValues.photoScale }
         }
       >
-        <KeptPhoto
-          category={card.categorySlug}
-          src={card.photo}
-          loading={index === 0 ? "eager" : "lazy"}
+        <SlidePhotos
+          photos={card.photos}
           alt={card.name}
-          className="absolute inset-0"
+          category={card.categorySlug}
+          isFirstSlide={index === 0}
+          onChange={setPhotoIndex}
         />
       </motion.div>
       <PhotoShade variant="feed" />
+      <PhotoSegments
+        count={card.photos.length}
+        activeIndex={photoIndex}
+        opacity={motionValues.copyOpacity}
+      />
       <SlideRail
         card={card}
         opacity={motionValues.copyOpacity}
