@@ -24,7 +24,10 @@ const Layout = async ({ children }: LayoutProps<"/[locale]">) => {
   return (
     <div className={`${literata.variable} ${dmMono.variable} text-ink bg-desk font-kept min-h-svh`}>
       <div className="max-w-phone mx-auto flex min-h-svh w-full flex-col sm:justify-center sm:py-8">
-        <div className="bg-chalk shadow-phone sm:h-phone-frame relative flex h-svh w-full flex-col overflow-hidden">
+        <div
+          data-app-frame
+          className="bg-chalk shadow-phone sm:h-phone-frame relative flex h-svh w-full flex-col overflow-hidden"
+        >
           <main className="relative min-h-0 flex-1 overflow-hidden">{children}</main>
           <TabBar profileSlug={profileSlug} />
         </div>

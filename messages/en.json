@@ -133,7 +133,8 @@
     "BUTTON_SAVING": "Saving…",
     "BUTTON_SAVED": "Saved",
     "BUTTON_SIGN_OUT": "Sign out",
-    "ERROR_SAVE": "Could not save your changes. Try again."
+    "ERROR_SAVE": "Could not save your changes. Try again.",
+    "BUTTON_EDIT_PHOTO": "edit"
   },
   "Capture": {
     "SECTION_ADD": "add yours",
@@ -185,6 +186,32 @@
     "EMPTY_TAGS": "type to add a tag",
     "BUTTON_CREATE_TAG": "add \"{tag}\"",
     "LABEL_REMOVE_TAG": "remove {tag}",
-    "KEEPER_FALLBACK": "you"
+    "KEEPER_FALLBACK": "you",
+    "BUTTON_EDIT_PHOTO": "edit"
+  },
+  "PhotoEditor": {
+    "TITLE": "edit photo",
+    "BUTTON_CANCEL": "cancel",
+    "BUTTON_DONE": "done",
+    "TOOL_CROP": "crop",
+    "TOOL_ADJUST": "adjust",
+    "TOOL_FILTERS": "filters",
+    "LABEL_ZOOM": "zoom",
+    "BUTTON_ROTATE": "rotate",
+    "BUTTON_FLIP": "flip",
+    "ASPECT_ORIGINAL": "original",
+    "ASPECT_SQUARE": "1:1",
+    "ASPECT_PORTRAIT": "4:5",
+    "ASPECT_LANDSCAPE": "4:3",
+    "LABEL_BRIGHTNESS": "light",
+    "LABEL_CONTRAST": "contrast",
+    "LABEL_SATURATION": "colour",
+    "PRESET_NONE": "none",
+    "PRESET_WARM": "warm",
+    "PRESET_FADED": "faded",
+    "PRESET_MONO": "mono",
+    "PRESET_SEPIA": "sepia",
+    "PRESET_VIVID": "vivid",
+    "ERROR_LOAD": "could not open this photo"
   }
 }

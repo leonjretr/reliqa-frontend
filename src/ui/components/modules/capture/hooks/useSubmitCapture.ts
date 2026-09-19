@@ -5,6 +5,7 @@ import { objectAttachmentsRoute, PAGES, YEAR_MAX_LENGTH } from "@/config";
 import { useRouter } from "@/i18n";
 import { submitCapture } from "@/service/actions";
 import type { ActionFailure } from "@/service/types";
+import { clearEdit } from "@/ui/components/common/PhotoEditor";
 import { sendFormData } from "@/ui/utils";
 import type { CaptureValues } from "@/ui/validation";
 
@@ -46,6 +47,7 @@ export const useSubmitCapture = (setError: UseFormSetError<CaptureValues>) => {
       return;
     }
 
+    await clearEdit("object");
     router.replace(PAGES.FEED);
     router.refresh();
   };

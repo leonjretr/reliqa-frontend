@@ -1,4 +1,3 @@
-import type { ChangeEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useFormContext, useWatch } from "react-hook-form";
 
@@ -8,6 +7,7 @@ import { KeeperAvatar } from "@/ui/components/common/KeeperAvatar";
 import { KeptInput } from "@/ui/components/common/KeptInput";
 import { KeptTextarea } from "@/ui/components/common/KeptTextarea";
 import { MonoLabel } from "@/ui/components/common/MonoLabel";
+import { PhotoPicker } from "@/ui/components/common/PhotoEditor";
 import { useFilePreview } from "@/ui/hooks";
 import type { SettingsValues } from "@/ui/validation";
 
@@ -18,6 +18,9 @@ const FIELD_IDS = {
 };
 
 const AVATAR_SIZE = 72;
+
+const PHOTO_BUTTON_CLASS =
+  "border-ink font-kept-mono text-caption inline-block cursor-pointer border px-3 py-2.25 tracking-wider lowercase";
 
 type Props = {
   avatarSrc?: string;
@@ -30,22 +33,27 @@ export const ProfileFields = ({ avatarSrc }: Props) => {
   const [name, bio, avatar] = useWatch({ control, name: ["name", "bio", "avatar"] });
   const preview = useFilePreview(avatar, avatarSrc);
 
-  const handleAvatar = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) setValue("avatar", file, { shouldDirty: true });
-  };
+  const handleAvatar = (file: File) => setValue("avatar", file, { shouldDirty: true });
 
   return (
     <>
       <MonoLabel className="mt-6 mb-2.5">{t("TITLE_PROFILE")}</MonoLabel>
       <div className="flex items-center gap-4">
         <KeeperAvatar name={name} src={preview} size={AVATAR_SIZE} />
-        <label className="cursor-pointer">
-          <input type="file" accept="image/*" onChange={handleAvatar} className="hidden" />
-          <span className="border-ink font-kept-mono text-caption inline-block border px-3 py-2.25 tracking-wider lowercase">
-            {t("BUTTON_CHANGE_PHOTO")}
-          </span>
-        </label>
+        <PhotoPicker mode="avatar" onChange={handleAvatar}>
+          {({ pick, edit }) => (
+            <div className="flex gap-2">
+              <button type="button" onClick={pick} className={PHOTO_BUTTON_CLASS}>
+                {t("BUTTON_CHANGE_PHOTO")}
+              </button>
+              {edit && (
+                <button type="button" onClick={edit} className={PHOTO_BUTTON_CLASS}>
+                  {t("BUTTON_EDIT_PHOTO")}
+                </button>
+              )}
+            </div>
+          )}
+        </PhotoPicker>
       </div>
 
       <div className="mt-4.5">

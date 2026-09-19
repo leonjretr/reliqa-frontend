@@ -38,5 +38,5 @@ export type { Locale } from "./i18n";
 export { STOCK, AVATAR_TONES, DUOTONES, FALLBACK_DUOTONE } from "./palette";
 export { THEME_SCALES } from "./theme";
 export { MEDIA_REMOTE_PATTERNS, LOCAL_PREVIEW_PROTOCOL, IMAGE_SIZES } from "./media";
-export { APP_NAME, META_SEPARATOR } from "./app";
+export { APP_NAME, META_SEPARATOR, APP_FRAME_SELECTOR } from "./app";
 export { ONESIGNAL_APP_ID, ONESIGNAL_WORKER } from "./onesignal";

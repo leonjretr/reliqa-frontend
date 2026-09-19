@@ -9,3 +9,8 @@ export { CameraIcon } from "./CameraIcon";
 export { SettingsIcon } from "./SettingsIcon";
 export { EyeIcon } from "./EyeIcon";
 export { EyeOffIcon } from "./EyeOffIcon";
+export { CropIcon } from "./CropIcon";
+export { AdjustIcon } from "./AdjustIcon";
+export { FilterIcon } from "./FilterIcon";
+export { RotateIcon } from "./RotateIcon";
+export { FlipIcon } from "./FlipIcon";

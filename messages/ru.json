@@ -133,7 +133,8 @@
     "BUTTON_SAVING": "Сохраняем…",
     "BUTTON_SAVED": "Сохранено",
     "BUTTON_SIGN_OUT": "Выйти",
-    "ERROR_SAVE": "Не удалось сохранить изменения. Попробуйте ещё раз."
+    "ERROR_SAVE": "Не удалось сохранить изменения. Попробуйте ещё раз.",
+    "BUTTON_EDIT_PHOTO": "редактировать"
   },
   "Capture": {
     "SECTION_ADD": "добавьте своё",
@@ -185,6 +186,32 @@
     "EMPTY_TAGS": "начните вводить, чтобы добавить тег",
     "BUTTON_CREATE_TAG": "добавить «{tag}»",
     "LABEL_REMOVE_TAG": "убрать {tag}",
-    "KEEPER_FALLBACK": "вы"
+    "KEEPER_FALLBACK": "вы",
+    "BUTTON_EDIT_PHOTO": "редактировать"
+  },
+  "PhotoEditor": {
+    "TITLE": "редактор",
+    "BUTTON_CANCEL": "отмена",
+    "BUTTON_DONE": "готово",
+    "TOOL_CROP": "кадр",
+    "TOOL_ADJUST": "настройка",
+    "TOOL_FILTERS": "фильтры",
+    "LABEL_ZOOM": "масштаб",
+    "BUTTON_ROTATE": "повернуть",
+    "BUTTON_FLIP": "отразить",
+    "ASPECT_ORIGINAL": "оригинал",
+    "ASPECT_SQUARE": "1:1",
+    "ASPECT_PORTRAIT": "4:5",
+    "ASPECT_LANDSCAPE": "4:3",
+    "LABEL_BRIGHTNESS": "свет",
+    "LABEL_CONTRAST": "контраст",
+    "LABEL_SATURATION": "цвет",
+    "PRESET_NONE": "нет",
+    "PRESET_WARM": "тёплый",
+    "PRESET_FADED": "выцветший",
+    "PRESET_MONO": "ч/б",
+    "PRESET_SEPIA": "сепия",
+    "PRESET_VIVID": "яркий",
+    "ERROR_LOAD": "не удалось открыть это фото"
   }
 }

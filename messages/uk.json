@@ -133,7 +133,8 @@
     "BUTTON_SAVING": "Зберігаємо…",
     "BUTTON_SAVED": "Збережено",
     "BUTTON_SIGN_OUT": "Вийти",
-    "ERROR_SAVE": "Не вдалося зберегти зміни. Спробуйте ще раз."
+    "ERROR_SAVE": "Не вдалося зберегти зміни. Спробуйте ще раз.",
+    "BUTTON_EDIT_PHOTO": "редагувати"
   },
   "Capture": {
     "SECTION_ADD": "додайте своє",
@@ -185,6 +186,32 @@
     "EMPTY_TAGS": "почніть вводити, щоб додати тег",
     "BUTTON_CREATE_TAG": "додати «{tag}»",
     "LABEL_REMOVE_TAG": "прибрати {tag}",
-    "KEEPER_FALLBACK": "ви"
+    "KEEPER_FALLBACK": "ви",
+    "BUTTON_EDIT_PHOTO": "редагувати"
+  },
+  "PhotoEditor": {
+    "TITLE": "редактор",
+    "BUTTON_CANCEL": "скасувати",
+    "BUTTON_DONE": "готово",
+    "TOOL_CROP": "кадр",
+    "TOOL_ADJUST": "налаштування",
+    "TOOL_FILTERS": "фільтри",
+    "LABEL_ZOOM": "масштаб",
+    "BUTTON_ROTATE": "повернути",
+    "BUTTON_FLIP": "віддзеркалити",
+    "ASPECT_ORIGINAL": "оригінал",
+    "ASPECT_SQUARE": "1:1",
+    "ASPECT_PORTRAIT": "4:5",
+    "ASPECT_LANDSCAPE": "4:3",
+    "LABEL_BRIGHTNESS": "світло",
+    "LABEL_CONTRAST": "контраст",
+    "LABEL_SATURATION": "колір",
+    "PRESET_NONE": "немає",
+    "PRESET_WARM": "теплий",
+    "PRESET_FADED": "вицвілий",
+    "PRESET_MONO": "ч/б",
+    "PRESET_SEPIA": "сепія",
+    "PRESET_VIVID": "яскравий",
+    "ERROR_LOAD": "не вдалося відкрити це фото"
   }
 }
