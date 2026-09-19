@@ -29,6 +29,7 @@ export const useSubmitCapture = (setError: UseFormSetError<CaptureValues>) => {
       location: values.place.trim(),
       acquiredAt: toAcquiredAt(values.year),
       previousOwner: values.previousOwner.trim(),
+      isPrivate: values.isPrivate,
     });
 
     if (!result.success) {

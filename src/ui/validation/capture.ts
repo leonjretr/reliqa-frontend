@@ -18,6 +18,7 @@ export const captureSchema = z.object({
   year: z.string(),
   memory: z.string().min(1).max(SHORT_STORY_MAX_LENGTH),
   story: z.string(),
+  isPrivate: z.boolean(),
 });
 
 export type CaptureValues = z.infer<typeof captureSchema>;

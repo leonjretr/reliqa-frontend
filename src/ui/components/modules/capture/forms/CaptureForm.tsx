@@ -19,6 +19,7 @@ import {
   PhotoSection,
   ProvenanceSection,
   ThingSection,
+  VisibilitySection,
 } from "../sections";
 
 type Props = {
@@ -43,6 +44,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Pr
       year: "",
       memory: "",
       story: "",
+      isPrivate: false,
     },
   });
   const { control, formState, handleSubmit, setError } = form;
@@ -60,6 +62,7 @@ export const CaptureForm = ({ categories, keeperName, initialCategory = "" }: Pr
         <ArrivalSection />
         <ProvenanceSection />
         <MemorySection />
+        <VisibilitySection />
         <CapturePreview preview={preview} keeperName={keeperName} />
         <FormError message={errors.root?.message} />
         <KeptButton

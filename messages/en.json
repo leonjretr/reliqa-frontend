@@ -162,6 +162,8 @@
     "LABEL_MEMORY": "the one line",
     "PLACEHOLDER_MEMORY": "Not the history of it. One thing.",
     "HINT_MEMORY": "One hundred and forty characters — the hook that rides on top of your photo in the feed.",
+    "TOGGLE_PRIVATE": "Keep it private",
+    "HINT_PRIVATE": "Only people with the link can see it — it won't appear in the feed or lists.",
     "LABEL_STORY": "the whole story",
     "WORDS_COUNT": "{count, plural, one {# word} other {# words}}",
     "PLACEHOLDER_STORY": "Where you kept it, who it belonged to, the day you almost let it go. Take your time — this is the part people open the story to read.",

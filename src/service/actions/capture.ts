@@ -15,6 +15,7 @@ export const submitCapture = async ({
   location,
   acquiredAt,
   previousOwner,
+  isPrivate,
 }: CaptureInput): Promise<CaptureResult> => {
   const object = await createObject({
     name,
@@ -26,6 +27,7 @@ export const submitCapture = async ({
     location,
     acquired_at: acquiredAt,
     previous_owner: previousOwner,
+    is_private: isPrivate,
   });
 
   if (!object.success) {

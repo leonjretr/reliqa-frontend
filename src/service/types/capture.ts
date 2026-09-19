@@ -10,6 +10,7 @@ export type CaptureInput = {
   location: string;
   acquiredAt: string | null;
   previousOwner: string;
+  isPrivate: boolean;
 };
 
 export type CaptureResult = ActionResult<{ objectId: string }>;

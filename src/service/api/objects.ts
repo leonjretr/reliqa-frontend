@@ -52,6 +52,7 @@ export type CreateObjectInput = {
   location?: string;
   acquired_at?: string | null;
   previous_owner?: string;
+  is_private?: boolean;
 };
 
 export const createObject = async (input: CreateObjectInput) => {

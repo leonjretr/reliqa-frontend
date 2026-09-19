@@ -51,6 +51,7 @@ export type APIObject = {
   location: string;
   acquired_at: string | null;
   previous_owner: string;
+  is_private: boolean;
   created_by: APIUserSummary;
   categories: APICategory[];
   tags: APITag[];
@@ -68,6 +69,7 @@ export type APIObjectListItem = {
   source: APIObjectSource | null;
   location: string;
   acquired_at: string | null;
+  is_private: boolean;
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];
@@ -86,6 +88,7 @@ export type APICreatedObject = {
   location: string;
   acquired_at: string | null;
   previous_owner: string;
+  is_private: boolean;
   created_by: APIUserSummary;
   categories: string[];
   tags: string[];
